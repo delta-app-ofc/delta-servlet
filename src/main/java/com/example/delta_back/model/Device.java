@@ -11,9 +11,8 @@ public class Device {
     private boolean active;
     private LocalDate installationDate;
 
-    public Device() {
-    }
-
+    // Construtor
+    public Device(){}
     public Device(int id, String deviceId, int propertyId,
                   boolean active, LocalDate installationDate) {
 

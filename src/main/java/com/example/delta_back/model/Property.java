@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 public class Property {
 
+    // Definindo atributos do objeto Propriedade
     private int id;
     private String name;
     private String type;
@@ -11,9 +12,8 @@ public class Property {
     private int addressId;
     private LocalDate registrationDate;
 
-    public Property() {
-    }
-
+    // Construtor
+    public Property(){}
     public Property(int id, String name, String type,
                     String classification, int addressId,
                     LocalDate registrationDate) {
@@ -26,6 +26,7 @@ public class Property {
         this.registrationDate = registrationDate;
     }
 
+    // Getters & Setters
     public int getId() {
         return id;
     }

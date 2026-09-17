@@ -9,9 +9,8 @@ public class Address {
     private String city;
     private String state;
 
-    public Address() {
-    }
-
+    // Construtor
+    public Address(){}
     public Address(int id, int regionId, String cep,
                    String city, String state) {
 

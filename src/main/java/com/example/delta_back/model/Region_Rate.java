@@ -5,15 +5,14 @@ import java.time.LocalDate;
 
 public class Region_Rate {
 
+    // Definindo atributos do objeto Taxa da Região
     private int id;
     private int regionId;
     private BigDecimal m3Value;
     private LocalDate initialValidity;
     private LocalDate finalValidity;
 
-    public Region_Rate() {
-    }
-
+    // Construtor
     public Region_Rate(int id, int regionId, BigDecimal m3Value,
                        LocalDate initialValidity,
                        LocalDate finalValidity) {
@@ -25,6 +24,7 @@ public class Region_Rate {
         this.finalValidity = finalValidity;
     }
 
+    // Getters & Setters
     public int getId() {
         return id;
     }

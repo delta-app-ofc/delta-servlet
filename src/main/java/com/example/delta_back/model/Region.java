@@ -2,17 +2,18 @@ package com.example.delta_back.model;
 
 public class Region {
 
+    // Definindo atributos do objeto Região
     private int id;
     private String name;
 
-    public Region() {
-    }
-
+    // Construtor
+    public Region(){}
     public Region(int id, String name) {
         this.id = id;
         this.name = name;
     }
 
+    // Getters & Setters
     public int getId() {
         return id;
     }

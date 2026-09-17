@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 public class User {
 
+    // Definindo atributos do objeto Usuário
     private int id;
     private String name;
     private String email;
@@ -15,9 +16,7 @@ public class User {
     private boolean admin;
     private boolean manager;
 
-    public User() {
-    }
-
+    // Construtor
     public User(int id, String name, String email, String password,
                 String phone, LocalDate birthDate,
                 LocalDate registrationDate, boolean active,
@@ -35,6 +34,7 @@ public class User {
         this.manager = manager;
     }
 
+    // Getters & Setters
     public int getId() {
         return id;
     }
