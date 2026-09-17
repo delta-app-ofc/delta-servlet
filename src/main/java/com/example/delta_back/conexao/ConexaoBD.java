@@ -19,11 +19,11 @@ public class ConexaoBD {
     private static final String USUARIO = dotenv.get("DB_USER");
     private static final String SENHA = dotenv.get("DB_PASSWORD");
 
-    public static Connection conectar() throws SQLException {
-        return DriverManager.getConnection(
-                URL,
-                USUARIO,
-                SENHA
-        );
+    public static Connection connect() throws SQLException {
+        try {
+            return DriverManager.getConnection(URL, USUARIO, SENHA);
+        } catch (SQLException err) {
+            throw new RuntimeException("Erro ao conectar ao banco de dados", err);
+        }
     }
 }

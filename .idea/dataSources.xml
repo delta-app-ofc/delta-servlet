@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="dbdelta@pg-1e9b6d7-germinare-c5ed.k.aivencloud.com" uuid="04c0e239-b968-4a44-86b2-01032c1a26f9">
+    <data-source source="LOCAL" name="dbDelta@pg-27f8f50a-institutojef-c23f.l.aivencloud.com" uuid="f905d1d6-e491-433e-8d78-f2da291a6ad2">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://pg-1e9b6d7-germinare-c5ed.k.aivencloud.com:16130/dbdelta</jdbc-url>
+      <jdbc-url>jdbc:postgresql://pg-27f8f50a-institutojef-c23f.l.aivencloud.com:26391/dbDelta</jdbc-url>
       <jdbc-additional-properties>
         <property name="com.intellij.clouds.kubernetes.db.host.port" />
         <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
