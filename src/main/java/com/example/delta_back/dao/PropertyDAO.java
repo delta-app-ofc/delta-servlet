@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 // Interface property
-public interface Property_DAO {
+public interface PropertyDAO {
 
     // Criar uma propriedade no Banco de Dados
     void inserir(Property property);

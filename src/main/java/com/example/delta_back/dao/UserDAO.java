@@ -4,7 +4,7 @@ import com.example.delta_back.model.User;
 import java.util.List;
 
 
-public interface User_DAO {
+public interface UserDAO {
 
     // Insert - Inserir dados (Criar Usuário)
     void inserir (User user);

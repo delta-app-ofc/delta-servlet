@@ -4,7 +4,7 @@ import com.example.delta_back.model.Address;
 import java.util.List;
 
 // Interface Endereco
-public interface Address_DAO {
+public interface AddressDAO {
 
     void inserir (Address address);
 

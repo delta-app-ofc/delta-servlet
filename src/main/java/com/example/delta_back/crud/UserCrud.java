@@ -1,6 +1,6 @@
 package com.example.delta_back.crud;
 
-import com.example.delta_back.dao.User_DAO;
+import com.example.delta_back.dao.UserDAO;
 import com.example.delta_back.model.User;
 
 import java.sql.*;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class UserCrud implements User_DAO {
+public class UserCrud implements UserDAO {
 
     // Criando a variável Connection (JDBC)
     private final Connection connection;
