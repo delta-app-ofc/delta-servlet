@@ -1,13 +1,13 @@
 package com.example.delta_back.crud;
 
 import com.example.delta_back.model.Address;
-import com.example.delta_back.dao.Address_DAO;
+import com.example.delta_back.dao.AddressDAO;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddressCrud implements Address_DAO {
+public class AddressCrud implements AddressDAO {
 
     // Definindo a variavel para a conexão (JBDC)
     private final Connection connection;

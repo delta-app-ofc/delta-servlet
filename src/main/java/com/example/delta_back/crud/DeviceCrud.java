@@ -1,14 +1,14 @@
 package com.example.delta_back.crud;
 
 import com.example.delta_back.model.Device;
-import com.example.delta_back.dao.Device_DAO;
+import com.example.delta_back.dao.DeviceDAO;
 
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DeviceCrud implements Device_DAO {
+public class DeviceCrud implements DeviceDAO {
 
     // Definindo a variavel para a conexão (JBDC)
     private final Connection connection;

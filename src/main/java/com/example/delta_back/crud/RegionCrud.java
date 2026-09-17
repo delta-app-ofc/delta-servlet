@@ -1,13 +1,13 @@
 package com.example.delta_back.crud;
 
 import com.example.delta_back.model.Region;
-import com.example.delta_back.dao.Region_DAO;
+import com.example.delta_back.dao.RegionDAO;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RegionCrud implements Region_DAO {
+public class RegionCrud implements RegionDAO {
 
     // Definindo a variavel para a conexão (JBDC)
     private final Connection connection;

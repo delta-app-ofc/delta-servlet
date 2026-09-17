@@ -1,6 +1,6 @@
 package com.example.delta_back.crud;
 
-import com.example.delta_back.dao.RegionRate_DAO;
+import com.example.delta_back.dao.RegionRateDAO;
 import com.example.delta_back.model.Region_Rate;
 
 import java.sql.*;
@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RegionRateCrud implements RegionRate_DAO {
+public class RegionRateCrud implements RegionRateDAO {
 
     // Definindo variável conexão (JDBC)
     private final Connection connection;
