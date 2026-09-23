@@ -26,6 +26,7 @@ public class UserServlet extends HttpServlet {
     private Connection connection;
     private UserCrud userCrud;
 
+    // Iniciar a conexão com o BD, e passar a conexão para o UserCrud
     @Override
     public void init() throws ServletException {
         try {
@@ -58,8 +59,10 @@ public class UserServlet extends HttpServlet {
 
     // Criar usuário - POST
     @Override
-    protected void doPost( HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
+    protected void doPost(
+            HttpServletRequest request,
+            HttpServletResponse response
+    ) throws ServletException, IOException {
 
         try {
 
@@ -117,8 +120,10 @@ public class UserServlet extends HttpServlet {
 
     // DELETE - apaga né
     @Override
-    protected void doDelete(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
+    protected void doDelete(
+            HttpServletRequest request,
+            HttpServletResponse response
+    ) throws ServletException, IOException {
 
         try {
 
@@ -133,6 +138,7 @@ public class UserServlet extends HttpServlet {
         }
     }
 
+    // Fecha a conexão
     @Override
     public void destroy() {
 
