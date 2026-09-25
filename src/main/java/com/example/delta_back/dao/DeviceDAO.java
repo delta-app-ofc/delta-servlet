@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 // Interface genérica
-public interface Device_DAO {
+public interface DeviceDAO {
 
     // Inserir dados
     void inserir (Device device);

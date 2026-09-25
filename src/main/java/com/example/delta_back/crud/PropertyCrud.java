@@ -4,14 +4,14 @@ import com.example.delta_back.model.Device; // Para consulta inter tabelas
 import com.example.delta_back.model.Address; // Para consulta inter tabelas
 import com.example.delta_back.model.Region; // Para consulta inter tabelas
 import com.example.delta_back.model.Property;
-import com.example.delta_back.dao.Property_DAO;
+import com.example.delta_back.dao.PropertyDAO;
 
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PropertyCrud implements Property_DAO {
+public class PropertyCrud implements PropertyDAO {
 
     // Definindo a variavel para a conexão (JBDC)
     private final Connection connection;

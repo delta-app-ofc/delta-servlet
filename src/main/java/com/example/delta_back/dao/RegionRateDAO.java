@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 // Interface Taxa da Região
-public interface RegionRate_DAO {
+public interface RegionRateDAO {
 
     // Insert
     void inserir(Region_Rate regionRate);

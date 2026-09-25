@@ -4,7 +4,7 @@ import com.example.delta_back.model.Region;
 import java.util.List;
 
 // Interface Regiao
-public interface Region_DAO {
+public interface RegionDAO {
 
     // Metodo para Inserir Uma Região
     void inserir (Region region);
