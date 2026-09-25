@@ -17,7 +17,7 @@ import java.sql.Connection;
 import java.time.LocalDate;
 import java.util.List;
 
-import java.time.format.DateTimeFormatter; // Para formatar data como Dia/Mês/Ano
+import java.time.format.DateTimeFormatter; // Para interpretar String como Data
 
 
 @WebServlet("/user")
@@ -98,17 +98,6 @@ public class UserServlet extends HttpServlet {
                     is_manager
             );
 
-
-            user.setName(name);
-            user.setEmail(email);
-            user.setPassword(password);
-            user.setPhone(phone);
-            user.setBirthDate(birthDate);
-            user.setRegistrationDate(registrationDate);
-            user.setActive(is_active);
-            user.setAdmin(is_admin);
-            user.setManager(is_manager);
-
             userCrud.inserir(user);
 
             response.sendRedirect(request.getContextPath() + "/user");
@@ -118,7 +107,7 @@ public class UserServlet extends HttpServlet {
         }
     }
 
-    // DELETE - apaga né
+    // DELETE
     @Override
     protected void doDelete(
             HttpServletRequest request,

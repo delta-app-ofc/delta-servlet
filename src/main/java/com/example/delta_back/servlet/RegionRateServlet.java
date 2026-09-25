@@ -16,17 +16,17 @@ import java.sql.Connection;
 import java.time.LocalDate;
 import java.util.List;
 
-import java.time.format.DateTimeFormatter; // Para formatar data como Dia/Mês/Ano
+import java.time.format.DateTimeFormatter; // Para Interpretar String como Data
 
 @WebServlet("/regionrate")
-public class RegionRateServlet extends HttpServlet{
+public class RegionRateServlet extends HttpServlet {
 
     private Connection connection;
     private RegionRateCrud regionRateCrud;
 
     // Inicia a Conexão e passa a conexão para o RegionRateCrud quando o Servlet liga
     @Override
-    public void init() throws ServletException{
+    public void init() throws ServletException {
         try {
             connection = ConexaoBD.connect();
             regionRateCrud = new RegionRateCrud(connection);
@@ -50,7 +50,7 @@ public class RegionRateServlet extends HttpServlet{
             request.getRequestDispatcher("/regionrate.jsp").forward(request, response);
 
         } catch (Exception e) {
-            throw new ServletException("Erro ao buscar usuários.", e);
+            throw new ServletException("Erro ao buscar taxas das regiões...", e);
         }
     }
 
@@ -86,17 +86,12 @@ public class RegionRateServlet extends HttpServlet{
                     finalValidity
             );
 
-            regionRate.setRegionId(regionId);
-            regionRate.setM3Value(m3value);
-            regionRate.setInitialValidity(initialValidity);
-            regionRate.setInitialValidity(finalValidity);
-
             regionRateCrud.inserir(regionRate);
 
-            response.sendRedirect(request.getContextPath() + "\regionrate");
+            response.sendRedirect(request.getContextPath() + "/regionrate");
 
         } catch (Exception e) {
-            throw new ServletException("Erro ao cadastrar usuário...", e);
+            throw new ServletException("Erro ao cadastrar taxa da região...", e);
         }
     }
 
@@ -116,7 +111,7 @@ public class RegionRateServlet extends HttpServlet{
             response.setStatus(HttpServletResponse.SC_NO_CONTENT);
 
         } catch (Exception e) {
-            throw new ServletException("Erro ao deletar usuário...", e);
+            throw new ServletException("Erro ao deletar taxa da região...", e);
         }
     }
 
