@@ -7,7 +7,7 @@ public class TesteConexao {
     public static void main(String[] args) {
 
         try {
-            Connection conexao = ConexaoBD.connect();
+            Connection conexao = ConexaoBD.conectar();
 
             System.out.println("Conexão realizada com sucesso!");
 
