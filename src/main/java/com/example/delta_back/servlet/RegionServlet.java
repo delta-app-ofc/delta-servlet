@@ -24,7 +24,7 @@ public class RegionServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         try {
-            connection = ConexaoBD.connect();
+            connection = ConexaoBD.conectar();
             regionCrud = new RegionCrud(connection);
         } catch (Exception e) {
             throw new ServletException("Erro ao conectar ao banco...", e);

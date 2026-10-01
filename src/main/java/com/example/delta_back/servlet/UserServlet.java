@@ -30,7 +30,7 @@ public class UserServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         try {
-            connection = ConexaoBD.connect();
+            connection = ConexaoBD.conectar();
             userCrud = new UserCrud(connection);
         } catch (Exception e) {
             throw new ServletException("Erro ao conectar com o banco de dados.", e);
