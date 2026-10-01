@@ -34,6 +34,12 @@ public class ConexaoBD {
                     DB_NAME;
 
     public static Connection conectar() throws SQLException {
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new SQLException("Driver do PostgreSQL não encontrado.", e);
+        }
+
         return DriverManager.getConnection(
                 URL,
                 USUARIO,
