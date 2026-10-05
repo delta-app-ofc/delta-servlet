@@ -60,7 +60,7 @@ public class AddressCrud implements AddressDAO {
 
                 if (resultado.next()) {
 
-                    return new Address (
+                    return new Address(
                             resultado.getInt("id"),
                             resultado.getInt("region_id"),
                             resultado.getString("cep"),
@@ -96,7 +96,7 @@ public class AddressCrud implements AddressDAO {
 
             while (resultado.next()) {
 
-                Address address = new Address (
+                Address address = new Address(
                         resultado.getInt("id"),
                         resultado.getInt("region_id"),
                         resultado.getString("cep"),
@@ -116,6 +116,31 @@ public class AddressCrud implements AddressDAO {
     }
 
     // METÓDOS UPDATES
+
+    // Método responsável por atualizar todos os dados do endereço
+    @Override
+    public void atualizar(Address address) {
+
+        String sql = """
+                UPDATE tb_address
+                SET region_id = ?, cep = ?, city = ?, state = ?
+                WHERE id = ?
+                """;
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+
+            stmt.setInt(1, address.getRegionId());
+            stmt.setString(2, address.getCep());
+            stmt.setString(3, address.getCity());
+            stmt.setString(4, address.getState());
+            stmt.setInt(5, address.getId());
+
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     // Atualizar region_id
     @Override

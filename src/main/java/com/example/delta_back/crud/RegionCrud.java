@@ -58,7 +58,7 @@ public class RegionCrud implements RegionDAO {
 
                 if (resultado.next()) {
 
-                    return new Region (
+                    return new Region(
                             resultado.getInt("id"),
                             resultado.getString("name")
                     );
@@ -90,7 +90,7 @@ public class RegionCrud implements RegionDAO {
 
             while (resultado.next()) {
 
-                Region region = new Region (
+                Region region = new Region(
                         resultado.getInt("id"),
                         resultado.getString("name")
                 );
@@ -106,7 +106,29 @@ public class RegionCrud implements RegionDAO {
 
     }
 
-    // UPTADE
+    // UPDATE
+    // Atualizar todos os dados da região
+    @Override
+    public void atualizar(Region region) {
+
+        String sql = """
+                UPDATE tb_region
+                SET name = ?
+                WHERE id = ?
+                """;
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+
+            stmt.setString(1, region.getName());
+            stmt.setInt(2, region.getId());
+
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     // Atualizar Nome
     @Override
     public void atualizarNome(Region region) {

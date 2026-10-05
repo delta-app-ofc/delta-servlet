@@ -110,7 +110,7 @@ public class RegionRateCrud implements RegionRateDAO {
                 }
 
                 if (finalDate != null) {
-                    finalValidity = finalDate.toLocalDate();
+                    finalDate = finalDate;
                 }
 
                 Region_Rate region_rate = new Region_Rate(
@@ -129,6 +129,32 @@ public class RegionRateCrud implements RegionRateDAO {
         }
 
         return regioes_rate;
+    }
+
+    // UPDATE
+    // Atualizar todos os dados da taxa da região
+    @Override
+    public void atualizar(Region_Rate region_rate) {
+
+        String sql = """
+                UPDATE tb_region_rate
+                SET region_id = ?, m3_value = ?, initial_validity = ?, final_validity = ?
+                WHERE id = ?
+                """;
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+
+            stmt.setInt(1, region_rate.getRegionId());
+            stmt.setBigDecimal(2, region_rate.getM3Value());
+            stmt.setDate(3, Date.valueOf(region_rate.getInitialValidity()));
+            stmt.setDate(4, Date.valueOf(region_rate.getFinalValidity()));
+            stmt.setInt(5, region_rate.getId());
+
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

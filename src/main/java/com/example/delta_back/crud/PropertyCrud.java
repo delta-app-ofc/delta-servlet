@@ -63,7 +63,7 @@ public class PropertyCrud implements PropertyDAO {
 
                 if (resultado.next()) {
 
-                    return new Property (
+                    return new Property(
                             resultado.getInt("id"),
                             resultado.getString("name"),
                             resultado.getString("type"),
@@ -99,7 +99,7 @@ public class PropertyCrud implements PropertyDAO {
 
             while (resultado.next()) {
 
-                Property property = new Property (
+                Property property = new Property(
                         resultado.getInt("id"),
                         resultado.getString("name"),
                         resultado.getString("type"),
@@ -129,13 +129,13 @@ public class PropertyCrud implements PropertyDAO {
         // Código SQL da consulta
         String sql = """
                 SELECT p.name AS nome_propriedade,
-                	d.device_id AS id_dispositivo,
-                	d.is_active,
-                	d.installation_date AS data_instalacao
-                	FROM tb_device d
-                	JOIN tb_property p
-                	ON d.property_id = p.id
-                	"""; // Utilização dos JOINS para conectar duas tabelas
+                    d.device_id AS id_dispositivo,
+                    d.is_active,
+                    d.installation_date AS data_instalacao
+                    FROM tb_device d
+                    JOIN tb_property p
+                    ON d.property_id = p.id
+                    """; // Utilização dos JOINS para conectar duas tabelas
 
         // Tente buscar
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
@@ -157,6 +157,7 @@ public class PropertyCrud implements PropertyDAO {
                 device.setInstallationDate(
                         rs.getDate("installation_date").toLocalDate()
                 );
+
                 // Adicionando o dispositivo buscado no ArrayList de dispositivos
                 dispositivos.add(device);
             }
@@ -219,6 +220,33 @@ public class PropertyCrud implements PropertyDAO {
 
 
     // MÉTODOS UPDATE
+
+    // Método responsável por atualizar todos os dados da propriedade
+    @Override
+    public void atualizar(Property property) {
+
+        String sql = """
+                UPDATE tb_property
+                SET name = ?, type = ?, classification = ?, address_id = ?, registration_date = ?
+                WHERE id = ?
+                """;
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+
+            stmt.setString(1, property.getName());
+            stmt.setString(2, property.getType());
+            stmt.setString(3, property.getClassification());
+            stmt.setInt(4, property.getAddressId());
+            stmt.setDate(5, Date.valueOf(property.getRegistrationDate()));
+            stmt.setInt(6, property.getId());
+
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     // Atualizar Nome
     @Override
     public void atualizarNome(Property property) {
