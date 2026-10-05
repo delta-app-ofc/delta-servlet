@@ -5,36 +5,28 @@ import com.example.delta_back.model.Region_Rate;
 import java.time.LocalDate;
 import java.util.List;
 
-// Interface Taxa da Região
 public interface RegionRateDAO {
 
-    // Insert
+    // Método responsável por inserir uma nova taxa de região.
     void inserir(Region_Rate regionRate);
 
-    // Select por ID
+    // Métodos responsáveis por buscar taxas de região.
     Region_Rate buscarPorId(int id);
-
-    // Listar todos
     List<Region_Rate> listarTodos();
 
-    // Updates
+    // Métodos responsáveis por alterar os dados de uma taxa de região.
+    void atualizar(Region_Rate regionRate);
     void atualizarRegionId(Region_Rate regionRate);
-
     void atualizarM3Value(Region_Rate regionRate);
-
     void atualizarInitialValidity(Region_Rate regionRate);
-
     void atualizarFinalValidity(Region_Rate regionRate);
 
-    // Delete
+    // Métodos responsáveis por excluir taxas de região.
     void deletar(int id);
-
     void deletarPorIdRegiao(int region_id);
-
     void deletarPorValidadeInicial(LocalDate initial_validity);
-
     void deletarPorValidadeFinal(LocalDate final_validity);
 
-    // toString - Método Exibir Dados
+    // Método responsável por exibir os dados de uma taxa de região.
     String exibirDados(Region_Rate regionRate);
 }

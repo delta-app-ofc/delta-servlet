@@ -1,44 +1,34 @@
 package com.example.delta_back.dao;
 
 import com.example.delta_back.model.User;
-import java.util.List;
 
+import java.util.List;
 
 public interface UserDAO {
 
-    // Insert - Inserir dados (Criar Usuário)
-    void inserir (User user);
+    // Método responsável por inserir um novo usuário.
+    void inserir(User user);
 
-    // Metodo Buscar - Select -> Buscar Usuário
+    // Métodos responsáveis por buscar usuários.
     User buscarPorId(int id);
-
-    // Metodo Listar Todos - Select * From User
     List<User> listarTodos();
 
-    // Metodos Update - Alterar informações
+    // Métodos responsáveis por alterar os dados de um usuário.
+    void atualizar(User user);
     void atualizarNome(User user);
-
     void atualizarEmail(User user);
-
     void atualizarPassword(User user);
-
     void atualizarPhone(User user);
-
     void atualizarBirthDate(User user);
-
     void atualizarIsActive(User user);
-
     void atualizarIsAdmin(User user);
-
     void atualizarIsManager(User user);
 
-    // Metodo Delete - Apagar o Usuario
+    // Métodos responsáveis por excluir usuários.
     void deletar(int id);
-
     void deletarPorEmail(String email);
-
     void deletarPorCelular(String phone);
 
-    // Sobrescrita - toString
+    // Método responsável por exibir os dados de um usuário.
     String exibirDados(User user);
 }

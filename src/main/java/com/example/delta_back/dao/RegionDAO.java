@@ -1,28 +1,26 @@
 package com.example.delta_back.dao;
 
 import com.example.delta_back.model.Region;
+
 import java.util.List;
 
-// Interface Regiao
 public interface RegionDAO {
 
-    // Metodo para Inserir Uma Região
-    void inserir (Region region);
+    // Método responsável por inserir uma nova região.
+    void inserir(Region region);
 
-    // Metodo para consultar uma região
+    // Métodos responsáveis por buscar regiões.
     Region buscarPorId(int id);
-
-    // Metodo para exibir todas as regiões
     List<Region> listarTodos();
 
-    // Metodo para atualizar o nome da região
+    // Métodos responsáveis por alterar os dados de uma região.
+    void atualizar(Region region);
     void atualizarNome(Region region);
 
-    // Métodos Delete
+    // Métodos responsáveis por excluir regiões.
     void deletar(int id);
-
     void deletarPorNome(String name);
 
-    // Método para exibir dados
+    // Método responsável por exibir os dados de uma região.
     String exibirDados(Region region);
 }
