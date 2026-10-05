@@ -62,6 +62,7 @@
         <th>Ativo</th>
         <th>Admin</th>
         <th>Gerente</th>
+        <th>Ações</th>
     </tr>
 
     <%
@@ -81,6 +82,28 @@
         <td><%= user.isActive() %></td>
         <td><%= user.isAdmin() %></td>
         <td><%= user.isManager() %></td>
+
+        <td>
+            <button type="button"
+                    onclick="editarUsuario(
+                        <%= user.getId() %>,
+                            '<%= user.getName() %>',
+                            '<%= user.getEmail() %>',
+                            '<%= user.getPassword() %>',
+                            '<%= user.getPhone() %>',
+                            '<%= user.getBirthDate() %>',
+                        <%= user.isActive() %>,
+                        <%= user.isAdmin() %>,
+                        <%= user.isManager() %>
+                            )">
+                Editar
+            </button>
+
+            <button type="button"
+                    onclick="deletarUsuario(<%= user.getId() %>)">
+                Excluir
+            </button>
+        </td>
     </tr>
 
     <%
@@ -88,6 +111,138 @@
     %>
 
 </table>
+
+<script>
+
+    function editarUsuario(
+        id,
+        name,
+        email,
+        password,
+        phone,
+        birthDate,
+        isActive,
+        isAdmin,
+        isManager
+    ) {
+
+        const novoName = prompt("Nome:", name);
+
+        if (novoName === null) {
+            return;
+        }
+
+        const novoEmail = prompt("E-mail:", email);
+
+        if (novoEmail === null) {
+            return;
+        }
+
+        const novaPassword = prompt("Senha:", password);
+
+        if (novaPassword === null) {
+            return;
+        }
+
+        const novoPhone = prompt("Telefone:", phone);
+
+        if (novoPhone === null) {
+            return;
+        }
+
+        const novaBirthDate = prompt(
+            "Data de nascimento (dd/MM/yyyy):",
+            converterData(birthDate)
+        );
+
+        if (novaBirthDate === null) {
+            return;
+        }
+
+        const novoIsActive = confirm(
+            "O usuário está ativo?"
+        );
+
+        const novoIsAdmin = confirm(
+            "O usuário é administrador?"
+        );
+
+        const novoIsManager = confirm(
+            "O usuário é gerente?"
+        );
+
+        const parametros = new URLSearchParams();
+
+        parametros.append("id", id);
+        parametros.append("name", novoName);
+        parametros.append("email", novoEmail);
+        parametros.append("password", novaPassword);
+        parametros.append("phone", novoPhone);
+        parametros.append("birthDate", novaBirthDate);
+        parametros.append("isActive", novoIsActive);
+        parametros.append("isAdmin", novoIsAdmin);
+        parametros.append("isManager", novoIsManager);
+
+        fetch("${pageContext.request.contextPath}/user?" + parametros.toString(), {
+            method: "PUT"
+        })
+            .then(response => {
+
+                if (response.ok) {
+                    window.location.reload();
+                } else {
+                    alert("Erro ao atualizar usuário.");
+                }
+
+            })
+            .catch(error => {
+
+                console.error(error);
+                alert("Erro ao atualizar usuário.");
+
+            });
+    }
+
+
+    function converterData(data) {
+
+        const partes = data.split("-");
+
+        if (partes.length === 3) {
+            return partes[2] + "/" + partes[1] + "/" + partes[0];
+        }
+
+        return data;
+    }
+
+
+    function deletarUsuario(id) {
+
+        if (!confirm("Deseja realmente excluir este usuário?")) {
+            return;
+        }
+
+        fetch("${pageContext.request.contextPath}/user?id=" + id, {
+            method: "DELETE"
+        })
+            .then(response => {
+
+                if (response.ok) {
+                    window.location.reload();
+                } else {
+                    alert("Erro ao excluir usuário.");
+                }
+
+            })
+            .catch(error => {
+
+                console.error(error);
+                alert("Erro ao excluir usuário.");
+
+            });
+    }
+
+</script>
 
 </body>
 </html>

@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <title>Endereços - Delta</title>
 </head>
-<body> 
+<body>
 
 <h1>Endereços</h1>
 
@@ -29,6 +29,7 @@
         <th>CEP</th>
         <th>Cidade</th>
         <th>Estado</th>
+        <th>Ações</th>
     </tr>
 
     <%
@@ -44,12 +45,95 @@
         <td><%= address.getCep() %></td>
         <td><%= address.getCity() %></td>
         <td><%= address.getState() %></td>
+
+        <td>
+            <button type="button"
+                    onclick="editarEndereco(
+                        <%= address.getId() %>,
+                        <%= address.getRegionId() %>,
+                            '<%= address.getCep() %>',
+                            '<%= address.getCity() %>',
+                            '<%= address.getState() %>'
+                            )">
+                Editar
+            </button>
+
+            <button type="button"
+                    onclick="deletarEndereco(<%= address.getId() %>)">
+                Excluir
+            </button>
+        </td>
     </tr>
 
     <%
         }
     %>
 </table>
+
+<script>
+
+    function editarEndereco(id, regionId, cep, city, state) {
+
+        const novoRegionId = prompt("ID da Região:", regionId);
+        if (novoRegionId === null) return;
+
+        const novoCep = prompt("CEP:", cep);
+        if (novoCep === null) return;
+
+        const novaCity = prompt("Cidade:", city);
+        if (novaCity === null) return;
+
+        const novoState = prompt("Estado:", state);
+        if (novoState === null) return;
+
+        const parametros = new URLSearchParams();
+
+        parametros.append("id", id);
+        parametros.append("regionId", novoRegionId);
+        parametros.append("cep", novoCep);
+        parametros.append("city", novaCity);
+        parametros.append("state", novoState);
+
+        fetch("${pageContext.request.contextPath}/address?" + parametros.toString(), {
+            method: "PUT"
+        })
+            .then(response => {
+                if (response.ok) {
+                    window.location.reload();
+                } else {
+                    alert("Erro ao atualizar endereço.");
+                }
+            })
+            .catch(error => {
+                console.error(error);
+                alert("Erro ao atualizar endereço.");
+            });
+    }
+
+
+    function deletarEndereco(id) {
+
+        if (!confirm("Deseja realmente excluir este endereço?")) {
+            return;
+        }
+
+        fetch("${pageContext.request.contextPath}/address?id=" + id, {
+            method: "DELETE"
+        })
+            .then(response => {
+                if (response.ok) {
+                    window.location.reload();
+                } else {
+                    alert("Erro ao excluir endereço.");
+                }
+            })
+            .catch(error => {
+                console.error(error);
+                alert("Erro ao excluir endereço.");
+            });
+    }
+
+</script>
 
 </body>
 </html>

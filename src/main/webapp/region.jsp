@@ -28,6 +28,7 @@
     <tr>
         <th>ID</th>
         <th>Nome</th>
+        <th>Ações</th>
     </tr>
 
     <%
@@ -40,6 +41,21 @@
     <tr>
         <td><%= region.getId() %></td>
         <td><%= region.getName() %></td>
+
+        <td>
+            <button type="button"
+                    onclick="editarRegiao(
+                        <%= region.getId() %>,
+                            '<%= region.getName() %>'
+                            )">
+                Editar
+            </button>
+
+            <button type="button"
+                    onclick="deletarRegiao(<%= region.getId() %>)">
+                Excluir
+            </button>
+        </td>
     </tr>
 
     <%
@@ -47,6 +63,70 @@
     %>
 
 </table>
+
+<script>
+
+    function editarRegiao(id, name) {
+
+        const novoName = prompt("Nome da região:", name);
+
+        if (novoName === null) {
+            return;
+        }
+
+        const parametros = new URLSearchParams();
+
+        parametros.append("id", id);
+        parametros.append("name", novoName);
+
+        fetch("${pageContext.request.contextPath}/region?" + parametros.toString(), {
+            method: "PUT"
+        })
+            .then(response => {
+
+                if (response.ok) {
+                    window.location.reload();
+                } else {
+                    alert("Erro ao atualizar região.");
+                }
+
+            })
+            .catch(error => {
+
+                console.error(error);
+                alert("Erro ao atualizar região.");
+
+            });
+    }
+
+
+    function deletarRegiao(id) {
+
+        if (!confirm("Deseja realmente excluir esta região?")) {
+            return;
+        }
+
+        fetch("${pageContext.request.contextPath}/region?id=" + id, {
+            method: "DELETE"
+        })
+            .then(response => {
+
+                if (response.ok) {
+                    window.location.reload();
+                } else {
+                    alert("Erro ao excluir região.");
+                }
+
+            })
+            .catch(error => {
+
+                console.error(error);
+                alert("Erro ao excluir região.");
+
+            });
+    }
+
+</script>
 
 </body>
 </html>
