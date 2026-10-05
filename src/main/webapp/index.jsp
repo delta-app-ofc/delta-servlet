@@ -2,11 +2,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>JSP - Hello World</title>
+  <title>Delta - Sistema</title>
 </head>
 <body>
-<h1><%= "Hello World!" %></h1>
-<br/>
-<a href="hello-servlet">Hello Servlet</a>
+
+<h1>Delta</h1>
+
+<h2>Cadastros</h2>
+
+<a href="${pageContext.request.contextPath}/address">Endereços</a>
+<br>
+
+<a href="${pageContext.request.contextPath}/device">Dispositivos</a>
+<br>
+
+<a href="${pageContext.request.contextPath}/property">Propriedades</a>
+<br>
+
+<a href="${pageContext.request.contextPath}/regionrate">Tarifas</a>
+<br>
+
+<a href="${pageContext.request.contextPath}/region">Regiões</a>
+<br>
+
+<a href="${pageContext.request.contextPath}/user">Usuários</a>
+
 </body>
 </html>

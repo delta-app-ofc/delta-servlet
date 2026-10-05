@@ -24,7 +24,7 @@ public class RegionServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         try {
-            connection = ConexaoBD.connect();
+            connection = ConexaoBD.conectar();
             regionCrud = new RegionCrud(connection);
         } catch (Exception e) {
             throw new ServletException("Erro ao conectar ao banco...", e);
@@ -71,6 +71,32 @@ public class RegionServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/region");
         } catch (Exception e) {
             throw new ServletException("Erro ao cadastrar região...", e);
+        }
+    }
+
+    // Atualizar região
+    @Override
+    protected void doPut(
+            HttpServletRequest request,
+            HttpServletResponse response
+    ) throws ServletException, IOException {
+
+        try {
+
+            int id = Integer.parseInt(request.getParameter("id"));
+            String name = request.getParameter("name");
+
+            Region region = new Region(
+                    id,
+                    name
+            );
+
+            regionCrud.atualizar(region);
+
+            response.setStatus(HttpServletResponse.SC_NO_CONTENT);
+
+        } catch (Exception e) {
+            throw new ServletException("Erro ao atualizar região...", e);
         }
     }
 

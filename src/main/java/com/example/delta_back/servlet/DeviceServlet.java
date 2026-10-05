@@ -72,6 +72,37 @@ public class DeviceServlet extends HttpServlet {
         }
     }
 
+    // Atualizar dispositivo - PUT
+    @Override
+    protected void doPut(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            int id = Integer.parseInt(request.getParameter("id"));
+            String deviceId = request.getParameter("deviceId");
+            int propertyId = Integer.parseInt(request.getParameter("propertyId"));
+            boolean active = Boolean.parseBoolean(request.getParameter("active"));
+
+            String data = request.getParameter("installationDate");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate installationDate = LocalDate.parse(data, formatter);
+
+            Device device = new Device(
+                    id,
+                    deviceId,
+                    propertyId,
+                    active,
+                    installationDate
+            );
+
+            deviceCrud.atualizar(device);
+
+            response.setStatus(HttpServletResponse.SC_NO_CONTENT);
+
+        } catch (Exception e) {
+            throw new ServletException("Erro ao atualizar dispositivo.", e);
+        }
+    }
+
     @Override
     protected void doDelete(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

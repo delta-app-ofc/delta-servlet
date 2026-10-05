@@ -60,6 +60,34 @@ public class AddressServlet extends HttpServlet {
         }
     }
 
+    // Atualizar endereço - PUT
+    @Override
+    protected void doPut(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            int id = Integer.parseInt(request.getParameter("id"));
+            int regionId = Integer.parseInt(request.getParameter("regionId"));
+            String cep = request.getParameter("cep");
+            String city = request.getParameter("city");
+            String state = request.getParameter("state");
+
+            Address address = new Address(
+                    id,
+                    regionId,
+                    cep,
+                    city,
+                    state
+            );
+
+            addressCrud.atualizar(address);
+
+            response.setStatus(HttpServletResponse.SC_NO_CONTENT);
+
+        } catch (Exception e) {
+            throw new ServletException("Erro ao atualizar endereço.", e);
+        }
+    }
+
     @Override
     protected void doDelete(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

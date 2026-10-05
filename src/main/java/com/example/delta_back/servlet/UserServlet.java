@@ -30,7 +30,7 @@ public class UserServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         try {
-            connection = ConexaoBD.connect();
+            connection = ConexaoBD.conectar();
             userCrud = new UserCrud(connection);
         } catch (Exception e) {
             throw new ServletException("Erro ao conectar com o banco de dados.", e);
@@ -104,6 +104,66 @@ public class UserServlet extends HttpServlet {
 
         } catch (Exception e) {
             throw new ServletException("Erro ao cadastrar usuário.", e);
+        }
+    }
+
+    // Atualizar usuário - PUT
+    @Override
+    protected void doPut(
+            HttpServletRequest request,
+            HttpServletResponse response
+    ) throws ServletException, IOException {
+
+        try {
+
+            int id = Integer.parseInt(request.getParameter("id"));
+
+            String name = request.getParameter("name");
+            String email = request.getParameter("email");
+            String password = request.getParameter("password");
+            String phone = request.getParameter("phone");
+
+            String data = request.getParameter("birthdate");
+
+            DateTimeFormatter formatter =
+                    DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+            LocalDate birthDate = LocalDate.parse(data, formatter);
+
+            LocalDate registrationDate =
+                    LocalDate.parse(
+                            request.getParameter("registration_date"),
+                            formatter
+                    );
+
+            Boolean is_active =
+                    Boolean.parseBoolean(request.getParameter("is_active"));
+
+            Boolean is_admin =
+                    Boolean.parseBoolean(request.getParameter("is_admin"));
+
+            Boolean is_manager =
+                    Boolean.parseBoolean(request.getParameter("is_manager"));
+
+            User user = new User(
+                    id,
+                    name,
+                    email,
+                    password,
+                    phone,
+                    birthDate,
+                    registrationDate,
+                    is_active,
+                    is_admin,
+                    is_manager
+            );
+
+            userCrud.atualizar(user);
+
+            response.setStatus(HttpServletResponse.SC_NO_CONTENT);
+
+        } catch (Exception e) {
+            throw new ServletException("Erro ao atualizar usuário.", e);
         }
     }
 

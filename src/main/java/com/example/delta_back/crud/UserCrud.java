@@ -136,6 +136,38 @@ public class UserCrud implements UserDAO {
 
     // METODO ATUALIZAR (UPDATE)
 
+    // Atualizar todos os dados do usuário
+    @Override
+    public void atualizar(User user) {
+
+        String sql = """
+                UPDATE tb_user
+                SET name = ?, email = ?, password = ?, phone = ?,
+                    birth_date = ?, registration_date = ?,
+                    is_active = ?, is_admin = ?, is_manager = ?
+                WHERE id = ?
+                """;
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+
+            stmt.setString(1, user.getName());
+            stmt.setString(2, user.getEmail());
+            stmt.setString(3, user.getPassword());
+            stmt.setString(4, user.getPhone());
+            stmt.setDate(5, Date.valueOf(user.getBirthDate()));
+            stmt.setDate(6, Date.valueOf(user.getRegistrationDate()));
+            stmt.setBoolean(7, user.isActive());
+            stmt.setBoolean(8, user.isAdmin());
+            stmt.setBoolean(9, user.isManager());
+            stmt.setInt(10, user.getId());
+
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     // Atualizar Nome
     @Override
     public void atualizarNome(User user) {

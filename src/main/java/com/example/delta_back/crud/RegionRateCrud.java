@@ -10,17 +10,15 @@ import java.util.List;
 
 public class RegionRateCrud implements RegionRateDAO {
 
-    // Definindo variável conexão (JDBC)
     private final Connection connection;
 
     public RegionRateCrud(Connection connection) {
         this.connection = connection;
     }
 
-    // Método para INSERIR os dados
     @Override
     public void inserir(Region_Rate region_Rate) {
-        // String sql = Código Que Vamos Usar No Sql
+
         String sql = """
                 INSERT INTO tb_region_rate
                 (region_id, m3_value, initial_validity, final_validity)
@@ -37,14 +35,10 @@ public class RegionRateCrud implements RegionRateDAO {
             stmt.executeUpdate();
 
         } catch (SQLException e) {
-
             e.printStackTrace();
-
         }
     }
 
-
-    // Método para BUSCAR as informações pelo ID
     @Override
     public Region_Rate buscarPorId(int id) {
 
@@ -60,27 +54,37 @@ public class RegionRateCrud implements RegionRateDAO {
 
                 if (resultado.next()) {
 
-                    return new Region_Rate (
+                    Date initialDate = resultado.getDate("initial_validity");
+                    Date finalDate = resultado.getDate("final_validity");
+
+                    LocalDate initialValidity = null;
+                    LocalDate finalValidity = null;
+
+                    if (initialDate != null) {
+                        initialValidity = initialDate.toLocalDate();
+                    }
+
+                    if (finalDate != null) {
+                        finalValidity = finalDate.toLocalDate();
+                    }
+
+                    return new Region_Rate(
                             resultado.getInt("id"),
                             resultado.getInt("region_id"),
                             resultado.getBigDecimal("m3_value"),
-                            resultado.getDate("initial_validity").toLocalDate(),
-                            resultado.getDate("final_validity").toLocalDate()
+                            initialValidity,
+                            finalValidity
                     );
-
                 }
             }
 
-            // se nao der pra conectar
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
         return null;
-
     }
 
-    // Método Para Listar TODOS
     @Override
     public List<Region_Rate> listarTodos() {
 
@@ -95,12 +99,26 @@ public class RegionRateCrud implements RegionRateDAO {
 
             while (resultado.next()) {
 
-                Region_Rate region_rate = new Region_Rate (
+                Date initialDate = resultado.getDate("initial_validity");
+                Date finalDate = resultado.getDate("final_validity");
+
+                LocalDate initialValidity = null;
+                LocalDate finalValidity = null;
+
+                if (initialDate != null) {
+                    initialValidity = initialDate.toLocalDate();
+                }
+
+                if (finalDate != null) {
+                    finalDate = finalDate;
+                }
+
+                Region_Rate region_rate = new Region_Rate(
                         resultado.getInt("id"),
                         resultado.getInt("region_id"),
                         resultado.getBigDecimal("m3_value"),
-                        resultado.getDate("initial_validity").toLocalDate(),
-                        resultado.getDate("final_validity").toLocalDate()
+                        initialValidity,
+                        finalValidity
                 );
 
                 regioes_rate.add(region_rate);
@@ -111,12 +129,34 @@ public class RegionRateCrud implements RegionRateDAO {
         }
 
         return regioes_rate;
-
     }
 
-    // UPDATES - - ATUALIZAR INFORMAÇÕES
+    // UPDATE
+    // Atualizar todos os dados da taxa da região
+    @Override
+    public void atualizar(Region_Rate region_rate) {
 
-    // Atualizar Id da Regiao
+        String sql = """
+                UPDATE tb_region_rate
+                SET region_id = ?, m3_value = ?, initial_validity = ?, final_validity = ?
+                WHERE id = ?
+                """;
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+
+            stmt.setInt(1, region_rate.getRegionId());
+            stmt.setBigDecimal(2, region_rate.getM3Value());
+            stmt.setDate(3, Date.valueOf(region_rate.getInitialValidity()));
+            stmt.setDate(4, Date.valueOf(region_rate.getFinalValidity()));
+            stmt.setInt(5, region_rate.getId());
+
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void atualizarRegionId(Region_Rate region_rate) {
 
@@ -126,7 +166,7 @@ public class RegionRateCrud implements RegionRateDAO {
                 WHERE id = ?
                 """;
 
-        try (PreparedStatement stmt = connection.prepareStatement(sql)){
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
 
             stmt.setInt(1, region_rate.getRegionId());
             stmt.setInt(2, region_rate.getId());
@@ -136,10 +176,8 @@ public class RegionRateCrud implements RegionRateDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
-    // Atualizar valor da água por m3
     @Override
     public void atualizarM3Value(Region_Rate region_rate) {
 
@@ -149,7 +187,7 @@ public class RegionRateCrud implements RegionRateDAO {
                 WHERE id = ?
                 """;
 
-        try (PreparedStatement stmt = connection.prepareStatement(sql)){
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
 
             stmt.setBigDecimal(1, region_rate.getM3Value());
             stmt.setInt(2, region_rate.getId());
@@ -159,11 +197,8 @@ public class RegionRateCrud implements RegionRateDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
-
-    // Atualizar Data De Validação Inicial
     @Override
     public void atualizarInitialValidity(Region_Rate region_rate) {
 
@@ -173,21 +208,22 @@ public class RegionRateCrud implements RegionRateDAO {
                 WHERE id = ?
                 """;
 
-        try (PreparedStatement stmt = connection.prepareStatement(sql)){
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
 
-            stmt.setDate(1, Date.valueOf(region_rate.getInitialValidity()));
+            stmt.setDate(
+                    1,
+                    Date.valueOf(region_rate.getInitialValidity())
+            );
+
             stmt.setInt(2, region_rate.getId());
-
 
             stmt.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
-    // Atualizar Data De Validação Final
     @Override
     public void atualizarFinalValidity(Region_Rate region_rate) {
 
@@ -197,9 +233,13 @@ public class RegionRateCrud implements RegionRateDAO {
                 WHERE id = ?
                 """;
 
-        try (PreparedStatement stmt = connection.prepareStatement(sql)){
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
 
-            stmt.setDate(1, Date.valueOf(region_rate.getFinalValidity()));
+            stmt.setDate(
+                    1,
+                    Date.valueOf(region_rate.getFinalValidity())
+            );
+
             stmt.setInt(2, region_rate.getId());
 
             stmt.executeUpdate();
@@ -207,13 +247,8 @@ public class RegionRateCrud implements RegionRateDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
-
-
-    // DELETES
-    // Deletar por ID
     @Override
     public void deletar(int id) {
 
@@ -233,7 +268,6 @@ public class RegionRateCrud implements RegionRateDAO {
         }
     }
 
-    // Deletar por Id da Regiao
     @Override
     public void deletarPorIdRegiao(int region_id) {
 
@@ -253,7 +287,6 @@ public class RegionRateCrud implements RegionRateDAO {
         }
     }
 
-    // Deletar por Data Inicial
     @Override
     public void deletarPorValidadeInicial(LocalDate initial_validity) {
 
@@ -273,7 +306,6 @@ public class RegionRateCrud implements RegionRateDAO {
         }
     }
 
-    // Alterar por data final
     @Override
     public void deletarPorValidadeFinal(LocalDate final_validity) {
 
@@ -293,9 +325,9 @@ public class RegionRateCrud implements RegionRateDAO {
         }
     }
 
-    // Método para Exibir Dados
     @Override
     public String exibirDados(Region_Rate regionRate) {
+
         return "Id: " + regionRate.getId() + "\n" +
                 "Id da Região: " + regionRate.getRegionId() + "\n" +
                 "Valor por metro quadrado: " + regionRate.getM3Value() + "\n" +

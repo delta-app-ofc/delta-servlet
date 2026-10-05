@@ -61,7 +61,7 @@ public class DeviceCrud implements DeviceDAO {
 
                 if (resultado.next()) {
 
-                    return new Device (
+                    return new Device(
                             resultado.getInt("id"),
                             resultado.getString("device_id"),
                             resultado.getInt("property_id"),
@@ -96,7 +96,7 @@ public class DeviceCrud implements DeviceDAO {
 
             while (resultado.next()) {
 
-                Device device = new Device (
+                Device device = new Device(
                         resultado.getInt("id"),
                         resultado.getString("device_id"),
                         resultado.getInt("property_id"),
@@ -116,6 +116,32 @@ public class DeviceCrud implements DeviceDAO {
     }
 
     // MÉTODOS UPDATE
+
+    // Método responsável por atualizar todos os dados do dispositivo
+    @Override
+    public void atualizar(Device device) {
+
+        String sql = """
+                UPDATE tb_device
+                SET device_id = ?, property_id = ?, is_active = ?, installation_date = ?
+                WHERE id = ?
+                """;
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+
+            stmt.setString(1, device.getDeviceId());
+            stmt.setInt(2, device.getPropertyId());
+            stmt.setBoolean(3, device.isActive());
+            stmt.setDate(4, Date.valueOf(device.getInstallationDate()));
+            stmt.setInt(5, device.getId());
+
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     // Atualizar device_id
     @Override
     public void atualizarDeviceId(Device device) {

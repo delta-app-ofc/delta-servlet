@@ -5,41 +5,28 @@ import com.example.delta_back.model.Device;
 import java.time.LocalDate;
 import java.util.List;
 
-// Interface genérica
 public interface DeviceDAO {
 
-    // Inserir dados
-    void inserir (Device device);
+    // Método responsável por inserir um novo dispositivo.
+    void inserir(Device device);
 
-    // Consultar Dispositivo usando ID
+    // Métodos responsáveis por buscar dispositivos.
     Device buscarPorId(int id);
-
-    // Exibiar todos os dispositivos
     List<Device> listarTodos();
 
-    // UPDATES
+    // Métodos responsáveis por alterar os dados de um dispositivo.
+    void atualizar(Device device);
     void atualizarDeviceId(Device device);
-
     void atualizarPropertyId(Device device);
-
     void atualizarIsActive(Device device);
-
     void atualizarInstallationDate(Device device);
 
-    // DELETES
-    // Deletar por ID
+    // Métodos responsáveis por excluir dispositivos.
     void deletar(int id);
-
-    // Deletar pelo Id do Dispositivo ( NÃO é o identificador do BD )
     void deletarPorIdDispositivo(String device_id);
-
-    // Deletar por Id da Propriedade
     void deletarPorIdPropriedade(int property_id);
-
-    // Deletar por data de Instalação
     void deletarPorDataInstalacao(LocalDate installation_date);
 
-    // EXIBIR DADOS
+    // Método responsável por exibir os dados de um dispositivo.
     String exibirDados(Device device);
-
 }

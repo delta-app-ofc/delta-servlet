@@ -74,6 +74,39 @@ public class PropertyServlet extends HttpServlet {
         }
     }
 
+    // Atualizar propriedade - PUT
+    @Override
+    protected void doPut(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            int id = Integer.parseInt(request.getParameter("id"));
+            String name = request.getParameter("name");
+            String type = request.getParameter("type");
+            String classification = request.getParameter("classification");
+            int addressId = Integer.parseInt(request.getParameter("addressId"));
+
+            String data = request.getParameter("registrationDate");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate registrationDate = LocalDate.parse(data, formatter);
+
+            Property property = new Property(
+                    id,
+                    name,
+                    type,
+                    classification,
+                    addressId,
+                    registrationDate
+            );
+
+            propertyCrud.atualizar(property);
+
+            response.setStatus(HttpServletResponse.SC_NO_CONTENT);
+
+        } catch (Exception e) {
+            throw new ServletException("Erro ao atualizar propriedade.", e);
+        }
+    }
+
     @Override
     protected void doDelete(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

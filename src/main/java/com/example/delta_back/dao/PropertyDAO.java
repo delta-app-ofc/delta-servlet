@@ -1,58 +1,39 @@
 package com.example.delta_back.dao;
 
+import com.example.delta_back.model.Device;
 import com.example.delta_back.model.Property;
-import com.example.delta_back.model.Device; // Consulta entre tabelas
 
 import java.time.LocalDate;
 import java.util.List;
 
-// Interface property
 public interface PropertyDAO {
 
-    // Criar uma propriedade no Banco de Dados
+    // Método responsável por inserir um novo imóvel.
     void inserir(Property property);
 
-    // Consultar uma propriedade específica
+    // Métodos responsáveis por buscar imóveis.
     Property buscarPorId(int id);
-
-    // Consultar todas as propriedades
     List<Property> listarTodos();
 
-    // Consultar todos os dispositivos de uma propriedade
+    // Métodos responsáveis por consultar dados relacionados ao imóvel.
     List<Device> consultarDispositivos(Property property);
-
-    // Consultar endereço e regiao das propriedades
     List<Property> consultarEndereco(Property property);
 
-
-    // UPDATES
+    // Métodos responsáveis por alterar os dados de um imóvel.
+    void atualizar(Property property);
     void atualizarNome(Property property);
-
     void atualizarType(Property property);
-
     void atualizarClassification(Property property);
-
     void atualizarAddressId(Property property);
+    void atualizarRegistrationDate(Property property);
 
-    void atualizarRegistrationDate(com.example.delta_back.model.Property property);
-
-    // Delete
-    // Deletar por ID
+    // Métodos responsáveis por excluir imóveis.
     void deletar(int id);
-
-    // Deletar por Nome
     void deletarPorNome(String name);
-
-    // Deletar pelo ID do endereço
     void deletarPorIdEndereco(int address_id);
-
-    // Deletar pelo tipo
     void deletarPorTipo(String type);
-
-    // Deletar pela Data de Registro
     void deletarPorDataRegistro(LocalDate registration_date);
 
-    // EXIBIR DADOS
+    // Método responsável por exibir os dados de um imóvel.
     String exibirDados(Property property);
-
 }

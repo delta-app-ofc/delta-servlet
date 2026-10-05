@@ -28,7 +28,7 @@ public class RegionRateServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         try {
-            connection = ConexaoBD.connect();
+            connection = ConexaoBD.conectar();
             regionRateCrud = new RegionRateCrud(connection);
         } catch (Exception e) {
             throw new ServletException("Erro ao conectar com o Banco de Dados", e);
@@ -92,6 +92,45 @@ public class RegionRateServlet extends HttpServlet {
 
         } catch (Exception e) {
             throw new ServletException("Erro ao cadastrar taxa da região...", e);
+        }
+    }
+
+    // Atualizar Taxa Da Região - PUT
+    @Override
+    protected void doPut(
+            HttpServletRequest request,
+            HttpServletResponse response
+    ) throws ServletException, IOException {
+
+        try {
+
+            int id = Integer.parseInt(request.getParameter("id"));
+            int regionId = Integer.parseInt(request.getParameter("region_id"));
+            BigDecimal m3value = new BigDecimal(request.getParameter("m3value"));
+
+            String data = request.getParameter("initial_validity");
+            String data2 = request.getParameter("final_validity");
+
+            DateTimeFormatter formatter =
+                    DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+            LocalDate initialValidity = LocalDate.parse(data, formatter);
+            LocalDate finalValidity = LocalDate.parse(data2, formatter);
+
+            Region_Rate regionRate = new Region_Rate(
+                    id,
+                    regionId,
+                    m3value,
+                    initialValidity,
+                    finalValidity
+            );
+
+            regionRateCrud.atualizar(regionRate);
+
+            response.setStatus(HttpServletResponse.SC_NO_CONTENT);
+
+        } catch (Exception e) {
+            throw new ServletException("Erro ao atualizar taxa da região...", e);
         }
     }
 
