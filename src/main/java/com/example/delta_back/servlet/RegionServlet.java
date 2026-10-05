@@ -74,6 +74,32 @@ public class RegionServlet extends HttpServlet {
         }
     }
 
+    // Atualizar região
+    @Override
+    protected void doPut(
+            HttpServletRequest request,
+            HttpServletResponse response
+    ) throws ServletException, IOException {
+
+        try {
+
+            int id = Integer.parseInt(request.getParameter("id"));
+            String name = request.getParameter("name");
+
+            Region region = new Region(
+                    id,
+                    name
+            );
+
+            regionCrud.atualizar(region);
+
+            response.setStatus(HttpServletResponse.SC_NO_CONTENT);
+
+        } catch (Exception e) {
+            throw new ServletException("Erro ao atualizar região...", e);
+        }
+    }
+
     // Deletar regiao
     @Override
     protected void doDelete(
