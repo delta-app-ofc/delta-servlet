@@ -59,15 +59,27 @@ public class RegionRateCrud implements RegionRateDAO {
             try (ResultSet resultado = stmt.executeQuery()) {
 
                 if (resultado.next()) {
+                    Date initialDate = resultado.getDate("initial_validity");
+                    Date finalDate = resultado.getDate("final_validity");
 
-                    return new Region_Rate (
+                    LocalDate initialValidity = null;
+                    LocalDate finalValidity = null;
+
+                    if (initialDate != null) {
+                        initialValidity = initialDate.toLocalDate();
+                    }
+
+                    if (finalDate != null) {
+                        finalValidity = finalDate.toLocalDate();
+                    }
+
+                    Region_Rate region_rate = new Region_Rate(
                             resultado.getInt("id"),
                             resultado.getInt("region_id"),
                             resultado.getBigDecimal("m3_value"),
-                            resultado.getDate("initial_validity").toLocalDate(),
-                            resultado.getDate("final_validity").toLocalDate()
+                            initialValidity,
+                            finalValidity
                     );
-
                 }
             }
 
