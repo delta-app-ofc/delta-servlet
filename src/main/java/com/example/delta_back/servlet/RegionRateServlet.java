@@ -72,11 +72,8 @@ public class RegionRateServlet extends HttpServlet {
             // Interpretando String como data (O java nao sabe o que é dia/mes/ano, entao a data virá como String e será convertida para data por conta do código abaixo.
             // O fluxo será:
             // String data -> DateTimeFormatter -> LocalDate.parse() -> LocalDate data
-            DateTimeFormatter formatter =
-                    DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
-            LocalDate initialValidity = LocalDate.parse(data, formatter);
-            LocalDate finalValidity = LocalDate.parse(data2, formatter);
+            LocalDate initialValidity = LocalDate.parse(data);
+            LocalDate finalValidity = LocalDate.parse(data2);
 
             Region_Rate regionRate = new Region_Rate(
                     0,
@@ -111,11 +108,8 @@ public class RegionRateServlet extends HttpServlet {
             String data = request.getParameter("initial_validity");
             String data2 = request.getParameter("final_validity");
 
-            DateTimeFormatter formatter =
-                    DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
-            LocalDate initialValidity = LocalDate.parse(data, formatter);
-            LocalDate finalValidity = LocalDate.parse(data2, formatter);
+            LocalDate initialValidity = LocalDate.parse(data);
+            LocalDate finalValidity = LocalDate.parse(data2);
 
             Region_Rate regionRate = new Region_Rate(
                     id,

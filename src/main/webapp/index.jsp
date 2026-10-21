@@ -1,31 +1,459 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
+
 <head>
-  <title>Delta - Sistema</title>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>Delta - Início</title>
+
+  <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+  <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+  <link rel="stylesheet"
+        href="<%= request.getContextPath() %>/css/Inicio.css">
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+
 </head>
+
 <body>
 
-<h1>Delta</h1>
+<!-- MENU LATERAL -->
 
-<h2>Cadastros</h2>
+<aside class="sidebar">
 
-<a href="${pageContext.request.contextPath}/address">Endereços</a>
-<br>
+  <div class="logo-area">
 
-<a href="${pageContext.request.contextPath}/device">Dispositivos</a>
-<br>
+    <img src="<%= request.getContextPath() %>/imagens/LogoDelta.png"
+         alt="Logo Delta"
+         id="logo">
 
-<a href="${pageContext.request.contextPath}/property">Propriedades</a>
-<br>
+  </div>
 
-<a href="${pageContext.request.contextPath}/regionrate">Tarifas</a>
-<br>
 
-<a href="${pageContext.request.contextPath}/region">Regiões</a>
-<br>
+  <nav class="menu">
 
-<a href="${pageContext.request.contextPath}/user">Usuários</a>
+    <a href="<%= request.getContextPath() %>/index"
+       class="menu-item active">
+
+      Início
+
+    </a>
+
+
+    <a href="<%= request.getContextPath() %>/user"
+       class="menu-item">
+
+      Usuários
+
+    </a>
+
+
+    <a href="<%= request.getContextPath() %>/region"
+       class="menu-item">
+
+      Região
+
+    </a>
+
+
+    <a href="<%= request.getContextPath() %>/regionrate"
+       class="menu-item">
+
+      Taxa Regional
+
+    </a>
+
+
+    <a href="<%= request.getContextPath() %>/property"
+       class="menu-item">
+
+      Propriedades
+
+    </a>
+
+
+    <a href="<%= request.getContextPath() %>/device"
+       class="menu-item">
+
+      Dispositivos
+
+    </a>
+
+
+    <a href="<%= request.getContextPath() %>/address"
+       class="menu-item">
+
+      Endereço
+
+    </a>
+
+  </nav>
+
+
+  <div class="sidebar-bottom">
+
+    <div class="account">
+
+      <div class="avatar">
+
+        <i data-lucide="user"></i>
+
+      </div>
+
+      <span>Delta Host</span>
+
+    </div>
+
+
+    <a href="#"
+       class="logout">
+
+      <i data-lucide="log-out"></i>
+
+      <span>Sair</span>
+
+    </a>
+
+  </div>
+
+</aside>
+
+
+<!-- CONTEÚDO -->
+
+<main class="main">
+
+
+  <!-- CABEÇALHO -->
+
+  <header class="page-header">
+
+    <h1>
+      Início
+    </h1>
+
+    <p>
+      Acesso aos registros e dados do sistema
+    </p>
+
+  </header>
+
+
+  <div class="divider"></div>
+
+
+  <!-- ESTATÍSTICAS -->
+
+  <section class="stats">
+
+    <div class="stat-card">
+
+            <span class="stat-label">
+                Usuários
+            </span>
+
+      <strong>
+        243
+      </strong>
+
+      <span class="stat-description">
+                cadastros
+            </span>
+
+    </div>
+
+
+    <div class="stat-card">
+
+            <span class="stat-label">
+                Propriedades
+            </span>
+
+      <strong>
+        142
+      </strong>
+
+      <span class="stat-description">
+                cadastradas
+            </span>
+
+    </div>
+
+
+    <div class="stat-card">
+
+            <span class="stat-label">
+                Dispositivos
+            </span>
+
+      <strong>
+        118
+      </strong>
+
+      <span class="stat-description">
+                41 ativos
+            </span>
+
+    </div>
+
+
+    <div class="stat-card">
+
+            <span class="stat-label">
+                Total de registros
+            </span>
+
+      <strong>
+        252
+      </strong>
+
+      <span class="stat-description">
+                no sistema
+            </span>
+
+    </div>
+
+  </section>
+
+
+  <!-- ACESSO RÁPIDO -->
+
+  <section class="quick-access">
+
+    <div class="section-title">
+
+      <h2>
+        Acesso rápido
+      </h2>
+
+      <p>
+        Acesse diretamente cada tabela do sistema.
+      </p>
+
+    </div>
+
+
+    <div class="quick-grid">
+
+
+      <!-- USUÁRIOS -->
+
+      <a href="<%= request.getContextPath() %>/user"
+         class="quick-card">
+
+        <div class="quick-icon">
+
+          <i data-lucide="users"></i>
+
+        </div>
+
+
+        <div class="quick-text">
+
+          <h3>
+            Usuários
+          </h3>
+
+          <p>
+            Registros e Dados dos Usuários
+          </p>
+
+        </div>
+
+
+        <i class="arrow"
+           data-lucide="arrow-right">
+        </i>
+
+      </a>
+
+
+      <!-- REGIÃO -->
+
+      <a href="<%= request.getContextPath() %>/region"
+         class="quick-card">
+
+        <div class="quick-icon">
+
+          <i data-lucide="map-pin"></i>
+
+        </div>
+
+
+        <div class="quick-text">
+
+          <h3>
+            Região
+          </h3>
+
+          <p>
+            Registros e Dados das Regiões
+          </p>
+
+        </div>
+
+
+        <i class="arrow"
+           data-lucide="arrow-right">
+        </i>
+
+      </a>
+
+
+      <!-- TAXA REGIONAL -->
+
+      <a href="<%= request.getContextPath() %>/regionrate"
+         class="quick-card">
+
+        <div class="quick-icon">
+
+          <i data-lucide="circle-dollar-sign"></i>
+
+        </div>
+
+
+        <div class="quick-text">
+
+          <h3>
+            Taxa Regional
+          </h3>
+
+          <p>
+            Registros e Valores das Taxas Regionais
+          </p>
+
+        </div>
+
+
+        <i class="arrow"
+           data-lucide="arrow-right">
+        </i>
+
+      </a>
+
+
+      <!-- PROPRIEDADES -->
+
+      <a href="<%= request.getContextPath() %>/property"
+         class="quick-card">
+
+        <div class="quick-icon">
+
+          <i data-lucide="house"></i>
+
+        </div>
+
+
+        <div class="quick-text">
+
+          <h3>
+            Propriedades
+          </h3>
+
+          <p>
+            Registros e Dados das Propriedades
+          </p>
+
+        </div>
+
+
+        <i class="arrow"
+           data-lucide="arrow-right">
+        </i>
+
+      </a>
+
+
+      <!-- DISPOSITIVOS -->
+
+      <a href="<%= request.getContextPath() %>/device"
+         class="quick-card">
+
+        <div class="quick-icon">
+
+          <i data-lucide="settings-2"></i>
+
+        </div>
+
+
+        <div class="quick-text">
+
+          <h3>
+            Dispositivos
+          </h3>
+
+          <p>
+            Registros e Dados dos Dispositivos
+          </p>
+
+        </div>
+
+
+        <i class="arrow"
+           data-lucide="arrow-right">
+        </i>
+
+      </a>
+
+
+      <!-- ENDEREÇOS -->
+
+      <a href="<%= request.getContextPath() %>/address"
+         class="quick-card">
+
+        <div class="quick-icon">
+
+          <i data-lucide="map-pin-house"></i>
+
+        </div>
+
+
+        <div class="quick-text">
+
+          <h3>
+            Endereços
+          </h3>
+
+          <p>
+            Registros e Dados dos Endereços
+          </p>
+
+        </div>
+
+
+        <i class="arrow"
+           data-lucide="arrow-right">
+        </i>
+
+      </a>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<script>
+
+  lucide.createIcons();
+
+</script>
 
 </body>
+
 </html>

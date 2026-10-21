@@ -3,172 +3,215 @@ package com.example.delta_back.crud;
 import com.example.delta_back.dao.UserDAO;
 import com.example.delta_back.model.User;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class UserCrud implements UserDAO {
 
-    // Criando a variável Connection (JDBC)
     private final Connection connection;
 
-
-    // Criando o Objeto "Usuario DAO implementacao"
     public UserCrud(Connection connection) {
         this.connection = connection;
     }
 
-
-    // Metodo INSERIR (INSERT)
     @Override
     public void inserir(User user) {
 
-        // String sql = Codigo que irá ao banco de dados.
         String sql = """
-                INSERT INTO tb_user (name, email, password, phone, birth_date, registration_date, is_active, is_admin, is_manager)
+                INSERT INTO tb_user
+                (name, email, password, phone, birth_date,
+                 registration_date, is_active, is_admin, is_manager)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """;
 
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+        try (PreparedStatement stmt =
+                     connection.prepareStatement(sql)) {
 
             stmt.setString(1, user.getName());
             stmt.setString(2, user.getEmail());
             stmt.setString(3, user.getPassword());
             stmt.setString(4, user.getPhone());
-            stmt.setDate(5, Date.valueOf(user.getBirthDate()));
-            stmt.setDate(6, Date.valueOf(user.getRegistrationDate()));
-            stmt.setBoolean(7, user.isActive());
-            stmt.setBoolean(8, user.isAdmin());
-            stmt.setBoolean(9, user.isManager());
+
+            stmt.setDate(
+                    5,
+                    Date.valueOf(user.getBirthDate())
+            );
+
+            stmt.setDate(
+                    6,
+                    Date.valueOf(user.getRegistrationDate())
+            );
+
+            stmt.setBoolean(
+                    7,
+                    user.isActive()
+            );
+
+            stmt.setBoolean(
+                    8,
+                    user.isAdmin()
+            );
+
+            stmt.setBoolean(
+                    9,
+                    user.isManager()
+            );
 
             stmt.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
-        }
 
+            throw new RuntimeException(
+                    "Erro ao inserir usuário: " + e.getMessage(),
+                    e
+            );
+        }
     }
 
-    // METODOS PARA BUSCA ( SELECT * FROM x WHERE y )
-
-    // Metodo para Buscar Usuario pelo ID
     @Override
     public User buscarPorId(int id) {
+
         String sql = """
-                SELECT * 
+                SELECT *
                 FROM tb_user
                 WHERE id = ?
                 """;
 
-        // Tente - Conectar com o SQL - Se conseguir, execute:
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+        try (PreparedStatement stmt =
+                     connection.prepareStatement(sql)) {
 
             stmt.setInt(1, id);
 
-            ResultSet resultado = stmt.executeQuery();
+            ResultSet resultado =
+                    stmt.executeQuery();
 
             if (resultado.next()) {
 
-                return new User (
-
-                        resultado.getInt("id"),
-                        resultado.getString("name"),
-                        resultado.getString("email"),
-                        resultado.getString("password"),
-                        resultado.getString("phone"),
-                        resultado.getDate("birth_date").toLocalDate(),
-                        resultado.getDate("registration_date").toLocalDate(),
-                        resultado.getBoolean("is_active"),
-                        resultado.getBoolean("is_admin"),
-                        resultado.getBoolean("is_manager")
-
-                );
+                return criarUsuario(resultado);
             }
 
-            // Se nao conseguir conectar, imprima a mensagem de erro:
         } catch (SQLException e) {
-            e.printStackTrace();
+
+            throw new RuntimeException(
+                    "Erro ao buscar usuário: " + e.getMessage(),
+                    e
+            );
         }
 
         return null;
-
     }
 
-    // METODO LISTAR TODOS ( SELECT * FROM tb_user )
     @Override
     public List<User> listarTodos() {
 
         String sql = """
-            SELECT *
-            FROM tb_user
-            """;
+                SELECT *
+                FROM tb_user
+                ORDER BY id
+                """;
 
-        List<User> usuarios = new ArrayList<>();
+        List<User> usuarios =
+                new ArrayList<>();
 
-        try (PreparedStatement stmt = connection.prepareStatement(sql);
-             ResultSet resultado = stmt.executeQuery()) {
+        try (
+                PreparedStatement stmt =
+                        connection.prepareStatement(sql);
+
+                ResultSet resultado =
+                        stmt.executeQuery()
+        ) {
 
             while (resultado.next()) {
 
-                User user = new User(
-                        resultado.getInt("id"),
-                        resultado.getString("name"),
-                        resultado.getString("email"),
-                        resultado.getString("password"),
-                        resultado.getString("phone"),
-                        resultado.getDate("birth_date").toLocalDate(),
-                        resultado.getDate("registration_date").toLocalDate(),
-                        resultado.getBoolean("is_active"),
-                        resultado.getBoolean("is_admin"),
-                        resultado.getBoolean("is_manager")
+                usuarios.add(
+                        criarUsuario(resultado)
                 );
-
-                usuarios.add(user);
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+
+            throw new RuntimeException(
+                    "Erro ao listar usuários: " +
+                            e.getMessage(),
+                    e
+            );
         }
 
         return usuarios;
     }
 
-    // METODO ATUALIZAR (UPDATE)
-
-    // Atualizar todos os dados do usuário
     @Override
     public void atualizar(User user) {
 
         String sql = """
                 UPDATE tb_user
-                SET name = ?, email = ?, password = ?, phone = ?,
-                    birth_date = ?, registration_date = ?,
-                    is_active = ?, is_admin = ?, is_manager = ?
+                SET name = ?,
+                    email = ?,
+                    password = ?,
+                    phone = ?,
+                    birth_date = ?,
+                    registration_date = ?,
+                    is_active = ?,
+                    is_admin = ?,
+                    is_manager = ?
                 WHERE id = ?
                 """;
 
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+        try (PreparedStatement stmt =
+                     connection.prepareStatement(sql)) {
 
             stmt.setString(1, user.getName());
             stmt.setString(2, user.getEmail());
             stmt.setString(3, user.getPassword());
             stmt.setString(4, user.getPhone());
-            stmt.setDate(5, Date.valueOf(user.getBirthDate()));
-            stmt.setDate(6, Date.valueOf(user.getRegistrationDate()));
-            stmt.setBoolean(7, user.isActive());
-            stmt.setBoolean(8, user.isAdmin());
-            stmt.setBoolean(9, user.isManager());
-            stmt.setInt(10, user.getId());
+
+            stmt.setDate(
+                    5,
+                    Date.valueOf(user.getBirthDate())
+            );
+
+            stmt.setDate(
+                    6,
+                    Date.valueOf(user.getRegistrationDate())
+            );
+
+            stmt.setBoolean(
+                    7,
+                    user.isActive()
+            );
+
+            stmt.setBoolean(
+                    8,
+                    user.isAdmin()
+            );
+
+            stmt.setBoolean(
+                    9,
+                    user.isManager()
+            );
+
+            stmt.setInt(
+                    10,
+                    user.getId()
+            );
 
             stmt.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+
+            throw new RuntimeException(
+                    "Erro ao atualizar usuário: " +
+                            e.getMessage(),
+                    e
+            );
         }
     }
 
-    // Atualizar Nome
     @Override
     public void atualizarNome(User user) {
 
@@ -178,7 +221,8 @@ public class UserCrud implements UserDAO {
                 WHERE id = ?
                 """;
 
-        try (PreparedStatement stmt = connection.prepareStatement(sql)){
+        try (PreparedStatement stmt =
+                     connection.prepareStatement(sql)) {
 
             stmt.setString(1, user.getName());
             stmt.setInt(2, user.getId());
@@ -186,12 +230,15 @@ public class UserCrud implements UserDAO {
             stmt.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
-        }
 
+            throw new RuntimeException(
+                    "Erro ao atualizar nome: " +
+                            e.getMessage(),
+                    e
+            );
+        }
     }
 
-    // Atualizar Email
     @Override
     public void atualizarEmail(User user) {
 
@@ -201,7 +248,8 @@ public class UserCrud implements UserDAO {
                 WHERE id = ?
                 """;
 
-        try (PreparedStatement stmt = connection.prepareStatement(sql)){
+        try (PreparedStatement stmt =
+                     connection.prepareStatement(sql)) {
 
             stmt.setString(1, user.getEmail());
             stmt.setInt(2, user.getId());
@@ -209,12 +257,15 @@ public class UserCrud implements UserDAO {
             stmt.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
-        }
 
+            throw new RuntimeException(
+                    "Erro ao atualizar e-mail: " +
+                            e.getMessage(),
+                    e
+            );
+        }
     }
 
-    // Atualizar Senha
     @Override
     public void atualizarPassword(User user) {
 
@@ -224,7 +275,8 @@ public class UserCrud implements UserDAO {
                 WHERE id = ?
                 """;
 
-        try (PreparedStatement stmt = connection.prepareStatement(sql)){
+        try (PreparedStatement stmt =
+                     connection.prepareStatement(sql)) {
 
             stmt.setString(1, user.getPassword());
             stmt.setInt(2, user.getId());
@@ -232,12 +284,15 @@ public class UserCrud implements UserDAO {
             stmt.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
-        }
 
+            throw new RuntimeException(
+                    "Erro ao atualizar senha: " +
+                            e.getMessage(),
+                    e
+            );
+        }
     }
 
-    // Atualizar celular
     @Override
     public void atualizarPhone(User user) {
 
@@ -247,7 +302,8 @@ public class UserCrud implements UserDAO {
                 WHERE id = ?
                 """;
 
-        try (PreparedStatement stmt = connection.prepareStatement(sql)){
+        try (PreparedStatement stmt =
+                     connection.prepareStatement(sql)) {
 
             stmt.setString(1, user.getPhone());
             stmt.setInt(2, user.getId());
@@ -255,12 +311,15 @@ public class UserCrud implements UserDAO {
             stmt.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
-        }
 
+            throw new RuntimeException(
+                    "Erro ao atualizar telefone: " +
+                            e.getMessage(),
+                    e
+            );
+        }
     }
 
-    // Atualizar Data de Nascimento
     @Override
     public void atualizarBirthDate(User user) {
 
@@ -270,20 +329,31 @@ public class UserCrud implements UserDAO {
                 WHERE id = ?
                 """;
 
-        try (PreparedStatement stmt = connection.prepareStatement(sql)){
+        try (PreparedStatement stmt =
+                     connection.prepareStatement(sql)) {
 
-            stmt.setDate(1, Date.valueOf(user.getBirthDate()));
-            stmt.setInt(2, user.getId());
+            stmt.setDate(
+                    1,
+                    Date.valueOf(user.getBirthDate())
+            );
+
+            stmt.setInt(
+                    2,
+                    user.getId()
+            );
 
             stmt.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
-        }
 
+            throw new RuntimeException(
+                    "Erro ao atualizar data de nascimento: " +
+                            e.getMessage(),
+                    e
+            );
+        }
     }
 
-    // Atualizar Se o Usuário é Ativo ou Não
     @Override
     public void atualizarIsActive(User user) {
 
@@ -293,20 +363,31 @@ public class UserCrud implements UserDAO {
                 WHERE id = ?
                 """;
 
-        try (PreparedStatement stmt = connection.prepareStatement(sql)){
+        try (PreparedStatement stmt =
+                     connection.prepareStatement(sql)) {
 
-            stmt.setBoolean(1, user.isActive());
-            stmt.setInt(2, user.getId());
+            stmt.setBoolean(
+                    1,
+                    user.isActive()
+            );
+
+            stmt.setInt(
+                    2,
+                    user.getId()
+            );
 
             stmt.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
-        }
 
+            throw new RuntimeException(
+                    "Erro ao atualizar status: " +
+                            e.getMessage(),
+                    e
+            );
+        }
     }
 
-    // Atualizar se o usuário é ADMIN
     @Override
     public void atualizarIsAdmin(User user) {
 
@@ -316,20 +397,31 @@ public class UserCrud implements UserDAO {
                 WHERE id = ?
                 """;
 
-        try (PreparedStatement stmt = connection.prepareStatement(sql)){
+        try (PreparedStatement stmt =
+                     connection.prepareStatement(sql)) {
 
-            stmt.setBoolean(1, user.isAdmin());
-            stmt.setInt(2, user.getId());
+            stmt.setBoolean(
+                    1,
+                    user.isAdmin()
+            );
+
+            stmt.setInt(
+                    2,
+                    user.getId()
+            );
 
             stmt.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
-        }
 
+            throw new RuntimeException(
+                    "Erro ao atualizar administrador: " +
+                            e.getMessage(),
+                    e
+            );
+        }
     }
 
-    // Atualizar se o Usuario é MANAGER
     @Override
     public void atualizarIsManager(User user) {
 
@@ -339,23 +431,31 @@ public class UserCrud implements UserDAO {
                 WHERE id = ?
                 """;
 
-        try (PreparedStatement stmt = connection.prepareStatement(sql)){
+        try (PreparedStatement stmt =
+                     connection.prepareStatement(sql)) {
 
-            stmt.setBoolean(1, user.isManager());
-            stmt.setInt(2, user.getId());
+            stmt.setBoolean(
+                    1,
+                    user.isManager()
+            );
+
+            stmt.setInt(
+                    2,
+                    user.getId()
+            );
 
             stmt.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
-        }
 
+            throw new RuntimeException(
+                    "Erro ao atualizar gerente: " +
+                            e.getMessage(),
+                    e
+            );
+        }
     }
 
-
-    // METÓDOS DELETE ( APAGAR )
-
-    // Apagar por ID
     @Override
     public void deletar(int id) {
 
@@ -364,18 +464,23 @@ public class UserCrud implements UserDAO {
                 WHERE id = ?
                 """;
 
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+        try (PreparedStatement stmt =
+                     connection.prepareStatement(sql)) {
 
             stmt.setInt(1, id);
 
             stmt.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+
+            throw new RuntimeException(
+                    "Erro ao deletar usuário: " +
+                            e.getMessage(),
+                    e
+            );
         }
     }
 
-    // Apagar por Email
     @Override
     public void deletarPorEmail(String email) {
 
@@ -384,18 +489,23 @@ public class UserCrud implements UserDAO {
                 WHERE email = ?
                 """;
 
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+        try (PreparedStatement stmt =
+                     connection.prepareStatement(sql)) {
 
             stmt.setString(1, email);
 
             stmt.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+
+            throw new RuntimeException(
+                    "Erro ao deletar usuário por e-mail: " +
+                            e.getMessage(),
+                    e
+            );
         }
     }
 
-    //Apagar por Celular
     @Override
     public void deletarPorCelular(String phone) {
 
@@ -404,30 +514,51 @@ public class UserCrud implements UserDAO {
                 WHERE phone = ?
                 """;
 
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+        try (PreparedStatement stmt =
+                     connection.prepareStatement(sql)) {
 
             stmt.setString(1, phone);
 
             stmt.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+
+            throw new RuntimeException(
+                    "Erro ao deletar usuário por telefone: " +
+                            e.getMessage(),
+                    e
+            );
         }
     }
 
-    // Método para Exibir Dados da classe
     @Override
     public String exibirDados(User user) {
-        return "Usuário: " + user.getName() + "\n" +
-                "Id: " + user.getId() + "\n" +
-                "Email: " + user.getEmail() + "\n" +
-                "Senha: " + user.getPassword() + "\n" +
-                "Celular: " + user.getPhone() + "\n" +
-                "Data de aniversário: " + user.getBirthDate() + "\n" +
-                "Data de registro: " + user.getRegistrationDate() + "\n" +
-                "Usuário Ativo: " + user.isActive() + "\n" +
-                "Administrador: " + user.isAdmin() + "\n" +
-                "Gerente: " + user.isManager();
+
+        return "ID: " + user.getId()
+                + " | Nome: " + user.getName()
+                + " | E-mail: " + user.getEmail()
+                + " | Telefone: " + user.getPhone()
+                + " | Data de nascimento: " + user.getBirthDate()
+                + " | Data de cadastro: " + user.getRegistrationDate()
+                + " | Ativo: " + user.isActive()
+                + " | Admin: " + user.isAdmin()
+                + " | Gerente: " + user.isManager();
     }
 
+    private User criarUsuario(ResultSet resultado)
+            throws SQLException {
+
+        return new User(
+                resultado.getInt("id"),
+                resultado.getString("name"),
+                resultado.getString("email"),
+                resultado.getString("password"),
+                resultado.getString("phone"),
+                resultado.getDate("birth_date").toLocalDate(),
+                resultado.getDate("registration_date").toLocalDate(),
+                resultado.getBoolean("is_active"),
+                resultado.getBoolean("is_admin"),
+                resultado.getBoolean("is_manager")
+        );
+    }
 }

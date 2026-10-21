@@ -1,11 +1,9 @@
 package com.example.delta_back.servlet;
 
-// Importando a Conexão com o bd, a model e o crud.
 import com.example.delta_back.conexao.ConexaoBD;
-import com.example.delta_back.model.User;
 import com.example.delta_back.crud.UserCrud;
+import com.example.delta_back.model.User;
 
-// Jakartas
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -17,47 +15,62 @@ import java.sql.Connection;
 import java.time.LocalDate;
 import java.util.List;
 
-import java.time.format.DateTimeFormatter; // Para interpretar String como Data
-
-
 @WebServlet("/user")
 public class UserServlet extends HttpServlet {
 
     private Connection connection;
     private UserCrud userCrud;
 
-    // Iniciar a conexão com o BD, e passar a conexão para o UserCrud
     @Override
     public void init() throws ServletException {
+
         try {
+
             connection = ConexaoBD.conectar();
+
             userCrud = new UserCrud(connection);
+
         } catch (Exception e) {
-            throw new ServletException("Erro ao conectar com o banco de dados.", e);
+
+            throw new ServletException(
+                    "Erro ao conectar com o banco de dados.",
+                    e
+            );
         }
     }
 
-
-    // Consultar usuário - GET
     @Override
     protected void doGet(
-            HttpServletRequest request, HttpServletResponse response
+            HttpServletRequest request,
+            HttpServletResponse response
     ) throws ServletException, IOException {
 
         try {
 
-            List<User> users = userCrud.listarTodos();
+            List<User> users =
+                    userCrud.listarTodos();
 
-            request.setAttribute("users", users);
+            request.setAttribute(
+                    "users",
+                    users
+            );
 
-            request.getRequestDispatcher("/user.jsp").forward(request, response);
+            request.getRequestDispatcher(
+                    "/user.jsp"
+            ).forward(
+                    request,
+                    response
+            );
 
         } catch (Exception e) {
-            throw new ServletException("Erro ao buscar usuários.", e);
+
+            throw new ServletException(
+                    "Erro ao buscar usuários.",
+                    e
+            );
         }
     }
 
-    // Criar usuário - POST
     @Override
     protected void doPost(
             HttpServletRequest request,
@@ -66,48 +79,73 @@ public class UserServlet extends HttpServlet {
 
         try {
 
-            String name = request.getParameter("name");
-            String email = request.getParameter("email");
-            String password = request.getParameter("password");
-            String phone = request.getParameter("phone");
+            String name =
+                    request.getParameter("name");
 
-            String data = request.getParameter("birthdate");
+            String email =
+                    request.getParameter("email");
 
-            // Interpretando String como data (O java nao sabe o que é dia/mes/ano, entao a data virá como String e será convertida para data por conta do código abaixo.
-            // O fluxo será:
-            // String data -> DateTimeFormatter -> LocalDate.parse() -> LocalDate data
-            DateTimeFormatter formatter =
-                    DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            String password =
+                    request.getParameter("password");
 
-            LocalDate birthDate = LocalDate.parse(data, formatter);
+            String phone =
+                    request.getParameter("phone");
 
-            LocalDate registrationDate = LocalDate.now();
-            Boolean is_active = Boolean.parseBoolean(request.getParameter("is_active"));
-            Boolean is_admin = Boolean.parseBoolean(request.getParameter("is_admin"));
-            Boolean is_manager = Boolean.parseBoolean(request.getParameter("is_manager"));
+            String birthdate =
+                    request.getParameter("birthdate");
 
-            User user = new User(0,
+            LocalDate birthDate =
+                    LocalDate.parse(birthdate);
+
+            LocalDate registrationDate =
+                    LocalDate.now();
+
+            boolean isActive =
+                    Boolean.parseBoolean(
+                            request.getParameter("is_active")
+                    );
+
+            boolean isAdmin =
+                    Boolean.parseBoolean(
+                            request.getParameter("is_admin")
+                    );
+
+            boolean isManager =
+                    Boolean.parseBoolean(
+                            request.getParameter("is_manager")
+                    );
+
+            User user = new User(
+                    0,
                     name,
                     email,
                     password,
                     phone,
                     birthDate,
                     registrationDate,
-                    is_active,
-                    is_admin,
-                    is_manager
+                    isActive,
+                    isAdmin,
+                    isManager
             );
 
             userCrud.inserir(user);
 
-            response.sendRedirect(request.getContextPath() + "/user");
+            response.sendRedirect(
+                    request.getContextPath() + "/user"
+            );
 
         } catch (Exception e) {
-            throw new ServletException("Erro ao cadastrar usuário.", e);
+
+            e.printStackTrace();
+
+            throw new ServletException(
+                    "Erro ao cadastrar usuário.",
+                    e
+            );
         }
     }
 
-    // Atualizar usuário - PUT
+
     @Override
     protected void doPut(
             HttpServletRequest request,
@@ -115,35 +153,53 @@ public class UserServlet extends HttpServlet {
     ) throws ServletException, IOException {
 
         try {
-
             int id = Integer.parseInt(request.getParameter("id"));
+
+            User usuarioAtual = userCrud.buscarPorId(id);
+
+            if (usuarioAtual == null) {
+                response.sendError(
+                        HttpServletResponse.SC_NOT_FOUND,
+                        "Usuário não encontrado."
+                );
+                return;
+            }
 
             String name = request.getParameter("name");
             String email = request.getParameter("email");
             String password = request.getParameter("password");
             String phone = request.getParameter("phone");
+            String birthdate = request.getParameter("birthdate");
 
-            String data = request.getParameter("birthdate");
+            if (password == null || password.isBlank()) {
+                password = usuarioAtual.getPassword();
+            }
 
-            DateTimeFormatter formatter =
-                    DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
-            LocalDate birthDate = LocalDate.parse(data, formatter);
+            LocalDate birthDate = LocalDate.parse(birthdate);
 
             LocalDate registrationDate =
-                    LocalDate.parse(
-                            request.getParameter("registration_date"),
-                            formatter
-                    );
+                    usuarioAtual.getRegistrationDate();
 
-            Boolean is_active =
-                    Boolean.parseBoolean(request.getParameter("is_active"));
+            String registrationDateParameter =
+                    request.getParameter("registration_date");
 
-            Boolean is_admin =
-                    Boolean.parseBoolean(request.getParameter("is_admin"));
+            if (registrationDateParameter != null
+                    && !registrationDateParameter.isBlank()) {
+                registrationDate =
+                        LocalDate.parse(registrationDateParameter);
+            }
 
-            Boolean is_manager =
-                    Boolean.parseBoolean(request.getParameter("is_manager"));
+            boolean isActive = Boolean.parseBoolean(
+                    request.getParameter("is_active")
+            );
+
+            boolean isAdmin = Boolean.parseBoolean(
+                    request.getParameter("is_admin")
+            );
+
+            boolean isManager = Boolean.parseBoolean(
+                    request.getParameter("is_manager")
+            );
 
             User user = new User(
                     id,
@@ -153,21 +209,28 @@ public class UserServlet extends HttpServlet {
                     phone,
                     birthDate,
                     registrationDate,
-                    is_active,
-                    is_admin,
-                    is_manager
+                    isActive,
+                    isAdmin,
+                    isManager
             );
 
             userCrud.atualizar(user);
 
-            response.setStatus(HttpServletResponse.SC_NO_CONTENT);
+            response.setStatus(
+                    HttpServletResponse.SC_NO_CONTENT
+            );
 
         } catch (Exception e) {
-            throw new ServletException("Erro ao atualizar usuário.", e);
+            e.printStackTrace();
+
+            throw new ServletException(
+                    "Erro ao atualizar usuário.",
+                    e
+            );
         }
     }
 
-    // DELETE
+
     @Override
     protected void doDelete(
             HttpServletRequest request,
@@ -176,31 +239,43 @@ public class UserServlet extends HttpServlet {
 
         try {
 
-            int id = Integer.parseInt(request.getParameter("id"));
+            int id = Integer.parseInt(
+                    request.getParameter("id")
+            );
 
             userCrud.deletar(id);
 
-            response.setStatus(HttpServletResponse.SC_NO_CONTENT);
+            response.setStatus(
+                    HttpServletResponse.SC_NO_CONTENT
+            );
 
         } catch (Exception e) {
-            throw new ServletException("Erro ao deletar usuário...", e);
+
+            e.printStackTrace();
+
+            throw new ServletException(
+                    "Erro ao deletar usuário.",
+                    e
+            );
         }
     }
 
-    // Fecha a conexão
     @Override
     public void destroy() {
 
         try {
 
-            if (connection != null && !connection.isClosed()) {
+            if (
+                    connection != null &&
+                            !connection.isClosed()
+            ) {
+
                 connection.close();
             }
 
         } catch (Exception e) {
+
             e.printStackTrace();
         }
-
     }
-
 }

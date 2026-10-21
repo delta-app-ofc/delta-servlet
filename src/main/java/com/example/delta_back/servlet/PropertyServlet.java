@@ -54,8 +54,7 @@ public class PropertyServlet extends HttpServlet {
             int addressId = Integer.parseInt(request.getParameter("addressId"));
 
             String data = request.getParameter("registrationDate");
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            LocalDate registrationDate = LocalDate.parse(data, formatter);
+            LocalDate registrationDate = LocalDate.parse(data);
 
             Property property = new Property(
                     0,
@@ -86,8 +85,7 @@ public class PropertyServlet extends HttpServlet {
             int addressId = Integer.parseInt(request.getParameter("addressId"));
 
             String data = request.getParameter("registrationDate");
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            LocalDate registrationDate = LocalDate.parse(data, formatter);
+            LocalDate registrationDate = LocalDate.parse(data);
 
             Property property = new Property(
                     id,

@@ -53,8 +53,7 @@ public class DeviceServlet extends HttpServlet {
             boolean active = Boolean.parseBoolean(request.getParameter("active"));
 
             String data = request.getParameter("installationDate");
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            LocalDate installationDate = LocalDate.parse(data, formatter);
+            LocalDate installationDate = LocalDate.parse(data);
 
             Device device = new Device(
                     0,
@@ -83,8 +82,7 @@ public class DeviceServlet extends HttpServlet {
             boolean active = Boolean.parseBoolean(request.getParameter("active"));
 
             String data = request.getParameter("installationDate");
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            LocalDate installationDate = LocalDate.parse(data, formatter);
+            LocalDate installationDate = LocalDate.parse(data);
 
             Device device = new Device(
                     id,
