@@ -1,0 +1,412 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Unbounded:wght@200..900&display=swap');
+
+:root {
+    --u: clamp(0.5px, calc(100vw / 1440), 1.2px);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    overflow-x: hidden;
+    min-height: 100%;
+    background: linear-gradient(to right, #00296B 0, #00296B 47%, #E0E8F6 47%);
+}
+
+body {
+    min-height: 100vh;
+    position: relative;
+    width: 100vw;
+    overflow-x: hidden;
+}
+
+.gota {
+    position: absolute;
+    top: 0;
+    left: 0;
+    align-items: center;
+    font-family: Montserrat, sans-serif;
+    z-index: 5;
+}
+
+.titulo {
+    font-size: calc(51 * var(--u));
+    font-weight: 400;
+    padding-top: calc(80 * var(--u));
+    padding-left: calc(30 * var(--u));
+}
+
+.inteligentemente {
+    font-size: calc(50 * var(--u));
+    font-weight: 900;
+    padding-left: calc(30 * var(--u));
+}
+
+.titulo1 {
+    font-size: calc(51 * var(--u));
+    font-weight: 400;
+    padding-left: calc(30 * var(--u));
+}
+
+.titulo, .titulo1, .inteligentemente {
+    color: #FAFAFA;
+}
+
+.glub {
+    position: absolute;
+    left: calc(50 * var(--u));
+    top: calc(256 * var(--u));
+    width: calc(520 * var(--u));
+    height: auto;
+    z-index: 3;
+}
+
+.fundo-svg {
+    width: 100%;
+    height: 100vh;
+    display: block;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.voltar {
+    position: absolute;
+    z-index: 30;
+    right: calc(32 * var(--u));
+    top: calc(32 * var(--u));
+}
+
+.entrar {
+    position: absolute;
+    z-index: 10;
+    top: calc(80 * var(--u));
+    left: calc(820 * var(--u));
+    width: calc(420 * var(--u));
+    text-align: center;
+    color: #003E9B;
+    font-family: 'Unbounded', sans-serif;
+    font-size: calc(45 * var(--u));
+    font-weight: 700;
+}
+
+.tituloEmail {
+    position: absolute;
+    font-family: Montserrat, sans-serif;
+    font-size: calc(20 * var(--u));
+    font-weight: 700;
+    z-index: 15;
+    top: calc(220 * var(--u));
+    left: calc(822 * var(--u));
+    color: #003E9B;
+}
+
+#email {
+    position: absolute;
+    font-size: calc(18 * var(--u));
+    font-weight: 500;
+    z-index: 15;
+    top: calc(250 * var(--u));
+    left: calc(820 * var(--u));
+    width: calc(420 * var(--u));
+    height: calc(48 * var(--u));
+    border-radius: calc(12 * var(--u));
+    border: 2px solid #a0a0a0;
+    outline: none;
+    padding-left: calc(14 * var(--u));
+    background-color: #E0E8F6;
+    font-family: Montserrat, sans-serif;
+}
+
+.tituloSenha {
+    position: absolute;
+    font-family: Montserrat, sans-serif;
+    font-size: calc(20 * var(--u));
+    font-weight: 700;
+    z-index: 15;
+    top: calc(320 * var(--u));
+    left: calc(822 * var(--u));
+    color: #003E9B;
+}
+
+.campo-senha {
+    position: absolute;
+    z-index: 15;
+    top: calc(350 * var(--u));
+    left: calc(820 * var(--u));
+    width: calc(420 * var(--u));
+    height: calc(48 * var(--u));
+}
+
+#senha {
+    position: static;
+    width: 100%;
+    height: 100%;
+    padding-left: calc(14 * var(--u));
+    padding-right: calc(52 * var(--u));
+    font-size: calc(18 * var(--u));
+    font-weight: 500;
+    border-radius: calc(12 * var(--u));
+    border: 2px solid #a0a0a0;
+    outline: none;
+    background-color: #E0E8F6;
+    font-family: Montserrat, sans-serif;
+}
+
+#email::placeholder, #senha::placeholder {
+    color: #003E9B;
+    vertical-align: middle;
+    opacity: 0.5;
+    font-weight: 400;
+}
+
+#email:focus, #senha:focus {
+    border-color: #003E9B;
+}
+
+#botaoOlho {
+    position: absolute;
+    top: 50%;
+    right: calc(16 * var(--u));
+    transform: translateY(-50%);
+    z-index: 20;
+    display: flex;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+#iconeOlho {
+    width: calc(26 * var(--u));
+    height: auto;
+    display: block;
+}
+
+.esqueceu {
+    position: absolute;
+    top: calc(415 * var(--u));
+    left: calc(822 * var(--u));
+    z-index: 15;
+    font-family: Montserrat, sans-serif;
+    font-size: calc(15 * var(--u));
+    font-weight: 700;
+    color: #003E9B;
+    text-decoration: none;
+}
+
+.esqueceu:hover {
+    text-decoration: underline;
+}
+
+.criar-conta {
+    font-family: Montserrat, sans-serif;
+    background-color: #003E9B;
+    position: absolute;
+    font-size: calc(21 * var(--u));
+    font-weight: 600;
+    z-index: 15;
+    top: calc(450 * var(--u));
+    left: calc(820 * var(--u));
+    width: calc(420 * var(--u));
+    height: calc(48 * var(--u));
+    border-radius: calc(12 * var(--u));
+    color: #FAFAFA;
+    cursor: pointer;
+    border: solid #003E9B;
+    text-decoration: none;
+}
+
+a {
+    color:#FAFAFA;
+    text-decoration: none;
+}
+a:visited {
+    color:#FAFAFA;
+    text-decoration: none;
+}
+
+.criar {
+    position: absolute;
+    font-size: calc(16 * var(--u));
+    font-weight: 400;
+    z-index: 15;
+    top: calc(520 * var(--u));
+    left: calc(820 * var(--u));
+    width: calc(420 * var(--u));
+    text-align: center;
+    color: #003E9B;
+    font-family: Montserrat, sans-serif;
+}
+
+.criar strong, .criar u {
+    color: #003E9B;
+    font-weight: 800;
+    opacity: 1;
+}
+
+@media (max-width: 480px), (max-aspect-ratio: 4/3) {
+    html {
+        overflow-y: auto;
+        background: #E0E8F6;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+        background: #E0E8F6;
+    }
+
+    .fundo-svg {
+        display: none;
+    }
+
+    .voltar {
+        top: 16px;
+        right: 16px;
+    }
+
+    .gota {
+        position: static;
+        display: flex;
+        flex-direction: column;
+        padding: 64px 28px 0;
+        overflow: hidden;
+        background-color: #02245B;
+        background-image: url('../img/login.svg');
+        background-repeat: no-repeat;
+        background-position: left top;
+        background-size: 250% auto;
+    }
+
+    .titulo, .titulo1, .inteligentemente {
+        font-size: clamp(26px, 8vw, 40px);
+        padding: 0;
+    }
+
+    .glub {
+        position: static;
+        display: block;
+        width: min(70vw, 300px);
+        height: auto;
+        margin: 15px auto 10px;
+    }
+
+    .entrar {
+        position: static;
+        width: auto;
+        transform: none;
+        margin: 24px 24px 4px;
+        font-size: clamp(26px, 8vw, 36px);
+        text-align: center;
+    }
+
+    #form-login {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 360px;
+        margin: 0 auto;
+        padding: 0 16px;
+    }
+
+    .tituloEmail {
+        position: static;
+        font-family: Montserrat, sans-serif;
+        width: 100%;
+        font-size: calc(30 * var(--u));
+        font-weight: 700;
+        z-index: 15;
+        top: calc(220 * var(--u));
+        left: calc(822 * var(--u));
+        color: #003E9B;
+    }
+
+    #email {
+        position: static;
+        width: 100%;
+        height: 44px;
+        font-size: 15px;
+        border-radius: 10px;
+        padding-left: 12px;
+
+    }
+
+    .tituloSenha {
+        position: static;
+        font-family: Montserrat, sans-serif;
+        font-size: calc(30 * var(--u));
+        font-weight: 700;
+        z-index: 15;
+        top: calc(320 * var(--u));
+        left: calc(822 * var(--u));
+        color: #003E9B;
+        padding-top: 20px;
+    }
+
+    .campo-senha {
+        position: relative;
+        top: auto;
+        left: auto;
+        width: 100%;
+        height: 44px;
+        margin-top: 0;
+    }
+
+    #senha {
+        width: 100%;
+        height: 100%;
+        font-size: 15px;
+        border-radius: 10px;
+        padding-left: 12px;
+        padding-right: 44px;
+    }
+
+    #botaoOlho {
+        position: absolute;
+        top: 50%;
+        right: 12px;
+        transform: translateY(-50%);
+        z-index: 20;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        border: none;
+        padding: 0;
+    }
+
+    #iconeOlho {
+        width: 22px;
+        height: auto;
+    }
+
+    .esqueceu {
+        position: static;
+        display: block;
+        font-size: 13px;
+        margin-top: 8px;
+        text-align: left;
+    }
+
+    .criar-conta {
+        position: static;
+        width: 100%;
+        height: 46px;
+        margin-top: 20px;
+        font-size: 16px;
+        border-radius: 10px;
+    }
+
+    .criar {
+        position: static;
+        width: 100%;
+        text-align: center;
+        font-size: 14px;
+        margin: 16px 0 32px;
+    }
+}
