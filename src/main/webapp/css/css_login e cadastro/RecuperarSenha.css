@@ -102,8 +102,36 @@ body {
 #senha-nova, #confirmar-senha{
     position: absolute;
     padding-left: calc(14 * var(--u));
+    padding-right: calc(52 * var(--u));
     background-color: #E0E8F6;
     font-family: Montserrat, sans-serif;
+}
+
+.botaoOlho {
+    position: absolute;
+    z-index: 20;
+    width: calc(30 * var(--u));
+    height: calc(30 * var(--u));
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+}
+
+#botaoOlho1 {
+    top: calc(279 * var(--u));
+    left: calc(1200 * var(--u));
+}
+
+#botaoOlho2 {
+    top: calc(379 * var(--u));
+    left: calc(1200 * var(--u));
+}
+
+.iconeOlho {
+    display: block;
+    width: calc(26 * var(--u));
+    height: auto;
 }
 
 #senha-nova::placeholder, #confirmar-senha::placeholder{
