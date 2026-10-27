@@ -1,3 +1,4 @@
+
 package com.example.delta_back.servlet;
 
 import com.example.delta_back.conexao.ConexaoBD;
@@ -13,10 +14,11 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.List;
-
-import java.time.format.DateTimeFormatter; // Para Interpretar String como Data
 
 @WebServlet("/regionrate")
 public class RegionRateServlet extends HttpServlet {
@@ -24,37 +26,203 @@ public class RegionRateServlet extends HttpServlet {
     private Connection connection;
     private RegionRateCrud regionRateCrud;
 
-    // Inicia a Conexão e passa a conexão para o RegionRateCrud quando o Servlet liga
     @Override
     public void init() throws ServletException {
         try {
             connection = ConexaoBD.conectar();
             regionRateCrud = new RegionRateCrud(connection);
         } catch (Exception e) {
-            throw new ServletException("Erro ao conectar com o Banco de Dados", e);
+            throw new ServletException(
+                    "Erro ao conectar com o Banco de Dados", e
+            );
         }
     }
 
-    // Consultar Taxa Da Região - GET
     @Override
     protected void doGet(
-            HttpServletRequest request, HttpServletResponse response
+            HttpServletRequest request,
+            HttpServletResponse response
     ) throws ServletException, IOException {
 
         try {
-
-            List<Region_Rate> regionRates = regionRateCrud.listarTodos();
+            List<Region_Rate> regionRates =
+                    regionRateCrud.listarTodos();
 
             request.setAttribute("regionRate", regionRates);
 
-            request.getRequestDispatcher("/regionrate.jsp").forward(request, response);
+            request.getRequestDispatcher("/jsp_crud/RegionRate.jsp")
+                    .forward(request, response);
 
         } catch (Exception e) {
-            throw new ServletException("Erro ao buscar taxas das regiões...", e);
+            throw new ServletException(
+                    "Erro ao buscar taxas das regiões...", e
+            );
         }
     }
 
-    // Cadastrar Taxa Da Região
+    private boolean regiaoExiste(int regionId) throws Exception {
+        String sql = "SELECT 1 FROM tb_region WHERE id = ?";
+
+        try (PreparedStatement stmt =
+                     connection.prepareStatement(sql)) {
+
+            stmt.setInt(1, regionId);
+
+            try (ResultSet resultado = stmt.executeQuery()) {
+                return resultado.next();
+            }
+        }
+    }
+
+    private int lerInteiroPositivo(
+            HttpServletRequest request,
+            String parametro
+    ) {
+        String valor = request.getParameter(parametro);
+
+        if (valor == null || !valor.trim().matches("[0-9]+")) {
+            throw new IllegalArgumentException(
+                    "O campo " + nomeCampo(parametro)
+                            + " deve ser um número inteiro positivo."
+            );
+        }
+
+        try {
+            int numero = Integer.parseInt(valor.trim());
+
+            if (numero <= 0) {
+                throw new IllegalArgumentException(
+                        "O campo " + nomeCampo(parametro)
+                                + " deve ser maior que zero."
+                );
+            }
+
+            return numero;
+
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(
+                    "O campo " + nomeCampo(parametro)
+                            + " contém um número inválido."
+            );
+        }
+    }
+
+    private String nomeCampo(String parametro) {
+        switch (parametro) {
+            case "region_id":
+                return "ID da Região";
+
+            case "id":
+                return "ID da taxa regional";
+
+            default:
+                return parametro;
+        }
+    }
+
+    private BigDecimal lerValor(HttpServletRequest request) {
+        String valor = request.getParameter("m3value");
+
+        if (valor == null || valor.trim().isEmpty()) {
+            throw new IllegalArgumentException(
+                    "O valor por metro cúbico é obrigatório."
+            );
+        }
+
+        BigDecimal numero;
+
+        try {
+            numero = new BigDecimal(valor.trim());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(
+                    "Informe um valor válido para o metro cúbico."
+            );
+        }
+
+        if (numero.signum() <= 0) {
+            throw new IllegalArgumentException(
+                    "O valor por metro cúbico deve ser maior que zero."
+            );
+        }
+
+        return numero;
+    }
+
+    private LocalDate lerData(
+            HttpServletRequest request,
+            String parametro
+    ) {
+        String valor = request.getParameter(parametro);
+
+        if (valor == null || valor.trim().isEmpty()) {
+            throw new IllegalArgumentException(
+                    "O campo " + nomeCampoData(parametro)
+                            + " é obrigatório."
+            );
+        }
+
+        try {
+            return LocalDate.parse(valor.trim());
+        } catch (DateTimeParseException e) {
+            throw new IllegalArgumentException(
+                    "A data do campo " + nomeCampoData(parametro)
+                            + " é inválida."
+            );
+        }
+    }
+
+    private String nomeCampoData(String parametro) {
+        switch (parametro) {
+            case "initial_validity":
+                return "Início da Validade";
+
+            case "final_validity":
+                return "Fim da Validade";
+
+            default:
+                return parametro;
+        }
+    }
+
+    private void validarTaxa(
+            int regionId,
+            BigDecimal m3value,
+            LocalDate initialValidity,
+            LocalDate finalValidity
+    ) throws Exception {
+
+        if (!regiaoExiste(regionId)) {
+            throw new IllegalArgumentException(
+                    "ID da Região: a região informada não existe. "
+                            + "Corrija o ID e tente novamente."
+            );
+        }
+
+        if (m3value == null || m3value.signum() <= 0) {
+            throw new IllegalArgumentException(
+                    "Valor por m³: informe um valor maior que zero."
+            );
+        }
+
+        if (initialValidity.isAfter(finalValidity)) {
+            throw new IllegalArgumentException(
+                    "Fim da Validade: a data final não pode ser anterior "
+                            + "à data inicial."
+            );
+        }
+    }
+
+    private void enviarErro(
+            HttpServletResponse response,
+            String mensagem
+    ) throws IOException {
+
+        response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        response.setContentType("text/plain");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(mensagem);
+    }
+
     @Override
     protected void doPost(
             HttpServletRequest request,
@@ -62,18 +230,23 @@ public class RegionRateServlet extends HttpServlet {
     ) throws ServletException, IOException {
 
         try {
+            int regionId =
+                    lerInteiroPositivo(request, "region_id");
 
-            int regionId = Integer.parseInt(request.getParameter("region_id"));
-            BigDecimal m3value = new BigDecimal(request.getParameter("m3value"));
+            BigDecimal m3value = lerValor(request);
 
-            String data = request.getParameter("initial_validity");
-            String data2 = request.getParameter("final_validity");
+            LocalDate initialValidity =
+                    lerData(request, "initial_validity");
 
-            // Interpretando String como data (O java nao sabe o que é dia/mes/ano, entao a data virá como String e será convertida para data por conta do código abaixo.
-            // O fluxo será:
-            // String data -> DateTimeFormatter -> LocalDate.parse() -> LocalDate data
-            LocalDate initialValidity = LocalDate.parse(data);
-            LocalDate finalValidity = LocalDate.parse(data2);
+            LocalDate finalValidity =
+                    lerData(request, "final_validity");
+
+            validarTaxa(
+                    regionId,
+                    m3value,
+                    initialValidity,
+                    finalValidity
+            );
 
             Region_Rate regionRate = new Region_Rate(
                     0,
@@ -85,14 +258,18 @@ public class RegionRateServlet extends HttpServlet {
 
             regionRateCrud.inserir(regionRate);
 
-            response.sendRedirect(request.getContextPath() + "/regionrate");
+            response.setStatus(HttpServletResponse.SC_NO_CONTENT);
+
+        } catch (IllegalArgumentException e) {
+            enviarErro(response, e.getMessage());
 
         } catch (Exception e) {
-            throw new ServletException("Erro ao cadastrar taxa da região...", e);
+            throw new ServletException(
+                    "Erro ao cadastrar taxa da região...", e
+            );
         }
     }
 
-    // Atualizar Taxa Da Região - PUT
     @Override
     protected void doPut(
             HttpServletRequest request,
@@ -100,16 +277,25 @@ public class RegionRateServlet extends HttpServlet {
     ) throws ServletException, IOException {
 
         try {
+            int id = lerInteiroPositivo(request, "id");
 
-            int id = Integer.parseInt(request.getParameter("id"));
-            int regionId = Integer.parseInt(request.getParameter("region_id"));
-            BigDecimal m3value = new BigDecimal(request.getParameter("m3value"));
+            int regionId =
+                    lerInteiroPositivo(request, "region_id");
 
-            String data = request.getParameter("initial_validity");
-            String data2 = request.getParameter("final_validity");
+            BigDecimal m3value = lerValor(request);
 
-            LocalDate initialValidity = LocalDate.parse(data);
-            LocalDate finalValidity = LocalDate.parse(data2);
+            LocalDate initialValidity =
+                    lerData(request, "initial_validity");
+
+            LocalDate finalValidity =
+                    lerData(request, "final_validity");
+
+            validarTaxa(
+                    regionId,
+                    m3value,
+                    initialValidity,
+                    finalValidity
+            );
 
             Region_Rate regionRate = new Region_Rate(
                     id,
@@ -123,12 +309,16 @@ public class RegionRateServlet extends HttpServlet {
 
             response.setStatus(HttpServletResponse.SC_NO_CONTENT);
 
+        } catch (IllegalArgumentException e) {
+            enviarErro(response, e.getMessage());
+
         } catch (Exception e) {
-            throw new ServletException("Erro ao atualizar taxa da região...", e);
+            throw new ServletException(
+                    "Erro ao atualizar taxa da região...", e
+            );
         }
     }
 
-    // Deletar Taxa Da Região
     @Override
     protected void doDelete(
             HttpServletRequest request,
@@ -136,32 +326,30 @@ public class RegionRateServlet extends HttpServlet {
     ) throws ServletException, IOException {
 
         try {
-
-            int id = Integer.parseInt(request.getParameter("id"));
+            int id = lerInteiroPositivo(request, "id");
 
             regionRateCrud.deletar(id);
 
             response.setStatus(HttpServletResponse.SC_NO_CONTENT);
 
+        } catch (IllegalArgumentException e) {
+            enviarErro(response, e.getMessage());
+
         } catch (Exception e) {
-            throw new ServletException("Erro ao deletar taxa da região...", e);
+            throw new ServletException(
+                    "Erro ao deletar taxa da região...", e
+            );
         }
     }
 
-    // Fecha a conexão
     @Override
     public void destroy() {
-
         try {
-
             if (connection != null && !connection.isClosed()) {
                 connection.close();
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
-
 }

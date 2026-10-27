@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.example.delta_back.model.Address" %>
@@ -33,6 +32,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/imagens/FaviconDelta.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Delta - Endereços</title>
@@ -43,10 +43,46 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
           rel="stylesheet">
 
-    <link rel="stylesheet" href="<%= ctx %>/css/Address.css">
-    <link rel="stylesheet" href="<%= ctx %>/css/Pop-up.css">
+    <link rel="stylesheet" href="<%= ctx %>/css/css_crud/Address.css">
+    <link rel="stylesheet" href="<%= ctx %>/css/css_crud/Pop-up.css">
 
     <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        .address-validation {
+            display: none;
+            margin: 0 0 22px;
+            padding: 14px 18px;
+            border: 1px solid #dc2626;
+            border-left: 5px solid #dc2626;
+            border-radius: 8px;
+            background: #fef2f2;
+            color: #991b1b;
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+        }
+
+        .address-validation.visible {
+            display: block;
+        }
+
+        .address-validation strong {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .address-validation ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        #addressForm .validation-error {
+            border: 1px solid #dc2626 !important;
+            outline: 1px solid #dc2626;
+            background-color: #fffafa;
+        }
+    </style>
 </head>
 
 <body>
@@ -60,7 +96,7 @@
     </div>
 
     <nav class="menu">
-        <a href="<%= ctx %>/index.jsp" class="menu-item">Início</a>
+        <a href="<%= ctx %>/inicio" class="menu-item">Início</a>
         <a href="<%= ctx %>/user" class="menu-item">Usuários</a>
         <a href="<%= ctx %>/region" class="menu-item">Região</a>
         <a href="<%= ctx %>/regionrate" class="menu-item">Taxa Regional</a>
@@ -77,7 +113,7 @@
             <span>admin123</span>
         </div>
 
-        <a href="<%= ctx %>/inicio.jsp" class="logout">
+        <a href="<%= ctx %>/inicio" class="logout">
             <i data-lucide="log-out"></i>
             <span>Sair</span>
         </a>
@@ -141,7 +177,12 @@
 
                 <tbody id="addressTableBody">
 
-                <% for (Address address : addresses) { %>
+                <% if (addresses.isEmpty()) { %>
+                <tr>
+                    <td colspan="6">Nenhum endereço cadastrado.</td>
+                </tr>
+                <% } else {
+                    for (Address address : addresses) { %>
                 <tr class="address-row">
                     <td><%= address.getId() %></td>
                     <td><%= address.getRegionId() %></td>
@@ -169,7 +210,8 @@
                         </button>
                     </td>
                 </tr>
-                <% } %>
+                <%  }
+                } %>
 
                 </tbody>
             </table>
@@ -186,17 +228,23 @@
                 </div>
             </header>
 
-            <form id="addressForm" class="crud-form-card">
+            <form id="addressForm" class="crud-form-card" novalidate>
                 <div class="form-title" id="formTitle">Novo Endereço</div>
+
+                <div id="addressValidation"
+                     class="address-validation"
+                     role="alert"
+                     aria-live="polite">
+                    <strong>Verifique os seguintes campos:</strong>
+                    <ul id="addressValidationList"></ul>
+                </div>
 
                 <div class="form-grid">
                     <div class="crud-field">
                         <label for="regionId">ID da região</label>
-                        <input type="number"
+                        <input type="text"
                                id="regionId"
-                               name="regionId"
-                               min="1"
-                               required>
+                               name="regionId">
                     </div>
 
                     <div class="crud-field">
@@ -204,23 +252,21 @@
                         <input type="text"
                                id="cep"
                                name="cep"
-                               required>
+                               placeholder="Somente 8 números">
                     </div>
 
                     <div class="crud-field">
                         <label for="city">Cidade</label>
                         <input type="text"
                                id="city"
-                               name="city"
-                               required>
+                               name="city">
                     </div>
 
                     <div class="crud-field">
                         <label for="state">Estado</label>
                         <input type="text"
                                id="state"
-                               name="state"
-                               required>
+                               name="state">
                     </div>
                 </div>
 
@@ -321,11 +367,17 @@
     const addressForm = document.getElementById("addressForm");
     const searchInput = document.getElementById("searchInput");
 
+    const pageHeader = crudPage.querySelector(".crud-header");
+    const toolbar = crudPage.querySelector(".crud-toolbar");
+    const tableWrap = crudPage.querySelector(".crud-table-wrap");
+
     lucide.createIcons();
 
     function startCreate() {
         editingId = null;
+
         addressForm.reset();
+        clearValidation();
 
         document.getElementById("formHeading").textContent =
             "Adicionar Endereço";
@@ -336,9 +388,9 @@
         document.getElementById("saveButton").textContent =
             "Adicionar Endereço";
 
-        crudPage.querySelector(".crud-header").style.display = "none";
-        crudPage.querySelector(".crud-toolbar").style.display = "none";
-        crudPage.querySelector(".crud-table-wrap").style.display = "none";
+        pageHeader.style.display = "none";
+        toolbar.style.display = "none";
+        tableWrap.style.display = "none";
 
         formPage.style.display = "block";
 
@@ -347,6 +399,9 @@
 
     function startEdit(button) {
         editingId = button.dataset.id;
+
+        addressForm.reset();
+        clearValidation();
 
         document.getElementById("regionId").value =
             button.dataset.regionId;
@@ -369,9 +424,9 @@
         document.getElementById("saveButton").textContent =
             "Salvar alterações";
 
-        crudPage.querySelector(".crud-header").style.display = "none";
-        crudPage.querySelector(".crud-toolbar").style.display = "none";
-        crudPage.querySelector(".crud-table-wrap").style.display = "none";
+        pageHeader.style.display = "none";
+        toolbar.style.display = "none";
+        tableWrap.style.display = "none";
 
         formPage.style.display = "block";
 
@@ -380,46 +435,163 @@
 
     function cancelForm() {
         editingId = null;
+
         formPage.style.display = "none";
 
-        crudPage.querySelector(".crud-header").style.display = "";
-        crudPage.querySelector(".crud-toolbar").style.display = "";
-        crudPage.querySelector(".crud-table-wrap").style.display = "";
+        pageHeader.style.display = "";
+        toolbar.style.display = "";
+        tableWrap.style.display = "";
 
         addressForm.reset();
+        clearValidation();
+    }
+
+    function clearValidation() {
+        const box = document.getElementById("addressValidation");
+        const list = document.getElementById("addressValidationList");
+
+        box.classList.remove("visible");
+        list.replaceChildren();
+
+        addressForm.querySelectorAll(".validation-error").forEach(field => {
+            field.classList.remove("validation-error");
+            field.removeAttribute("aria-invalid");
+        });
+    }
+
+    function showValidationErrors(messages) {
+        const box = document.getElementById("addressValidation");
+        const list = document.getElementById("addressValidationList");
+
+        list.replaceChildren();
+
+        addressForm.querySelectorAll(".validation-error").forEach(field => {
+            field.classList.remove("validation-error");
+            field.removeAttribute("aria-invalid");
+        });
+
+        const fieldRules = [
+            {
+                id: "regionId",
+                keywords: ["regionid", "região", "regiao"]
+            },
+            {
+                id: "cep",
+                keywords: ["cep"]
+            },
+            {
+                id: "city",
+                keywords: ["city", "cidade"]
+            },
+            {
+                id: "state",
+                keywords: ["state", "estado"]
+            }
+        ];
+
+        messages.forEach(message => {
+            const item = document.createElement("li");
+            item.textContent = message;
+            list.appendChild(item);
+
+            const normalized = message.toLocaleLowerCase("pt-BR");
+
+            const matchingField = fieldRules.find(rule =>
+                rule.keywords.some(keyword => normalized.includes(keyword))
+            );
+
+            if (matchingField) {
+                const field = document.getElementById(matchingField.id);
+                field.classList.add("validation-error");
+                field.setAttribute("aria-invalid", "true");
+            }
+        });
+
+        box.classList.add("visible");
+        box.scrollIntoView({ behavior: "smooth", block: "center" });
+
+        const firstInvalid = addressForm.querySelector(".validation-error");
+
+        if (firstInvalid) {
+            firstInvalid.focus({ preventScroll: true });
+        }
+    }
+
+    ["regionId", "cep", "city", "state"].forEach(id => {
+        document.getElementById(id).addEventListener("input", function() {
+            clearFieldError(this);
+        });
+    });
+
+    function clearFieldError(field) {
+        field.classList.remove("validation-error");
+        field.removeAttribute("aria-invalid");
+
+        const box = document.getElementById("addressValidation");
+        const list = document.getElementById("addressValidationList");
+
+        if (list.children.length === 0) {
+            box.classList.remove("visible");
+        }
     }
 
     addressForm.addEventListener("submit", async function(event) {
         event.preventDefault();
 
+        clearValidation();
+
         const params = new URLSearchParams();
 
-        params.append("regionId", document.getElementById("regionId").value);
-        params.append("cep", document.getElementById("cep").value.trim());
-        params.append("city", document.getElementById("city").value.trim());
-        params.append("state", document.getElementById("state").value.trim());
+        params.append(
+            "regionId",
+            document.getElementById("regionId").value
+        );
+
+        params.append(
+            "cep",
+            document.getElementById("cep").value
+        );
+
+        params.append(
+            "city",
+            document.getElementById("city").value
+        );
+
+        params.append(
+            "state",
+            document.getElementById("state").value
+        );
 
         const isEditing = editingId !== null;
         let url = contextPath + "/address";
-        let method = "POST";
+        const method = isEditing ? "PUT" : "POST";
 
         if (isEditing) {
             params.append("id", editingId);
             url += "?" + params.toString();
-            method = "PUT";
         }
+
+        const saveButton = document.getElementById("saveButton");
+        saveButton.disabled = true;
 
         try {
             const response = await fetch(url, {
                 method: method,
                 headers: {
-                    "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+                    "Content-Type":
+                        "application/x-www-form-urlencoded;charset=UTF-8"
                 },
                 body: isEditing ? null : params.toString()
             });
 
             if (!response.ok) {
-                throw new Error("Não foi possível salvar o endereço.");
+                const message = (await response.text()).trim();
+
+                showValidationErrors([
+                    message || "Não foi possível salvar o endereço."
+                ]);
+
+                return;
             }
 
             document.getElementById("popupSuccessTitle").textContent =
@@ -443,7 +615,13 @@
 
         } catch (error) {
             console.error(error);
-            alert("Erro ao salvar endereço. Verifique os dados e tente novamente.");
+
+            showValidationErrors([
+                "Não foi possível conectar ao servidor. Tente novamente."
+            ]);
+
+        } finally {
+            saveButton.disabled = false;
         }
     });
 
@@ -457,9 +635,8 @@
         const query = this.value.toLowerCase().trim();
 
         document.querySelectorAll(".address-row").forEach(row => {
-            row.style.display = row.textContent.toLowerCase().includes(query)
-                ? ""
-                : "none";
+            row.style.display =
+                row.textContent.toLowerCase().includes(query) ? "" : "none";
         });
     });
 
@@ -473,35 +650,63 @@
         showPopup("delete");
 
         document.getElementById("confirmDeleteBtn").onclick =
-            async function() {
-                if (recordToDelete === null) return;
+            confirmDelete;
+    }
 
-                try {
-                    const response = await fetch(
-                        contextPath + "/address?id=" +
-                        encodeURIComponent(recordToDelete),
-                        { method: "DELETE" }
-                    );
+    async function confirmDelete() {
+        if (recordToDelete === null) return;
 
-                    if (!response.ok) {
-                        throw new Error("Não foi possível excluir o endereço.");
-                    }
+        const id = recordToDelete;
+        const button = document.getElementById("confirmDeleteBtn");
 
-                    closePopup();
+        button.disabled = true;
 
-                    showToast(
-                        "Endereço excluído com sucesso.",
-                        "REGISTRO EXCLUÍDO",
-                        "delete"
-                    );
+        try {
+            const response = await fetch(
+                contextPath + "/address?id=" + encodeURIComponent(id),
+                { method: "DELETE" }
+            );
 
-                    setTimeout(() => window.location.reload(), 700);
+            if (!response.ok) {
+                const message = (await response.text()).trim();
 
-                } catch (error) {
-                    console.error(error);
-                    alert("Erro ao excluir endereço.");
-                }
-            };
+                closePopup();
+
+                showToast(
+                    message || "Não foi possível excluir o endereço.",
+                    "ERRO NA EXCLUSÃO",
+                    "delete"
+                );
+
+                return;
+            }
+
+            closePopup();
+
+            showToast(
+                "Endereço excluído com sucesso.",
+                "REGISTRO EXCLUÍDO",
+                "delete"
+            );
+
+            setTimeout(() => {
+                window.location.href = contextPath + "/address";
+            }, 700);
+
+        } catch (error) {
+            console.error(error);
+
+            closePopup();
+
+            showToast(
+                "Não foi possível conectar ao servidor.",
+                "ERRO NA EXCLUSÃO",
+                "delete"
+            );
+
+        } finally {
+            button.disabled = false;
+        }
     }
 
     function showPopup(type) {
@@ -521,6 +726,9 @@
     function closePopup(shouldRedirect = false) {
         document.getElementById("popupOverlay").classList.remove("show");
         document.body.classList.remove("locked");
+
+        document.getElementById("popupSuccess").classList.remove("active");
+        document.getElementById("popupDelete").classList.remove("active");
 
         recordToDelete = null;
 

@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.example.delta_back.model.Device" %>
@@ -56,9 +55,9 @@
 
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/imagens/FaviconDelta.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Delta - Dispositivos</title>
@@ -68,23 +67,80 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
           rel="stylesheet">
 
-    <link rel="stylesheet" href="<%= ctx %>/css/Device.css">
-    <link rel="stylesheet" href="<%= ctx %>/css/Pop-up.css">
+    <link rel="stylesheet" href="<%= ctx %>/css/css_crud/Device.css">
+    <link rel="stylesheet" href="<%= ctx %>/css/css_crud/Pop-up.css">
 
     <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        [hidden] {
+            display: none !important;
+        }
+
+        .validation-errors {
+            display: none;
+            margin: 0 0 22px;
+            padding: 16px 20px;
+            border: 1px solid #e05252;
+            border-left: 5px solid #d93636;
+            border-radius: 8px;
+            background: #fff3f3;
+            color: #a32121;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .validation-errors.visible {
+            display: block;
+        }
+
+        .validation-errors strong {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        .validation-errors ul {
+            margin: 0;
+            padding-left: 20px;
+            font-size: 13px;
+        }
+
+        .crud-field input.invalid,
+        .crud-field select.invalid {
+            border: 1px solid #d93636 !important;
+            outline: 1px solid #d93636;
+            background-color: #fff8f8;
+        }
+
+        .crud-field .field-error {
+            display: block;
+            margin-top: 5px;
+            color: #c62828;
+            font-size: 12px;
+        }
+
+        .crud-field .field-error:empty {
+            display: none;
+        }
+
+        .crud-save:disabled,
+        .popup-danger:disabled {
+            opacity: .6;
+            cursor: wait;
+        }
+    </style>
 </head>
 
 <body>
 
 <aside class="sidebar">
-
     <div class="logo-area">
         <img src="<%= ctx %>/imagens/LogoDelta.png"
              alt="Logo Delta" id="logo">
     </div>
 
     <nav class="menu">
-        <a href="<%= ctx %>/index.jsp" class="menu-item">Início</a>
+        <a href="<%= ctx %>/inicio" class="menu-item">Início</a>
         <a href="<%= ctx %>/user" class="menu-item">Usuários</a>
         <a href="<%= ctx %>/region" class="menu-item">Região</a>
         <a href="<%= ctx %>/regionrate" class="menu-item">Taxa Regional</a>
@@ -94,7 +150,6 @@
     </nav>
 
     <div class="sidebar-bottom">
-
         <div class="account">
             <div class="avatar">
                 <i data-lucide="user"></i>
@@ -102,11 +157,10 @@
             <span>admin123</span>
         </div>
 
-        <a href="<%= ctx %>/index.jsp" class="logout">
+        <a href="<%= ctx %>/inicio" class="logout">
             <i data-lucide="log-out"></i>
             <span>Sair</span>
         </a>
-
     </div>
 </aside>
 
@@ -115,7 +169,6 @@
     <section class="crud-page" id="crudPage">
 
         <header class="crud-header">
-
             <div class="crud-title">
                 <h1>Dispositivos</h1>
                 <p>Registros e Dados dos Dispositivos</p>
@@ -125,13 +178,10 @@
                 <span>Total de Registros:</span>
                 <strong><%= devices.size() %></strong>
             </div>
-
         </header>
 
         <div class="crud-toolbar">
-
             <div class="crud-search-area">
-
                 <div class="crud-search">
                     <i data-lucide="search"></i>
                     <input type="text"
@@ -144,7 +194,6 @@
                         title="Filtro">
                     <i data-lucide="funnel"></i>
                 </button>
-
             </div>
 
             <button class="crud-add"
@@ -153,13 +202,10 @@
                 <i data-lucide="circle-plus"></i>
                 Adicionar Dispositivo
             </button>
-
         </div>
 
         <div class="crud-table-wrap">
-
             <table class="crud-table">
-
                 <thead>
                 <tr>
                     <th>ID</th>
@@ -172,20 +218,15 @@
                 </thead>
 
                 <tbody id="deviceTableBody">
-
                 <% if (devices.isEmpty()) { %>
-
                 <tr>
                     <td colspan="6" class="crud-empty">
                         Nenhum dispositivo cadastrado.
                     </td>
                 </tr>
-
                 <% } else {
                     for (Device device : devices) { %>
-
                 <tr class="device-row">
-
                     <td><%= device.getId() %></td>
 
                     <td><%= escapeHtml(device.getDeviceId()) %></td>
@@ -197,7 +238,6 @@
                     <td><%= escapeHtml(formatDate(device.getInstallationDate())) %></td>
 
                     <td class="crud-actions-cell">
-
                         <button type="button"
                                 class="crud-action"
                                 title="Editar"
@@ -217,23 +257,16 @@
                                 onclick="deleteRecord(this.dataset.id)">
                             <i data-lucide="trash-2"></i>
                         </button>
-
                     </td>
-
                 </tr>
-
                 <%  }
                 } %>
-
                 </tbody>
             </table>
-
         </div>
-
     </section>
 
     <section class="crud-form-page" id="deviceFormPage" hidden>
-
         <header class="crud-form-header">
             <div>
                 <h1 id="formHeading">Adicionar Dispositivo</h1>
@@ -241,52 +274,57 @@
             </div>
         </header>
 
-        <form class="crud-form-card" id="deviceForm">
-
+        <form class="crud-form-card" id="deviceForm" novalidate>
             <div class="form-title" id="formTitle">
                 Novo Dispositivo
             </div>
 
-            <div class="form-grid">
+            <div class="validation-errors"
+                 id="validationErrors"
+                 role="alert"
+                 aria-live="polite">
+                <strong>Verifique os seguintes campos:</strong>
+                <ul id="validationList"></ul>
+            </div>
 
+            <div class="form-grid">
                 <div class="crud-field">
                     <label for="deviceId">ID do Dispositivo</label>
                     <input type="text"
                            id="deviceId"
                            name="deviceId"
-                           required>
+                           autocomplete="off">
+                    <small class="field-error" id="deviceIdError"></small>
                 </div>
 
                 <div class="crud-field">
                     <label for="propertyId">ID da Propriedade</label>
-                    <input type="number"
+                    <input type="text"
                            id="propertyId"
-                           name="propertyId"
-                           min="1"
-                           required>
+                           name="propertyId">
+                    <small class="field-error" id="propertyIdError"></small>
                 </div>
 
                 <div class="crud-field">
                     <label for="active">Ativo</label>
-                    <select id="active" name="active" required>
+                    <select id="active" name="active">
                         <option value="">Selecione</option>
                         <option value="true">Sim</option>
                         <option value="false">Não</option>
                     </select>
+                    <small class="field-error" id="activeError"></small>
                 </div>
 
                 <div class="crud-field">
                     <label for="installationDate">Data de Instalação</label>
                     <input type="date"
                            id="installationDate"
-                           name="installationDate"
-                           required>
+                           name="installationDate">
+                    <small class="field-error" id="installationDateError"></small>
                 </div>
-
             </div>
 
             <div class="crud-form-actions">
-
                 <button type="button"
                         class="crud-cancel"
                         onclick="cancelForm()">
@@ -298,25 +336,19 @@
                         id="saveButton">
                     Adicionar Dispositivo
                 </button>
-
             </div>
-
         </form>
-
     </section>
 
 </main>
 
 <div class="overlay" id="popupOverlay">
-
     <div class="popup">
-
         <button type="button"
                 class="close"
                 onclick="closePopup()">×</button>
 
         <div class="popup-content" id="popupSuccess">
-
             <div class="popup-icon success-icon">✓</div>
 
             <span class="popup-tag" id="popupSuccessTag">Dispositivos</span>
@@ -338,11 +370,9 @@
                     onclick="closePopup()">
                 Voltar
             </button>
-
         </div>
 
         <div class="popup-content" id="popupDelete">
-
             <div class="popup-icon warning-icon">!</div>
 
             <span class="popup-tag danger-tag">Excluir Registro</span>
@@ -357,7 +387,6 @@
             </div>
 
             <div class="delete-actions">
-
                 <button type="button"
                         class="popup-secondary"
                         onclick="closePopup()">
@@ -369,16 +398,12 @@
                         id="confirmDeleteBtn">
                     Confirmar Exclusão
                 </button>
-
             </div>
-
         </div>
-
     </div>
 </div>
 
 <div class="global-toast" id="globalToast">
-
     <div class="toast-symbol" id="toastSymbol">✓</div>
 
     <div>
@@ -387,7 +412,6 @@
     </div>
 
     <button type="button" onclick="hideToast()">×</button>
-
 </div>
 
 <script>
@@ -398,14 +422,19 @@
     const crudPage = document.getElementById("crudPage");
     const formPage = document.getElementById("deviceFormPage");
     const deviceForm = document.getElementById("deviceForm");
+    const validationBox = document.getElementById("validationErrors");
+    const validationList = document.getElementById("validationList");
 
     let editingId = null;
     let recordToDelete = null;
     let reloadAfterPopup = false;
+    let submitting = false;
+    let deleting = false;
 
     function startCreate() {
         editingId = null;
         deviceForm.reset();
+        clearValidation();
 
         document.getElementById("formHeading").textContent =
             "Adicionar Dispositivo";
@@ -426,6 +455,7 @@
         editingId = button.dataset.id;
 
         deviceForm.reset();
+        clearValidation();
 
         document.getElementById("deviceId").value =
             button.dataset.deviceId;
@@ -457,6 +487,7 @@
     function cancelForm() {
         editingId = null;
         deviceForm.reset();
+        clearValidation();
 
         formPage.hidden = true;
         crudPage.hidden = false;
@@ -464,23 +495,60 @@
         window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
-    function formatDateForBackend(date) {
-        if (!date) return "";
+    function clearValidation() {
+        validationList.replaceChildren();
+        validationBox.classList.remove("visible");
 
-        const parts = date.split("-");
-        return parts.length === 3
-            ? parts[2] + "/" + parts[1] + "/" + parts[0]
-            : date;
+        document.querySelectorAll(".crud-field input, .crud-field select")
+            .forEach(field => {
+                field.classList.remove("invalid");
+                field.removeAttribute("aria-invalid");
+            });
+
+        document.querySelectorAll(".field-error").forEach(error => {
+            error.textContent = "";
+        });
+    }
+
+    function showValidationErrors(messages) {
+        clearValidation();
+
+        messages.forEach(message => {
+            const item = document.createElement("li");
+            item.textContent = message;
+            validationList.appendChild(item);
+        });
+
+        validationBox.classList.add("visible");
+
+        validationBox.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+    }
+
+    async function readErrorMessage(response) {
+        const message = (await response.text()).trim();
+
+        return message || "Não foi possível concluir a operação. Confira os dados e tente novamente.";
     }
 
     deviceForm.addEventListener("submit", async function(event) {
         event.preventDefault();
 
+        if (submitting) return;
+
+        clearValidation();
+        submitting = true;
+
+        const saveButton = document.getElementById("saveButton");
+        saveButton.disabled = true;
+
         const params = new URLSearchParams();
 
         params.append(
             "deviceId",
-            document.getElementById("deviceId").value.trim()
+            document.getElementById("deviceId").value
         );
 
         params.append(
@@ -495,9 +563,7 @@
 
         params.append(
             "installationDate",
-            formatDateForBackend(
-                document.getElementById("installationDate").value
-            )
+            document.getElementById("installationDate").value
         );
 
         const isEditing = editingId !== null;
@@ -507,28 +573,24 @@
         }
 
         try {
-            const response = await fetch(
-                contextPath + "/device" +
-                (isEditing ? "?" + params.toString() : ""),
-                {
-                    method: isEditing ? "PUT" : "POST",
-                    headers: isEditing
-                        ? {}
-                        : {
-                            "Content-Type":
-                                "application/x-www-form-urlencoded;charset=UTF-8"
-                        },
-                    body: isEditing ? null : params.toString()
-                }
-            );
+            const url = contextPath + "/device" +
+                (isEditing ? "?" + params.toString() : "");
+
+            const response = await fetch(url, {
+                method: isEditing ? "PUT" : "POST",
+                headers: {
+                    "Content-Type":
+                        "application/x-www-form-urlencoded;charset=UTF-8"
+                },
+                body: isEditing ? null : params.toString()
+            });
 
             if (!response.ok) {
-                throw new Error("Não foi possível salvar o dispositivo.");
+                showValidationErrors([
+                    await readErrorMessage(response)
+                ]);
+                return;
             }
-
-            editingId = null;
-            formPage.hidden = true;
-            crudPage.hidden = false;
 
             showPopup(
                 "success",
@@ -544,11 +606,14 @@
 
         } catch (error) {
             console.error(error);
-            showToast(
-                "Não foi possível salvar o dispositivo. Verifique os dados e tente novamente.",
-                "Erro",
-                "delete"
-            );
+
+            showValidationErrors([
+                "Não foi possível conectar ao servidor. Tente novamente."
+            ]);
+
+        } finally {
+            submitting = false;
+            saveButton.disabled = false;
         }
     });
 
@@ -565,7 +630,14 @@
     }
 
     async function confirmDelete() {
-        if (recordToDelete === null) return;
+        if (recordToDelete === null || deleting) return;
+
+        deleting = true;
+
+        const confirmButton =
+            document.getElementById("confirmDeleteBtn");
+
+        confirmButton.disabled = true;
 
         try {
             const response = await fetch(
@@ -575,7 +647,11 @@
             );
 
             if (!response.ok) {
-                throw new Error("Não foi possível excluir o dispositivo.");
+                const message = await readErrorMessage(response);
+                closePopup();
+
+                showToast(message, "Não foi possível excluir", "delete");
+                return;
             }
 
             recordToDelete = null;
@@ -587,11 +663,24 @@
                 "delete"
             );
 
-            setTimeout(() => window.location.reload(), 700);
+            setTimeout(() => {
+                window.location.href = contextPath + "/device";
+            }, 700);
 
         } catch (error) {
             console.error(error);
-            showToast("Não foi possível excluir o dispositivo.", "Erro", "delete");
+
+            closePopup();
+
+            showToast(
+                "Não foi possível conectar ao servidor.",
+                "Erro",
+                "delete"
+            );
+
+        } finally {
+            deleting = false;
+            confirmButton.disabled = false;
         }
     }
 
@@ -614,6 +703,9 @@
     function closePopup() {
         document.getElementById("popupOverlay").classList.remove("show");
         document.body.classList.remove("locked");
+
+        document.getElementById("popupSuccess").classList.remove("active");
+        document.getElementById("popupDelete").classList.remove("active");
 
         recordToDelete = null;
 

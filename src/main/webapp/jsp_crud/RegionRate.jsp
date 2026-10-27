@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="true" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Collections" %>
@@ -9,17 +8,17 @@
         if (value == null) return "";
 
         return String.valueOf(value)
-            .replace("&", "&amp;")
-            .replace("<", "&lt;")
-            .replace(">", "&gt;")
-            .replace("\"", "&quot;")
-            .replace("'", "&#039;");
+                .replace("&", "&amp;")
+                .replace("<", "&lt;")
+                .replace(">", "&gt;")
+                .replace("\"", "&quot;")
+                .replace("'", "&#039;");
     }
 %>
 
 <%
     List<Region_Rate> regionRates =
-        (List<Region_Rate>) request.getAttribute("regionRate");
+            (List<Region_Rate>) request.getAttribute("regionRate");
 
     if (regionRates == null) {
         regionRates = Collections.emptyList();
@@ -33,6 +32,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/imagens/FaviconDelta.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Delta - Taxa Regional</title>
@@ -41,12 +41,41 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-        rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
     >
 
-    <link rel="stylesheet" href="<%= ctx %>/css/RegionRate.css">
-    <link rel="stylesheet" href="<%= ctx %>/css/Pop-up.css">
+    <link rel="stylesheet" href="<%= ctx %>/css/css_crud/RegionRate.css">
+    <link rel="stylesheet" href="<%= ctx %>/css/css_crud/Pop-up.css">
+
+    <style>
+        .validation-box {
+            margin: 0 0 22px;
+            padding: 14px 18px;
+            border: 1px solid #dc2626;
+            border-radius: 10px;
+            background: #fef2f2;
+            color: #991b1b;
+        }
+
+        .validation-box[hidden] {
+            display: none;
+        }
+
+        .validation-box strong {
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .validation-box ul {
+            margin: 0;
+            padding-left: 22px;
+        }
+
+        .validation-box li {
+            margin-top: 4px;
+        }
+    </style>
 
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -57,14 +86,14 @@
 
     <div class="logo-area">
         <img
-            src="<%= ctx %>/imagens/LogoDelta.png"
-            alt="Logo Delta"
-            id="logo"
+                src="<%= ctx %>/imagens/LogoDelta.png"
+                alt="Logo Delta"
+                id="logo"
         >
     </div>
 
     <nav class="menu">
-        <a href="<%= ctx %>/index.jsp" class="menu-item">Início</a>
+        <a href="<%= ctx %>/inicio" class="menu-item">Início</a>
         <a href="<%= ctx %>/user" class="menu-item">Usuários</a>
         <a href="<%= ctx %>/region" class="menu-item">Região</a>
         <a href="<%= ctx %>/regionrate" class="menu-item active">Taxa Regional</a>
@@ -82,7 +111,7 @@
             <span>admin123</span>
         </div>
 
-        <a href="<%= ctx %>/inicio.jsp" class="logout">
+        <a href="<%= ctx %>/inicio" class="logout">
             <i data-lucide="log-out"></i>
             <span>Sair</span>
         </a>
@@ -118,16 +147,16 @@
                 <div class="crud-search">
                     <i data-lucide="search"></i>
                     <input
-                        id="searchInput"
-                        type="text"
-                        placeholder="Buscar taxa regional"
+                            id="searchInput"
+                            type="text"
+                            placeholder="Buscar taxa regional"
                     >
                 </div>
 
                 <button
-                    class="crud-filter"
-                    type="button"
-                    title="Filtro"
+                        class="crud-filter"
+                        type="button"
+                        title="Filtro"
                 >
                     <i data-lucide="funnel"></i>
                 </button>
@@ -135,9 +164,9 @@
             </div>
 
             <button
-                class="crud-add"
-                type="button"
-                onclick="startCreate()"
+                    class="crud-add"
+                    type="button"
+                    onclick="startCreate()"
             >
                 <i data-lucide="circle-plus"></i>
                 Adicionar Taxa
@@ -150,72 +179,68 @@
             <table class="crud-table">
 
                 <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>ID da Região</th>
-                        <th>Valor por m³</th>
-                        <th>Início da Validade</th>
-                        <th>Fim da Validade</th>
-                        <th>Ações</th>
-                    </tr>
+                <tr>
+                    <th>ID</th>
+                    <th>ID da Região</th>
+                    <th>Valor por m³</th>
+                    <th>Início da Validade</th>
+                    <th>Fim da Validade</th>
+                    <th>Ações</th>
+                </tr>
                 </thead>
 
                 <tbody id="rateTableBody">
 
                 <% if (regionRates.isEmpty()) { %>
 
-                    <tr>
-                        <td colspan="6" class="crud-empty">
-                            Nenhuma taxa regional cadastrada.
-                        </td>
-                    </tr>
+                <tr>
+                    <td colspan="6" class="crud-empty">
+                        Nenhuma taxa regional cadastrada.
+                    </td>
+                </tr>
 
                 <% } else {
                     for (Region_Rate rate : regionRates) {
                 %>
 
-                    <tr
+                <tr
                         data-id="<%= rate.getId() %>"
                         data-region-id="<%= rate.getRegionId() %>"
                         data-m3value="<%= esc(rate.getM3Value()) %>"
                         data-initial-validity="<%= esc(rate.getInitialValidity()) %>"
                         data-final-validity="<%= esc(rate.getFinalValidity()) %>"
-                    >
-                        <td><%= rate.getId() %></td>
+                >
+                    <td><%= rate.getId() %></td>
+                    <td><%= rate.getRegionId() %></td>
+                    <td><%= esc(rate.getM3Value()) %></td>
+                    <td><%= esc(rate.getInitialValidity()) %></td>
+                    <td><%= esc(rate.getFinalValidity()) %></td>
 
-                        <td><%= rate.getRegionId() %></td>
+                    <td class="crud-actions-cell">
 
-                        <td><%= esc(rate.getM3Value()) %></td>
-
-                        <td><%= esc(rate.getInitialValidity()) %></td>
-
-                        <td><%= esc(rate.getFinalValidity()) %></td>
-
-                        <td class="crud-actions-cell">
-
-                            <button
+                        <button
                                 type="button"
                                 class="crud-action"
                                 onclick="editRecord(this)"
                                 title="Editar"
-                            >
-                                <i data-lucide="pencil"></i>
-                            </button>
+                        >
+                            <i data-lucide="pencil"></i>
+                        </button>
 
-                            <button
+                        <button
                                 type="button"
                                 class="crud-action delete"
                                 onclick="deleteRecord(this)"
                                 title="Excluir"
-                            >
-                                <i data-lucide="trash-2"></i>
-                            </button>
+                        >
+                            <i data-lucide="trash-2"></i>
+                        </button>
 
-                        </td>
-                    </tr>
+                    </td>
+                </tr>
 
                 <%  }
-                   } %>
+                } %>
 
                 </tbody>
 
@@ -227,16 +252,14 @@
 
 </main>
 
-<!-- POP-UP -->
-
 <div class="overlay" id="popupOverlay">
 
     <div class="popup">
 
         <button
-            type="button"
-            class="close"
-            onclick="closePopup()"
+                type="button"
+                class="close"
+                onclick="closePopup()"
         >×</button>
 
         <div class="popup-content" id="popupSuccess">
@@ -252,17 +275,17 @@
             </p>
 
             <button
-                type="button"
-                class="popup-primary"
-                onclick="closePopup()"
+                    type="button"
+                    class="popup-primary"
+                    onclick="closePopup()"
             >
                 OK, Entendido
             </button>
 
             <button
-                type="button"
-                class="popup-secondary"
-                onclick="closePopup()"
+                    type="button"
+                    class="popup-secondary"
+                    onclick="closePopup()"
             >
                 Voltar
             </button>
@@ -287,17 +310,17 @@
             <div class="delete-actions">
 
                 <button
-                    type="button"
-                    class="popup-secondary"
-                    onclick="closePopup()"
+                        type="button"
+                        class="popup-secondary"
+                        onclick="closePopup()"
                 >
                     Cancelar
                 </button>
 
                 <button
-                    type="button"
-                    class="popup-danger"
-                    id="confirmDeleteBtn"
+                        type="button"
+                        class="popup-danger"
+                        id="confirmDeleteBtn"
                 >
                     Confirmar Exclusão
                 </button>
@@ -309,8 +332,6 @@
     </div>
 
 </div>
-
-<!-- TOAST -->
 
 <div class="global-toast" id="globalToast">
 
@@ -331,10 +352,10 @@
     let editingId = null;
     let recordToDelete = null;
     let reloadAfterPopup = false;
+    let toastTimeout = null;
 
     lucide.createIcons();
 
-    // Escapar valores inseridos no HTML pelo JavaScript
     function esc(value) {
         return String(value ?? "")
             .replace(/&/g, "&amp;")
@@ -344,13 +365,11 @@
             .replace(/'/g, "&#039;");
     }
 
-    // Abrir formulário de cadastro
     function startCreate() {
         editingId = null;
         renderForm(null);
     }
 
-    // Abrir formulário de edição
     function editRecord(button) {
         const row = button.closest("tr");
 
@@ -367,18 +386,15 @@
         });
     }
 
-    // Normalizar datas para o formato exigido por input type=date
     function normalizeDate(value) {
         if (!value) return "";
 
         const date = String(value).trim();
 
-        // Já está no formato yyyy-MM-dd
         if (/^\d{4}-\d{2}-\d{2}$/.test(date)) {
             return date;
         }
 
-        // Converter dd/MM/yyyy para yyyy-MM-dd
         const brazilian = date.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
 
         if (brazilian) {
@@ -388,7 +404,6 @@
         return "";
     }
 
-    // Montar formulário
     function renderForm(rate) {
         const editing = rate !== null;
         const page = document.getElementById("crudPage");
@@ -407,7 +422,18 @@
 
                     <h2 class="form-title">Dados da Taxa Regional</h2>
 
-                    <form id="rateForm">
+                    <form id="rateForm" novalidate>
+
+                        <div
+                            id="validationBox"
+                            class="validation-box"
+                            role="alert"
+                            aria-live="polite"
+                            hidden
+                        >
+                            <strong>Verifique os seguintes campos:</strong>
+                            <ul id="validationList"></ul>
+                        </div>
 
                         <div class="form-grid">
 
@@ -417,8 +443,6 @@
                                     type="number"
                                     id="region_id"
                                     name="region_id"
-                                    min="1"
-                                    required
                                     value="${editing ? esc(rate.regionId) : ""}"
                                 >
                             </div>
@@ -429,9 +453,7 @@
                                     type="number"
                                     id="m3value"
                                     name="m3value"
-                                    min="0"
-                                    step="0.01"
-                                    required
+                                    step="any"
                                     value="${editing ? esc(rate.m3value) : ""}"
                                 >
                             </div>
@@ -442,7 +464,6 @@
                                     type="date"
                                     id="initial_validity"
                                     name="initial_validity"
-                                    required
                                     value="${editing ? esc(rate.initialValidity) : ""}"
                                 >
                             </div>
@@ -453,7 +474,6 @@
                                     type="date"
                                     id="final_validity"
                                     name="final_validity"
-                                    required
                                     value="${editing ? esc(rate.finalValidity) : ""}"
                                 >
                             </div>
@@ -493,19 +513,38 @@
         window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
-    // Voltar para a tabela
     function cancelForm() {
         window.location.href = contextPath + "/regionrate";
     }
 
-    // Salvar cadastro ou edição
+    function showValidationErrors(messages) {
+        const box = document.getElementById("validationBox");
+        const list = document.getElementById("validationList");
+
+        if (!box || !list) return;
+
+        list.replaceChildren();
+
+        messages.forEach(message => {
+            const item = document.createElement("li");
+            item.textContent = message;
+            list.appendChild(item);
+        });
+
+        box.hidden = messages.length === 0;
+
+        if (messages.length > 0) {
+            box.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+        }
+    }
+
     async function saveForm(event) {
         event.preventDefault();
 
         const form = document.getElementById("rateForm");
-
-        if (!form.reportValidity()) return;
-
         const params = new URLSearchParams(new FormData(form));
         const editing = editingId !== null;
 
@@ -514,6 +553,7 @@
         }
 
         const button = document.getElementById("saveButton");
+
         button.disabled = true;
         button.textContent = "Salvando...";
 
@@ -525,20 +565,22 @@
                 {
                     method: editing ? "PUT" : "POST",
                     headers: {
-                        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+                        "Content-Type":
+                            "application/x-www-form-urlencoded;charset=UTF-8"
                     },
                     body: params.toString()
                 }
             );
 
             if (!response.ok) {
-                const message = await response.text();
-                console.error("Erro ao salvar taxa regional:", message);
+                const message = (await response.text()).trim();
 
-                throw new Error(
-                    "Não foi possível salvar a taxa regional. HTTP " +
-                    response.status
-                );
+                showValidationErrors([
+                    message ||
+                    "Não foi possível salvar a taxa regional. Verifique os dados e tente novamente."
+                ]);
+
+                return;
             }
 
             reloadAfterPopup = true;
@@ -559,22 +601,36 @@
             );
 
         } catch (error) {
-            console.error(error);
-            alert(error.message || "Ocorreu um erro ao salvar a taxa.");
+            console.error("Erro ao salvar taxa regional:", error);
 
-            button.disabled = false;
-            button.textContent = editing
-                ? "Salvar alterações"
-                : "Cadastrar Taxa";
+            showValidationErrors([
+                error.message ||
+                "Ocorreu um erro ao salvar a taxa regional. Tente novamente."
+            ]);
+
+        } finally {
+            const currentButton = document.getElementById("saveButton");
+
+            if (currentButton) {
+                currentButton.disabled = false;
+                currentButton.textContent = editing
+                    ? "Salvar alterações"
+                    : "Cadastrar Taxa";
+            }
         }
     }
 
-    // Exibir pop-up
     function showPopup(type, data = {}) {
         document.getElementById("popupSuccess").classList.remove("active");
         document.getElementById("popupDelete").classList.remove("active");
 
         if (type === "success") {
+            const icon = document.querySelector("#popupSuccess .popup-icon");
+
+            icon.classList.remove("warning-icon");
+            icon.classList.add("success-icon");
+            icon.textContent = "✓";
+
             document.getElementById("popupSuccessTitle").textContent =
                 data.title || "Operação concluída!";
 
@@ -598,7 +654,6 @@
         document.body.classList.add("locked");
     }
 
-    // Fechar pop-up
     function closePopup() {
         document.getElementById("popupOverlay").classList.remove("show");
         document.body.classList.remove("locked");
@@ -611,7 +666,6 @@
         }
     }
 
-    // Notificações
     function showToast(message, title = "Sucesso", type = "success") {
         const toast = document.getElementById("globalToast");
 
@@ -626,14 +680,22 @@
         document.getElementById("toastSymbol").textContent =
             type === "delete" ? "!" : "✓";
 
-        setTimeout(hideToast, 4000);
+        if (toastTimeout !== null) {
+            clearTimeout(toastTimeout);
+        }
+
+        toastTimeout = setTimeout(hideToast, 4000);
     }
 
     function hideToast() {
         document.getElementById("globalToast").classList.remove("show");
+
+        if (toastTimeout !== null) {
+            clearTimeout(toastTimeout);
+            toastTimeout = null;
+        }
     }
 
-    // Excluir taxa regional
     function deleteRecord(button) {
         const row = button.closest("tr");
 
@@ -648,6 +710,11 @@
                 if (recordToDelete === null) return;
 
                 const id = recordToDelete;
+                const confirmButton =
+                    document.getElementById("confirmDeleteBtn");
+
+                confirmButton.disabled = true;
+                confirmButton.textContent = "Excluindo...";
 
                 try {
                     const response = await fetch(
@@ -657,16 +724,19 @@
                     );
 
                     if (!response.ok) {
-                        const message = await response.text();
-                        console.error("Erro ao excluir taxa regional:", message);
+                        const message = (await response.text()).trim();
 
                         throw new Error(
-                            "Não foi possível excluir a taxa regional. HTTP " +
-                            response.status
+                            message ||
+                            "Não foi possível excluir a taxa regional."
                         );
                     }
 
-                    closePopup();
+                    document.getElementById("popupOverlay")
+                        .classList.remove("show");
+
+                    document.body.classList.remove("locked");
+                    recordToDelete = null;
 
                     showToast(
                         "Taxa regional excluída com sucesso.",
@@ -679,13 +749,25 @@
                     }, 1000);
 
                 } catch (error) {
-                    console.error(error);
-                    alert(error.message || "Ocorreu um erro ao excluir a taxa.");
+                    document.getElementById("popupOverlay")
+                        .classList.remove("show");
+
+                    document.body.classList.remove("locked");
+                    recordToDelete = null;
+
+                    showToast(
+                        error.message || "Ocorreu um erro ao excluir a taxa.",
+                        "Erro ao excluir",
+                        "delete"
+                    );
+
+                } finally {
+                    confirmButton.disabled = false;
+                    confirmButton.textContent = "Confirmar Exclusão";
                 }
             };
     }
 
-    // Pesquisar na tabela
     const searchInput = document.getElementById("searchInput");
 
     if (searchInput) {

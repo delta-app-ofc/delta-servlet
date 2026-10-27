@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="true" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Collections" %>
@@ -9,11 +8,11 @@
         if (value == null) return "";
 
         return String.valueOf(value)
-            .replace("&", "&amp;")
-            .replace("<", "&lt;")
-            .replace(">", "&gt;")
-            .replace("\"", "&quot;")
-            .replace("'", "&#039;");
+                .replace("&", "&amp;")
+                .replace("<", "&lt;")
+                .replace(">", "&gt;")
+                .replace("\"", "&quot;")
+                .replace("'", "&#039;");
     }
 
     private String formatDate(Object value) {
@@ -23,8 +22,8 @@
 
         if (date.matches("\\d{4}-\\d{2}-\\d{2}")) {
             return date.substring(8, 10) + "/"
-                + date.substring(5, 7) + "/"
-                + date.substring(0, 4);
+                    + date.substring(5, 7) + "/"
+                    + date.substring(0, 4);
         }
 
         return date;
@@ -46,6 +45,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/imagens/FaviconDelta.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Delta - Usuários</title>
@@ -54,12 +54,41 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-        rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
     >
 
-    <link rel="stylesheet" href="<%= ctx %>/css/User.css">
-    <link rel="stylesheet" href="<%= ctx %>/css/Pop-up.css">
+    <link rel="stylesheet" href="<%= ctx %>/css/css_crud/User.css?v=20261027-eye">
+    <link rel="stylesheet" href="<%= ctx %>/css/css_crud/Pop-up.css">
+
+    <style>
+        .validation-box {
+            margin: 0 0 22px;
+            padding: 14px 18px;
+            border: 1px solid #dc2626;
+            border-radius: 10px;
+            background: #fef2f2;
+            color: #991b1b;
+        }
+
+        .validation-box[hidden] {
+            display: none;
+        }
+
+        .validation-box strong {
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .validation-box ul {
+            margin: 0;
+            padding-left: 22px;
+        }
+
+        .validation-box li {
+            margin-top: 4px;
+        }
+    </style>
 
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -70,14 +99,14 @@
 
     <div class="logo-area">
         <img
-            src="<%= ctx %>/imagens/LogoDelta.png"
-            alt="Logo Delta"
-            id="logo"
+                src="<%= ctx %>/imagens/LogoDelta.png"
+                alt="Logo Delta"
+                id="logo"
         >
     </div>
 
     <nav class="menu">
-        <a href="<%= ctx %>/index.jsp" class="menu-item">Início</a>
+        <a href="<%= ctx %>/inicio" class="menu-item">Início</a>
         <a href="<%= ctx %>/user" class="menu-item active">Usuários</a>
         <a href="<%= ctx %>/region" class="menu-item">Região</a>
         <a href="<%= ctx %>/regionrate" class="menu-item">Taxa Regional</a>
@@ -87,7 +116,6 @@
     </nav>
 
     <div class="sidebar-bottom">
-
         <div class="account">
             <div class="avatar">
                 <i data-lucide="user"></i>
@@ -95,11 +123,10 @@
             <span>admin123</span>
         </div>
 
-        <a href="<%= ctx %>/inicio.jsp" class="logout">
+        <a href="<%= ctx %>/inicio" class="logout">
             <i data-lucide="log-out"></i>
             <span>Sair</span>
         </a>
-
     </div>
 
 </aside>
@@ -109,7 +136,6 @@
     <section class="crud-page" id="crudPage">
 
         <header class="crud-header">
-
             <div class="crud-title">
                 <h1>Usuários</h1>
                 <p>Registros e Dados dos Usuários</p>
@@ -121,152 +147,128 @@
                     <strong><%= users.size() %></strong>
                 </div>
             </div>
-
         </header>
 
         <div class="crud-toolbar">
-
             <div class="crud-search-area">
-
                 <div class="crud-search">
                     <i data-lucide="search"></i>
                     <input
-                        id="searchInput"
-                        type="text"
-                        placeholder="Buscar usuário"
+                            id="searchInput"
+                            type="text"
+                            placeholder="Buscar usuário"
                     >
                 </div>
 
                 <button
-                    class="crud-filter"
-                    type="button"
-                    title="Filtro"
+                        class="crud-filter"
+                        type="button"
+                        title="Filtro"
                 >
                     <i data-lucide="funnel"></i>
                 </button>
-
             </div>
 
             <button
-                class="crud-add"
-                type="button"
-                onclick="startCreate()"
+                    class="crud-add"
+                    type="button"
+                    onclick="startCreate()"
             >
                 <i data-lucide="circle-plus"></i>
                 Adicionar Usuário
             </button>
-
         </div>
 
         <div class="crud-table-wrap">
-
             <table class="crud-table">
-
                 <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>E-mail</th>
-                        <th>Senha</th>
-                        <th>Telefone</th>
-                        <th>Nascimento</th>
-                        <th>Registro</th>
-                        <th>Ativo</th>
-                        <th>Admin</th>
-                        <th>Gerente</th>
-                        <th></th>
-                    </tr>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Senha</th>
+                    <th>Telefone</th>
+                    <th>Nascimento</th>
+                    <th>Registro</th>
+                    <th>Ativo</th>
+                    <th>Admin</th>
+                    <th>Gerente</th>
+                    <th></th>
+                </tr>
                 </thead>
 
                 <tbody id="userTableBody">
-
                 <% if (users.isEmpty()) { %>
-
-                    <tr>
-                        <td colspan="11" class="crud-empty">
-                            Nenhum usuário cadastrado.
-                        </td>
-                    </tr>
-
+                <tr>
+                    <td colspan="11" class="crud-empty">
+                        Nenhum usuário cadastrado.
+                    </td>
+                </tr>
                 <% } else { %>
+                <% for (User user : users) { %>
+                <tr
+                        data-id="<%= user.getId() %>"
+                        data-name="<%= esc(user.getName()) %>"
+                        data-email="<%= esc(user.getEmail()) %>"
+                        data-phone="<%= esc(user.getPhone()) %>"
+                        data-birthdate="<%= esc(user.getBirthDate()) %>"
+                        data-registration-date="<%= esc(user.getRegistrationDate()) %>"
+                        data-active="<%= user.isActive() %>"
+                        data-admin="<%= user.isAdmin() %>"
+                        data-manager="<%= user.isManager() %>"
+                >
+                    <td><%= user.getId() %></td>
+                    <td><%= esc(user.getName()) %></td>
+                    <td><%= esc(user.getEmail()) %></td>
+                    <td>••••••••</td>
+                    <td><%= esc(user.getPhone()) %></td>
+                    <td><%= esc(formatDate(user.getBirthDate())) %></td>
+                    <td><%= esc(formatDate(user.getRegistrationDate())) %></td>
+                    <td><%= user.isActive() ? "Sim" : "Não" %></td>
+                    <td><%= user.isAdmin() ? "Sim" : "Não" %></td>
+                    <td><%= user.isManager() ? "Sim" : "Não" %></td>
 
-                    <% for (User user : users) { %>
-
-                        <tr
-                            data-id="<%= user.getId() %>"
-                            data-name="<%= esc(user.getName()) %>"
-                            data-email="<%= esc(user.getEmail()) %>"
-                            data-phone="<%= esc(user.getPhone()) %>"
-                            data-birthdate="<%= esc(user.getBirthDate()) %>"
-                            data-registration-date="<%= esc(user.getRegistrationDate()) %>"
-                            data-active="<%= user.isActive() %>"
-                            data-admin="<%= user.isAdmin() %>"
-                            data-manager="<%= user.isManager() %>"
+                    <td class="crud-actions-cell">
+                        <button
+                                type="button"
+                                class="crud-action"
+                                onclick="editRecord(this)"
+                                title="Editar"
                         >
+                            <i data-lucide="pencil"></i>
+                        </button>
 
-                            <td><%= user.getId() %></td>
-                            <td><%= esc(user.getName()) %></td>
-                            <td><%= esc(user.getEmail()) %></td>
-                            <td>••••••••</td>
-                            <td><%= esc(user.getPhone()) %></td>
-                            <td><%= esc(formatDate(user.getBirthDate())) %></td>
-                            <td><%= esc(formatDate(user.getRegistrationDate())) %></td>
-                            <td><%= user.isActive() ? "Sim" : "Não" %></td>
-                            <td><%= user.isAdmin() ? "Sim" : "Não" %></td>
-                            <td><%= user.isManager() ? "Sim" : "Não" %></td>
-
-                            <td class="crud-actions-cell">
-
-                                <button
-                                    type="button"
-                                    class="crud-action"
-                                    onclick="editRecord(this)"
-                                    title="Editar"
-                                >
-                                    <i data-lucide="pencil"></i>
-                                </button>
-
-                                <button
-                                    type="button"
-                                    class="crud-action delete"
-                                    onclick="deleteRecord(this)"
-                                    title="Excluir"
-                                >
-                                    <i data-lucide="trash-2"></i>
-                                </button>
-
-                            </td>
-
-                        </tr>
-
-                    <% } %>
-
+                        <button
+                                type="button"
+                                class="crud-action delete"
+                                onclick="deleteRecord(this)"
+                                title="Excluir"
+                        >
+                            <i data-lucide="trash-2"></i>
+                        </button>
+                    </td>
+                </tr>
                 <% } %>
-
+                <% } %>
                 </tbody>
-
             </table>
-
         </div>
 
     </section>
 
 </main>
 
-<!-- Pop-up -->
-
 <div class="overlay" id="popupOverlay">
 
     <div class="popup">
 
         <button
-            type="button"
-            class="close"
-            onclick="closePopup()"
+                type="button"
+                class="close"
+                onclick="closePopup()"
         >×</button>
 
         <div class="popup-content" id="popupSuccess">
-
             <div class="popup-icon success-icon">✓</div>
 
             <span class="popup-tag" id="popupSuccessTag">
@@ -282,25 +284,23 @@
             </p>
 
             <button
-                type="button"
-                class="popup-primary"
-                onclick="closePopup()"
+                    type="button"
+                    class="popup-primary"
+                    onclick="closePopup()"
             >
                 OK, Entendido
             </button>
 
             <button
-                type="button"
-                class="popup-secondary"
-                onclick="closePopup()"
+                    type="button"
+                    class="popup-secondary"
+                    onclick="closePopup()"
             >
                 Voltar
             </button>
-
         </div>
 
         <div class="popup-content" id="popupDelete">
-
             <div class="popup-icon warning-icon">!</div>
 
             <span class="popup-tag danger-tag">
@@ -319,35 +319,29 @@
             </div>
 
             <div class="delete-actions">
-
                 <button
-                    type="button"
-                    class="popup-secondary"
-                    onclick="closePopup()"
+                        type="button"
+                        class="popup-secondary"
+                        onclick="closePopup()"
                 >
                     Cancelar
                 </button>
 
                 <button
-                    type="button"
-                    class="popup-danger"
-                    id="confirmDeleteBtn"
+                        type="button"
+                        class="popup-danger"
+                        id="confirmDeleteBtn"
                 >
                     Confirmar Exclusão
                 </button>
-
             </div>
-
         </div>
 
     </div>
 
 </div>
 
-<!-- Notificação -->
-
 <div class="global-toast" id="globalToast">
-
     <div class="toast-symbol" id="toastSymbol">✓</div>
 
     <div>
@@ -356,7 +350,6 @@
     </div>
 
     <button type="button" onclick="hideToast()">×</button>
-
 </div>
 
 <script>
@@ -365,6 +358,7 @@
     let editingId = null;
     let recordToDelete = null;
     let reloadAfterPopup = false;
+    let toastTimeout = null;
 
     lucide.createIcons();
 
@@ -428,6 +422,7 @@
                 class="crud-form-card"
                 id="crudForm"
                 onsubmit="saveForm(event)"
+                novalidate
             >
                 <input
                     type="hidden"
@@ -439,6 +434,12 @@
                     ${editing ? "Editar dados do usuário" : "Novo usuário"}
                 </div>
 
+                <div id="validationBox" class="validation-box"
+                     role="alert" aria-live="polite" hidden>
+                    <strong>Verifique os seguintes campos:</strong>
+                    <ul id="validationList"></ul>
+                </div>
+
                 <div class="form-grid">
 
                     <div class="crud-field">
@@ -448,7 +449,6 @@
                             name="name"
                             type="text"
                             value="${editing ? esc(user.name) : ""}"
-                            required
                         >
                     </div>
 
@@ -459,7 +459,6 @@
                             name="email"
                             type="email"
                             value="${editing ? esc(user.email) : ""}"
-                            required
                         >
                     </div>
 
@@ -468,16 +467,22 @@
                             ${editing ? "Nova senha (opcional)" : "Senha"}
                         </label>
 
-                        <input
-                            id="fPassword"
-                            name="password"
-                            type="password"
-                            autocomplete="new-password"
-                            placeholder="${editing
-                                ? "Deixe vazio para manter a senha atual"
-                                : "Digite a senha"}"
-                            ${editing ? "" : "required"}
-                        >
+                        <div class="password-toggle-field">
+                            <input
+                                id="fPassword"
+                                name="password"
+                                type="password"
+                                autocomplete="new-password"
+                                placeholder="${editing
+                                    ? "Deixe vazio para manter a senha atual"
+                                    : "Digite a senha"}"
+                            >
+                            <button type="button" id="toggleUserPassword"
+                                    aria-label="Mostrar senha digitada" aria-pressed="false"
+                                    title="Mostrar senha digitada">
+                                <img id="passwordEye" src="<%= ctx %>/imagens/OlhoFechado.png" alt="">
+                            </button>
+                        </div>
                     </div>
 
                     <div class="crud-field">
@@ -487,7 +492,6 @@
                             name="phone"
                             type="tel"
                             value="${editing ? esc(user.phone) : ""}"
-                            required
                         >
                     </div>
 
@@ -498,7 +502,6 @@
                             name="birthdate"
                             type="date"
                             value="${editing ? esc(user.birthdate) : ""}"
-                            required
                         >
                     </div>
 
@@ -515,11 +518,13 @@
 
                     <div class="crud-field">
                         <label for="fActive">Ativo</label>
-                        <select id="fActive" name="is_active" required>
-                            <option value="true" ${editing && user.active === "true" ? "selected" : ""}>
+                        <select id="fActive" name="is_active">
+                            <option value="true"
+                                ${editing && user.active == "true" ? "selected" : ""}>
                                 Sim
                             </option>
-                            <option value="false" ${editing && user.active === "false" ? "selected" : ""}>
+                            <option value="false"
+                                ${editing && user.active == "false" ? "selected" : ""}>
                                 Não
                             </option>
                         </select>
@@ -527,11 +532,13 @@
 
                     <div class="crud-field">
                         <label for="fAdmin">Administrador</label>
-                        <select id="fAdmin" name="is_admin" required>
-                            <option value="false" ${!editing || user.admin !== "true" ? "selected" : ""}>
+                        <select id="fAdmin" name="is_admin">
+                            <option value="false"
+                                ${!editing || user.admin != "true" ? "selected" : ""}>
                                 Não
                             </option>
-                            <option value="true" ${editing && user.admin === "true" ? "selected" : ""}>
+                            <option value="true"
+                                ${editing && user.admin == "true" ? "selected" : ""}>
                                 Sim
                             </option>
                         </select>
@@ -539,11 +546,13 @@
 
                     <div class="crud-field">
                         <label for="fManager">Gerente</label>
-                        <select id="fManager" name="is_manager" required>
-                            <option value="false" ${!editing || user.manager !== "true" ? "selected" : ""}>
+                        <select id="fManager" name="is_manager">
+                            <option value="false"
+                                ${!editing || user.manager != "true" ? "selected" : ""}>
                                 Não
                             </option>
-                            <option value="true" ${editing && user.manager === "true" ? "selected" : ""}>
+                            <option value="true"
+                                ${editing && user.manager == "true" ? "selected" : ""}>
                                 Sim
                             </option>
                         </select>
@@ -552,7 +561,6 @@
                 </div>
 
                 <div class="crud-form-actions">
-
                     <button
                         type="button"
                         class="crud-cancel"
@@ -568,7 +576,6 @@
                     >
                         ${editing ? "Salvar alterações" : "Adicionar Usuário"}
                     </button>
-
                 </div>
 
             </form>
@@ -583,13 +590,34 @@
         window.location.href = contextPath + "/user";
     }
 
+    function showValidationErrors(messages) {
+        const box = document.getElementById("validationBox");
+        const list = document.getElementById("validationList");
+
+        if (!box || !list) return;
+
+        list.replaceChildren();
+
+        messages.forEach(message => {
+            const item = document.createElement("li");
+            item.textContent = message;
+            list.appendChild(item);
+        });
+
+        box.hidden = messages.length === 0;
+
+        if (messages.length > 0) {
+            box.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+        }
+    }
+
     async function saveForm(event) {
         event.preventDefault();
 
         const form = document.getElementById("crudForm");
-
-        if (!form.reportValidity()) return;
-
         const formData = new FormData(form);
         const params = new URLSearchParams();
 
@@ -601,6 +629,7 @@
         const editing = id !== "0" && id !== "";
 
         const button = document.getElementById("saveButton");
+
         button.disabled = true;
         button.textContent = "Salvando...";
 
@@ -615,11 +644,8 @@
         };
 
         if (editing) {
-            // O servlet lê os parâmetros do PUT com request.getParameter().
-            // Por isso, os dados da edição são enviados na query string.
             url += "?" + params.toString();
         } else {
-            // No POST, os dados vão no corpo da requisição.
             options.body = params.toString();
         }
 
@@ -627,19 +653,21 @@
             const response = await fetch(url, options);
 
             if (!response.ok) {
-                const errorText = await response.text();
+                const errorText = (await response.text()).trim();
+
+                const serverMessage = errorText ||
+                    "Não foi possível " +
+                    (editing ? "editar" : "cadastrar") +
+                    " o usuário. Verifique os dados e tente novamente.";
 
                 console.error(
                     "Erro ao salvar usuário:",
                     response.status,
-                    errorText
+                    serverMessage
                 );
 
-                throw new Error(
-                    "Não foi possível " +
-                    (editing ? "editar" : "cadastrar") +
-                    " o usuário. Código HTTP: " + response.status
-                );
+                showValidationErrors([serverMessage]);
+                return;
             }
 
             reloadAfterPopup = true;
@@ -664,8 +692,12 @@
 
         } catch (error) {
             console.error(error);
-            alert(error.message || "Ocorreu um erro ao salvar o usuário.");
 
+            showValidationErrors([
+                error.message || "Não foi possível conectar ao servidor."
+            ]);
+
+        } finally {
             button.disabled = false;
             button.textContent = editing
                 ? "Salvar alterações"
@@ -730,11 +762,20 @@
 
         toastSymbol.innerText = type === "delete" ? "!" : "✓";
 
-        setTimeout(hideToast, 4000);
+        if (toastTimeout !== null) {
+            clearTimeout(toastTimeout);
+        }
+
+        toastTimeout = setTimeout(hideToast, 4000);
     }
 
     function hideToast() {
         document.getElementById("globalToast").classList.remove("show");
+
+        if (toastTimeout !== null) {
+            clearTimeout(toastTimeout);
+            toastTimeout = null;
+        }
     }
 
     function deleteRecord(button) {
@@ -752,21 +793,24 @@
 
                 const id = recordToDelete;
                 const params = new URLSearchParams({ id: id });
+                const confirmButton =
+                    document.getElementById("confirmDeleteBtn");
+
+                confirmButton.disabled = true;
+                confirmButton.textContent = "Excluindo...";
 
                 try {
-                    // Envia o ID na URL para o doDelete receber pelo getParameter().
                     const response = await fetch(
                         contextPath + "/user?" + params.toString(),
                         { method: "DELETE" }
                     );
 
                     if (!response.ok) {
-                        const errorText = await response.text();
-                        console.error(errorText);
+                        const errorText = (await response.text()).trim();
 
                         throw new Error(
-                            "Não foi possível excluir o usuário. Código HTTP: " +
-                            response.status
+                            errorText ||
+                            "Não foi possível excluir o usuário. Tente novamente."
                         );
                     }
 
@@ -775,7 +819,20 @@
 
                 } catch (error) {
                     console.error(error);
-                    alert(error.message);
+
+                    document.getElementById("popupOverlay").classList.remove("show");
+                    document.body.classList.remove("locked");
+                    recordToDelete = null;
+
+                    showToast(
+                        error.message || "Não foi possível excluir o usuário.",
+                        "Erro ao excluir",
+                        "delete"
+                    );
+
+                } finally {
+                    confirmButton.disabled = false;
+                    confirmButton.textContent = "Confirmar Exclusão";
                 }
             };
     }
@@ -794,6 +851,27 @@
             );
         }
     );
+
+    // O formulário é criado dinamicamente por renderForm(), então o clique
+    // precisa ser delegado ao elemento permanente da página.
+    document.getElementById("crudPage").addEventListener("click", function (event) {
+        const button = event.target.closest("#toggleUserPassword");
+        if (!button) return;
+
+        const input = document.getElementById("fPassword");
+        const eye = document.getElementById("passwordEye");
+        if (!input || !eye) return;
+
+        const visible = input.type === "password";
+        input.type = visible ? "text" : "password";
+        const label = visible ? "Ocultar senha digitada" : "Mostrar senha digitada";
+        eye.src = visible
+            ? contextPath + "/imagens/OlhoAberto.png"
+            : contextPath + "/imagens/OlhoFechado.png";
+        button.setAttribute("aria-label", label);
+        button.title = label;
+        button.setAttribute("aria-pressed", String(visible));
+    });
 </script>
 
 </body>

@@ -1,3 +1,4 @@
+
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <!DOCTYPE html>
@@ -6,6 +7,7 @@
 <head>
 
   <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/imagens/FaviconDelta.png">
 
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0">
@@ -23,7 +25,7 @@
         rel="stylesheet">
 
   <link rel="stylesheet"
-        href="<%= request.getContextPath() %>/css/Inicio.css">
+        href="<%= request.getContextPath() %>/css/css_crud/Inicio.css">
 
   <script src="https://unpkg.com/lucide@latest"></script>
 
@@ -43,81 +45,56 @@
 
   </div>
 
-
   <nav class="menu">
 
-    <a href="<%= request.getContextPath() %>/index"
+    <a href="<%= request.getContextPath() %>/inicio"
        class="menu-item active">
-
       Início
-
     </a>
-
 
     <a href="<%= request.getContextPath() %>/user"
        class="menu-item">
-
       Usuários
-
     </a>
-
 
     <a href="<%= request.getContextPath() %>/region"
        class="menu-item">
-
       Região
-
     </a>
-
 
     <a href="<%= request.getContextPath() %>/regionrate"
        class="menu-item">
-
       Taxa Regional
-
     </a>
-
 
     <a href="<%= request.getContextPath() %>/property"
        class="menu-item">
-
       Propriedades
-
     </a>
-
 
     <a href="<%= request.getContextPath() %>/device"
        class="menu-item">
-
       Dispositivos
-
     </a>
-
 
     <a href="<%= request.getContextPath() %>/address"
        class="menu-item">
-
       Endereço
-
     </a>
 
   </nav>
-
 
   <div class="sidebar-bottom">
 
     <div class="account">
 
       <div class="avatar">
-
         <i data-lucide="user"></i>
-
       </div>
 
       <span>Delta Host</span>
 
     </div>
-
 
     <a href="#"
        class="logout">
@@ -132,11 +109,9 @@
 
 </aside>
 
-
 <!-- CONTEÚDO -->
 
 <main class="main">
-
 
   <!-- CABEÇALHO -->
 
@@ -152,9 +127,7 @@
 
   </header>
 
-
   <div class="divider"></div>
-
 
   <!-- ESTATÍSTICAS -->
 
@@ -162,73 +135,69 @@
 
     <div class="stat-card">
 
-            <span class="stat-label">
-                Usuários
-            </span>
+      <span class="stat-label">
+        Usuários
+      </span>
 
       <strong>
-        243
+        <%= request.getAttribute("totalUsers") %>
       </strong>
 
       <span class="stat-description">
-                cadastros
-            </span>
+        cadastros
+      </span>
 
     </div>
 
-
     <div class="stat-card">
 
-            <span class="stat-label">
-                Propriedades
-            </span>
+      <span class="stat-label">
+        Propriedades
+      </span>
 
       <strong>
-        142
+        <%= request.getAttribute("totalProperties") %>
       </strong>
 
       <span class="stat-description">
-                cadastradas
-            </span>
+        cadastradas
+      </span>
 
     </div>
 
-
     <div class="stat-card">
 
-            <span class="stat-label">
-                Dispositivos
-            </span>
+      <span class="stat-label">
+        Dispositivos
+      </span>
 
       <strong>
-        118
+        <%= request.getAttribute("totalDevices") %>
       </strong>
 
       <span class="stat-description">
-                41 ativos
-            </span>
+        <%= request.getAttribute("activeDevices") %> ativos
+      </span>
 
     </div>
 
-
     <div class="stat-card">
 
-            <span class="stat-label">
-                Total de registros
-            </span>
+      <span class="stat-label">
+        Total de registros
+      </span>
 
       <strong>
-        252
+        <%= request.getAttribute("totalRecords") %>
       </strong>
 
       <span class="stat-description">
-                no sistema
-            </span>
+        no sistema
+      </span>
 
     </div>
 
   </section>
-
 
   <!-- ACESSO RÁPIDO -->
 
@@ -246,9 +215,7 @@
 
     </div>
 
-
     <div class="quick-grid">
-
 
       <!-- USUÁRIOS -->
 
@@ -256,11 +223,8 @@
          class="quick-card">
 
         <div class="quick-icon">
-
           <i data-lucide="users"></i>
-
         </div>
-
 
         <div class="quick-text">
 
@@ -274,13 +238,11 @@
 
         </div>
 
-
         <i class="arrow"
            data-lucide="arrow-right">
         </i>
 
       </a>
-
 
       <!-- REGIÃO -->
 
@@ -288,11 +250,8 @@
          class="quick-card">
 
         <div class="quick-icon">
-
           <i data-lucide="map-pin"></i>
-
         </div>
-
 
         <div class="quick-text">
 
@@ -306,13 +265,11 @@
 
         </div>
 
-
         <i class="arrow"
            data-lucide="arrow-right">
         </i>
 
       </a>
-
 
       <!-- TAXA REGIONAL -->
 
@@ -320,11 +277,8 @@
          class="quick-card">
 
         <div class="quick-icon">
-
           <i data-lucide="circle-dollar-sign"></i>
-
         </div>
-
 
         <div class="quick-text">
 
@@ -338,13 +292,11 @@
 
         </div>
 
-
         <i class="arrow"
            data-lucide="arrow-right">
         </i>
 
       </a>
-
 
       <!-- PROPRIEDADES -->
 
@@ -352,11 +304,8 @@
          class="quick-card">
 
         <div class="quick-icon">
-
           <i data-lucide="house"></i>
-
         </div>
-
 
         <div class="quick-text">
 
@@ -370,13 +319,11 @@
 
         </div>
 
-
         <i class="arrow"
            data-lucide="arrow-right">
         </i>
 
       </a>
-
 
       <!-- DISPOSITIVOS -->
 
@@ -384,11 +331,8 @@
          class="quick-card">
 
         <div class="quick-icon">
-
           <i data-lucide="settings-2"></i>
-
         </div>
-
 
         <div class="quick-text">
 
@@ -402,13 +346,11 @@
 
         </div>
 
-
         <i class="arrow"
            data-lucide="arrow-right">
         </i>
 
       </a>
-
 
       <!-- ENDEREÇOS -->
 
@@ -416,11 +358,8 @@
          class="quick-card">
 
         <div class="quick-icon">
-
           <i data-lucide="map-pin-house"></i>
-
         </div>
-
 
         <div class="quick-text">
 
@@ -434,7 +373,6 @@
 
         </div>
 
-
         <i class="arrow"
            data-lucide="arrow-right">
         </i>
@@ -447,11 +385,8 @@
 
 </main>
 
-
 <script>
-
   lucide.createIcons();
-
 </script>
 
 </body>

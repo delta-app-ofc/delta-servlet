@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" isELIgnored="true" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.example.delta_back.model.Property" %>
@@ -6,7 +5,6 @@
 <%!
     private String escapeHtml(Object value) {
         if (value == null) return "";
-
         return String.valueOf(value)
                 .replace("&", "&amp;")
                 .replace("<", "&lt;")
@@ -18,7 +16,6 @@
 
 <%
     String ctx = request.getContextPath();
-
     List<Property> properties =
             (List<Property>) request.getAttribute("properties");
 
@@ -34,33 +31,100 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/imagens/FaviconDelta.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Delta - Propriedades</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
           rel="stylesheet">
 
-    <link rel="stylesheet" href="<%= ctx %>/css/Property.css">
-    <link rel="stylesheet" href="<%= ctx %>/css/Pop-up.css">
-
+    <link rel="stylesheet" href="<%= ctx %>/css/css_crud/Property.css">
+    <link rel="stylesheet" href="<%= ctx %>/css/css_crud/Pop-up.css">
     <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        .property-validation {
+            display: none;
+            margin: 0 0 22px;
+            padding: 14px 18px;
+            border: 1px solid #dc2626;
+            border-left: 5px solid #dc2626;
+            border-radius: 8px;
+            background: #fef2f2;
+            color: #991b1b;
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+        }
+
+        .property-validation.visible {
+            display: block;
+        }
+
+        .property-validation strong {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .property-validation ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .crud-field input.validation-error,
+        .crud-field select.validation-error {
+            border: 1px solid #dc2626 !important;
+            outline: 1px solid #dc2626;
+            background-color: #fffafa;
+        }
+
+        .crud-field .validation-hint {
+            display: block;
+            margin-top: 5px;
+            color: #dc2626;
+            font-size: 11px;
+        }
+
+        .region-delete-warning {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-top: 16px;
+            padding: 12px 14px;
+            border: 1px solid #e5b85c;
+            border-radius: 8px;
+            background-color: #fff8e6;
+            color: #795b16;
+            font-size: 12px;
+            line-height: 1.6;
+            text-align: left;
+            margin-bottom: 18px;
+        }
+
+        .region-delete-warning .warning-symbol {
+            flex-shrink: 0;
+            font-size: 17px;
+            font-weight: 700;
+        }
+
+        .region-delete-warning strong {
+            display: block;
+            margin-bottom: 3px;
+        }
+    </style>
 </head>
 
 <body>
 
 <aside class="sidebar">
     <div class="logo-area">
-        <img src="<%= ctx %>/imagens/LogoDelta.png"
-             alt="Logo Delta"
-             id="logo">
+        <img src="<%= ctx %>/imagens/LogoDelta.png" alt="Logo Delta" id="logo">
     </div>
 
     <nav class="menu">
-        <a href="<%= ctx %>/index.jsp" class="menu-item">Início</a>
+        <a href="<%= ctx %>/inicio" class="menu-item">Início</a>
         <a href="<%= ctx %>/user" class="menu-item">Usuários</a>
         <a href="<%= ctx %>/region" class="menu-item">Região</a>
         <a href="<%= ctx %>/regionrate" class="menu-item">Taxa Regional</a>
@@ -71,13 +135,11 @@
 
     <div class="sidebar-bottom">
         <div class="account">
-            <div class="avatar">
-                <i data-lucide="user"></i>
-            </div>
+            <div class="avatar"><i data-lucide="user"></i></div>
             <span>admin123</span>
         </div>
 
-        <a href="<%= ctx %>/inicio.jsp" class="logout">
+        <a href="<%= ctx %>/inicio" class="logout">
             <i data-lucide="log-out"></i>
             <span>Sair</span>
         </a>
@@ -85,6 +147,7 @@
 </aside>
 
 <main class="main">
+
     <section class="crud-page" id="crudPage">
 
         <header class="crud-header">
@@ -105,21 +168,15 @@
             <div class="crud-search-area">
                 <div class="crud-search">
                     <i data-lucide="search"></i>
-                    <input id="searchInput"
-                           type="text"
-                           placeholder="Buscar">
+                    <input id="searchInput" type="text" placeholder="Buscar">
                 </div>
 
-                <button class="crud-filter"
-                        type="button"
-                        title="Filtro">
+                <button class="crud-filter" type="button" title="Filtro">
                     <i data-lucide="funnel"></i>
                 </button>
             </div>
 
-            <button class="crud-add"
-                    type="button"
-                    onclick="startCreate()">
+            <button class="crud-add" type="button" onclick="startCreate()">
                 <i data-lucide="circle-plus"></i>
                 Adicionar Propriedade
             </button>
@@ -147,8 +204,7 @@
                     </td>
                 </tr>
                 <% } else {
-                    for (Property property : properties) {
-                %>
+                    for (Property property : properties) { %>
                 <tr>
                     <td><%= property.getId() %></td>
                     <td><%= escapeHtml(property.getName()) %></td>
@@ -179,14 +235,72 @@
                         </button>
                     </td>
                 </tr>
-                <%
-                        }
-                    }
-                %>
+                <%  }
+                } %>
                 </tbody>
             </table>
         </div>
     </section>
+
+    <section class="crud-page" id="propertyFormPage" style="display: none;">
+
+        <header class="crud-form-header">
+            <div>
+                <h1 id="formPageTitle">Adicionar Propriedade</h1>
+                <p>Registros e Dados das Propriedades</p>
+            </div>
+        </header>
+
+        <form class="crud-form-card" id="propertyForm" novalidate>
+            <div class="form-title" id="formTitle">Nova Propriedade</div>
+
+            <div id="propertyValidation"
+                 class="property-validation"
+                 role="alert"
+                 aria-live="polite">
+                <strong>Verifique os seguintes campos:</strong>
+                <ul id="propertyValidationList"></ul>
+            </div>
+
+            <div class="form-grid">
+                <div class="crud-field">
+                    <label for="name">Nome</label>
+                    <input id="name" name="name" type="text">
+                </div>
+
+                <div class="crud-field">
+                    <label for="type">Tipo</label>
+                    <input id="type" name="type" type="text">
+                </div>
+
+                <div class="crud-field">
+                    <label for="classification">Classificação</label>
+                    <input id="classification" name="classification" type="text">
+                </div>
+
+                <div class="crud-field">
+                    <label for="addressId">ID do Endereço</label>
+                    <input id="addressId" name="addressId" type="number">
+                </div>
+
+                <div class="crud-field">
+                    <label for="registrationDate">Data de Registro</label>
+                    <input id="registrationDate" name="registrationDate"
+                           type="date">
+                </div>
+            </div>
+
+            <div class="crud-form-actions">
+                <button type="button" class="crud-cancel" onclick="cancelForm()">
+                    Cancelar
+                </button>
+                <button type="submit" class="crud-save" id="saveButton">
+                    Adicionar Propriedade
+                </button>
+            </div>
+        </form>
+    </section>
+
 </main>
 
 <div class="overlay" id="popupOverlay">
@@ -197,9 +311,7 @@
             <div class="popup-icon success-icon">✓</div>
             <span class="popup-tag">Propriedades</span>
             <h2 id="popupSuccessTitle">Cadastro concluído!</h2>
-            <p id="popupSuccessDesc">
-                A operação foi realizada com sucesso.
-            </p>
+            <p id="popupSuccessDesc">A operação foi realizada com sucesso.</p>
 
             <button type="button" class="popup-primary" onclick="closePopup()">
                 OK, Entendido
@@ -218,6 +330,15 @@
             <div class="selected-record">
                 <span>REGISTRO SELECIONADO</span>
                 <strong id="deleteRecordLabel">ID #--</strong>
+            </div>
+
+            <div class="region-delete-warning">
+                <span class="warning-symbol">!</span>
+                <div>
+                    <strong>Atenção: exclusão de dados relacionados</strong>
+                    As Taxas Regionais vinculadas a esta região também
+                    serão excluídas. Essa ação não poderá ser desfeita.
+                </div>
             </div>
 
             <div class="delete-actions">
@@ -244,6 +365,7 @@
 <script>
     const contextPath = "<%= ctx %>";
     const crudPage = document.getElementById("crudPage");
+    const formPage = document.getElementById("propertyFormPage");
     const tableBody = document.getElementById("propertyTableBody");
 
     let editingId = null;
@@ -252,29 +374,15 @@
 
     lucide.createIcons();
 
-    function escapeText(value) {
-        return String(value ?? "")
-            .replaceAll("&", "&amp;")
-            .replaceAll("<", "&lt;")
-            .replaceAll(">", "&gt;")
-            .replaceAll('"', "&quot;")
-            .replaceAll("'", "&#39;");
-    }
-
     function formatDate(value) {
         if (!value) return "";
 
         const text = String(value);
 
-        if (/^\d{4}-\d{2}-\d{2}$/.test(text)) {
-            return text;
-        }
+        if (/^\d{4}-\d{2}-\d{2}$/.test(text)) return text;
 
         const match = text.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
-
-        if (match) {
-            return `${match[3]}-${match[2]}-${match[1]}`;
-        }
+        if (match) return `${match[3]}-${match[2]}-${match[1]}`;
 
         return "";
     }
@@ -299,111 +407,127 @@
 
     function renderForm(property = null) {
         const editing = property !== null;
+        const form = document.getElementById("propertyForm");
 
-        crudPage.innerHTML = `
-            <div class="crud-form-page">
-                <header class="crud-form-header">
-                    <div>
-                        <h1>${editing ? "Editar Propriedade" : "Adicionar Propriedade"}</h1>
-                        <p>Registros e Dados das Propriedades</p>
-                    </div>
-                </header>
+        form.reset();
 
-                <form class="crud-form-card" id="propertyForm">
-                    <div class="form-title">
-                        ${editing ? "Editar dados da propriedade" : "Nova Propriedade"}
-                    </div>
+        document.getElementById("propertyValidation").classList.remove("visible");
+        document.getElementById("propertyValidationList").replaceChildren();
 
-                    <div class="form-grid">
-                        <div class="crud-field">
-                            <label for="name">Nome</label>
-                            <input id="name" name="name" type="text"
-                                   value="${escapeText(property?.name)}" required>
-                        </div>
+        form.querySelectorAll(".validation-error").forEach(field => {
+            field.classList.remove("validation-error");
+            field.removeAttribute("aria-invalid");
+        });
 
-                        <div class="crud-field">
-                            <label for="type">Tipo</label>
-                            <input id="type" name="type" type="text"
-                                   value="${escapeText(property?.type)}" required>
-                        </div>
+        form.querySelectorAll(".validation-hint").forEach(hint => hint.remove());
 
-                        <div class="crud-field">
-                            <label for="classification">Classificação</label>
-                            <input id="classification" name="classification" type="text"
-                                   value="${escapeText(property?.classification)}" required>
-                        </div>
+        document.getElementById("formPageTitle").textContent =
+            editing ? "Editar Propriedade" : "Adicionar Propriedade";
 
-                        <div class="crud-field">
-                            <label for="addressId">ID do Endereço</label>
-                            <input id="addressId" name="addressId" type="number"
-                                   min="1" step="1"
-                                   value="${escapeText(property?.addressId)}" required>
-                        </div>
+        document.getElementById("formTitle").textContent =
+            editing ? "Editar dados da propriedade" : "Nova Propriedade";
 
-                        <div class="crud-field">
-                            <label for="registrationDate">Data de Registro</label>
-                            <input id="registrationDate" name="registrationDate"
-                                   type="date"
-                                   value="${escapeText(property?.registrationDate)}" required>
-                        </div>
-                    </div>
+        document.getElementById("saveButton").textContent =
+            editing ? "Salvar alterações" : "Adicionar Propriedade";
 
-                    <div class="crud-form-actions">
-                        <button type="button" class="crud-cancel" onclick="cancelForm()">
-                            Cancelar
-                        </button>
+        if (editing) {
+            form.elements.name.value = property.name ?? "";
+            form.elements.type.value = property.type ?? "";
+            form.elements.classification.value = property.classification ?? "";
+            form.elements.addressId.value = property.addressId ?? "";
+            form.elements.registrationDate.value = property.registrationDate ?? "";
+        }
 
-                        <button type="submit" class="crud-save">
-                            ${editing ? "Salvar alterações" : "Adicionar Propriedade"}
-                        </button>
-                    </div>
-                </form>
-            </div>
-        `;
+        ["name", "type", "classification"].forEach(id => {
+            const field = document.getElementById(id);
 
-        document.getElementById("propertyForm")
-            .addEventListener("submit", saveForm);
+            field.oninput = function () {
+                const start = this.selectionStart;
+                const end = this.selectionEnd;
+
+                this.value = this.value.toLocaleUpperCase("pt-BR");
+
+                if (start !== null && end !== null) {
+                    this.setSelectionRange(start, end);
+                }
+            };
+        });
+
+        form.onsubmit = saveForm;
+
+        crudPage.style.display = "none";
+        formPage.style.display = "block";
 
         lucide.createIcons();
         window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
+    function showValidationErrors(messages) {
+        const box = document.getElementById("propertyValidation");
+        const list = document.getElementById("propertyValidationList");
+
+        list.replaceChildren();
+
+        document.querySelectorAll("#propertyForm .validation-error")
+            .forEach(field => {
+                field.classList.remove("validation-error");
+                field.removeAttribute("aria-invalid");
+            });
+
+        document.querySelectorAll("#propertyForm .validation-hint")
+            .forEach(hint => hint.remove());
+
+        messages.forEach(message => {
+            const li = document.createElement("li");
+            li.textContent = message;
+            list.appendChild(li);
+        });
+
+        box.classList.add("visible");
+        box.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+
     function cancelForm() {
-        window.location.href = contextPath + "/property";
+        formPage.style.display = "none";
+        crudPage.style.display = "block";
+        editingId = null;
     }
 
     async function saveForm(event) {
         event.preventDefault();
 
         const form = event.currentTarget;
-
-        if (!form.reportValidity()) return;
-
         const params = new URLSearchParams(new FormData(form));
-        const isEdit = editingId !== null;
 
+        ["name", "type", "classification"].forEach(key => {
+            params.set(key, params.get(key).trim().toLocaleUpperCase("pt-BR"));
+        });
+
+        const isEdit = editingId !== null;
         let url = contextPath + "/property";
         let method = "POST";
 
         if (isEdit) {
-            params.append("id", editingId);
+            params.set("id", String(editingId));
             url += "?" + params.toString();
             method = "PUT";
         }
 
         try {
             const response = await fetch(url, {
-                method: method,
+                method,
                 headers: isEdit
                     ? {}
-                    : {
-                        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
-                    },
+                    : { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
                 body: isEdit ? null : params.toString()
             });
 
             if (!response.ok) {
-                throw new Error("HTTP " + response.status);
+                const message = (await response.text()).trim();
+                showValidationErrors([
+                    message || "Não foi possível salvar. Verifique os dados informados."
+                ]);
+                return;
             }
 
             reloadAfterPopup = true;
@@ -421,10 +545,11 @@
                 isEdit ? "ALTERAÇÕES SALVAS" : "CADASTRO CONCLUÍDO",
                 isEdit ? "edit" : "success"
             );
-
         } catch (error) {
             console.error(error);
-            alert("Não foi possível salvar a propriedade. Verifique os dados e tente novamente.");
+            showValidationErrors([
+                "Não foi possível conectar ao servidor. Tente novamente."
+            ]);
         }
     }
 
@@ -432,7 +557,6 @@
         recordToDelete = Number(id);
         document.getElementById("deleteRecordLabel").textContent = "ID #" + id;
         showPopup("delete");
-
         document.getElementById("confirmDeleteBtn").onclick = confirmDelete;
     }
 
@@ -446,14 +570,14 @@
             );
 
             if (!response.ok) {
-                throw new Error("HTTP " + response.status);
+                const message = (await response.text()).trim();
+                alert(message || "Não foi possível excluir a propriedade.");
+                return;
             }
 
             closePopup();
             showToast("Propriedade excluída com sucesso.", "REGISTRO EXCLUÍDO", "delete");
-
             window.location.href = contextPath + "/property";
-
         } catch (error) {
             console.error(error);
             alert("Não foi possível excluir a propriedade.");
@@ -483,7 +607,6 @@
     function closePopup() {
         document.getElementById("popupOverlay").classList.remove("show");
         document.body.classList.remove("locked");
-
         document.getElementById("popupSuccess").classList.remove("active");
         document.getElementById("popupDelete").classList.remove("active");
 

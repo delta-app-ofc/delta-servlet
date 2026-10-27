@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import org.mindrot.jbcrypt.BCrypt;
 
 public class UserCrud implements UserDAO {
 
@@ -34,7 +35,7 @@ public class UserCrud implements UserDAO {
 
             stmt.setString(1, user.getName());
             stmt.setString(2, user.getEmail());
-            stmt.setString(3, user.getPassword());
+            stmt.setString(3, hashIfNeeded(user.getPassword()));
             stmt.setString(4, user.getPhone());
 
             stmt.setDate(
@@ -167,7 +168,7 @@ public class UserCrud implements UserDAO {
 
             stmt.setString(1, user.getName());
             stmt.setString(2, user.getEmail());
-            stmt.setString(3, user.getPassword());
+            stmt.setString(3, hashIfNeeded(user.getPassword()));
             stmt.setString(4, user.getPhone());
 
             stmt.setDate(
@@ -278,7 +279,7 @@ public class UserCrud implements UserDAO {
         try (PreparedStatement stmt =
                      connection.prepareStatement(sql)) {
 
-            stmt.setString(1, user.getPassword());
+            stmt.setString(1, hashIfNeeded(user.getPassword()));
             stmt.setInt(2, user.getId());
 
             stmt.executeUpdate();
@@ -290,6 +291,26 @@ public class UserCrud implements UserDAO {
                             e.getMessage(),
                     e
             );
+        }
+    }
+
+    private String hashIfNeeded(String password) {
+        if (password == null || password.isBlank()) {
+            throw new IllegalArgumentException("A senha é obrigatória.");
+        }
+        // Preserva hash ao editar outros dados; nunca devolvemos esse valor à tela.
+        if (password.matches("^\\$2[aby]\\$\\d{2}\\$[./A-Za-z0-9]{53}$")) return password;
+        return BCrypt.hashpw(password, BCrypt.gensalt(12));
+    }
+
+    public boolean emailEmUso(String email, int ignorarId) {
+        String sql = "SELECT 1 FROM tb_user WHERE LOWER(email) = LOWER(?) AND id <> ? LIMIT 1";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, email.trim());
+            stmt.setInt(2, ignorarId);
+            try (ResultSet rs = stmt.executeQuery()) { return rs.next(); }
+        } catch (SQLException e) {
+            throw new RuntimeException("Não foi possível validar o e-mail.", e);
         }
     }
 

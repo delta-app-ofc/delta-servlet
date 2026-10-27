@@ -564,7 +564,7 @@ body {
     .main {
         margin-left: 0;
 
-        width: calc(100% - 250px);
+        width: 100%;
     }
 
     .stats {

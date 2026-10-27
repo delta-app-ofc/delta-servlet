@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourcePerFileMappings">
+    <file url="file://$PROJECT_DIR$/src/main/java/com/example/delta_back/servlet/AddressServlet.java" value="f905d1d6-e491-433e-8d78-f2da291a6ad2" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/example/delta_back/servlet/IndexServlet.java" value="f905d1d6-e491-433e-8d78-f2da291a6ad2" />
+  </component>
+</project>

@@ -36,9 +36,7 @@ public class RegionCrud implements RegionDAO {
             stmt.executeUpdate();
 
         } catch (SQLException e) {
-
-            e.printStackTrace();
-
+            throw new RuntimeException("Erro ao inserir região no banco de dados.", e);
         }
     }
 
@@ -154,24 +152,40 @@ public class RegionCrud implements RegionDAO {
 
     // DELETE
     // Deletar por ID
+
     @Override
     public void deletar(int id) {
-
         String sql = """
-                DELETE FROM tb_region
-                WHERE id = ?
-                """;
+            DELETE FROM tb_region
+            WHERE id = ?
+            """;
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-
             stmt.setInt(1, id);
 
-            stmt.executeUpdate();
+            int linhasAfetadas = stmt.executeUpdate();
+
+            if (linhasAfetadas == 0) {
+                throw new IllegalArgumentException(
+                        "A região não foi encontrada. Verifique o ID informado."
+                );
+            }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            if ("23503".equals(e.getSQLState())) {
+                throw new IllegalStateException(
+                        "Não é possível excluir esta região porque ela está vinculada a outros registros.",
+                        e
+                );
+            }
+
+            throw new IllegalStateException(
+                    "Erro ao excluir a região no banco de dados.",
+                    e
+            );
         }
     }
+
 
     // Deletar pelo Nome
     @Override
