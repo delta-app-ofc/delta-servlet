@@ -58,7 +58,7 @@
             rel="stylesheet"
     >
 
-    <link rel="stylesheet" href="<%= ctx %>/css/css_crud/User.css?v=20261027-eye">
+    <link rel="stylesheet" href="<%= ctx %>/css/css_crud/User.css?v=20261029-eye-fix">
     <link rel="stylesheet" href="<%= ctx %>/css/css_crud/Pop-up.css">
 
     <style>
@@ -120,10 +120,10 @@
             <div class="avatar">
                 <i data-lucide="user"></i>
             </div>
-            <span>admin123</span>
+            <span><%= esc(session.getAttribute("authName")) %></span>
         </div>
 
-        <a href="<%= ctx %>/inicio" class="logout">
+        <a href="<%= ctx %>/auth/logout" class="logout">
             <i data-lucide="log-out"></i>
             <span>Sair</span>
         </a>
@@ -352,8 +352,10 @@
     <button type="button" onclick="hideToast()">×</button>
 </div>
 
+<script src="<%= ctx %>/js/input-validation.js"></script>
 <script>
     const contextPath = "<%= ctx %>";
+    const loggedInUserId = Number("<%= session.getAttribute("authUserId") %>");
 
     let editingId = null;
     let recordToDelete = null;
@@ -448,6 +450,8 @@
                             id="fName"
                             name="name"
                             type="text"
+                            minlength="2"
+                            maxlength="100"
                             value="${editing ? esc(user.name) : ""}"
                         >
                     </div>
@@ -458,6 +462,7 @@
                             id="fEmail"
                             name="email"
                             type="email"
+                            maxlength="254"
                             value="${editing ? esc(user.email) : ""}"
                         >
                     </div>
@@ -473,6 +478,8 @@
                                 name="password"
                                 type="password"
                                 autocomplete="new-password"
+                                minlength="8"
+                                maxlength="72"
                                 placeholder="${editing
                                     ? "Deixe vazio para manter a senha atual"
                                     : "Digite a senha"}"
@@ -491,6 +498,7 @@
                             id="fPhone"
                             name="phone"
                             type="tel"
+                            maxlength="16"
                             value="${editing ? esc(user.phone) : ""}"
                         >
                     </div>
@@ -501,6 +509,7 @@
                             id="fBirthdate"
                             name="birthdate"
                             type="date"
+                            max="<%= java.time.LocalDate.now() %>"
                             value="${editing ? esc(user.birthdate) : ""}"
                         >
                     </div>
@@ -511,6 +520,7 @@
                             id="fRegistrationDate"
                             name="registration_date"
                             type="date"
+                            max="<%= java.time.LocalDate.now() %>"
                             value="${editing ? esc(user.registrationDate) : ""}"
                             ${editing ? "readonly" : ""}
                         >
@@ -618,15 +628,43 @@
         event.preventDefault();
 
         const form = document.getElementById("crudForm");
+        const validation = window.deltaInputValidation;
+        const id = form.elements.id.value;
+        const editing = id !== "0" && id !== "";
+        const name = form.elements.name.value;
+        const email = form.elements.email.value;
+        const phone = form.elements.phone.value;
+        const password = form.elements.password.value;
+        const birthdate = form.elements.birthdate.value;
+        const validationErrors = [];
+
+        if (!validation.isValidName(name)) {
+            validationErrors.push("Nome: use de 2 a 100 letras, comece com maiúscula e separe nomes com espaço, hífen ou apóstrofo.");
+        }
+        if (!validation.isValidEmail(email)) {
+            validationErrors.push("E-mail: informe um endereço válido com até 254 caracteres.");
+        }
+        if (!validation.isValidPhone(phone)) {
+            validationErrors.push("Telefone: informe de 10 a 15 dígitos, com + opcional no início e sem espaços ou pontuação.");
+        }
+        if ((!editing || password !== "") && !validation.isValidPassword(password)) {
+            validationErrors.push("Senha: use de 8 a 72 caracteres, com maiúscula, minúscula, número e símbolo, sem espaços.");
+        }
+        if (!validation.isTodayOrEarlier(birthdate)) {
+            validationErrors.push("Nascimento: informe uma data válida até hoje.");
+        }
+
+        if (validationErrors.length) {
+            showValidationErrors(validationErrors);
+            return;
+        }
+
         const formData = new FormData(form);
         const params = new URLSearchParams();
 
         for (const [key, value] of formData.entries()) {
-            params.set(key, String(value).trim());
+            params.set(key, key === "password" ? String(value) : String(value).trim());
         }
-
-        const id = params.get("id");
-        const editing = id !== "0" && id !== "";
 
         const button = document.getElementById("saveButton");
 
@@ -812,6 +850,12 @@
                             errorText ||
                             "Não foi possível excluir o usuário. Tente novamente."
                         );
+                    }
+
+                    if (response.headers.get("X-Session-Invalidated") === "true"
+                        || Number(id) === loggedInUserId) {
+                        window.location.replace(contextPath + "/login");
+                        return;
                     }
 
                     reloadAfterPopup = true;

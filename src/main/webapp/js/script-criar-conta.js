@@ -1,63 +1,49 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const botaoOlho = document.getElementById('botaoOlho');
-    const inputSenha = document.getElementById('senha');
-    const iconeOlho = document.getElementById('iconeOlho');
-    const mensagemSenha = document.getElementById('mensagemSenha');
-    const formCadastro = document.getElementById('form-cadastro');
+    const button = document.getElementById('botaoOlho');
+    const password = document.getElementById('senha');
+    const eye = document.getElementById('iconeOlho');
+    const passwordMessage = document.getElementById('mensagemSenha');
+    const form = document.getElementById('form-cadastro');
+    const name = document.getElementById('nome');
+    const email = document.getElementById('email');
+    const contextPath = window.deltaContextPath || '';
+    const validation = window.deltaInputValidation;
 
-    if (!botaoOlho || !inputSenha || !iconeOlho || !mensagemSenha || !formCadastro) return;
-
-    botaoOlho.addEventListener('click',()=>{
-        if(inputSenha.type === 'password'){
-            inputSenha.type = 'text';
-            iconeOlho.src = `${window.deltaContextPath}/imagens/olho-aberto.svg`;
-            iconeOlho.alt = 'Ocultar senha';
-        }else{
-            inputSenha.type = 'password';
-            iconeOlho.src = `${window.deltaContextPath}/imagens/olho-fechado.svg`;
-            iconeOlho.alt = 'Mostrar senha';
-        }
-    })
-    
- 
-    const regexSenha =  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\s])\S{8,72}$/
- 
-    inputSenha.addEventListener('input', () => {
- 
-        const senha = inputSenha.value;
- 
-        if (senha === '') {
- 
-            mensagemSenha.textContent = '';
- 
-        } else if (regexSenha.test(senha)) {
- 
-            mensagemSenha.textContent = 'Senha válida!';
-            mensagemSenha.style.color = 'green';
- 
-        } else {
- 
-            mensagemSenha.textContent =
-                'Mínimo de 8 caracteres, 1 letra maiúscula, 1 letra minúscula, 1 número e 1 caractere especial.';
-        }
+    button.addEventListener('click', () => {
+        const show = password.type === 'password';
+        password.type = show ? 'text' : 'password';
+        eye.src = contextPath + (show ? '/imagens/olho-aberto.svg' : '/imagens/olho-fechado.svg');
+        eye.alt = show ? 'Ocultar senha' : 'Mostrar senha';
+        button.setAttribute('aria-pressed', String(show));
     });
- 
-    formCadastro.addEventListener('submit', (event) => {
- 
-        const senha = inputSenha.value;
- 
-        if (!regexSenha.test(senha)) {
- 
-            event.preventDefault();
- 
-            mensagemSenha.textContent =
-                'Senha inválida. Verifique os requisitos';
- 
-            mensagemSenha.style.color = 'red';
-            inputSenha.focus();
- 
+
+    [name, email, password].forEach(input => {
+        input.addEventListener('input', () => input.setCustomValidity(''));
+    });
+
+    password.addEventListener('input', () => {
+        if (!password.value) {
+            passwordMessage.textContent = '';
             return;
         }
-        console.log('Senha válida! Cadastro permitido.');
+        const valid = validation.isValidPassword(password.value);
+        passwordMessage.textContent = valid
+            ? 'Senha válida!'
+            : 'Use de 8 a 72 caracteres, com maiúscula, minúscula, número e símbolo, sem espaços.';
+        passwordMessage.style.color = valid ? 'green' : 'red';
+    });
+
+    form.addEventListener('submit', event => {
+        name.setCustomValidity(validation.isValidName(name.value)
+            ? ''
+            : 'Informe um nome de 2 a 100 letras, começando com maiúscula.');
+        email.setCustomValidity(validation.isValidEmail(email.value)
+            ? ''
+            : 'Informe um e-mail válido.');
+        password.setCustomValidity(validation.isValidPassword(password.value)
+            ? ''
+            : 'A senha precisa ter de 8 a 72 caracteres, maiúscula, minúscula, número e símbolo, sem espaços.');
+
+        if (!form.reportValidity()) event.preventDefault();
     });
 });

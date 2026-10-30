@@ -3,37 +3,47 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/imagens/FaviconDelta.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Código de verificação</title>
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/css_login%20e%20cadastro/CodigoVerificacao.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/css_login%20e%20cadastro/AuthMessage.css">
 </head>
 <body>
+    <%@ include file="/WEB-INF/jspf/auth-error.jspf" %>
     <img src="<%= request.getContextPath() %>/imagens/codigo.svg" class="fundo-svg" alt="" aria-hidden="true">
+
+    <form id="form-verificacao" action="<%= request.getContextPath() %>/auth/verify-code" method="post" hidden>
+        <input type="hidden" name="code" id="codigo-completo">
+    </form>
+
+    <form id="form-reenvio" action="<%= request.getContextPath() %>/auth/resend-code" method="post" hidden></form>
 
     <main class="container">
         <h1 class="titulo">Insira o código abaixo:</h1>
         <p class="informacoes">Confira o código que enviamos no seu e-mail</p>
 
-        <form id="form-verificacao" action="<%= request.getContextPath() %>/auth/verify-code" method="post">
-            <input type="hidden" name="code" id="codigo-completo">
-            <div class="grupo-inputs" role="group" aria-label="Código de verificação">
-                <input type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="1" class="codigo-input codigo-email1" aria-label="Primeiro dígito">
-                <input type="text" inputmode="numeric" maxlength="1" class="codigo-input codigo-email2" aria-label="Segundo dígito">
-                <input type="text" inputmode="numeric" maxlength="1" class="codigo-input codigo-email3" aria-label="Terceiro dígito">
-                <input type="text" inputmode="numeric" maxlength="1" class="codigo-input codigo-email4" aria-label="Quarto dígito">
-            </div>
-            <button type="submit" class="confirmar">Confirmar</button>
-        </form>
-
-        <form action="<%= request.getContextPath() %>/auth/resend-code" method="post">
-            <button type="submit" class="reenviar-codigo">Reenviar código</button>
-        </form>
+        <div class="grupo-inputs" role="group" aria-label="Código de verificação">
+            <input form="form-verificacao" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="1" class="codigo-input" aria-label="Primeiro dígito">
+            <input form="form-verificacao" type="text" inputmode="numeric" maxlength="1" class="codigo-input" aria-label="Segundo dígito">
+            <input form="form-verificacao" type="text" inputmode="numeric" maxlength="1" class="codigo-input" aria-label="Terceiro dígito">
+            <input form="form-verificacao" type="text" inputmode="numeric" maxlength="1" class="codigo-input" aria-label="Quarto dígito">
+            <input form="form-verificacao" type="text" inputmode="numeric" maxlength="1" class="codigo-input" aria-label="Quinto dígito">
+            <input form="form-verificacao" type="text" inputmode="numeric" maxlength="1" class="codigo-input" aria-label="Sexto dígito">
+        </div>
+        <a href="#" class="reenviar-codigo" id="reenviarCodigo">Reenviar código</a>
+        <button type="submit" form="form-verificacao" class="confirmar">Confirmar</button>
     </main>
+
 
     <script>
         (() => {
             const campos = [...document.querySelectorAll('.codigo-input')];
             const formulario = document.getElementById('form-verificacao');
+            document.getElementById('reenviarCodigo').addEventListener('click', (evento) => {
+                evento.preventDefault();
+                document.getElementById('form-reenvio').submit();
+            });
 
             campos.forEach((campo, indice) => {
                 campo.addEventListener('input', () => {

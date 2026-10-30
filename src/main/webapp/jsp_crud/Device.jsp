@@ -154,10 +154,10 @@
             <div class="avatar">
                 <i data-lucide="user"></i>
             </div>
-            <span>admin123</span>
+            <span><%= escapeHtml(session.getAttribute("authName")) %></span>
         </div>
 
-        <a href="<%= ctx %>/inicio" class="logout">
+        <a href="<%= ctx %>/auth/logout" class="logout">
             <i data-lucide="log-out"></i>
             <span>Sair</span>
         </a>
@@ -319,7 +319,8 @@
                     <label for="installationDate">Data de Instalação</label>
                     <input type="date"
                            id="installationDate"
-                           name="installationDate">
+                           name="installationDate"
+                           max="<%= java.time.LocalDate.now() %>">
                     <small class="field-error" id="installationDateError"></small>
                 </div>
             </div>

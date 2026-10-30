@@ -110,10 +110,10 @@
             <div class="avatar">
                 <i data-lucide="user"></i>
             </div>
-            <span>admin123</span>
+            <span><%= escapeHtml(session.getAttribute("authName")) %></span>
         </div>
 
-        <a href="<%= ctx %>/inicio" class="logout">
+        <a href="<%= ctx %>/auth/logout" class="logout">
             <i data-lucide="log-out"></i>
             <span>Sair</span>
         </a>

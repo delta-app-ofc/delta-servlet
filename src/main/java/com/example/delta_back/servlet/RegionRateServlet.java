@@ -162,7 +162,14 @@ public class RegionRateServlet extends HttpServlet {
         }
 
         try {
-            return LocalDate.parse(valor.trim());
+            LocalDate data = LocalDate.parse(valor.trim());
+            if (data.isAfter(LocalDate.now())) {
+                throw new IllegalArgumentException(
+                        "O campo " + nomeCampoData(parametro)
+                                + " não pode ser uma data futura."
+                );
+            }
+            return data;
         } catch (DateTimeParseException e) {
             throw new IllegalArgumentException(
                     "A data do campo " + nomeCampoData(parametro)

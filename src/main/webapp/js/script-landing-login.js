@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const todosCards = lista.querySelectorAll('.card');
   const totalCardsComClones = todosCards.length;
 
-  const DURACAO = 700; 
+  const DURACAO = 700;
   const EASING = 'cubic-bezier(0.65, 0, 0.35, 1)';
 
   let contador = 1;
@@ -26,8 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function posicionar(comAnimacao) {
     lista.style.transition = comAnimacao
-      ? `transform ${DURACAO}ms ${EASING}`
-      : 'none';
+        ? `transform ${DURACAO}ms ${EASING}`
+        : 'none';
     lista.style.transform = `translateX(-${contador * 100}%)`;
   }
 
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
       lista.classList.add('sem-transicao');
       posicionar(false);
       marcarAtivo();
-      void lista.offsetWidth; 
+      void lista.offsetWidth;
       lista.classList.remove('sem-transicao');
     }
 
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       secao.classList.add('visivel');
       marcarAtivo();
-      observador.disconnect(); 
+      observador.disconnect();
     });
   }, { threshold: 0.25 });
 
@@ -112,8 +112,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const limitar = (v) => Math.min(Math.max(v, 0), 1);
   const suavizar = (t) => t < 0.5
-    ? 4 * t * t * t
-    : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      ? 4 * t * t * t
+      : 1 - Math.pow(-2 * t + 2, 3) / 2;
 
   let alvo = 0;
   let atual = 0;
@@ -170,14 +170,14 @@ document.addEventListener('DOMContentLoaded', () => {
     { el: document.querySelector('.retanguloSolucao2'), dir:  1, inicio: 0.4 },
   ];
 
-  const DISTANCIA = 500;    
-  const JANELA = 0.5;        
-  const DESLOCAMENTO = 120; 
-  const ANTECEDENCIA = 0.8; 
+  const DISTANCIA = 500;
+  const JANELA = 0.5;
+  const DESLOCAMENTO = 120;
+  const ANTECEDENCIA = 0.8;
   const limitar = (v) => Math.min(Math.max(v, 0), 1);
   const suavizar = (t) => t < 0.5
-    ? 4 * t * t * t
-    : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      ? 4 * t * t * t
+      : 1 - Math.pow(-2 * t + 2, 3) / 2;
 
   let inicioScroll = 0;
   let alvo = 0;
@@ -234,17 +234,17 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
   const limitar = (v) => Math.min(Math.max(v, 0), 1);
   const suavizar = (t) => t < 0.5
-    ? 4 * t * t * t
-    : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      ? 4 * t * t * t
+      : 1 - Math.pow(-2 * t + 2, 3) / 2;
 
   function animarGrupo({
-    gatilho,
-    itens,
-    distancia = 500,
-    atraso = 0.1,
-    deslocamento = 90,
-    antecedencia = 0.8,
-  }) {
+                         gatilho,
+                         itens,
+                         distancia = 500,
+                         atraso = 0.1,
+                         deslocamento = 90,
+                         antecedencia = 0.8,
+                       }) {
     const alvoGatilho = document.querySelector(gatilho);
     const elementos = [...document.querySelectorAll(itens)];
     if (!alvoGatilho || elementos.length === 0) return;
@@ -323,15 +323,15 @@ document.addEventListener('DOMContentLoaded', () => {
     modal.classList.toggle("hide");
     fade.classList.toggle("hide");
   };
-   [abrirModalBtn, fecharModalBtn, fade].forEach((elemento) => {
+  [abrirModalBtn, fecharModalBtn, fade].forEach((elemento) => {
     if (elemento) {
       elemento.addEventListener("click", () => toggleModal());
     }
-    });
+  });
 
-    modal.addEventListener("click", (e) => {
-      e.stopPropagation();
-    });
+  modal.addEventListener("click", (e) => {
+    e.stopPropagation();
+  });
 
 
 
@@ -393,7 +393,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (botaoSair) {
-    botaoSair.addEventListener('click', toggleModalMenor); 
+    botaoSair.addEventListener('click', toggleModalMenor);
   }
 
   if (botaoCloseMenor) {
@@ -407,40 +407,40 @@ document.addEventListener('DOMContentLoaded', () => {
   if (fadeMenor) {
     fadeMenor.addEventListener('click', toggleModalMenor);
   }
-  
+
   const botaoOlho = document.getElementById('botaoOlho');
   const inputSenha = document.getElementById('senha-nova');
   const iconeOlho = document.getElementById('iconeOlho')
 
-    botaoOlho.addEventListener('click',()=>{
-        if(inputSenha.type === 'password'){
-            inputSenha.type = 'text';
+  botaoOlho.addEventListener('click',()=>{
+    if(inputSenha.type === 'password'){
+      inputSenha.type = 'text';
 
-            iconeOlho.src = '../assets/img/olho-aberto.svg';
-            iconeOlho.alt = 'Ocultar senha';
-        }else{
-            inputSenha.type = 'password';
+      iconeOlho.src = '../assets/img/olho-aberto.svg';
+      iconeOlho.alt = 'Ocultar senha';
+    }else{
+      inputSenha.type = 'password';
 
-            iconeOlho.src = '../assets/img/olho-fechado.svg';
-            iconeOlho.alt = 'Mostrar senha';
-        }
-    })
+      iconeOlho.src = '../assets/img/olho-fechado.svg';
+      iconeOlho.alt = 'Mostrar senha';
+    }
+  })
 
   const botaoOlho1 = document.getElementById('botaoOlho1');
   const inputSenha1 = document.getElementById('confirmar-senha-nova');
   const iconeOlho1 = document.getElementById('iconeOlho1')
 
-    botaoOlho1.addEventListener('click',()=>{
-        if(inputSenha1.type === 'password'){
-            inputSenha1.type = 'text';
+  botaoOlho1.addEventListener('click',()=>{
+    if(inputSenha1.type === 'password'){
+      inputSenha1.type = 'text';
 
-            iconeOlho1.src = '../assets/img/olho-aberto.svg';
-            iconeOlho1.alt = 'Ocultar senha';
-        }else{
-            inputSenha1.type = 'password';
+      iconeOlho1.src = '../assets/img/olho-aberto.svg';
+      iconeOlho1.alt = 'Ocultar senha';
+    }else{
+      inputSenha1.type = 'password';
 
-            iconeOlho1.src = '../assets/img/olho-fechado.svg';
-            iconeOlho1.alt = 'Mostrar senha';
-        }
-    })
+      iconeOlho1.src = '../assets/img/olho-fechado.svg';
+      iconeOlho1.alt = 'Mostrar senha';
+    }
+  })
 });

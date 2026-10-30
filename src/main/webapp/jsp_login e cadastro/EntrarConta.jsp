@@ -3,11 +3,14 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/imagens/FaviconDelta.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Entrar em sua conta</title>
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/css_login%20e%20cadastro/EntrarConta.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/css_login%20e%20cadastro/EntrarConta.css?v=2">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/css_login%20e%20cadastro/AuthMessage.css">
 </head>
 <body>
+    <%@ include file="/WEB-INF/jspf/auth-error.jspf" %>
     <img src="<%= request.getContextPath() %>/imagens/login.svg" class="fundo-svg" alt="" aria-hidden="true">
     <a href="<%= request.getContextPath() %>/inicio" aria-label="Voltar">
         <img src="<%= request.getContextPath() %>/imagens/voltar.svg" class="voltar" alt="Voltar">
@@ -40,12 +43,24 @@
 
     <p class="criar">Não possui uma conta? <a href="<%= request.getContextPath() %>/cadastro"><u><strong>Registre-se</strong></u></a></p>
 
+    <script src="<%= request.getContextPath() %>/js/input-validation.js"></script>
     <script>
         (() => {
             const botao = document.getElementById('botaoOlho');
             const senha = document.getElementById('senha');
             const icone = document.getElementById('iconeOlho');
             const raiz = '<%= request.getContextPath() %>';
+            const email = document.getElementById('email');
+            const form = document.getElementById('form-login');
+            const validation = window.deltaInputValidation;
+
+            email.addEventListener('input', () => email.setCustomValidity(''));
+            form.addEventListener('submit', event => {
+                email.setCustomValidity(validation.isValidEmail(email.value)
+                    ? ''
+                    : 'Informe um e-mail válido.');
+                if (!form.reportValidity()) event.preventDefault();
+            });
 
             botao.addEventListener('click', () => {
                 const mostrar = senha.type === 'password';

@@ -3,8 +3,8 @@
    ========================================================== */
 const limitar = (v) => Math.min(Math.max(v, 0), 1);
 const suavizar = (t) => t < 0.5
-  ? 4 * t * t * t
-  : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    ? 4 * t * t * t
+    : 1 - Math.pow(-2 * t + 2, 3) / 2;
 
 
 /* ==========================================================
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const todosCards = lista.querySelectorAll('.card');
   const totalCardsComClones = todosCards.length;
 
-  const DURACAO = 700; 
+  const DURACAO = 700;
   const EASING = 'cubic-bezier(0.65, 0, 0.35, 1)';
 
   let contador = 1;
@@ -37,8 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function posicionar(comAnimacao) {
     lista.style.transition = comAnimacao
-      ? `transform ${DURACAO}ms ${EASING}`
-      : 'none';
+        ? `transform ${DURACAO}ms ${EASING}`
+        : 'none';
     lista.style.transform = `translateX(-${contador * 100}%)`;
   }
 
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
       lista.classList.add('sem-transicao');
       posicionar(false);
       marcarAtivo();
-      void lista.offsetWidth; 
+      void lista.offsetWidth;
       lista.classList.remove('sem-transicao');
     }
 
@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!entrada.isIntersecting) return;
       secao.classList.add('visivel');
       marcarAtivo();
-      observador.disconnect(); 
+      observador.disconnect();
     });
   }, { threshold: 0.25 });
 
@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function loop() {
     atual += (alvo - atual) * 0.08;
     if (Math.abs(alvo - atual) < 0.001) atual = alvo;
-    
+
     desenhar();
 
     if (atual !== alvo) {
@@ -177,9 +177,9 @@ document.addEventListener('DOMContentLoaded', () => {
     { el: document.querySelector('.retanguloSolucao2'), dir:  1, inicio: 0.4 },
   ].filter(item => item.el);
 
-  const DISTANCIA = 500;     
-  const JANELA = 0.5;         
-  const DESLOCAMENTO = 120;  
+  const DISTANCIA = 500;
+  const JANELA = 0.5;
+  const DESLOCAMENTO = 120;
   const ANTECEDENCIA = 0.8;
 
   let inicioScroll = 0;
@@ -205,7 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function loop() {
     atual += (alvo - atual) * 0.08;
     if (Math.abs(alvo - atual) < 0.001) atual = alvo;
-    
+
     desenhar();
 
     if (atual !== alvo) {
@@ -237,19 +237,19 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
   const limitar = (v) => Math.min(Math.max(v, 0), 1);
   const suavizar = (t) => t < 0.5
-    ? 4 * t * t * t
-    : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      ? 4 * t * t * t
+      : 1 - Math.pow(-2 * t + 2, 3) / 2;
 
   const grupos = [];
 
   function registrarGrupo({
-    gatilho,
-    itens,
-    distancia = 500,
-    atraso = 0.1,
-    deslocamento = 90,
-    antecedencia = 0.8,
-  }) {
+                            gatilho,
+                            itens,
+                            distancia = 500,
+                            atraso = 0.1,
+                            deslocamento = 90,
+                            antecedencia = 0.8,
+                          }) {
     const alvoGatilho = document.querySelector(gatilho);
     const elementos = [...document.querySelectorAll(itens)];
     if (!alvoGatilho || elementos.length === 0) return;
@@ -294,7 +294,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     grupos.forEach(grupo => {
       const progressoAlvo = limitar((scrollY - grupo.inicioScroll) / grupo.distancia);
-      
+
       grupo.elementos.forEach((el, i) => {
         const bruto = limitar((progressoAlvo - i * grupo.atraso) / grupo.janela);
         const p = suavizar(bruto);
@@ -314,7 +314,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       requestAnimationFrame(loop);
     }
-    
+
     desenhar();
   }
 
@@ -327,7 +327,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   window.addEventListener('scroll', aoRolar, { passive: true });
-  
+
   alvo = window.scrollY;
   atual = alvo;
   desenhar();

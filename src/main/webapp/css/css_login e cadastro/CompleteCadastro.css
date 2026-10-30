@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Unbounded:wght@500;600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    position: relative;
+    display: flex;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 48px 20px;
+    overflow-x: hidden;
+    background: #f0f4f8;
+    color: #0a0a0a;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.fundo-svg {
+    position: fixed;
+    z-index: 0;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+.voltar {
+    position: fixed;
+    z-index: 3;
+    top: clamp(20px, 5vw, 70px);
+    right: clamp(20px, 5vw, 70px);
+    display: block;
+    width: clamp(32px, 5vw, 60px);
+    line-height: 0;
+}
+
+.voltar img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.container {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    width: min(100%, 800px);
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+}
+
+.titulo {
+    margin: 0 0 15px;
+    color: #003e9b;
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(28px, 4vw, 45px);
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.informacoes {
+    max-width: 600px;
+    margin: 0 0 30px;
+    font-size: clamp(14px, 2vw, 20px);
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.form-completar-cadastro {
+    display: flex;
+    width: min(100%, 506px);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+}
+
+#telefone,
+#data {
+    width: 100%;
+    height: 65px;
+    margin: 0;
+    padding: 0 20px;
+    border: 2px solid #a0a0a0;
+    border-radius: 12px;
+    outline: none;
+    background: #e0e8f6;
+    color: #0a0a0a;
+    font: 400 18px 'Montserrat', sans-serif;
+    transition: border-color 0.2s ease;
+}
+
+#telefone::placeholder {
+    color: #0b5bf9;
+    opacity: 0.6;
+}
+
+#telefone:focus,
+#data:focus {
+    border-color: #003e9b;
+}
+
+@media (min-width: 521px) {
+    #telefone, #data { font-size: clamp(16px, 1.76vh, 18px); }
+}
+
+#data::-webkit-calendar-picker-indicator {
+    padding-right: 8px;
+    cursor: pointer;
+    filter: invert(20%) sepia(90%) saturate(500%) hue-rotate(190deg);
+}
+
+.concluir-cadastro {
+    display: flex;
+    width: 100%;
+    min-height: 60px;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: 15px;
+    background: #003e9b;
+    color: #fff;
+    font: 700 clamp(16px, 2vw, 20px) 'Unbounded', sans-serif;
+    cursor: pointer;
+    transition: background 0.2s ease-in;
+}
+
+.concluir-cadastro:hover {
+    background: #002b6b;
+}
+
+@media (max-width: 520px) {
+    body {
+        padding: 68px 16px 28px;
+    }
+
+    .container {
+        padding: 12px 4px;
+    }
+
+    .informacoes {
+        margin-bottom: 24px;
+    }
+
+    #telefone,
+    #data {
+        height: 58px;
+        padding: 0 14px;
+        font-size: 16px;
+    }
+}

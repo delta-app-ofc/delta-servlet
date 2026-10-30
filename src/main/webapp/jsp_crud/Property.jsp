@@ -136,10 +136,10 @@
     <div class="sidebar-bottom">
         <div class="account">
             <div class="avatar"><i data-lucide="user"></i></div>
-            <span>admin123</span>
+            <span><%= escapeHtml(session.getAttribute("authName")) %></span>
         </div>
 
-        <a href="<%= ctx %>/inicio" class="logout">
+        <a href="<%= ctx %>/auth/logout" class="logout">
             <i data-lucide="log-out"></i>
             <span>Sair</span>
         </a>
@@ -286,7 +286,8 @@
                 <div class="crud-field">
                     <label for="registrationDate">Data de Registro</label>
                     <input id="registrationDate" name="registrationDate"
-                           type="date">
+                           type="date"
+                           max="<%= java.time.LocalDate.now() %>">
                 </div>
             </div>
 

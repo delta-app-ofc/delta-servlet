@@ -28,6 +28,7 @@ public class IndexServlet extends HttpServlet {
                     (SELECT COUNT(*) FROM tb_user) AS total_users,
                     (SELECT COUNT(*) FROM tb_property) AS total_properties,
                     (SELECT COUNT(*) FROM tb_device) AS total_devices,
+                    (SELECT COUNT(*) FROM tb_region) AS total_regions,
                     (SELECT COUNT(*) FROM tb_device
                      WHERE is_active = TRUE) AS active_devices,
                     (
@@ -54,6 +55,9 @@ public class IndexServlet extends HttpServlet {
 
                 request.setAttribute(
                         "totalDevices", resultSet.getLong("total_devices"));
+
+                request.setAttribute(
+                        "totalRegions", resultSet.getLong("total_regions"));
 
                 request.setAttribute(
                         "activeDevices",

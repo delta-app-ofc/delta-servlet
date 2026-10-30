@@ -3,11 +3,14 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/imagens/FaviconDelta.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Criar conta de administrador</title>
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/css_login%20e%20cadastro/CriarConta.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/css_login%20e%20cadastro/CriarConta.css?v=2">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/css_login%20e%20cadastro/AuthMessage.css">
 </head>
 <body>
+    <%@ include file="/WEB-INF/jspf/auth-error.jspf" %>
     <img src="<%= request.getContextPath() %>/imagens/login.svg" class="fundo-svg" alt="" aria-hidden="true">
     <a href="<%= request.getContextPath() %>/inicio" aria-label="Voltar">
         <img src="<%= request.getContextPath() %>/imagens/voltar.svg" class="voltar" alt="Voltar">
@@ -30,7 +33,7 @@
     <form id="form-cadastro" action="<%= request.getContextPath() %>/auth/register" method="post">
         <input type="hidden" name="tipo" value="admin">
         <div class="tituloNome">Nome completo</div>
-        <input type="text" id="nome" name="name" placeholder="Digite seu nome" autocomplete="name" required maxlength="100">
+        <input type="text" id="nome" name="name" placeholder="Digite seu nome" autocomplete="name" required minlength="2" maxlength="100">
 
         <div class="tituloEmail">E-mail</div>
         <input type="email" id="email" name="email" placeholder="Digite seu e-mail" autocomplete="email" required maxlength="254">
@@ -54,6 +57,7 @@
     <p class="login">Já tem uma conta? Faça <a href="<%= request.getContextPath() %>/login"><u><strong>login</strong></u></a></p>
 
     <script>window.deltaContextPath = '<%= request.getContextPath() %>';</script>
+    <script src="<%= request.getContextPath() %>/js/input-validation.js"></script>
     <script src="<%= request.getContextPath() %>/js/script-criar-conta.js"></script>
 </body>
 </html>

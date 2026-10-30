@@ -169,6 +169,11 @@ body {
     border-color: #003E9B;
 }
 
+@media (min-width: 701px) {
+    #email, #senha { font-size: clamp(16px, 1.76vh, 18px); }
+    .tituloEmail, .tituloSenha { font-size: clamp(16px, 1.76vh, 18px); }
+}
+
 #botaoOlho {
     position: absolute;
     top: 50%;
@@ -187,7 +192,7 @@ body {
     display: block;
 }
 
-.esqueceu {
+.esqueceu,.esqueceu:visited {
     position: absolute;
     top: calc(415 * var(--u));
     left: calc(822 * var(--u));
@@ -277,7 +282,7 @@ a:visited {
         padding: 64px 28px 0;
         overflow: hidden;
         background-color: #02245B;
-        background-image: url('../../imagens/login.svg');
+        background-image: url('../img/login.svg');
         background-repeat: no-repeat;
         background-position: left top;
         background-size: 250% auto;

@@ -314,6 +314,50 @@ public class UserCrud implements UserDAO {
         }
     }
 
+    public int contarContasComTelefone(String telefone, int ignorarId) {
+        String sql = """
+                SELECT COUNT(*)
+                FROM tb_user
+                WHERE regexp_replace(phone, '[^0-9]', '', 'g')
+                    = regexp_replace(?, '[^0-9]', '', 'g')
+                  AND id <> ?
+                """;
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, telefone.trim());
+            stmt.setInt(2, ignorarId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                return rs.next() ? rs.getInt(1) : 0;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Não foi possível validar o telefone.", e);
+        }
+    }
+
+    public User buscarPorEmail(String email) {
+        String sql = "SELECT * FROM tb_user WHERE LOWER(email) = LOWER(?) LIMIT 1";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, email.trim());
+            try (ResultSet rs = stmt.executeQuery()) {
+                return rs.next() ? criarUsuario(rs) : null;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Não foi possível buscar o usuário pelo e-mail.", e);
+        }
+    }
+
+    public void atualizarSenhaPorEmail(String email, String senha) {
+        String sql = "UPDATE tb_user SET password = ? WHERE LOWER(email) = LOWER(?)";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, hashIfNeeded(senha));
+            stmt.setString(2, email.trim());
+            if (stmt.executeUpdate() != 1) {
+                throw new IllegalArgumentException("Usuário não encontrado.");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Não foi possível atualizar a senha.", e);
+        }
+    }
+
     @Override
     public void atualizarPhone(User user) {
 

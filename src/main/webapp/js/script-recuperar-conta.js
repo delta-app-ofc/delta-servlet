@@ -1,32 +1,41 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const senha = document.getElementById('senha-nova');
-    const confirmarSenha = document.getElementById('confirmar-senha');
-    const regraSenha = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\s])\S{8,72}$/;
-
+    const contextPath = window.deltaContextPath || '';
     [
-        { botao: document.getElementById('botaoOlho1'), campo: senha, icone: document.getElementById('iconeOlho1') },
-        { botao: document.getElementById('botaoOlho2'), campo: confirmarSenha, icone: document.getElementById('iconeOlho2') }
-    ].forEach(({ botao, campo, icone }) => {
-        if (!botao || !campo || !icone) return;
+        ['botaoOlho1', 'senha-nova', 'iconeOlho1'],
+        ['botaoOlho2', 'confirmar-senha', 'iconeOlho2']
+    ].forEach(([botaoId, senhaId, iconeId]) => {
+        const botao = document.getElementById(botaoId);
+        const senha = document.getElementById(senhaId);
+        const icone = document.getElementById(iconeId);
+
         botao.addEventListener('click', () => {
-            const mostrar = campo.type === 'password';
-            campo.type = mostrar ? 'text' : 'password';
-            icone.src = `${window.deltaContextPath}/imagens/${mostrar ? 'olho-aberto' : 'olho-fechado'}.svg`;
-            botao.setAttribute('aria-label', mostrar ? 'Ocultar senha' : 'Mostrar senha');
+            const mostrar = senha.type === 'password';
+            senha.type = mostrar ? 'text' : 'password';
+            icone.src = contextPath + (mostrar
+                ? '/imagens/olho-aberto.svg'
+                : '/imagens/olho-fechado.svg');
+            icone.alt = mostrar ? 'Ocultar senha' : 'Mostrar senha';
         });
     });
 
-    if (!senha || !confirmarSenha) return;
+    const form = document.getElementById('form-redefinir-senha');
+    if (form) {
+        const password = document.getElementById('senha-nova');
+        const confirmation = document.getElementById('confirmar-senha');
+        const validation = window.deltaInputValidation;
 
-    const validarCampos = () => {
-        senha.setCustomValidity(senha.value && !regraSenha.test(senha.value)
-            ? 'Use de 8 a 72 caracteres, com letra maiúscula, minúscula, número e símbolo, sem espaços.'
-            : '');
-        confirmarSenha.setCustomValidity(confirmarSenha.value && confirmarSenha.value !== senha.value
-            ? 'As senhas não coincidem.'
-            : '');
-    };
+        [password, confirmation].forEach(input => {
+            input.addEventListener('input', () => input.setCustomValidity(''));
+        });
 
-    senha.addEventListener('input', validarCampos);
-    confirmarSenha.addEventListener('input', validarCampos);
+        form.addEventListener('submit', event => {
+            password.setCustomValidity(validation.isValidPassword(password.value)
+                ? ''
+                : 'Use de 8 a 72 caracteres, com maiúscula, minúscula, número e símbolo, sem espaços.');
+            confirmation.setCustomValidity(password.value === confirmation.value
+                ? ''
+                : 'As senhas não coincidem.');
+            if (!form.reportValidity()) event.preventDefault();
+        });
+    }
 });

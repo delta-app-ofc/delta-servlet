@@ -11,6 +11,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -84,6 +85,14 @@ public class UserServlet extends HttpServlet {
         } catch (DateTimeParseException e) {
             throw new IllegalArgumentException(
                     "A data de nascimento é inválida."
+            );
+        }
+    }
+
+    private void validarLimiteTelefone(String telefone, int ignorarId) {
+        if (userCrud.contarContasComTelefone(telefone, ignorarId) >= 2) {
+            throw new IllegalArgumentException(
+                    "Esse número já está associado a duas contas. Use outro número."
             );
         }
     }
@@ -169,6 +178,7 @@ public class UserServlet extends HttpServlet {
             if (userCrud.emailEmUso(email, 0)) {
                 throw new IllegalArgumentException("Já existe um usuário com esse e-mail.");
             }
+            validarLimiteTelefone(phone, 0);
 
             LocalDate birthDate =
                     validarDataNascimento(birthdate);
@@ -266,6 +276,7 @@ public class UserServlet extends HttpServlet {
             if (userCrud.emailEmUso(email, id)) {
                 throw new IllegalArgumentException("Já existe um usuário com esse e-mail.");
             }
+            validarLimiteTelefone(phone, id);
 
             LocalDate birthDate =
                     validarDataNascimento(birthdate);
@@ -341,7 +352,19 @@ public class UserServlet extends HttpServlet {
                 return;
             }
 
+            HttpSession session = request.getSession(false);
+            Object loggedInUserId = session == null ? null : session.getAttribute("authUserId");
+            boolean deletingLoggedInUser = loggedInUserId instanceof Number number
+                    ? number.longValue() == id
+                    : loggedInUserId != null
+                    && Integer.toString(id).equals(loggedInUserId.toString().trim());
+
             userCrud.deletar(id);
+
+            if (deletingLoggedInUser) {
+                response.setHeader("X-Session-Invalidated", "true");
+                session.invalidate();
+            }
 
             response.setStatus(
                     HttpServletResponse.SC_NO_CONTENT

@@ -108,10 +108,10 @@
             <div class="avatar">
                 <i data-lucide="user"></i>
             </div>
-            <span>admin123</span>
+            <span><%= esc(session.getAttribute("authName")) %></span>
         </div>
 
-        <a href="<%= ctx %>/inicio" class="logout">
+        <a href="<%= ctx %>/auth/logout" class="logout">
             <i data-lucide="log-out"></i>
             <span>Sair</span>
         </a>
@@ -464,6 +464,7 @@
                                     type="date"
                                     id="initial_validity"
                                     name="initial_validity"
+                                    max="<%= java.time.LocalDate.now() %>"
                                     value="${editing ? esc(rate.initialValidity) : ""}"
                                 >
                             </div>
@@ -474,6 +475,7 @@
                                     type="date"
                                     id="final_validity"
                                     name="final_validity"
+                                    max="<%= java.time.LocalDate.now() %>"
                                     value="${editing ? esc(rate.finalValidity) : ""}"
                                 >
                             </div>

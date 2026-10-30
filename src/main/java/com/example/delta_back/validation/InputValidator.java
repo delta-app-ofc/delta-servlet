@@ -50,12 +50,13 @@ public final class InputValidator {
 
     public static boolean isValidEmail(String value) {
         return value != null
+                && value.trim().length() <= 254
                 && EMAIL.matcher(value.trim()).matches();
     }
 
     public static boolean isValidPhone(String value) {
         return value != null
-                && PHONE.matcher(value.trim()).matches();
+                && PHONE.matcher(value).matches();
     }
 
     public static boolean isValidPassword(String value) {
