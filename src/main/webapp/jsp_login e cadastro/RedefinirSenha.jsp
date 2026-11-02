@@ -63,7 +63,7 @@
     </form>
 
     <script>window.deltaContextPath = '<%= request.getContextPath() %>';</script>
-    <script src="<%= request.getContextPath() %>/js/input-validation.js"></script>
+    <script src="<%= request.getContextPath() %>/js/input-validation.js?v=2"></script>
     <script src="<%= request.getContextPath() %>/js/script-recuperar-conta.js"></script>
 </body>
 </html>

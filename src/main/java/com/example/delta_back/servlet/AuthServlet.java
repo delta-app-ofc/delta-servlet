@@ -42,15 +42,7 @@ public class AuthServlet extends HttpServlet {
         switch (route) {
             case "/auth/logout" -> logout(request, response);
             case "/login" -> forward(request, response, "/jsp_login e cadastro/EntrarConta.jsp");
-            case "/cadastro" -> {
-                String tipo = request.getParameter("tipo");
-                String page = "admin".equalsIgnoreCase(tipo)
-                        ? "/jsp_login e cadastro/CriarContaAdmin.jsp"
-                        : "usuario".equalsIgnoreCase(tipo)
-                        ? "/jsp_login e cadastro/CriarContaUsuario.jsp"
-                        : "/jsp_login e cadastro/CriarConta.jsp";
-                forward(request, response, page);
-            }
+            case "/cadastro" -> forward(request, response, "/jsp_login e cadastro/CriarConta.jsp");
             case "/recuperar-senha" -> forward(request, response,
                     "/jsp_login e cadastro/RecuperarSenhaEmail.jsp");
             case "/conta" -> {
@@ -68,6 +60,7 @@ public class AuthServlet extends HttpServlet {
                 }
                 forward(request, response, "/jsp_login e cadastro/CodigoVerificacao.jsp");
             }
+            case "/auth/edit-email" -> editVerificationEmail(request, response);
             case "/auth/reset-password" -> {
                 if (!hasActiveGrant(request.getSession(), RESET_VERIFIED_UNTIL)) {
                     response.sendRedirect(request.getContextPath() + "/recuperar-senha");
@@ -109,6 +102,7 @@ public class AuthServlet extends HttpServlet {
             throws ServletException, IOException {
         String email = normalizedEmail(request.getParameter("email"));
         String password = request.getParameter("password");
+        String role = "admin".equalsIgnoreCase(request.getParameter("role")) ? "admin" : "user";
         if (!InputValidator.isValidEmail(email) || password == null || password.isEmpty()) {
             forwardError(request, response, "/jsp_login e cadastro/EntrarConta.jsp",
                     "Informe um e-mail e uma senha válidos.");
@@ -120,6 +114,14 @@ public class AuthServlet extends HttpServlet {
             if (user == null || !user.isActive() || !passwordMatches(password, user.getPassword())) {
                 forwardError(request, response, "/jsp_login e cadastro/EntrarConta.jsp",
                         "E-mail ou senha incorretos.");
+                return;
+            }
+
+            boolean contaAdministrativa = user.isAdmin() || user.isManager();
+            if (contaAdministrativa != "admin".equals(role)) {
+                request.setAttribute("selectedLoginRole", role);
+                forwardError(request, response, "/jsp_login e cadastro/EntrarConta.jsp",
+                        "Essa conta não pertence ao perfil selecionado.");
                 return;
             }
 
@@ -140,13 +142,8 @@ public class AuthServlet extends HttpServlet {
 
     private void register(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String tipo = request.getParameter("tipo");
-        boolean admin = "admin".equalsIgnoreCase(tipo);
-        String registrationPage = admin
-                ? "/jsp_login e cadastro/CriarContaAdmin.jsp"
-                : "usuario".equalsIgnoreCase(tipo)
-                ? "/jsp_login e cadastro/CriarContaUsuario.jsp"
-                : "/jsp_login e cadastro/CriarConta.jsp";
+        boolean admin = false;
+        String registrationPage = "/jsp_login e cadastro/CriarConta.jsp";
 
         String name = request.getParameter("name");
         String email = normalizedEmail(request.getParameter("email"));
@@ -222,6 +219,30 @@ public class AuthServlet extends HttpServlet {
         } catch (Exception e) {
             throw new ServletException("Não foi possível iniciar a recuperação de senha.", e);
         }
+    }
+
+    private void editVerificationEmail(HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
+        HttpSession session = request.getSession(false);
+        AuthChallenge challenge = session == null ? null : (AuthChallenge) session.getAttribute(CHALLENGE);
+        String destination = "/recuperar-senha";
+
+        if (session != null && challenge != null) {
+            if (AuthChallenge.REGISTER.equals(challenge.getPurpose())) {
+                PendingRegistration pending = (PendingRegistration) session.getAttribute(PENDING_REGISTRATION);
+                if (pending != null) {
+                    destination = "/cadastro?tipo=" + (pending.admin() ? "admin" : "usuario");
+                }
+                session.removeAttribute(PENDING_REGISTRATION);
+                session.removeAttribute(REGISTRATION_VERIFIED_UNTIL);
+            } else if (AuthChallenge.RESET.equals(challenge.getPurpose())) {
+                session.removeAttribute(RESET_EMAIL);
+                session.removeAttribute(RESET_VERIFIED_UNTIL);
+            }
+            session.removeAttribute(CHALLENGE);
+        }
+
+        response.sendRedirect(request.getContextPath() + destination);
     }
 
     private void resendCode(HttpServletRequest request, HttpServletResponse response)
@@ -348,7 +369,9 @@ public class AuthServlet extends HttpServlet {
         LocalDate birthDate;
         try {
             birthDate = LocalDate.parse(birthDateText);
-            if (birthDate.isAfter(LocalDate.now())) throw new DateTimeParseException("futura", birthDateText, 0);
+            if (birthDate.isAfter(LocalDate.now().minusYears(18))) {
+                throw new DateTimeParseException("menor de idade", birthDateText, 0);
+            }
         } catch (Exception e) {
             forwardError(request, response, "/jsp_login e cadastro/CompletarCadastro.jsp",
                     "Informe uma data de nascimento válida.");
@@ -357,9 +380,9 @@ public class AuthServlet extends HttpServlet {
 
         try (var connection = ConexaoBD.conectar()) {
             UserCrud users = new UserCrud(connection);
-            if (users.contarContasComTelefone(phone, 0) >= 2) {
+            if (users.contarContasComTelefone(phone, 0) >= 1) {
                 forwardError(request, response, "/jsp_login e cadastro/CompletarCadastro.jsp",
-                        "Esse número já está associado a duas contas. Use outro número.");
+                        "Esse número já está associado a outra conta. Use outro número.");
                 return;
             }
             if (users.emailEmUso(pending.email(), 0)) {
@@ -377,7 +400,23 @@ public class AuthServlet extends HttpServlet {
             session.removeAttribute(PENDING_REGISTRATION);
             session.removeAttribute(REGISTRATION_VERIFIED_UNTIL);
             session.invalidate();
-            response.sendRedirect(request.getContextPath() + "/login?cadastro=concluido");
+
+            User createdUser = users.buscarPorEmail(pending.email());
+            if (createdUser == null || !createdUser.isActive()) {
+                throw new IllegalStateException("A conta foi criada, mas não foi possível iniciar a sessão.");
+            }
+
+            HttpSession authenticatedSession = request.getSession(true);
+            authenticatedSession.setAttribute("authUserId", createdUser.getId());
+            authenticatedSession.setAttribute("authName", createdUser.getName());
+            authenticatedSession.setAttribute("authEmail", createdUser.getEmail());
+            authenticatedSession.setAttribute("authIsAdmin", createdUser.isAdmin());
+            authenticatedSession.setAttribute("authIsManager", createdUser.isManager());
+
+            String destination = createdUser.isAdmin() || createdUser.isManager()
+                    ? "/inicio"
+                    : "/conta";
+            response.sendRedirect(request.getContextPath() + destination);
         } catch (Exception e) {
             throw new ServletException("Não foi possível concluir o cadastro.", e);
         }

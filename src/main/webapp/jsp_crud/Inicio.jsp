@@ -37,7 +37,7 @@
         rel="stylesheet">
 
   <link rel="stylesheet"
-        href="<%= request.getContextPath() %>/css/css_crud/Inicio.css?v=3">
+        href="<%= request.getContextPath() %>/css/css_crud/Inicio.css?v=20261101-sidebar-gota-2">
 
   <script src="https://unpkg.com/lucide@latest"></script>
 

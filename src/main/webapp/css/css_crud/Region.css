@@ -762,3 +762,7 @@ body {
         width: 100%;
     }
 }
+/* Gota decorativa compartilhada pelas sidebars */
+.sidebar { overflow: hidden; }
+.sidebar-drop { position: absolute; z-index: 0; width: 270px; height: 350px; object-fit: contain; left: 50%; bottom: 82px; transform: translateX(-50%); pointer-events: none; }
+.logo-area, .menu, .sidebar-bottom { position: relative; z-index: 1; }

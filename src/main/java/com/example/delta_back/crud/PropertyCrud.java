@@ -31,7 +31,7 @@ public class PropertyCrud implements PropertyDAO {
     public void inserir(Property property) {
         String sql = """
                 INSERT INTO tb_property
-                (name, type, classification, address_id, registration_date)
+                (property_name, property_type, classification, address_id, registration_date)
                 VALUES (?, ?, ?, ?, ?)
                 """;
 
@@ -64,8 +64,8 @@ public class PropertyCrud implements PropertyDAO {
                 if (resultado.next()) {
                     return new Property(
                             resultado.getInt("id"),
-                            resultado.getString("name"),
-                            resultado.getString("type"),
+                            resultado.getString("property_name"),
+                            resultado.getString("property_type"),
                             resultado.getString("classification"),
                             resultado.getInt("address_id"),
                             resultado.getDate("registration_date").toLocalDate()
@@ -91,8 +91,8 @@ public class PropertyCrud implements PropertyDAO {
             while (resultado.next()) {
                 properties.add(new Property(
                         resultado.getInt("id"),
-                        resultado.getString("name"),
-                        resultado.getString("type"),
+                        resultado.getString("property_name"),
+                        resultado.getString("property_type"),
                         resultado.getString("classification"),
                         resultado.getInt("address_id"),
                         resultado.getDate("registration_date").toLocalDate()
@@ -152,11 +152,11 @@ public class PropertyCrud implements PropertyDAO {
     @Override
     public List<Property> consultarEndereco(Property property) {
         String sql = """
-                SELECT p.name AS nome,
+                SELECT p.property_name AS nome,
                        a.cep,
                        a.city AS cidade,
-                       a.state AS estado,
-                       r.name AS regiao
+                       a.adress_state AS estado,
+                       r.region_name AS regiao
                 FROM tb_property p
                 JOIN tb_address a ON p.address_id = a.id
                 JOIN tb_region r ON a.region_id = r.id
@@ -197,7 +197,7 @@ public class PropertyCrud implements PropertyDAO {
     public void atualizar(Property property) {
         String sql = """
                 UPDATE tb_property
-                SET name = ?, type = ?, classification = ?,
+                SET property_name = ?, property_type = ?, classification = ?,
                     address_id = ?, registration_date = ?
                 WHERE id = ?
                 """;
@@ -226,7 +226,7 @@ public class PropertyCrud implements PropertyDAO {
     @Override
     public void atualizarNome(Property property) {
         executarAtualizacao(
-                "UPDATE tb_property SET name = ? WHERE id = ?",
+                "UPDATE tb_property SET property_name = ? WHERE id = ?",
                 property.getName(),
                 property.getId(),
                 "atualizar o nome"
@@ -237,7 +237,7 @@ public class PropertyCrud implements PropertyDAO {
     @Override
     public void atualizarType(Property property) {
         executarAtualizacao(
-                "UPDATE tb_property SET type = ? WHERE id = ?",
+                "UPDATE tb_property SET property_type = ? WHERE id = ?",
                 property.getType(),
                 property.getId(),
                 "atualizar o tipo"
@@ -312,7 +312,7 @@ public class PropertyCrud implements PropertyDAO {
     // EXCLUIR POR NOME
     @Override
     public void deletarPorNome(String name) {
-        String sql = "DELETE FROM tb_property WHERE name = ?";
+        String sql = "DELETE FROM tb_property WHERE property_name = ?";
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, name);
@@ -338,7 +338,7 @@ public class PropertyCrud implements PropertyDAO {
     // EXCLUIR POR TIPO
     @Override
     public void deletarPorTipo(String type) {
-        String sql = "DELETE FROM tb_property WHERE type = ?";
+        String sql = "DELETE FROM tb_property WHERE property_type = ?";
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, type);

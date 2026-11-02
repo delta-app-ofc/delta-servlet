@@ -58,7 +58,7 @@
             rel="stylesheet"
     >
 
-    <link rel="stylesheet" href="<%= ctx %>/css/css_crud/User.css?v=20261029-eye-fix">
+    <link rel="stylesheet" href="<%= ctx %>/css/css_crud/User.css?v=20261101-sidebar-gota">
     <link rel="stylesheet" href="<%= ctx %>/css/css_crud/Pop-up.css">
 
     <style>
@@ -96,6 +96,7 @@
 <body>
 
 <aside class="sidebar">
+    <img class="sidebar-drop" src="<%= ctx %>/imagens/Gota_Sidebar.png" alt="" aria-hidden="true">
 
     <div class="logo-area">
         <img
@@ -352,7 +353,7 @@
     <button type="button" onclick="hideToast()">×</button>
 </div>
 
-<script src="<%= ctx %>/js/input-validation.js"></script>
+<script src="<%= ctx %>/js/input-validation.js?v=2"></script>
 <script>
     const contextPath = "<%= ctx %>";
     const loggedInUserId = Number("<%= session.getAttribute("authUserId") %>");
@@ -462,7 +463,7 @@
                             id="fEmail"
                             name="email"
                             type="email"
-                            maxlength="254"
+                            maxlength="100"
                             value="${editing ? esc(user.email) : ""}"
                         >
                     </div>
@@ -498,7 +499,7 @@
                             id="fPhone"
                             name="phone"
                             type="tel"
-                            maxlength="16"
+                            maxlength="15"
                             value="${editing ? esc(user.phone) : ""}"
                         >
                     </div>
@@ -509,7 +510,7 @@
                             id="fBirthdate"
                             name="birthdate"
                             type="date"
-                            max="<%= java.time.LocalDate.now() %>"
+                            max="<%= java.time.LocalDate.now().minusYears(18) %>"
                             value="${editing ? esc(user.birthdate) : ""}"
                         >
                     </div>

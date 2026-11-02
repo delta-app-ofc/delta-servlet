@@ -44,7 +44,7 @@
             rel="stylesheet"
     >
 
-    <link rel="stylesheet" href="<%= ctx %>/css/css_crud/Region.css">
+    <link rel="stylesheet" href="<%= ctx %>/css/css_crud/Region.css?v=20261101-sidebar-gota">
     <link rel="stylesheet" href="<%= ctx %>/css/css_crud/Pop-up.css">
 
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -82,6 +82,7 @@
 <body>
 
 <aside class="sidebar">
+    <img class="sidebar-drop" src="<%= ctx %>/imagens/Gota_Sidebar.png" alt="" aria-hidden="true">
     <div class="logo-area">
         <img
                 src="<%= ctx %>/imagens/LogoDelta.png"

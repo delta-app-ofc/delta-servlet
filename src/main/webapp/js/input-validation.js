@@ -1,7 +1,7 @@
 (() => {
     const namePattern = /^(?=.{2,100}$)\p{Lu}[\p{L}]*(?:[ '\-][\p{L}]+)*$/u;
-    const emailPattern = /^[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?(?:\.[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?)+$/;
-    const phonePattern = /^\+?[0-9]{10,15}$/;
+    const emailPattern = /^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]+$/;
+    const phonePattern = /^(?:[0-9]{10,15}|\+[0-9]{10,14})$/;
     const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9_\t\n\v\f\r ])[^\t\n\v\f\r ]{8,72}$/;
 
     function isValidDate(value) {
@@ -29,7 +29,7 @@
     window.deltaInputValidation = Object.freeze({
         isValidName: value => typeof value === 'string' && namePattern.test(value.trim()),
         isValidEmail: value => typeof value === 'string'
-            && value.trim().length <= 254
+            && value.trim().length <= 100
             && emailPattern.test(value.trim()),
         isValidPhone: value => typeof value === 'string' && phonePattern.test(value),
         isValidPassword: value => typeof value === 'string' && passwordPattern.test(value),

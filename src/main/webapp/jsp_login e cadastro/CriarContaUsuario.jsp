@@ -36,7 +36,7 @@
         <input type="text" id="nome" name="name" placeholder="Digite seu nome" autocomplete="name" required minlength="2" maxlength="100">
 
         <div class="tituloEmail">E-mail</div>
-        <input type="email" id="email" name="email" placeholder="Digite seu e-mail" autocomplete="email" required maxlength="254">
+        <input type="email" id="email" name="email" placeholder="Digite seu e-mail" autocomplete="email" required maxlength="100">
 
         <div class="tituloSenha">Senha</div>
         <div class="campo-senha">
@@ -57,7 +57,7 @@
     <p class="login">Já tem uma conta? Faça <a href="<%= request.getContextPath() %>/login"><u><strong>login</strong></u></a></p>
 
     <script>window.deltaContextPath = '<%= request.getContextPath() %>';</script>
-    <script src="<%= request.getContextPath() %>/js/input-validation.js"></script>
+    <script src="<%= request.getContextPath() %>/js/input-validation.js?v=2"></script>
     <script src="<%= request.getContextPath() %>/js/script-criar-conta.js"></script>
 </body>
 </html>

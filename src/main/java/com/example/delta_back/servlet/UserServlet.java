@@ -75,9 +75,9 @@ public class UserServlet extends HttpServlet {
         try {
             LocalDate data = LocalDate.parse(valor);
 
-            if (data.isAfter(LocalDate.now())) {
+            if (data.isAfter(LocalDate.now().minusYears(18))) {
                 throw new IllegalArgumentException(
-                        "A data de nascimento não pode ser futura."
+                        "O usuário precisa ter pelo menos 18 anos."
                 );
             }
 
@@ -90,9 +90,9 @@ public class UserServlet extends HttpServlet {
     }
 
     private void validarLimiteTelefone(String telefone, int ignorarId) {
-        if (userCrud.contarContasComTelefone(telefone, ignorarId) >= 2) {
+        if (userCrud.contarContasComTelefone(telefone, ignorarId) >= 1) {
             throw new IllegalArgumentException(
-                    "Esse número já está associado a duas contas. Use outro número."
+                    "Esse número já está associado a outra conta. Use outro número."
             );
         }
     }

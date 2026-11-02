@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/imagens/FaviconDelta.png">
@@ -25,9 +25,16 @@
 
     <div class="entrar">Entrar</div>
 
+    <% String selectedLoginRole = "admin".equalsIgnoreCase(request.getParameter("role")) ? "admin" : "user"; %>
+    <div class="botoes" role="group" aria-label="Tipo de conta">
+        <a href="<%= request.getContextPath() %>/login?role=user" class="<%= "user".equals(selectedLoginRole) ? "usuario" : "usuario1" %>" <%= "user".equals(selectedLoginRole) ? "aria-current=\"page\"" : "" %>>Usuário</a>
+        <a href="<%= request.getContextPath() %>/login?role=admin" class="<%= "admin".equals(selectedLoginRole) ? "adm" : "adm1" %>" <%= "admin".equals(selectedLoginRole) ? "aria-current=\"page\"" : "" %>>Administrador</a>
+    </div>
+
     <form id="form-login" action="<%= request.getContextPath() %>/auth/login" method="post">
-        <label for="email" class="tituloEmail">E-mail</label>
-        <input type="email" id="email" name="email" placeholder="Digite seu e-mail" autocomplete="username" required maxlength="254">
+        <input type="hidden" id="loginRole" name="role" value="<%= selectedLoginRole %>">
+        <label for="email" class="tituloEmail">Email</label>
+        <input type="email" id="email" name="email" placeholder="Digite seu e-mail" autocomplete="username" required maxlength="100">
 
         <label for="senha" class="tituloSenha">Senha</label>
         <div class="campo-senha">
@@ -43,7 +50,7 @@
 
     <p class="criar">Não possui uma conta? <a href="<%= request.getContextPath() %>/cadastro"><u><strong>Registre-se</strong></u></a></p>
 
-    <script src="<%= request.getContextPath() %>/js/input-validation.js"></script>
+    <script src="<%= request.getContextPath() %>/js/input-validation.js?v=2"></script>
     <script>
         (() => {
             const botao = document.getElementById('botaoOlho');
@@ -53,7 +60,6 @@
             const email = document.getElementById('email');
             const form = document.getElementById('form-login');
             const validation = window.deltaInputValidation;
-
             email.addEventListener('input', () => email.setCustomValidity(''));
             form.addEventListener('submit', event => {
                 email.setCustomValidity(validation.isValidEmail(email.value)

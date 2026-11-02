@@ -6,7 +6,7 @@
     <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/imagens/FaviconDelta.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quase lá! | Delta</title>
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/css_login%20e%20cadastro/CompleteCadastro.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/src/main/webapp/css/css_login%20e%20cadastro/ConcluirLogin.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/css_login%20e%20cadastro/AuthMessage.css">
 </head>
 <body>
@@ -21,12 +21,12 @@
         <p class="informacoes">Seu e-mail já foi confirmado. Complete os dados necessários para criar sua conta.</p>
 
         <form id="form-completar-cadastro" class="form-completar-cadastro" action="<%= request.getContextPath() %>/auth/complete-registration" method="post">
-            <input type="tel" id="telefone" name="phone" placeholder="Telefone" autocomplete="tel" inputmode="tel" required pattern="\+?[0-9]{10,15}" maxlength="16">
-            <input type="date" id="data" name="birthdate" autocomplete="bday" max="<%= java.time.LocalDate.now() %>" required>
+            <input type="tel" id="telefone" name="phone" placeholder="Telefone" autocomplete="tel" inputmode="tel" required pattern="(?:[0-9]{10,15}|\+[0-9]{10,14})" maxlength="15">
+            <input type="date" id="data" name="birthdate" autocomplete="bday" max="<%= java.time.LocalDate.now().minusYears(18) %>" required>
             <button type="submit" class="concluir-cadastro">Concluir cadastro</button>
         </form>
     </main>
-    <script src="<%= request.getContextPath() %>/js/input-validation.js"></script>
+    <script src="<%= request.getContextPath() %>/js/input-validation.js?v=2"></script>
     <script>
         (() => {
             const form = document.getElementById('form-completar-cadastro');

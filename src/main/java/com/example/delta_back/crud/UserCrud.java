@@ -25,7 +25,7 @@ public class UserCrud implements UserDAO {
 
         String sql = """
                 INSERT INTO tb_user
-                (name, email, password, phone, birth_date,
+                (user_name, email, user_password, phone, birth_date,
                  registration_date, is_active, is_admin, is_manager)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """;
@@ -151,9 +151,9 @@ public class UserCrud implements UserDAO {
 
         String sql = """
                 UPDATE tb_user
-                SET name = ?,
+                SET user_name = ?,
                     email = ?,
-                    password = ?,
+                    user_password = ?,
                     phone = ?,
                     birth_date = ?,
                     registration_date = ?,
@@ -218,7 +218,7 @@ public class UserCrud implements UserDAO {
 
         String sql = """
                 UPDATE tb_user
-                SET name = ?
+                SET user_name = ?
                 WHERE id = ?
                 """;
 
@@ -272,7 +272,7 @@ public class UserCrud implements UserDAO {
 
         String sql = """
                 UPDATE tb_user
-                SET password = ?
+                SET user_password = ?
                 WHERE id = ?
                 """;
 
@@ -346,7 +346,7 @@ public class UserCrud implements UserDAO {
     }
 
     public void atualizarSenhaPorEmail(String email, String senha) {
-        String sql = "UPDATE tb_user SET password = ? WHERE LOWER(email) = LOWER(?)";
+        String sql = "UPDATE tb_user SET user_password = ? WHERE LOWER(email) = LOWER(?)";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, hashIfNeeded(senha));
             stmt.setString(2, email.trim());
@@ -615,9 +615,9 @@ public class UserCrud implements UserDAO {
 
         return new User(
                 resultado.getInt("id"),
-                resultado.getString("name"),
+                resultado.getString("user_name"),
                 resultado.getString("email"),
-                resultado.getString("password"),
+                resultado.getString("user_password"),
                 resultado.getString("phone"),
                 resultado.getDate("birth_date").toLocalDate(),
                 resultado.getDate("registration_date").toLocalDate(),

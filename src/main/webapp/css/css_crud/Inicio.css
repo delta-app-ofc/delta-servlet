@@ -697,7 +697,7 @@ body::after {
 .page-heading { min-width: 0; }
 .header-drop { display: block; width: 132px; height: 132px; object-fit: contain; flex: 0 0 auto; margin: -18px 0 -18px 20px; }
 .sidebar { overflow: hidden; }
-.sidebar-drop { position: absolute; z-index: 0; width: 230px; height: 300px; object-fit: contain; left: 50%; bottom: 58px; transform: translateX(-50%); pointer-events: none; }
+.sidebar-drop { position: absolute; z-index: 0; width: 270px; height: 350px; object-fit: contain; left: 50%; bottom: 82px; transform: translateX(-50%); pointer-events: none; }
 .logo-area, .menu, .sidebar-bottom { position: relative; z-index: 1; }
 @media (max-width: 1100px) {
     .sidebar { left: 25px; width: 210px; }
@@ -712,9 +712,8 @@ body::after {
         position: relative;
         inset: auto;
         margin: 20px;
-        width: calc(100% - 40px);
-        height: auto;
-        min-height: 340px;
+        width: 210px;
+        height: calc(100vh - 40px);
     }
     .main { margin: 0; width: 100%; padding: 30px 24px 120px; }
     .header-drop { width: 100px; height: 100px; margin: -8px 0; }
@@ -736,7 +735,7 @@ body::after {
 
 @media (min-width: 851px) and (max-height: 950px) {
     body { height: 100vh; min-height: 0; overflow: hidden; }
-    .sidebar { height: calc(100vh - 60px); }
+    .sidebar { height: calc(94vh - 26px); }
     .main { display: flex; height: calc(100vh - 30px); flex-direction: column; padding: 40px 50px 0 29px; }
     .page-header { min-height: 74px; }
     .header-drop { width: 90px; height: 90px; margin: -8px 0 -8px 16px; }

@@ -6,12 +6,28 @@
     <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/imagens/FaviconDelta.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Código de verificação</title>
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/css_login%20e%20cadastro/CodigoVerificacao.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/css_login%20e%20cadastro/CodigoVerificacao.css?v=2">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/css_login%20e%20cadastro/AuthMessage.css">
 </head>
 <body>
     <%@ include file="/WEB-INF/jspf/auth-error.jspf" %>
     <img src="<%= request.getContextPath() %>/imagens/codigo.svg" class="fundo-svg" alt="" aria-hidden="true">
+
+    <%
+        com.example.delta_back.auth.AuthChallenge activeChallenge =
+                (com.example.delta_back.auth.AuthChallenge) session.getAttribute("authChallenge");
+        String destinationEmail = activeChallenge == null ? "" : activeChallenge.getEmail();
+        String maskedEmail = destinationEmail;
+        int atIndex = destinationEmail.indexOf('@');
+        if (atIndex > 0) {
+            String localPart = destinationEmail.substring(0, atIndex);
+            String maskedLocal = localPart.length() <= 2
+                    ? localPart.charAt(0) + "***"
+                    : localPart.charAt(0) + "***" + localPart.substring(localPart.length() - 2);
+            maskedEmail = maskedLocal + destinationEmail.substring(atIndex);
+        }
+    %>
+    <a href="<%= request.getContextPath() %>/auth/edit-email" class="voltar-email" aria-label="Voltar e alterar o e-mail"></a>
 
     <form id="form-verificacao" action="<%= request.getContextPath() %>/auth/verify-code" method="post" hidden>
         <input type="hidden" name="code" id="codigo-completo">
@@ -21,7 +37,7 @@
 
     <main class="container">
         <h1 class="titulo">Insira o código abaixo:</h1>
-        <p class="informacoes">Confira o código que enviamos no seu e-mail</p>
+        <p class="informacoes">Código enviado para o e-mail: <strong><%= maskedEmail %></strong> <a class="alterar-email" href="<%= request.getContextPath() %>/auth/edit-email">Alterar e-mail</a></p>
 
         <div class="grupo-inputs" role="group" aria-label="Código de verificação">
             <input form="form-verificacao" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="1" class="codigo-input" aria-label="Primeiro dígito">
@@ -31,8 +47,8 @@
             <input form="form-verificacao" type="text" inputmode="numeric" maxlength="1" class="codigo-input" aria-label="Quinto dígito">
             <input form="form-verificacao" type="text" inputmode="numeric" maxlength="1" class="codigo-input" aria-label="Sexto dígito">
         </div>
-        <a href="#" class="reenviar-codigo" id="reenviarCodigo">Reenviar código</a>
         <button type="submit" form="form-verificacao" class="confirmar">Confirmar</button>
+        <p class="reenviar">Não recebeu o e-mail? <a href="#" class="reenviar-codigo" id="reenviarCodigo">Reenviar</a></p>
     </main>
 
 

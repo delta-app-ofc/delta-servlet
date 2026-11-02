@@ -12,14 +12,10 @@ public final class InputValidator {
             Pattern.compile("^(?=.{2,100}$)\\p{Lu}[\\p{L}]*(?:[ '\\-][\\p{L}]+)*$");
 
     private static final Pattern EMAIL =
-            Pattern.compile(
-                    "^[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+@" +
-                            "[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?" +
-                            "(?:\\.[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?)+$"
-            );
+            Pattern.compile("^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\\.[A-Za-z]+$");
 
     private static final Pattern PHONE =
-            Pattern.compile("^\\+?[0-9]{10,15}$");
+            Pattern.compile("^(?:[0-9]{10,15}|\\+[0-9]{10,14})$");
 
     private static final Pattern PASSWORD =
             Pattern.compile(
@@ -50,7 +46,7 @@ public final class InputValidator {
 
     public static boolean isValidEmail(String value) {
         return value != null
-                && value.trim().length() <= 254
+                && value.trim().length() <= 100
                 && EMAIL.matcher(value.trim()).matches();
     }
 

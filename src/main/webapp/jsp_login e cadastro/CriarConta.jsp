@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/imagens/FaviconDelta.png">
@@ -25,19 +25,15 @@
 
     <div class="crie-sua-conta">Crie sua conta</div>
 
-    <div class="botoes">
-        <a href="<%= request.getContextPath() %>/cadastro?tipo=usuario"><button type="button" class="usuario">Usuário</button></a>
-        <a href="<%= request.getContextPath() %>/cadastro?tipo=admin"><button type="button" class="adm1">Administrador</button></a>
-    </div>
-
     <form id="form-cadastro" action="<%= request.getContextPath() %>/auth/register" method="post">
-        <div class="tituloNome">Nome completo</div>
+        <input type="hidden" name="tipo" value="usuario">
+        <label for="nome" class="tituloNome">Nome completo</label>
         <input type="text" id="nome" name="name" placeholder="Digite seu nome" autocomplete="name" required minlength="2" maxlength="100">
 
-        <div class="tituloEmail">E-mail</div>
-        <input type="email" id="email" name="email" placeholder="Digite seu e-mail" autocomplete="email" required maxlength="254">
+        <label for="email" class="tituloEmail">Email</label>
+        <input type="email" id="email" name="email" placeholder="Digite seu e-mail" autocomplete="email" required maxlength="100">
 
-        <div class="tituloSenha">Senha</div>
+        <label for="senha" class="tituloSenha">Senha</label>
         <div class="campo-senha">
             <input type="password" id="senha" name="password" placeholder="Digite sua senha" autocomplete="new-password" required minlength="8" maxlength="72">
             <button type="button" id="botaoOlho" aria-label="Alternar visibilidade da senha">
@@ -56,7 +52,7 @@
     <p class="login">Já tem uma conta? Faça <a href="<%= request.getContextPath() %>/login"><u><strong>login</strong></u></a></p>
 
     <script>window.deltaContextPath = '<%= request.getContextPath() %>';</script>
-    <script src="<%= request.getContextPath() %>/js/input-validation.js"></script>
+    <script src="<%= request.getContextPath() %>/js/input-validation.js?v=2"></script>
     <script src="<%= request.getContextPath() %>/js/script-criar-conta.js"></script>
 </body>
 </html>

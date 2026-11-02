@@ -18,11 +18,11 @@
         <p class="informacoes">Digite o e-mail cadastrado para receber as instruções de recuperação de senha.</p>
 
         <form id="forgot-password-form" action="<%= request.getContextPath() %>/auth/forgot-password" method="post">
-            <input type="email" id="email" name="email" placeholder="E-mail" autocomplete="email" required maxlength="254" aria-label="E-mail cadastrado">
+            <input type="email" id="email" name="email" placeholder="E-mail" autocomplete="email" required maxlength="100" aria-label="E-mail cadastrado">
             <button type="submit" class="enviar-codigo">Enviar código</button>
         </form>
     </main>
-    <script src="<%= request.getContextPath() %>/js/input-validation.js"></script>
+    <script src="<%= request.getContextPath() %>/js/input-validation.js?v=2"></script>
     <script>
         (() => {
             const form = document.getElementById('forgot-password-form');
