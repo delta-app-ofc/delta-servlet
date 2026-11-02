@@ -6,7 +6,7 @@ Backend do **Projeto Delta**, um sistema inteligente de monitoramento e gestão 
 
 ## 📖 Sobre o projeto
 
-O Delta é um sistema de monitoramento e gestão do consumo de água, voltado principalmente para ambientes residenciais. Ele permite que os usuários acompanhem seu consumo, identifiquem desperdícios e tomem decisões mais conscientes.
+O Delta é um sistema de monitoramento e gestão do consumo de água, voltado principalmente para ambientes residenciais e comerciais. Ele permite que os usuários acompanhem seu consumo, identifiquem desperdícios e tomem decisões mais conscientes.
 
 A solução usa **IoT**, com sensores associados a hidrômetros para coletar dados, e uma plataforma digital que os organiza e apresenta. Entre as funcionalidades desenvolvidas estão: cadastro e gerenciamento de usuários e instalações, consumo diário e mensal, histórico de utilização, estimativa de custos e relatórios em PDF. O projeto também contempla detecção de vazamentos, alertas inteligentes e análise de dados, com diferentes níveis de implementação e integração.
 
