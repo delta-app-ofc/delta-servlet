@@ -11,7 +11,7 @@ O Delta é um sistema de monitoramento e gestão do consumo de água, voltado pr
 A solução usa **IoT**, com sensores associados a hidrômetros para coletar dados, e uma plataforma digital que os organiza e apresenta. Entre as funcionalidades desenvolvidas estão: cadastro e gerenciamento de usuários e instalações, consumo diário e mensal, histórico de utilização, estimativa de custos e relatórios em PDF. O projeto também contempla detecção de vazamentos, alertas inteligentes e análise de dados, com diferentes níveis de implementação e integração.
 
 - **Público-alvo:** moradores e responsáveis pela administração de imóveis, além de administradores da plataforma. O projeto também busca atender comércios e indústrias.
-- ** ODS 12 (Consumo e Produção Responsáveis):** incentiva o uso eficiente da água, reduz desperdícios e oferece informações para hábitos de consumo mais sustentáveis.
+- ** ODS 12 ** (Consumo e Produção Responsáveis):** incentiva o uso eficiente da água, reduz desperdícios e oferece informações para hábitos de consumo mais sustentáveis.
 
 ## O que há neste repositório
 
