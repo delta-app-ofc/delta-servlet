@@ -1,49 +1,42 @@
+// Start fresh visits with both consent options unchecked; preserve state on browser Back.
+window.addEventListener('pageshow', (event) => {
+    if (event.persisted) return;
+    document.querySelectorAll('#lembrar-mim, #aceita-termos').forEach((checkbox) => {
+        checkbox.checked = false;
+    });
+});
+
 document.addEventListener('DOMContentLoaded', () => {
-    const button = document.getElementById('botaoOlho');
-    const password = document.getElementById('senha');
-    const eye = document.getElementById('iconeOlho');
-    const passwordMessage = document.getElementById('mensagemSenha');
-    const form = document.getElementById('form-cadastro');
-    const name = document.getElementById('nome');
-    const email = document.getElementById('email');
-    const contextPath = window.deltaContextPath || '';
-    const validation = window.deltaInputValidation;
+    // Set up the password visibility control and live strength feedback.
+    const botaoOlho = document.getElementById('botaoOlho');
+    const inputSenha = document.getElementById('senha');
+    const iconeOlho = document.getElementById('iconeOlho');
 
-    button.addEventListener('click', () => {
-        const show = password.type === 'password';
-        password.type = show ? 'text' : 'password';
-        eye.src = contextPath + (show ? '/imagens/olho-aberto.svg' : '/imagens/olho-fechado.svg');
-        eye.alt = show ? 'Ocultar senha' : 'Mostrar senha';
-        button.setAttribute('aria-pressed', String(show));
+    botaoOlho?.addEventListener('click', () => {
+        const mostrar = inputSenha.type === 'password';
+        inputSenha.type = mostrar ? 'text' : 'password';
+        iconeOlho.src = mostrar ? '../assets/img/olho-aberto.svg' : '../assets/img/olho-fechado.svg';
+        iconeOlho.alt = mostrar ? 'Ocultar senha' : 'Mostrar senha';
     });
 
-    [name, email, password].forEach(input => {
-        input.addEventListener('input', () => input.setCustomValidity(''));
-    });
+    if (!inputSenha) return;
 
-    password.addEventListener('input', () => {
-        if (!password.value) {
-            passwordMessage.textContent = '';
-            return;
-        }
-        const valid = validation.isValidPassword(password.value);
-        passwordMessage.textContent = valid
-            ? 'Senha válida!'
-            : 'Use de 8 a 72 caracteres, com maiúscula, minúscula, número e símbolo, sem espaços.';
-        passwordMessage.style.color = valid ? 'green' : 'red';
-    });
+    const regrasSenha = {
+        tamanho: (valor) => valor.length >= 8,
+        letras: (valor) => /[a-z]/.test(valor) && /[A-Z]/.test(valor),
+        'numero-simbolo': (valor) => /\d/.test(valor) && /[^A-Za-z\d]/.test(valor)
+    };
 
-    form.addEventListener('submit', event => {
-        name.setCustomValidity(validation.isValidName(name.value)
-            ? ''
-            : 'Informe um nome de 2 a 100 letras, começando com maiúscula.');
-        email.setCustomValidity(validation.isValidEmail(email.value)
-            ? ''
-            : 'Informe um e-mail válido.');
-        password.setCustomValidity(validation.isValidPassword(password.value)
-            ? ''
-            : 'A senha precisa ter de 8 a 72 caracteres, maiúscula, minúscula, número e símbolo, sem espaços.');
+    function atualizarRegrasSenha() {
+        document.querySelectorAll('.regras-senha [data-regra]').forEach((item) => {
+            const regra = regrasSenha[item.dataset.regra];
+            const atendida = Boolean(inputSenha.value && regra && regra(inputSenha.value));
+            item.classList.toggle('atendido', atendida);
+            item.setAttribute('aria-checked', String(atendida));
+        });
+    }
 
-        if (!form.reportValidity()) event.preventDefault();
-    });
+    inputSenha.addEventListener('input', atualizarRegrasSenha);
+    atualizarRegrasSenha();
+
 });
