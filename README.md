@@ -28,7 +28,7 @@ Backend em **Java com Servlets Jakarta** que faz o CRUD das principais entidades
 
 **Estrutura:** `src/main/java/com/example/delta_back` contém `conexao`, `model`, `dao`, `crud` e `servlet`; `src/main/webapp` contém o `index.jsp` (página inicial com os links dos cadastros) e uma página `.jsp` por entidade.
 
-## 🛠️ Tecnologias
+## Tecnologias
 
 Java 21 · Jakarta Servlet 6.1 e JSP · Apache Tomcat 11 · Maven (Wrapper incluso) · PostgreSQL (JDBC `42.7.13`) · dotenv-java · JUnit 5
 
