@@ -1,19 +1,19 @@
-# 💧 Delta — Backend (Servlet)
+# Delta — Backend (Servlet)
 
 Backend do **Projeto Delta**, um sistema inteligente de monitoramento e gestão do consumo de água.
 
 > Este repositório foi desenvolvido pela **equipe de backend do primeiro ano**, com **orientações teóricas dos membros da segunda série** do **Instituto J&F**.
 
-## 📖 Sobre o projeto
+## Sobre o projeto
 
 O Delta é um sistema de monitoramento e gestão do consumo de água, voltado principalmente para ambientes residenciais e comerciais. Ele permite que os usuários acompanhem seu consumo, identifiquem desperdícios e tomem decisões mais conscientes.
 
 A solução usa **IoT**, com sensores associados a hidrômetros para coletar dados, e uma plataforma digital que os organiza e apresenta. Entre as funcionalidades desenvolvidas estão: cadastro e gerenciamento de usuários e instalações, consumo diário e mensal, histórico de utilização, estimativa de custos e relatórios em PDF. O projeto também contempla detecção de vazamentos, alertas inteligentes e análise de dados, com diferentes níveis de implementação e integração.
 
 - **Público-alvo:** moradores e responsáveis pela administração de imóveis, além de administradores da plataforma. O projeto também busca atender comércios e indústrias.
-- **🌱 ODS 12 (Consumo e Produção Responsáveis):** incentiva o uso eficiente da água, reduz desperdícios e oferece informações para hábitos de consumo mais sustentáveis.
+- ** ODS 12 (Consumo e Produção Responsáveis):** incentiva o uso eficiente da água, reduz desperdícios e oferece informações para hábitos de consumo mais sustentáveis.
 
-## 🧩 O que há neste repositório
+## O que há neste repositório
 
 Backend em **Java com Servlets Jakarta** que faz o CRUD das principais entidades, conectado a um banco **PostgreSQL**. Cada rota responde a `GET` (lista e exibe a página JSP), `POST` (cadastra), `PUT` (atualiza) e `DELETE` (remove por `id`).
 
@@ -32,7 +32,7 @@ Backend em **Java com Servlets Jakarta** que faz o CRUD das principais entidades
 
 Java 21 · Jakarta Servlet 6.1 e JSP · Apache Tomcat 11 · Maven (Wrapper incluso) · PostgreSQL (JDBC `42.7.13`) · dotenv-java · JUnit 5
 
-## 🚀 Como executar
+## Como executar
 
 **Pré-requisitos:** JDK 21, Apache Tomcat 11, PostgreSQL e, opcionalmente, IntelliJ IDEA com o plugin SmartTomcat (usado pela equipe).
 
@@ -56,11 +56,11 @@ Java 21 · Jakarta Servlet 6.1 e JSP · Apache Tomcat 11 · Maven (Wrapper inclu
 
    Copie `target/Delta_Back-1.0-SNAPSHOT.war` para a pasta `webapps` do Tomcat 11, inicie o servidor e acesse `http://localhost:8080/<nome-do-war>/`.
 
-## 🔗 Repositórios relacionados
+## Repositórios relacionados
 
 - [delta-database-primeiroano](https://github.com/delta-app-ofc/delta-database-primeiroano) — banco de dados (primeira série)
 - [delta-landing-page](https://github.com/delta-app-ofc/delta-landing-page) — landing page
 
-## 📄 Licença
+## Licença
 
 Distribuído sob a licença **MIT**. Veja o arquivo [LICENSE](LICENSE).
