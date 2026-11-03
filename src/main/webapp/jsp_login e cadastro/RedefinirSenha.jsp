@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recupere sua Senha</title>
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/css_login%20e%20cadastro/RecuperarSenha.css?v=4">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/css_login%20e%20cadastro/RecuperarSenha.css?v=6">
     <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/imagens/FaviconDelta.png">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/css_login%20e%20cadastro/ResponsiveCore.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/css_login%20e%20cadastro/AuthMessage.css">
@@ -25,6 +25,7 @@
 
     <%-- Bloco da página: formulário e envio de dados. --%>
     <form id="form-redefinir-senha" class="form-recuperar" action="<%= request.getContextPath() %>/auth/reset-password" method="post">
+        <p class="etapa-recuperacao">Etapa 3 de 3</p>
         <h1 class="recuperar-titulo">Recupere<br>sua senha</h1>
 
         <label for="senha-nova" class="tituloSenhaNova">Senha nova</label>
