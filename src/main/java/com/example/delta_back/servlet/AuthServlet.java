@@ -467,10 +467,10 @@ public class AuthServlet extends HttpServlet {
     private void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession(false);
         if (session != null) session.invalidate();
-        String destino = "landing".equals(request.getParameter("return"))
-                ? "/Landing.jsp"
-                : "/login";
-        response.sendRedirect(request.getContextPath() + destino);
+        response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0");
+        response.setHeader("Pragma", "no-cache");
+        response.setDateHeader("Expires", 0);
+        response.sendRedirect(request.getContextPath() + "/Landing.jsp");
     }
 
     // Metodo: challenge; executa a operacao challenge neste componente.
