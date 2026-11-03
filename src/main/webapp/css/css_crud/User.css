@@ -4,6 +4,7 @@
     box-sizing: border-box;
 }
 
+/* Estilos do grupo: define a apresentação do seletor :root. */
 :root {
     --azul: #282e68;
     --azul-card: #30389b;
@@ -13,6 +14,7 @@
     --fundo-icone: #eef1fb;
 }
 
+/* Estilos do grupo: define a apresentação do seletor body. */
 body {
     min-height: 100vh;
     background: #ffffff;
@@ -25,6 +27,7 @@ body {
    SIDEBAR
 ================================ */
 
+/* Estilos do grupo: define a apresentação do seletor .sidebar. */
 .sidebar {
     position: fixed;
     left: 20px;
@@ -45,6 +48,7 @@ body {
     color: #ffffff;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .logo-area. */
 .logo-area {
     position: relative;
 
@@ -55,6 +59,7 @@ body {
     justify-content: center;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .logo-area::after. */
 .logo-area::after {
     content: "";
 
@@ -71,6 +76,7 @@ body {
     background: rgba(255, 255, 255, 0.25);
 }
 
+/* Estilos do grupo: define a apresentação do seletor .logo. */
 .logo {
     color: #ffffff;
 
@@ -81,6 +87,7 @@ body {
     letter-spacing: -2px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .logo span. */
 .logo span {
     display: inline-block;
 
@@ -93,6 +100,7 @@ body {
     transform: rotate(12deg);
 }
 
+/* Estilos do grupo: define a apresentação do seletor #logo. */
 #logo {
     width: 100px;
     height: auto;
@@ -104,6 +112,7 @@ body {
     margin-left: 5px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .menu. */
 .menu {
     display: flex;
     flex-direction: column;
@@ -113,6 +122,7 @@ body {
     margin-top: 19px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .menu-item. */
 .menu-item {
     height: 36px;
 
@@ -134,18 +144,22 @@ body {
     transition: 0.2s ease;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .menu-item.active. */
 .menu-item.active {
     background: var(--azul-card);
 }
 
+/* Estilos do grupo: define a apresentação do seletor .menu-item:hover. */
 .menu-item:hover {
     background: rgba(48, 56, 155, 0.75);
 }
 
+/* Estilos do grupo: define a apresentação do seletor .sidebar-bottom. */
 .sidebar-bottom {
     margin-top: auto;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .account. */
 .account {
     display: flex;
     align-items: center;
@@ -158,6 +172,7 @@ body {
     font-weight: 500;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .avatar. */
 .avatar {
     width: 30px;
     height: 30px;
@@ -172,6 +187,7 @@ body {
     color: #8b94a6;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .avatar svg. */
 .avatar svg {
     width: 13px;
     height: 13px;
@@ -179,6 +195,7 @@ body {
     stroke-width: 2.7;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .logout. */
 .logout {
     width: 100%;
     height: 26px;
@@ -201,6 +218,7 @@ body {
     text-decoration: none;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .logout svg. */
 .logout svg {
     width: 14px;
     height: 14px;
@@ -213,6 +231,7 @@ body {
    CONTEÚDO PRINCIPAL
 ================================ */
 
+/* Estilos do grupo: define a apresentação do seletor .main. */
 .main {
     width: calc(100% - 240px);
 
@@ -221,6 +240,7 @@ body {
     padding: 55px 40px 30px 55px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .crud-page. */
 .crud-page {
     width: 100%;
 }
@@ -230,6 +250,7 @@ body {
    CABEÇALHO DA TABELA
 ================================ */
 
+/* Estilos do grupo: define a apresentação do seletor .crud-header. */
 .crud-header {
     width: 100%;
 
@@ -240,6 +261,7 @@ body {
     justify-content: space-between;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .crud-title h1. */
 .crud-title h1 {
     color: #050505;
 
@@ -250,6 +272,7 @@ body {
     letter-spacing: -0.8px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .crud-title p. */
 .crud-title p {
     margin-top: 3px;
 
@@ -266,6 +289,7 @@ body {
    TOTAL DE REGISTROS
 ================================ */
 
+/* Estilos do grupo: define a apresentação do seletor .crud-total. */
 .crud-total {
     display: flex;
     align-items: center;
@@ -273,6 +297,7 @@ body {
     margin-top: 0;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .crud-total span. */
 .crud-total span {
     color: #202124;
     font-size: 12px;
@@ -280,6 +305,7 @@ body {
     white-space: nowrap;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .crud-total strong. */
 .crud-total strong {
     width: 59px;
     height: 28px;
@@ -298,6 +324,7 @@ body {
    BARRA DE FERRAMENTAS
 ================================ */
 
+/* Estilos do grupo: define a apresentação do seletor .crud-toolbar. */
 .crud-toolbar {
     width: 100%;
 
@@ -308,6 +335,7 @@ body {
     justify-content: space-between;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .crud-search-area. */
 .crud-search-area {
     display: flex;
     align-items: center;
@@ -317,12 +345,14 @@ body {
     flex: 1;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .crud-search. */
 .crud-search {
     position: relative;
 
     width: 253px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .crud-search input. */
 .crud-search input {
     width: 253px;
     height: 40px;
@@ -343,14 +373,17 @@ body {
     font-weight: 400;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .crud-search input::placeholder. */
 .crud-search input::placeholder {
     color: #a1a1a1;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .crud-search input:focus. */
 .crud-search input:focus {
     border-color: #252d70;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .crud-search svg. */
 .crud-search svg {
     position: absolute;
 
@@ -370,6 +403,7 @@ body {
    FILTRO
 ================================ */
 
+/* Estilos do grupo: define a apresentação do seletor .crud-filter. */
 .crud-filter {
     width: 25px;
     height: 40px;
@@ -388,6 +422,7 @@ body {
     cursor: pointer;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .crud-filter svg. */
 .crud-filter svg {
     width: 23px;
     height: 23px;
@@ -395,6 +430,7 @@ body {
     stroke-width: 1.8;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .crud-filter:hover. */
 .crud-filter:hover {
     color: #252d70;
 }
@@ -404,6 +440,7 @@ body {
    ADICIONAR
 ================================ */
 
+/* Estilos do grupo: define a apresentação do seletor .crud-add. */
 .crud-add {
     width: auto;
     min-width: 176px;
@@ -423,11 +460,13 @@ body {
     cursor: pointer;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .crud-add:hover. */
 .crud-add:hover {
     background: #252d70;
     color: #ffffff;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .crud-add svg. */
 .crud-add svg {
     width: 20px;
     height: 20px;
@@ -438,6 +477,7 @@ body {
    TABELA
 ================================ */
 
+/* Estilos do grupo: define a apresentação do seletor .crud-table-wrap. */
 .crud-table-wrap {
     width: 100%;
 
@@ -446,6 +486,7 @@ body {
     overflow-x: auto;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .crud-table. */
 .crud-table {
     width: 100%;
     min-width: 1050px;
@@ -459,10 +500,12 @@ body {
 
 /* Cabeçalho */
 
+/* Estilos do grupo: define a apresentação do seletor .crud-table thead tr. */
 .crud-table thead tr {
     height: 43px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .crud-table thead th. */
 .crud-table thead th {
     height: 43px;
     padding: 0 6px;
@@ -476,11 +519,13 @@ body {
     white-space: nowrap;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .crud-table thead th:first-child. */
 .crud-table thead th:first-child {
     border-left: 1px solid #30389b;
     border-radius: 22px 0 0 22px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .crud-table thead th:last-child. */
 .crud-table thead th:last-child {
     border-right: 1px solid #30389b;
     border-radius: 0 22px 22px 0;
@@ -489,42 +534,52 @@ body {
 
 /* Larguras */
 
+/* Estilos do grupo: define a apresentação do seletor .crud-table th:nth-child(1). */
 .crud-table th:nth-child(1) {
     width: 100px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .crud-table th:nth-child(2). */
 .crud-table th:nth-child(2) {
     width: 150px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .crud-table th:nth-child(3). */
 .crud-table th:nth-child(3) {
     width: 150px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .crud-table th:nth-child(4). */
 .crud-table th:nth-child(4) {
     width: 100px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .crud-table th:nth-child(5). */
 .crud-table th:nth-child(5) {
     width: 100px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .crud-table th:nth-child(6). */
 .crud-table th:nth-child(6) {
     width: 100px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .crud-table th:nth-child(7). */
 .crud-table th:nth-child(7) {
     width: 100px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .crud-table th:nth-child(8). */
 .crud-table th:nth-child(8) {
     width: 100px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .crud-table th:nth-child(9). */
 .crud-table th:nth-child(9) {
     width: 100px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .crud-table th:nth-child(10). */
 .crud-table th:nth-child(10) {
     width: 100px;
 }
@@ -532,10 +587,12 @@ body {
 
 /* Linhas */
 
+/* Estilos do grupo: define a apresentação do seletor .crud-table tbody tr. */
 .crud-table tbody tr {
     height: 52px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .crud-table tbody td. */
 .crud-table tbody td {
     height: 52px;
 
@@ -556,15 +613,18 @@ body {
     text-overflow: ellipsis;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .crud-table tbody tr:nth-child(even) td:not(.crud-actions-cell):not(:last-child). */
 .crud-table tbody tr:nth-child(even) td:not(.crud-actions-cell):not(:last-child) {
     background: #28308DA8;
 }
 
 
+/* Estilos do grupo: define a apresentação do seletor .crud-table tbody td:first-child. */
 .crud-table tbody td:first-child {
     border-radius: 14px 0 0 14px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .crud-table tbody td:nth-child(10). */
 .crud-table tbody td:nth-child(10) {
     border-radius: 0 14px 14px 0;
 }
@@ -575,6 +635,7 @@ body {
 ================================ */
 
 .crud-table tbody td.crud-actions-cell,
+/* Estilos do grupo: define a apresentação do seletor .crud-table tbody td:last-child. */
 .crud-table tbody td:last-child {
     width: 80px;
 
@@ -587,6 +648,7 @@ body {
     text-align: center !important;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .crud-action. */
 .crud-action {
     width: 28px;
     height: 28px;
@@ -609,10 +671,12 @@ body {
     transition: 0.2s ease;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .crud-action:hover. */
 .crud-action:hover {
     background: #eef0fa;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .crud-action svg. */
 .crud-action svg {
     width: 14px;
     height: 14px;
@@ -620,11 +684,13 @@ body {
     stroke-width: 2;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .crud-action.delete. */
 .crud-action.delete {
     color: #252d70;
     border-color: #252d70;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .crud-empty. */
 .crud-empty {
     height: 80px !important;
 
@@ -642,6 +708,7 @@ body {
    TELA DE ADICIONAR / EDITAR USUÁRIO
 ===================================================== */
 
+/* Estilos do grupo: define a apresentação do seletor .crud-form-page. */
 .crud-form-page {
     width: 100%;
 }
@@ -649,6 +716,7 @@ body {
 
 /* Cabeçalho do formulário */
 
+/* Estilos do grupo: define a apresentação do seletor .crud-form-header. */
 .crud-form-header {
     width: 100%;
 
@@ -659,6 +727,7 @@ body {
     justify-content: space-between;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .crud-form-header h1. */
 .crud-form-header h1 {
     margin: 0;
 
@@ -674,6 +743,7 @@ body {
     letter-spacing: -0.8px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .crud-form-header p. */
 .crud-form-header p {
     margin-top: 5px;
 
@@ -690,6 +760,7 @@ body {
 
 /* Card do formulário */
 
+/* Estilos do grupo: define a apresentação do seletor .crud-form-card. */
 .crud-form-card {
     width: 100%;
 
@@ -704,6 +775,7 @@ body {
 
 /* Título dentro do card */
 
+/* Estilos do grupo: define a apresentação do seletor .crud-form-card .form-title. */
 .crud-form-card .form-title {
     margin-bottom: 28px;
 
@@ -718,6 +790,7 @@ body {
 
 /* Grid */
 
+/* Estilos do grupo: define a apresentação do seletor .crud-form-card .form-grid. */
 .crud-form-card .form-grid {
     display: grid;
 
@@ -732,6 +805,7 @@ body {
 
 /* Campo */
 
+/* Estilos do grupo: define a apresentação do seletor .crud-form-card .crud-field. */
 .crud-form-card .crud-field {
     display: flex;
     flex-direction: column;
@@ -739,6 +813,7 @@ body {
     gap: 7px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .crud-form-card .crud-field label. */
 .crud-form-card .crud-field label {
     margin: 0;
 
@@ -754,6 +829,7 @@ body {
 /* Inputs */
 
 .crud-form-card .crud-field input,
+/* Estilos do grupo: define a apresentação do seletor .crud-form-card .crud-field select. */
 .crud-form-card .crud-field select {
     width: 100%;
     height: 44px;
@@ -778,21 +854,25 @@ body {
 }
 
 .crud-form-card .crud-field input:focus,
+/* Estilos do grupo: define a apresentação do seletor .crud-form-card .crud-field select:focus. */
 .crud-form-card .crud-field select:focus {
     border-color: #30389b;
 
     box-shadow: 0 0 0 2px rgba(48, 56, 155, 0.08);
 }
 
+/* Estilos do grupo: define a apresentação do seletor .password-toggle-field. */
 .password-toggle-field {
     position: relative;
     width: 100%;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .crud-form-card .password-toggle-field input. */
 .crud-form-card .password-toggle-field input {
     padding-right: 46px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .password-toggle-field button. */
 .password-toggle-field button {
     position: absolute;
     top: 50%;
@@ -809,6 +889,7 @@ body {
     transform: translateY(-50%);
 }
 
+/* Estilos do grupo: define a apresentação do seletor .password-toggle-field button img. */
 .password-toggle-field button img {
     display: block;
     width: 20px;
@@ -819,6 +900,7 @@ body {
 
 /* Data */
 
+/* Estilos do grupo: define a apresentação do seletor .crud-form-card .crud-field input[type="date"]. */
 .crud-form-card .crud-field input[type="date"] {
     cursor: pointer;
 }
@@ -826,6 +908,7 @@ body {
 
 /* Botões do formulário */
 
+/* Estilos do grupo: define a apresentação do seletor .crud-form-actions. */
 .crud-form-actions {
     display: flex;
 
@@ -838,6 +921,7 @@ body {
 }
 
 .crud-cancel,
+/* Estilos do grupo: define a apresentação do seletor .crud-save. */
 .crud-save {
     height: 44px;
 
@@ -858,6 +942,7 @@ body {
 
 /* Cancelar */
 
+/* Estilos do grupo: define a apresentação do seletor .crud-cancel. */
 .crud-cancel {
     border: 1.5px solid #252d70;
 
@@ -865,6 +950,7 @@ body {
     color: #252d70;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .crud-cancel:hover. */
 .crud-cancel:hover {
     background: #f4f5f9;
 }
@@ -872,6 +958,7 @@ body {
 
 /* Salvar / Adicionar */
 
+/* Estilos do grupo: define a apresentação do seletor .crud-save. */
 .crud-save {
     border: 1.5px solid #30389b;
 
@@ -879,6 +966,7 @@ body {
     color: #ffffff;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .crud-save:hover. */
 .crud-save:hover {
     background: #252d70;
     border-color: #252d70;
@@ -896,6 +984,7 @@ body {
 */
 
 .crud-overlay,
+/* Estilos do grupo: define a apresentação do seletor .crud-modal. */
 .crud-modal {
     display: none !important;
 }
@@ -905,13 +994,16 @@ body {
    RESPONSIVIDADE
 ===================================================== */
 
+/* Estilos do grupo: define a apresentação do bloco responsivo @media (max-width: 1100px). */
 @media (max-width: 1100px) {
 
+    /* Estilos do grupo: define a apresentação do seletor .sidebar. */
     .sidebar {
         left: 25px;
         width: 210px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .main. */
     .main {
         width: calc(100% - 250px);
 
@@ -924,8 +1016,10 @@ body {
 }
 
 
+/* Estilos do grupo: define a apresentação do bloco responsivo @media (max-width: 850px). */
 @media (max-width: 850px) {
 
+    /* Estilos do grupo: define a apresentação do seletor .sidebar. */
     .sidebar {
         position: relative;
 
@@ -939,6 +1033,7 @@ body {
         margin: 20px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .main. */
     .main {
         width: 100%;
 
@@ -947,20 +1042,24 @@ body {
         padding: 30px 20px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .crud-header. */
     .crud-header {
         flex-direction: column;
 
         gap: 15px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .crud-total. */
     .crud-total {
         margin-top: 0;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .crud-toolbar. */
     .crud-toolbar {
         flex-wrap: wrap;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .crud-search-area. */
     .crud-search-area {
         width: 100%;
 
@@ -970,12 +1069,14 @@ body {
 
     /* Formulário */
 
+    /* Estilos do grupo: define a apresentação do seletor .crud-form-card .form-grid. */
     .crud-form-card .form-grid {
         grid-template-columns: 1fr;
 
         column-gap: 0;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .crud-form-actions. */
     .crud-form-actions {
         margin-top: 40px;
     }
@@ -983,8 +1084,10 @@ body {
 }
 
 
+/* Estilos do grupo: define a apresentação do bloco responsivo @media (max-width: 650px). */
 @media (max-width: 650px) {
 
+    /* Estilos do grupo: define a apresentação do seletor .sidebar. */
     .sidebar {
         position: relative;
 
@@ -999,35 +1102,42 @@ body {
         border-radius: 30px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .sidebar-bottom. */
     .sidebar-bottom {
         margin-top: 30px;
     }
 
     .crud-title h1,
+    /* Estilos do grupo: define a apresentação do seletor .crud-form-header h1. */
     .crud-form-header h1 {
         font-size: 28px;
     }
 
     .crud-title p,
+    /* Estilos do grupo: define a apresentação do seletor .crud-form-header p. */
     .crud-form-header p {
         font-size: 14px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .crud-total strong. */
     .crud-total strong {
         width: 59px;
         height: 28px;
         font-size: 19px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .crud-add. */
     .crud-add {
         width: 100%;
         min-width: 0;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .crud-search. */
     .crud-search {
         width: calc(100% - 45px);
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .crud-search input. */
     .crud-search input {
         width: 100%;
     }
@@ -1035,10 +1145,12 @@ body {
 
     /* Formulário */
 
+    /* Estilos do grupo: define a apresentação do seletor .crud-form-card. */
     .crud-form-card {
         padding: 22px 18px 25px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .crud-form-actions. */
     .crud-form-actions {
         flex-direction: column;
 
@@ -1048,6 +1160,7 @@ body {
     }
 
     .crud-cancel,
+    /* Estilos do grupo: define a apresentação do seletor .crud-save. */
     .crud-save {
         width: 100%;
     }
@@ -1063,13 +1176,16 @@ body {
    RESPONSIVIDADE
 ===================================================== */
 
+/* Estilos do grupo: define a apresentação do bloco responsivo @media (max-width: 1100px). */
 @media (max-width: 1100px) {
 
+    /* Estilos do grupo: define a apresentação do seletor .sidebar. */
     .sidebar {
         left: 25px;
         width: 210px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .main. */
     .main {
         width: calc(100% - 250px);
 
@@ -1082,8 +1198,10 @@ body {
 }
 
 
+/* Estilos do grupo: define a apresentação do bloco responsivo @media (max-width: 850px). */
 @media (max-width: 850px) {
 
+    /* Estilos do grupo: define a apresentação do seletor .sidebar. */
     .sidebar {
         position: relative;
 
@@ -1097,6 +1215,7 @@ body {
         margin: 20px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .main. */
     .main {
         width: 100%;
 
@@ -1105,20 +1224,24 @@ body {
         padding: 30px 20px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .crud-header. */
     .crud-header {
         flex-direction: column;
 
         gap: 15px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .crud-total. */
     .crud-total {
         margin-top: 0;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .crud-toolbar. */
     .crud-toolbar {
         flex-wrap: wrap;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .crud-search-area. */
     .crud-search-area {
         width: 100%;
 
@@ -1128,12 +1251,14 @@ body {
 
     /* Formulário */
 
+    /* Estilos do grupo: define a apresentação do seletor .crud-form-card .form-grid. */
     .crud-form-card .form-grid {
         grid-template-columns: 1fr;
 
         column-gap: 0;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .crud-form-actions. */
     .crud-form-actions {
         margin-top: 40px;
     }
@@ -1141,8 +1266,10 @@ body {
 }
 
 
+/* Estilos do grupo: define a apresentação do bloco responsivo @media (max-width: 650px). */
 @media (max-width: 650px) {
 
+    /* Estilos do grupo: define a apresentação do seletor .sidebar. */
     .sidebar {
         position: relative;
 
@@ -1157,35 +1284,42 @@ body {
         border-radius: 30px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .sidebar-bottom. */
     .sidebar-bottom {
         margin-top: 30px;
     }
 
     .crud-title h1,
+    /* Estilos do grupo: define a apresentação do seletor .crud-form-header h1. */
     .crud-form-header h1 {
         font-size: 28px;
     }
 
     .crud-title p,
+    /* Estilos do grupo: define a apresentação do seletor .crud-form-header p. */
     .crud-form-header p {
         font-size: 14px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .crud-total strong. */
     .crud-total strong {
         width: 59px;
         height: 28px;
         font-size: 19px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .crud-add. */
     .crud-add {
         width: 100%;
         min-width: 0;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .crud-search. */
     .crud-search {
         width: calc(100% - 45px);
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .crud-search input. */
     .crud-search input {
         width: 100%;
     }
@@ -1193,10 +1327,12 @@ body {
 
     /* Formulário */
 
+    /* Estilos do grupo: define a apresentação do seletor .crud-form-card. */
     .crud-form-card {
         padding: 22px 18px 25px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .crud-form-actions. */
     .crud-form-actions {
         flex-direction: column;
 
@@ -1206,6 +1342,7 @@ body {
     }
 
     .crud-cancel,
+    /* Estilos do grupo: define a apresentação do seletor .crud-save. */
     .crud-save {
         width: 100%;
     }

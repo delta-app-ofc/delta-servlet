@@ -1,4 +1,6 @@
 ﻿document.addEventListener('DOMContentLoaded', () => {
+// Documentação do arquivo: controla as interações da página no navegador.
+// Evento do navegador: responde a DOMContentLoaded e atualiza o comportamento da página.
   const secao = document.querySelector('.card-section');
   const lista = document.getElementById('lista-card');
   const cards = document.querySelectorAll('.card');
@@ -21,6 +23,7 @@
   let contador = 1;
   let isAnimating = false;
 
+  // Função: posicionar; agrupa a lógica desta operação da interface.
   function posicionar(comAnimacao) {
     lista.style.transition = comAnimacao
         ? `transform ${DURACAO}ms ${EASING}`
@@ -28,12 +31,14 @@
     lista.style.transform = `translateX(-${contador * 100}%)`;
   }
 
+  // Função: marcar Ativo; agrupa a lógica desta operação da interface.
   function marcarAtivo() {
     todosCards.forEach((card, i) => {
       card.classList.toggle('ativo', i === contador);
     });
   }
 
+  // Função: ir; agrupa a lógica desta operação da interface.
   function ir() {
     isAnimating = true;
     posicionar(true);
@@ -42,6 +47,7 @@
 
   posicionar(false);
 
+  // Evento do navegador: responde a click e atualiza o comportamento da página.
   botaoAvancar.addEventListener('click', () => {
     if (isAnimating) return;
     if (contador >= totalCardsComClones - 1) return;
@@ -50,6 +56,7 @@
     ir();
   });
 
+  // Evento do navegador: responde a click e atualiza o comportamento da página.
   botaoVoltar.addEventListener('click', () => {
     if (isAnimating) return;
     if (contador <= 0) return;
@@ -113,6 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let atual = 0;
   let rodando = false;
 
+  // Função: desenhar; agrupa a lógica desta operação da interface.
   function desenhar() {
     cartas.forEach((carta, i) => {
       const bruto = limitar((atual - i * ATRASO) / (1 - ATRASO * 2));
@@ -125,6 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Função: loop; agrupa a lógica desta operação da interface.
   function loop() {
     atual += (alvo - atual) * 0.08;
 
@@ -138,6 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Função: ao Rolar; agrupa a lógica desta operação da interface.
   function aoRolar() {
     if (window.innerWidth <= 760) {
       atual = alvo = 1;
@@ -152,6 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Evento do navegador: responde a scroll e atualiza o comportamento da página.
   window.addEventListener('scroll', aoRolar, { passive: true });
   aoRolar();
   desenhar();
@@ -181,11 +192,13 @@ document.addEventListener('DOMContentLoaded', () => {
   let atual = 0;
   let rodando = false;
 
+  // Função: calcular Inicio; agrupa a lógica desta operação da interface.
   function calcularInicio() {
     const topoTitulo = gatilho.getBoundingClientRect().top + window.scrollY;
     inicioScroll = topoTitulo - window.innerHeight * ANTECEDENCIA;
   }
 
+  // Função: desenhar; agrupa a lógica desta operação da interface.
   function desenhar() {
     itens.forEach(({ el, dir, inicio }) => {
       const bruto = limitar((atual - inicio) / JANELA);
@@ -196,6 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Função: loop; agrupa a lógica desta operação da interface.
   function loop() {
     atual += (alvo - atual) * 0.1;
 
@@ -209,6 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Função: ao Rolar; agrupa a lógica desta operação da interface.
   function aoRolar() {
     alvo = limitar((window.scrollY - inicioScroll) / DISTANCIA);
     if (!rodando) {
@@ -218,7 +233,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   calcularInicio();
+  // Evento do navegador: responde a scroll e atualiza o comportamento da página.
   window.addEventListener('scroll', aoRolar, { passive: true });
+  // Evento do navegador: responde a resize e atualiza o comportamento da página.
   window.addEventListener('resize', () => { calcularInicio(); aoRolar(); });
   aoRolar();
   desenhar();
@@ -231,6 +248,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ? 4 * t * t * t
       : 1 - Math.pow(-2 * t + 2, 3) / 2;
 
+  // Função: animar Grupo; agrupa a lógica desta operação da interface.
   function animarGrupo({
                          gatilho,
                          itens,
@@ -250,11 +268,13 @@ document.addEventListener('DOMContentLoaded', () => {
     let atual = 0;
     let rodando = false;
 
+    // Função: calcular Inicio; agrupa a lógica desta operação da interface.
     function calcularInicio() {
       const topo = alvoGatilho.getBoundingClientRect().top + window.scrollY;
       inicioScroll = topo - window.innerHeight * antecedencia;
     }
 
+    // Função: desenhar; agrupa a lógica desta operação da interface.
     function desenhar() {
       elementos.forEach((el, i) => {
         const bruto = limitar((atual - i * atraso) / janela);
@@ -265,6 +285,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
+    // Função: loop; agrupa a lógica desta operação da interface.
     function loop() {
       atual += (alvo - atual) * 0.08;
 
@@ -278,6 +299,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
+    // Função: ao Rolar; agrupa a lógica desta operação da interface.
     function aoRolar() {
       alvo = limitar((window.scrollY - inicioScroll) / distancia);
       if (!rodando) {
@@ -287,7 +309,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     calcularInicio();
+    // Evento do navegador: responde a scroll e atualiza o comportamento da página.
     window.addEventListener('scroll', aoRolar, { passive: true });
+    // Evento do navegador: responde a resize e atualiza o comportamento da página.
     window.addEventListener('resize', () => { calcularInicio(); aoRolar(); });
     aoRolar();
     desenhar();
@@ -327,6 +351,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   abrirModalBtn?.addEventListener("click", abrirModal);
   modal?.addEventListener("click", (e) => e.stopPropagation());
+  // Evento do navegador: responde a keydown e atualiza o comportamento da página.
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && modal && !modal.classList.contains("hide")) fecharModal();
   });
@@ -341,6 +366,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const topicos = document.querySelectorAll('.topico');
   const secoes = document.querySelectorAll('.secao');
 
+  // Função: mover Indicador; agrupa a lógica desta operação da interface.
   function moverIndicador(elemento) {
     indicador.style.top = elemento.offsetTop + 'px';
     indicador.style.left = elemento.offsetLeft + 'px';
@@ -348,6 +374,7 @@ document.addEventListener('DOMContentLoaded', () => {
     indicador.style.width = elemento.offsetWidth + 'px';
   }
 
+  // Função: get Id Secao; agrupa a lógica desta operação da interface.
   function getIdSecao(topico) {
     return topico.dataset.secao.replace('subtitulo-', 'secao-');
   }
@@ -380,6 +407,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const botaoAbrir = document.getElementById('borda');
   const linkSairConta = document.getElementById('sair-da-conta');
 
+  // Função: toggle Modal Menor; agrupa a lógica desta operação da interface.
   function toggleModalMenor() {
     fadeMenor.classList.toggle('hide');
     modalMenor.classList.toggle('hide');
@@ -390,15 +418,19 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   if (botaoSair) {
+    // Evento do navegador: responde a click e atualiza o comportamento da página.
     botaoSair.addEventListener('click', () => window.DeltaDB?.logout());
+    // Evento do navegador: responde a click e atualiza o comportamento da página.
     botaoSair.addEventListener('click', toggleModalMenor);
   }
 
   if (botaoCloseMenor) {
+    // Evento do navegador: responde a click e atualiza o comportamento da página.
     botaoCloseMenor.addEventListener('click', toggleModalMenor);
   }
 
   if (botaoCancelar) {
+    // Evento do navegador: responde a click e atualiza o comportamento da página.
     botaoCancelar.addEventListener('click', toggleModalMenor);
   }
 
@@ -432,6 +464,7 @@ document.addEventListener('DOMContentLoaded', () => {
     letras: (valor) => /[a-z]/.test(valor) && /[A-Z]/.test(valor),
     'numero-simbolo': (valor) => /\d/.test(valor) && /[^A-Za-z\d]/.test(valor)
   };
+  // Função: atualizar Regras Senha Nova; agrupa a lógica desta operação da interface.
   function atualizarRegrasSenhaNova() {
     document.querySelectorAll('#form-seguranca .regras-senha [data-regra]').forEach((item) => {
       const regra = regrasSenhaNova[item.dataset.regra];
@@ -447,6 +480,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const mensagemPopupSalvo = document.getElementById('popup-salvo-mensagem');
   let timerPopupSalvo;
 
+  // Função: mostrar Popup Salvo; agrupa a lógica desta operação da interface.
   function mostrarPopupSalvo(mensagem = 'Informações salvas com sucesso!') {
     if (!popupSalvo) return;
     window.clearTimeout(timerPopupSalvo);
@@ -551,6 +585,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const botaoConfirmarExclusao = document.getElementById('botao-confirmar-exclusao');
   const fecharConfirmacaoExclusao = document.getElementById('fechar-confirmar-exclusao');
 
+  // Função: fechar Confirmacao De Exclusao; agrupa a lógica desta operação da interface.
   function fecharConfirmacaoDeExclusao() {
     fadeExcluirConta?.classList.add('hide');
     modalExcluirConta?.classList.add('hide');
@@ -595,6 +630,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const botaoDescartar = document.getElementById('botao-descartar');
   const botaoSalvarFechar = document.getElementById('botao-salvar-fechar');
 
+  // Função: guardar Estado; agrupa a lógica desta operação da interface.
   function guardarEstado() {
     camposModal.forEach((campo) => {
       estadoSalvo.set(campo, campo.type === 'checkbox' ? campo.checked : campo.value);
@@ -602,6 +638,7 @@ document.addEventListener('DOMContentLoaded', () => {
     alterado = false;
   }
 
+  // Função: restaurar Estado; agrupa a lógica desta operação da interface.
   function restaurarEstado() {
     camposModal.forEach((campo) => {
       const valor = estadoSalvo.get(campo);
@@ -614,11 +651,13 @@ document.addEventListener('DOMContentLoaded', () => {
   guardarEstado();
   formPerfil?.addEventListener('submit', guardarEstado);
 
+  // Função: toggle Modal Confirmar; agrupa a lógica desta operação da interface.
   function toggleModalConfirmar() {
     fadeConfirmar.classList.toggle('hide');
     modalConfirmar.classList.toggle('hide');
   }
 
+  // Função: tentar Fechar Modal; agrupa a lógica desta operação da interface.
   function tentarFecharModal() {
     if (alterado) {
       toggleModalConfirmar();
@@ -663,12 +702,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const menu = document.getElementById('menu-navegacao');
   if (!botaoMenu || !menu) return;
 
+  // Função: fechar Menu; agrupa a lógica desta operação da interface.
   function fecharMenu() {
     menu.classList.remove('aberto');
     botaoMenu.setAttribute('aria-expanded', 'false');
     botaoMenu.setAttribute('aria-label', 'Abrir menu de navegação');
   }
 
+  // Evento do navegador: responde a click e atualiza o comportamento da página.
   botaoMenu.addEventListener('click', () => {
     const aberto = botaoMenu.getAttribute('aria-expanded') !== 'true';
     botaoMenu.setAttribute('aria-expanded', String(aberto));
@@ -678,10 +719,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   menu.querySelectorAll('a').forEach((link) => link.addEventListener('click', fecharMenu));
 
+  // Evento do navegador: responde a click e atualiza o comportamento da página.
   document.addEventListener('click', (event) => {
     if (!menu.contains(event.target) && !botaoMenu.contains(event.target)) fecharMenu();
   });
 
+  // Evento do navegador: responde a keydown e atualiza o comportamento da página.
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') fecharMenu();
   });

@@ -1,3 +1,4 @@
+// Documentação do arquivo: declara os tipos e operações do componente desta pasta.
 package com.example.delta_back.servlet;
 
 import com.example.delta_back.conexao.ConexaoBD;
@@ -20,12 +21,14 @@ import java.time.format.DateTimeParseException;
 import java.util.List;
 
 @WebServlet("/device")
+// Documentação da classe DeviceServlet: reúne os dados e comportamentos deste tipo.
 public class DeviceServlet extends HttpServlet {
 
     private Connection connection;
     private DeviceCrud deviceCrud;
 
     @Override
+    // Metodo: init; executa a operacao init neste componente.
     public void init() throws ServletException {
         try {
             connection = ConexaoBD.conectar();
@@ -38,6 +41,7 @@ public class DeviceServlet extends HttpServlet {
     }
 
     @Override
+    // Metodo: do Get; processa uma requisicao HTTP GET e prepara a resposta.
     protected void doGet(
             HttpServletRequest request,
             HttpServletResponse response
@@ -59,6 +63,7 @@ public class DeviceServlet extends HttpServlet {
         }
     }
 
+    // Metodo: ler Inteiro Positivo; executa a operacao ler Inteiro Positivo neste componente.
     private int lerInteiroPositivo(
             HttpServletRequest request,
             String parametro,
@@ -84,6 +89,7 @@ public class DeviceServlet extends HttpServlet {
         }
     }
 
+    // Metodo: ler Device Id; executa a operacao ler Device Id neste componente.
     private String lerDeviceId(HttpServletRequest request) {
         String valor = request.getParameter("deviceId");
 
@@ -96,6 +102,7 @@ public class DeviceServlet extends HttpServlet {
         return valor.trim();
     }
 
+    // Metodo: ler Property Id; executa a operacao ler Property Id neste componente.
     private int lerPropertyId(HttpServletRequest request) {
         return lerInteiroPositivo(
                 request,
@@ -104,6 +111,7 @@ public class DeviceServlet extends HttpServlet {
         );
     }
 
+    // Metodo: ler Ativo; executa a operacao ler Ativo neste componente.
     private boolean lerAtivo(HttpServletRequest request) {
         String valor = request.getParameter("active");
 
@@ -120,6 +128,7 @@ public class DeviceServlet extends HttpServlet {
         );
     }
 
+    // Metodo: ler Data; executa a operacao ler Data neste componente.
     private LocalDate lerData(HttpServletRequest request) {
         String valor = request.getParameter("installationDate");
 
@@ -149,6 +158,7 @@ public class DeviceServlet extends HttpServlet {
         return data;
     }
 
+    // Metodo: validar Propriedade; executa a operacao validar Propriedade neste componente.
     private void validarPropriedade(int propertyId)
             throws SQLException {
 
@@ -169,6 +179,7 @@ public class DeviceServlet extends HttpServlet {
         }
     }
 
+    // Metodo: montar Device; executa a operacao montar Device neste componente.
     private Device montarDevice(
             HttpServletRequest request,
             int id
@@ -190,6 +201,7 @@ public class DeviceServlet extends HttpServlet {
         );
     }
 
+    // Metodo: ler Id; executa a operacao ler Id neste componente.
     private int lerId(HttpServletRequest request) {
         return lerInteiroPositivo(
                 request,
@@ -198,6 +210,7 @@ public class DeviceServlet extends HttpServlet {
         );
     }
 
+    // Metodo: enviar Erro; executa a operacao enviar Erro neste componente.
     private void enviarErro(
             HttpServletResponse response,
             int status,
@@ -215,6 +228,7 @@ public class DeviceServlet extends HttpServlet {
         response.getWriter().write(mensagem);
     }
 
+    // Metodo: encontrar SQLException; consulta os dados indicados pelos parametros recebidos.
     private SQLException encontrarSQLException(Throwable erro) {
         Throwable atual = erro;
 
@@ -229,6 +243,7 @@ public class DeviceServlet extends HttpServlet {
         return null;
     }
 
+    // Metodo: tratar Erro; executa a operacao tratar Erro neste componente.
     private void tratarErro(
             Exception erro,
             HttpServletResponse response
@@ -279,6 +294,7 @@ public class DeviceServlet extends HttpServlet {
     }
 
     @Override
+    // Metodo: do Post; processa os dados enviados por uma requisicao HTTP POST.
     protected void doPost(
             HttpServletRequest request,
             HttpServletResponse response
@@ -299,6 +315,7 @@ public class DeviceServlet extends HttpServlet {
     }
 
     @Override
+    // Metodo: do Put; executa a operacao do Put neste componente.
     protected void doPut(
             HttpServletRequest request,
             HttpServletResponse response
@@ -321,6 +338,7 @@ public class DeviceServlet extends HttpServlet {
     }
 
     @Override
+    // Metodo: do Delete; executa a operacao do Delete neste componente.
     protected void doDelete(
             HttpServletRequest request,
             HttpServletResponse response
@@ -339,6 +357,7 @@ public class DeviceServlet extends HttpServlet {
     }
 
     @Override
+    // Metodo: destroy; executa a operacao destroy neste componente.
     public void destroy() {
         try {
             if (connection != null && !connection.isClosed()) {

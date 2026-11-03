@@ -1,3 +1,4 @@
+// Documentação do arquivo: declara os tipos e operações do componente desta pasta.
 package com.example.delta_back.crud;
 
 import com.example.delta_back.dao.UserDAO;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.mindrot.jbcrypt.BCrypt;
 
+// Documentação da classe UserCrud: reúne os dados e comportamentos deste tipo.
 public class UserCrud implements UserDAO {
 
     private final Connection connection;
@@ -21,6 +23,7 @@ public class UserCrud implements UserDAO {
     }
 
     @Override
+    // Metodo: inserir; grava um novo registro com os dados recebidos.
     public void inserir(User user) {
 
         String sql = """
@@ -75,6 +78,7 @@ public class UserCrud implements UserDAO {
     }
 
     @Override
+    // Metodo: buscar Por Id; consulta os dados indicados pelos parametros recebidos.
     public User buscarPorId(int id) {
 
         String sql = """
@@ -108,6 +112,7 @@ public class UserCrud implements UserDAO {
     }
 
     @Override
+    // Metodo: listar Todos; retorna a colecao de registros deste recurso.
     public List<User> listarTodos() {
 
         String sql = """
@@ -147,6 +152,7 @@ public class UserCrud implements UserDAO {
     }
 
     @Override
+    // Metodo: atualizar; atualiza o registro ou atributo indicado com os dados recebidos.
     public void atualizar(User user) {
 
         String sql = """
@@ -214,6 +220,7 @@ public class UserCrud implements UserDAO {
     }
 
     @Override
+    // Metodo: atualizar Nome; atualiza o registro ou atributo indicado com os dados recebidos.
     public void atualizarNome(User user) {
 
         String sql = """
@@ -241,6 +248,7 @@ public class UserCrud implements UserDAO {
     }
 
     @Override
+    // Metodo: atualizar Email; atualiza o registro ou atributo indicado com os dados recebidos.
     public void atualizarEmail(User user) {
 
         String sql = """
@@ -268,6 +276,7 @@ public class UserCrud implements UserDAO {
     }
 
     @Override
+    // Metodo: atualizar Password; atualiza o registro ou atributo indicado com os dados recebidos.
     public void atualizarPassword(User user) {
 
         String sql = """
@@ -294,6 +303,7 @@ public class UserCrud implements UserDAO {
         }
     }
 
+    // Metodo: hash If Needed; verifica a condicao hIfNeeded.
     private String hashIfNeeded(String password) {
         if (password == null || password.isBlank()) {
             throw new IllegalArgumentException("A senha é obrigatória.");
@@ -303,6 +313,7 @@ public class UserCrud implements UserDAO {
         return BCrypt.hashpw(password, BCrypt.gensalt(12));
     }
 
+    // Metodo: email Em Uso; executa a operacao email Em Uso neste componente.
     public boolean emailEmUso(String email, int ignorarId) {
         String sql = "SELECT 1 FROM tb_user WHERE LOWER(email) = LOWER(?) AND id <> ? LIMIT 1";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
@@ -314,6 +325,7 @@ public class UserCrud implements UserDAO {
         }
     }
 
+    // Metodo: contar Contas Com Telefone; executa a operacao contar Contas Com Telefone neste componente.
     public int contarContasComTelefone(String telefone, int ignorarId) {
         String sql = """
                 SELECT COUNT(*)
@@ -333,6 +345,7 @@ public class UserCrud implements UserDAO {
         }
     }
 
+    // Metodo: buscar Por Email; consulta os dados indicados pelos parametros recebidos.
     public User buscarPorEmail(String email) {
         String sql = "SELECT * FROM tb_user WHERE LOWER(email) = LOWER(?) LIMIT 1";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
@@ -345,6 +358,7 @@ public class UserCrud implements UserDAO {
         }
     }
 
+    // Metodo: atualizar Senha Por Email; atualiza o registro ou atributo indicado com os dados recebidos.
     public void atualizarSenhaPorEmail(String email, String senha) {
         String sql = "UPDATE tb_user SET user_password = ? WHERE LOWER(email) = LOWER(?)";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
@@ -359,6 +373,7 @@ public class UserCrud implements UserDAO {
     }
 
     @Override
+    // Metodo: atualizar Phone; atualiza o registro ou atributo indicado com os dados recebidos.
     public void atualizarPhone(User user) {
 
         String sql = """
@@ -386,6 +401,7 @@ public class UserCrud implements UserDAO {
     }
 
     @Override
+    // Metodo: atualizar Birth Date; atualiza o registro ou atributo indicado com os dados recebidos.
     public void atualizarBirthDate(User user) {
 
         String sql = """
@@ -420,6 +436,7 @@ public class UserCrud implements UserDAO {
     }
 
     @Override
+    // Metodo: atualizar Is Active; atualiza o registro ou atributo indicado com os dados recebidos.
     public void atualizarIsActive(User user) {
 
         String sql = """
@@ -454,6 +471,7 @@ public class UserCrud implements UserDAO {
     }
 
     @Override
+    // Metodo: atualizar Is Admin; atualiza o registro ou atributo indicado com os dados recebidos.
     public void atualizarIsAdmin(User user) {
 
         String sql = """
@@ -488,6 +506,7 @@ public class UserCrud implements UserDAO {
     }
 
     @Override
+    // Metodo: atualizar Is Manager; atualiza o registro ou atributo indicado com os dados recebidos.
     public void atualizarIsManager(User user) {
 
         String sql = """
@@ -522,6 +541,7 @@ public class UserCrud implements UserDAO {
     }
 
     @Override
+    // Metodo: deletar; remove o registro indicado pelos parametros recebidos.
     public void deletar(int id) {
 
         String sql = """
@@ -547,6 +567,7 @@ public class UserCrud implements UserDAO {
     }
 
     @Override
+    // Metodo: deletar Por Email; remove o registro indicado pelos parametros recebidos.
     public void deletarPorEmail(String email) {
 
         String sql = """
@@ -572,6 +593,7 @@ public class UserCrud implements UserDAO {
     }
 
     @Override
+    // Metodo: deletar Por Celular; remove o registro indicado pelos parametros recebidos.
     public void deletarPorCelular(String phone) {
 
         String sql = """
@@ -597,6 +619,7 @@ public class UserCrud implements UserDAO {
     }
 
     @Override
+    // Metodo: exibir Dados; executa a operacao exibir Dados neste componente.
     public String exibirDados(User user) {
 
         return "ID: " + user.getId()
@@ -610,6 +633,7 @@ public class UserCrud implements UserDAO {
                 + " | Gerente: " + user.isManager();
     }
 
+    // Metodo: criar Usuario; grava um novo registro com os dados recebidos.
     private User criarUsuario(ResultSet resultado)
             throws SQLException {
 

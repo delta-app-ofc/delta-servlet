@@ -1,6 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%-- Documentação da página: Address; apresenta a interface e envia os dados necessários ao fluxo correspondente. --%>
 <%@ page import="java.util.List" %>
+<%-- Documentação da página: Address; apresenta a interface e envia os dados necessários ao fluxo correspondente. --%>
 <%@ page import="com.example.delta_back.model.Address" %>
+<%-- Documentação da página: Address; apresenta a interface e envia os dados necessários ao fluxo correspondente. --%>
 
 <%!
     private String escapeHtml(Object value) {
@@ -46,8 +49,10 @@
     <link rel="stylesheet" href="<%= ctx %>/css/css_crud/Address.css?v=20261101-sidebar-gota">
     <link rel="stylesheet" href="<%= ctx %>/css/css_crud/Pop-up.css">
 
+    <%-- Bloco da página: código de interação executado pelo navegador. --%>
     <script src="https://unpkg.com/lucide@latest"></script>
 
+    <%-- Bloco da página: estilos locais desta tela. --%>
     <style>
         .address-validation {
             display: none;
@@ -87,6 +92,7 @@
 
 <body>
 
+<%-- Bloco da página: conteúdo auxiliar. --%>
 <aside class="sidebar">
     <img class="sidebar-drop" src="<%= ctx %>/imagens/Gota_Sidebar.png" alt="" aria-hidden="true">
 
@@ -96,6 +102,7 @@
              id="logo">
     </div>
 
+    <%-- Bloco da página: navegação. --%>
     <nav class="menu">
         <a href="<%= ctx %>/inicio" class="menu-item">Início</a>
         <a href="<%= ctx %>/user" class="menu-item">Usuários</a>
@@ -122,9 +129,12 @@
 
 </aside>
 
+<%-- Bloco da página: conteúdo principal. --%>
 <main class="main">
+    <%-- Bloco da página: seção de conteúdo. --%>
     <section class="crud-page" id="crudPage">
 
+        <%-- Bloco da página: cabeçalho. --%>
         <header class="crud-header">
             <div class="crud-title">
                 <h1>Endereço</h1>
@@ -164,6 +174,7 @@
         </div>
 
         <div class="crud-table-wrap">
+            <%-- Bloco da página: tabela de dados. --%>
             <table class="crud-table">
                 <thead>
                 <tr>
@@ -222,6 +233,7 @@
              class="crud-form-page"
              style="display: none;">
 
+            <%-- Bloco da página: cabeçalho. --%>
             <header class="crud-form-header">
                 <div>
                     <h1 id="formHeading">Adicionar Endereço</h1>
@@ -229,6 +241,7 @@
                 </div>
             </header>
 
+            <%-- Bloco da página: formulário e envio de dados. --%>
             <form id="addressForm" class="crud-form-card" novalidate>
                 <div class="form-title" id="formTitle">Novo Endereço</div>
 
@@ -356,6 +369,7 @@
     <button type="button" onclick="hideToast()">×</button>
 </div>
 
+<%-- Bloco da página: código de interação executado pelo navegador. --%>
 <script>
     const contextPath = "<%= ctx %>";
 

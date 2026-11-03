@@ -6,12 +6,14 @@
     box-sizing: border-box;
 }
 
+/* Estilos do grupo: define a apresentação do seletor html, body. */
 html, body {
     width: 100%;
     min-height: 100vh;
     overflow-x: hidden;
 }
 
+/* Estilos do grupo: define a apresentação do seletor body. */
 body {
     position: relative;
     display: flex;
@@ -21,6 +23,7 @@ body {
     background-color: #f0f4f8;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .fundo-svg. */
 .fundo-svg {
     position: fixed;
     top: 0;
@@ -31,6 +34,7 @@ body {
     z-index: 1;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .container. */
 .container {
     position: relative;
     z-index: 2;
@@ -43,6 +47,7 @@ body {
     text-align: center;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .titulo. */
 .titulo {
     color: #003E9B;
     font-family: 'Unbounded', sans-serif;
@@ -52,6 +57,7 @@ body {
     line-height: 1.2;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .informacoes. */
 .informacoes {
     color: #000;
     font-size: clamp(14px, 2vw, 20px);
@@ -61,6 +67,7 @@ body {
     line-height: 1.4;
 }
 
+/* Estilos do grupo: define a apresentação do seletor #telefone, #data. */
 #telefone, #data {
     width: 506px;
     height: 65px;
@@ -76,6 +83,7 @@ body {
     color: #0a0a0a;
 }
 
+/* Estilos do grupo: define a apresentação do seletor #telefone::placeholder, #data:invalid::-webkit-datetime-edit. */
 #telefone::placeholder, #data:invalid::-webkit-datetime-edit {
     opacity: 0.5;
     color: #0B5BF9;
@@ -87,20 +95,24 @@ body {
     letter-spacing: -0.24px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor #data::-webkit-datetime-edit. */
 #data::-webkit-datetime-edit {
     color: #000000;
 }
 
+/* Estilos do grupo: define a apresentação do seletor #data::-webkit-calendar-picker-indicator. */
 #data::-webkit-calendar-picker-indicator {
     cursor: pointer;
     filter: invert(20%) sepia(90%) saturate(500%) hue-rotate(190deg);
     padding-right: 30px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor #telefone:focus, #data:focus. */
 #telefone:focus, #data:focus {
     border-color: #003E9B;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .concluir-cadastro. */
 .concluir-cadastro {
     display: flex;
     justify-content: center;
@@ -119,10 +131,12 @@ body {
     transition: 0.3s ease-in;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .concluir-cadastro:hover. */
 .concluir-cadastro:hover {
     background: #002b6b;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .voltar. */
 .voltar {
     position: absolute;
     z-index: 10;
@@ -130,31 +144,38 @@ body {
     top: 70px;
 }
 
+/* Estilos do grupo: define a apresentação do bloco responsivo @media (max-width: 600px). */
 @media (max-width: 600px) {
+    /* Estilos do grupo: define a apresentação do seletor .container. */
     .container {
         width: 100%;
         padding: 24px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor #telefone, #data, .concluir-cadastro. */
     #telefone, #data, .concluir-cadastro {
         width: 100%;
         max-width: 506px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor #telefone, #data. */
     #telefone, #data {
         height: 56px;
         padding-left: 16px;
         font-size: clamp(16px, 5vw, 20px);
     }
 
+    /* Estilos do grupo: define a apresentação do seletor #telefone::placeholder, #data:invalid::-webkit-datetime-edit. */
     #telefone::placeholder, #data:invalid::-webkit-datetime-edit {
         font-size: clamp(16px, 5vw, 20px);
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .concluir-cadastro. */
     .concluir-cadastro {
         height: 56px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .voltar. */
     .voltar {
         top: 20px;
         right: 20px;
@@ -172,6 +193,7 @@ body { background-color: #e0e8f6; }
 #data:invalid::-webkit-datetime-edit { opacity: .65; }
 .concluir-cadastro { width: 100%; height: 69px; border-radius: 15px; font-size: 26px; }
 .voltar { width: 76px; height: 76px; right: 5.8%; top: 29%; }
+/* Estilos do grupo: define a apresentação do bloco responsivo @media (max-width: 600px). */
 @media (max-width: 600px) {
     .container { width: calc(100% - 40px); margin-top: 30px; padding: 0; }
     .titulo { font-size: clamp(30px, 9vw, 42px); }

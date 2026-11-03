@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%-- Documentação da página: RecuperarSenhaEmail; apresenta a interface e envia os dados necessários ao fluxo correspondente. --%>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -17,16 +18,20 @@
         <img src="<%= request.getContextPath() %>/imagens/voltar.svg" class="voltar" alt="Voltar">
     </a>
 
+    <%-- Bloco da página: conteúdo principal. --%>
     <main class="container">
         <h1 class="titulo">Qual é o e-mail da conta?</h1>
         <p class="informacoes">Digite o e-mail cadastrado para receber as instruções de recuperação de senha.</p>
 
+        <%-- Bloco da página: formulário e envio de dados. --%>
         <form id="forgot-password-form" action="<%= request.getContextPath() %>/auth/forgot-password" method="post">
             <input type="email" id="email" name="email" placeholder="Digite seu e-mail" autocomplete="email" required maxlength="100" aria-label="E-mail cadastrado">
             <button type="submit" class="enviar-codigo">Enviar código</button>
         </form>
     </main>
+    <%-- Bloco da página: código de interação executado pelo navegador. --%>
     <script src="<%= request.getContextPath() %>/js/input-validation.js?v=2"></script>
+    <%-- Bloco da página: código de interação executado pelo navegador. --%>
     <script>
         (() => {
             const form = document.getElementById('forgot-password-form');

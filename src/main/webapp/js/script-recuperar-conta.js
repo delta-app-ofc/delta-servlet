@@ -1,5 +1,8 @@
 ﻿document.addEventListener('DOMContentLoaded', () => {
+// Documentação do arquivo: controla as interações da página no navegador.
+// Evento do navegador: responde a DOMContentLoaded e atualiza o comportamento da página.
     document.querySelectorAll('[data-toggle-password]').forEach((botao) => {
+        // Evento do navegador: responde a click e atualiza o comportamento da página.
         botao.addEventListener('click', () => {
             const input = document.getElementById(botao.dataset.togglePassword);
             const icone = botao.querySelector('img');
@@ -40,6 +43,7 @@
         numero: (valor) => /\d/.test(valor),
     };
 
+    // Função: atualizar Regras Senha; agrupa a lógica desta operação da interface.
     function atualizarRegrasSenha() {
         if (!senhaNova) return;
         document.querySelectorAll('.requisitos-senha [data-regra]').forEach((item) => {

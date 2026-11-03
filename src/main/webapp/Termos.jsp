@@ -1,4 +1,5 @@
 ﻿<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%-- Documentação da página: Termos; apresenta a interface e envia os dados necessários ao fluxo correspondente. --%>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/css_login%20e%20cadastro/Termos.css">
     <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/imagens/FaviconDelta.png">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/css_login%20e%20cadastro/ResponsiveCore.css">
+    <%-- Bloco da página: estilos locais desta tela. --%>
     <style>
         @font-face {
             font-family: 'Talina DEMO';

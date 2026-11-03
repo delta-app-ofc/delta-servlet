@@ -1,10 +1,12 @@
 
+// Documentação do arquivo: declara os tipos e operações do componente desta pasta.
 package com.example.delta_back.validation;
 
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+// Documentação da classe InputValidatorTest: reúne os dados e comportamentos deste tipo.
 class InputValidatorTest {
 
     @Test

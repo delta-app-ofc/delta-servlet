@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%-- Documentação da página: CriarConta; apresenta a interface e envia os dados necessários ao fluxo correspondente. --%>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -24,6 +25,7 @@
 
     <div class="crie-sua-conta">Crie sua conta</div>
 
+    <%-- Bloco da página: formulário e envio de dados. --%>
     <form id="form-cadastro" action="<%= request.getContextPath() %>/auth/register" method="post">
         <label for="nome" class="tituloNome">Nome Completo</label>
         <input type="text" id="nome" name="name" placeholder="Digite seu nome completo" autocomplete="name" required data-required minlength="2" maxlength="100">
@@ -59,8 +61,11 @@
     </form>
 
     <p class="login">Já tem uma conta? Faça o <a href="<%= request.getContextPath() %>/login"><u><strong>login</strong></u></a></p>
+    <%-- Bloco da página: código de interação executado pelo navegador. --%>
     <script>window.deltaContextPath = '<%= request.getContextPath() %>';</script>
+    <%-- Bloco da página: código de interação executado pelo navegador. --%>
     <script src="<%= request.getContextPath() %>/js/input-validation.js?v=2"></script>
+    <%-- Bloco da página: código de interação executado pelo navegador. --%>
     <script src="<%= request.getContextPath() %>/js/script-criar-conta.js?v=2"></script>
 </body>
 </html>

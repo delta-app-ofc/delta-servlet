@@ -1,3 +1,4 @@
+// Documentação do arquivo: declara os tipos e operações do componente desta pasta.
 package com.example.delta_back.crud;
 
 import com.example.delta_back.dao.RegionRateDAO;
@@ -8,6 +9,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+// Documentação da classe RegionRateCrud: reúne os dados e comportamentos deste tipo.
 public class RegionRateCrud implements RegionRateDAO {
 
     private final Connection connection;
@@ -17,6 +19,7 @@ public class RegionRateCrud implements RegionRateDAO {
     }
 
     @Override
+    // Metodo: inserir; grava um novo registro com os dados recebidos.
     public void inserir(Region_Rate region_Rate) {
 
         String sql = """
@@ -40,6 +43,7 @@ public class RegionRateCrud implements RegionRateDAO {
     }
 
     @Override
+    // Metodo: buscar Por Id; consulta os dados indicados pelos parametros recebidos.
     public Region_Rate buscarPorId(int id) {
 
         String sql = """
@@ -86,6 +90,7 @@ public class RegionRateCrud implements RegionRateDAO {
     }
 
     @Override
+    // Metodo: listar Todos; retorna a colecao de registros deste recurso.
     public List<Region_Rate> listarTodos() {
 
         String sql = """
@@ -134,6 +139,7 @@ public class RegionRateCrud implements RegionRateDAO {
     // UPDATE
     // Atualizar todos os dados da taxa da região
     @Override
+    // Metodo: atualizar; atualiza o registro ou atributo indicado com os dados recebidos.
     public void atualizar(Region_Rate region_rate) {
 
         String sql = """
@@ -158,6 +164,7 @@ public class RegionRateCrud implements RegionRateDAO {
     }
 
     @Override
+    // Metodo: atualizar Region Id; atualiza o registro ou atributo indicado com os dados recebidos.
     public void atualizarRegionId(Region_Rate region_rate) {
 
         String sql = """
@@ -179,6 +186,7 @@ public class RegionRateCrud implements RegionRateDAO {
     }
 
     @Override
+    // Metodo: atualizar M3 Value; atualiza o registro ou atributo indicado com os dados recebidos.
     public void atualizarM3Value(Region_Rate region_rate) {
 
         String sql = """
@@ -200,6 +208,7 @@ public class RegionRateCrud implements RegionRateDAO {
     }
 
     @Override
+    // Metodo: atualizar Initial Validity; atualiza o registro ou atributo indicado com os dados recebidos.
     public void atualizarInitialValidity(Region_Rate region_rate) {
 
         String sql = """
@@ -225,6 +234,7 @@ public class RegionRateCrud implements RegionRateDAO {
     }
 
     @Override
+    // Metodo: atualizar Final Validity; atualiza o registro ou atributo indicado com os dados recebidos.
     public void atualizarFinalValidity(Region_Rate region_rate) {
 
         String sql = """
@@ -250,6 +260,7 @@ public class RegionRateCrud implements RegionRateDAO {
     }
 
     @Override
+    // Metodo: deletar; remove o registro indicado pelos parametros recebidos.
     public void deletar(int id) {
 
         String sql = """
@@ -269,6 +280,7 @@ public class RegionRateCrud implements RegionRateDAO {
     }
 
     @Override
+    // Metodo: deletar Por Id Regiao; remove o registro indicado pelos parametros recebidos.
     public void deletarPorIdRegiao(int region_id) {
 
         String sql = """
@@ -288,6 +300,7 @@ public class RegionRateCrud implements RegionRateDAO {
     }
 
     @Override
+    // Metodo: deletar Por Validade Inicial; remove o registro indicado pelos parametros recebidos.
     public void deletarPorValidadeInicial(LocalDate initial_validity) {
 
         String sql = """
@@ -307,6 +320,7 @@ public class RegionRateCrud implements RegionRateDAO {
     }
 
     @Override
+    // Metodo: deletar Por Validade Final; remove o registro indicado pelos parametros recebidos.
     public void deletarPorValidadeFinal(LocalDate final_validity) {
 
         String sql = """
@@ -326,6 +340,7 @@ public class RegionRateCrud implements RegionRateDAO {
     }
 
     @Override
+    // Metodo: exibir Dados; executa a operacao exibir Dados neste componente.
     public String exibirDados(Region_Rate regionRate) {
 
         return "Id: " + regionRate.getId() + "\n" +

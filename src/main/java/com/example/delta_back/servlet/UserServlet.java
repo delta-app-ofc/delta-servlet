@@ -1,4 +1,5 @@
 
+// Documentação do arquivo: declara os tipos e operações do componente desta pasta.
 package com.example.delta_back.servlet;
 
 import com.example.delta_back.conexao.ConexaoBD;
@@ -20,12 +21,14 @@ import java.time.format.DateTimeParseException;
 import java.util.List;
 
 @WebServlet("/user")
+// Documentação da classe UserServlet: reúne os dados e comportamentos deste tipo.
 public class UserServlet extends HttpServlet {
 
     private Connection connection;
     private UserCrud userCrud;
 
     @Override
+    // Metodo: init; executa a operacao init neste componente.
     public void init() throws ServletException {
         try {
             connection = ConexaoBD.conectar();
@@ -38,6 +41,7 @@ public class UserServlet extends HttpServlet {
         }
     }
 
+    // Metodo: enviar Erro; executa a operacao enviar Erro neste componente.
     private void enviarErro(
             HttpServletResponse response,
             int status,
@@ -49,6 +53,7 @@ public class UserServlet extends HttpServlet {
         response.getWriter().write(mensagem);
     }
 
+    // Metodo: validar Id; executa a operacao validar Id neste componente.
     private int validarId(String valor) {
         if (!InputValidator.isValidId(valor)) {
             throw new IllegalArgumentException(
@@ -65,6 +70,7 @@ public class UserServlet extends HttpServlet {
         }
     }
 
+    // Metodo: validar Data Nascimento; executa a operacao validar Data Nascimento neste componente.
     private LocalDate validarDataNascimento(String valor) {
         if (valor == null || valor.isBlank()) {
             throw new IllegalArgumentException(
@@ -89,6 +95,7 @@ public class UserServlet extends HttpServlet {
         }
     }
 
+    // Metodo: validar Limite Telefone; executa a operacao validar Limite Telefone neste componente.
     private void validarLimiteTelefone(String telefone, int ignorarId) {
         if (userCrud.contarContasComTelefone(telefone, ignorarId) >= 1) {
             throw new IllegalArgumentException(
@@ -97,6 +104,7 @@ public class UserServlet extends HttpServlet {
         }
     }
 
+    // Metodo: validar Dados; executa a operacao validar Dados neste componente.
     private void validarDados(
             String name,
             String email,
@@ -129,6 +137,7 @@ public class UserServlet extends HttpServlet {
         }
     }
 
+    // Metodo: validar Booleano; executa a operacao validar Booleano neste componente.
     private boolean validarBooleano(String valor, String campo) {
         if (!InputValidator.isValidBoolean(valor)) {
             throw new IllegalArgumentException(
@@ -140,6 +149,7 @@ public class UserServlet extends HttpServlet {
     }
 
     @Override
+    // Metodo: do Get; processa uma requisicao HTTP GET e prepara a resposta.
     protected void doGet(
             HttpServletRequest request,
             HttpServletResponse response
@@ -161,6 +171,7 @@ public class UserServlet extends HttpServlet {
     }
 
     @Override
+    // Metodo: do Post; processa os dados enviados por uma requisicao HTTP POST.
     protected void doPost(
             HttpServletRequest request,
             HttpServletResponse response
@@ -232,6 +243,7 @@ public class UserServlet extends HttpServlet {
     }
 
     @Override
+    // Metodo: do Put; executa a operacao do Put neste componente.
     protected void doPut(
             HttpServletRequest request,
             HttpServletResponse response
@@ -333,6 +345,7 @@ public class UserServlet extends HttpServlet {
     }
 
     @Override
+    // Metodo: do Delete; executa a operacao do Delete neste componente.
     protected void doDelete(
             HttpServletRequest request,
             HttpServletResponse response
@@ -385,6 +398,7 @@ public class UserServlet extends HttpServlet {
     }
 
     @Override
+    // Metodo: destroy; executa a operacao destroy neste componente.
     public void destroy() {
         try {
             if (connection != null && !connection.isClosed()) {

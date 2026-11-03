@@ -1,3 +1,4 @@
+// Documentação do arquivo: declara os tipos e operações do componente desta pasta.
 package com.example.delta_back.servlet;
 
 import com.example.delta_back.conexao.ConexaoBD;
@@ -19,6 +20,7 @@ import java.util.List;
 import java.util.Locale;
 
 @WebServlet("/address")
+// Documentação da classe AddressServlet: reúne os dados e comportamentos deste tipo.
 public class AddressServlet extends HttpServlet {
 
     private static final Locale PT_BR = Locale.forLanguageTag("pt-BR");
@@ -27,6 +29,7 @@ public class AddressServlet extends HttpServlet {
     private AddressCrud addressCrud;
 
     @Override
+    // Metodo: init; executa a operacao init neste componente.
     public void init() throws ServletException {
         try {
             conexao = ConexaoBD.conectar();
@@ -39,6 +42,7 @@ public class AddressServlet extends HttpServlet {
     }
 
     @Override
+    // Metodo: do Get; processa uma requisicao HTTP GET e prepara a resposta.
     protected void doGet(
             HttpServletRequest request,
             HttpServletResponse response
@@ -59,6 +63,7 @@ public class AddressServlet extends HttpServlet {
         }
     }
 
+    // Metodo: ler Inteiro Positivo; executa a operacao ler Inteiro Positivo neste componente.
     private int lerInteiroPositivo(
             HttpServletRequest request,
             String parametro,
@@ -81,6 +86,7 @@ public class AddressServlet extends HttpServlet {
         }
     }
 
+    // Metodo: ler Obrigatorio; executa a operacao ler Obrigatorio neste componente.
     private String lerObrigatorio(
             HttpServletRequest request,
             String parametro,
@@ -97,6 +103,7 @@ public class AddressServlet extends HttpServlet {
         return valor.trim();
     }
 
+    // Metodo: validar Region Id; executa a operacao validar Region Id neste componente.
     private int validarRegionId(HttpServletRequest request) {
         return lerInteiroPositivo(
                 request,
@@ -105,6 +112,7 @@ public class AddressServlet extends HttpServlet {
         );
     }
 
+    // Metodo: validar Cep; executa a operacao validar Cep neste componente.
     private String validarCep(HttpServletRequest request) {
         String cep = request.getParameter("cep");
 
@@ -117,15 +125,18 @@ public class AddressServlet extends HttpServlet {
         return cep.trim();
     }
 
+    // Metodo: validar Cidade; executa a operacao validar Cidade neste componente.
     private String validarCidade(HttpServletRequest request) {
         return lerObrigatorio(request, "city", "Cidade")
                 .toUpperCase(PT_BR);
     }
 
+    // Metodo: validar Estado; executa a operacao validar Estado neste componente.
     private String validarEstado(HttpServletRequest request) {
         return lerObrigatorio(request, "state", "Estado");
     }
 
+    // Metodo: validar Regiao; executa a operacao validar Regiao neste componente.
     private void validarRegiao(int regionId) throws Exception {
         String sql = "SELECT 1 FROM tb_region WHERE id = ?";
 
@@ -143,6 +154,7 @@ public class AddressServlet extends HttpServlet {
         }
     }
 
+    // Metodo: enviar Erro; executa a operacao enviar Erro neste componente.
     private void enviarErro(
             HttpServletResponse response,
             String mensagem
@@ -158,6 +170,7 @@ public class AddressServlet extends HttpServlet {
     }
 
     @Override
+    // Metodo: do Post; processa os dados enviados por uma requisicao HTTP POST.
     protected void doPost(
             HttpServletRequest request,
             HttpServletResponse response
@@ -196,6 +209,7 @@ public class AddressServlet extends HttpServlet {
     }
 
     @Override
+    // Metodo: do Put; executa a operacao do Put neste componente.
     protected void doPut(
             HttpServletRequest request,
             HttpServletResponse response
@@ -240,6 +254,7 @@ public class AddressServlet extends HttpServlet {
     }
 
     @Override
+    // Metodo: do Delete; executa a operacao do Delete neste componente.
     protected void doDelete(
             HttpServletRequest request,
             HttpServletResponse response
@@ -267,6 +282,7 @@ public class AddressServlet extends HttpServlet {
     }
 
     @Override
+    // Metodo: destroy; executa a operacao destroy neste componente.
     public void destroy() {
         try {
             if (conexao != null && !conexao.isClosed()) {

@@ -1,3 +1,4 @@
+// Documentação do arquivo: declara os tipos e operações do componente desta pasta.
 package com.example.delta_back.dao;
 
 import com.example.delta_back.model.Device;
@@ -6,6 +7,7 @@ import com.example.delta_back.model.Property;
 import java.time.LocalDate;
 import java.util.List;
 
+// Documentação da classe PropertyDAO: reúne os dados e comportamentos deste tipo.
 public interface PropertyDAO {
 
     // Método responsável por inserir um novo imóvel.

@@ -1,3 +1,4 @@
+// Documentação do arquivo: declara os tipos e operações do componente desta pasta.
 package com.example.delta_back.service;
 
 import io.github.cdimascio.dotenv.Dotenv;
@@ -23,6 +24,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Properties;
 
 /** Sends authentication codes through Gmail. */
+// Documentação da classe EmailService: reúne os dados e comportamentos deste tipo.
 public final class EmailService {
 
     private static final Path PROJECT_ROOT = findProjectRoot();
@@ -33,6 +35,7 @@ public final class EmailService {
 
     private EmailService() {}
 
+    // Metodo: enviar Codigo; executa a operacao enviar Codigo neste componente.
     public static void enviarCodigo(ServletContext servletContext, String destinatario,
                                     String codigo, String finalidade)
             throws MessagingException, IOException {
@@ -59,6 +62,7 @@ public final class EmailService {
 
         Session sessao = Session.getInstance(propriedades, new Authenticator() {
             @Override
+            // Metodo: get Password Authentication; retorna o valor do atributo PasswordAuthentication.
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(email, senha);
             }
@@ -98,6 +102,7 @@ public final class EmailService {
         Transport.send(mensagem);
     }
 
+    // Metodo: conteudo Html; executa a operacao conteudo Html neste componente.
     private static String conteudoHtml(String codigo, String finalidade) {
         return """
                 <!doctype html>
@@ -128,11 +133,13 @@ public final class EmailService {
                 """.formatted(escapeHtml(finalidade), escapeHtml(codigo));
     }
 
+    // Metodo: escape Html; executa a operacao escape Html neste componente.
     private static String escapeHtml(String value) {
         return value.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
                 .replace("\"", "&quot;").replace("'", "&#39;");
     }
 
+    // Metodo: config; executa a operacao config neste componente.
     private static String config(String chave) {
         String vmOption = System.getProperty(chave);
         if (vmOption != null && !vmOption.isBlank()) return vmOption.trim();
@@ -147,6 +154,7 @@ public final class EmailService {
                 + ". Configure-a nas VM options ou no arquivo .env.");
     }
 
+    // Metodo: find Project Root; executa a operacao find Project Root neste componente.
     private static Path findProjectRoot() {
         Path current = Path.of(System.getProperty("user.dir", ".")).toAbsolutePath().normalize();
         for (Path directory = current; directory != null; directory = directory.getParent()) {

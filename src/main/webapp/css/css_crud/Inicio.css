@@ -4,6 +4,7 @@
     box-sizing: border-box;
 }
 
+/* Estilos do grupo: define a apresentação do seletor :root. */
 :root {
     --azul: #282e68;
     --azul-card: #30389b;
@@ -13,6 +14,7 @@
     --fundo-icone: #eef1fb;
 }
 
+/* Estilos do grupo: define a apresentação do seletor body. */
 body {
     min-height: 100vh;
     background: #ffffff;
@@ -25,6 +27,7 @@ body {
    BARRA LATERAL
 ========================= */
 
+/* Estilos do grupo: define a apresentação do seletor .sidebar. */
 .sidebar {
     position: fixed;
 
@@ -53,6 +56,7 @@ body {
    LOGO
 ========================= */
 
+/* Estilos do grupo: define a apresentação do seletor .logo-area. */
 .logo-area {
     height: 66px;
 
@@ -66,6 +70,7 @@ body {
 
 /* Linha abaixo da logo */
 
+/* Estilos do grupo: define a apresentação do seletor .logo-area::after. */
 .logo-area::after {
     content: "";
 
@@ -85,6 +90,7 @@ body {
 
 /* Logo DELTA */
 
+/* Estilos do grupo: define a apresentação do seletor .logo. */
 .logo {
     color: white;
 
@@ -96,6 +102,7 @@ body {
     letter-spacing: -2px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .logo span. */
 .logo span {
     display: inline-block;
 
@@ -113,6 +120,7 @@ body {
    MENU LATERAL
 ========================= */
 
+/* Estilos do grupo: define a apresentação do seletor .menu. */
 .menu {
     margin-top: 19px;
 
@@ -125,6 +133,7 @@ body {
 
 /* Cada opção do menu */
 
+/* Estilos do grupo: define a apresentação do seletor .menu-item. */
 .menu-item {
     height: 36px;
 
@@ -150,6 +159,7 @@ body {
 
 /* Opção selecionada */
 
+/* Estilos do grupo: define a apresentação do seletor .menu-item.active. */
 .menu-item.active {
     background: var(--azul-card);
 }
@@ -157,6 +167,7 @@ body {
 
 /* Efeito ao passar o mouse */
 
+/* Estilos do grupo: define a apresentação do seletor .menu-item:hover. */
 .menu-item:hover {
     background: rgba(48, 56, 155, 0.75);
 }
@@ -166,6 +177,7 @@ body {
    PARTE INFERIOR DA SIDEBAR
 ========================= */
 
+/* Estilos do grupo: define a apresentação do seletor .sidebar-bottom. */
 .sidebar-bottom {
     margin-top: auto;
 }
@@ -173,6 +185,7 @@ body {
 
 /* Usuário logado */
 
+/* Estilos do grupo: define a apresentação do seletor .account. */
 .account {
     display: flex;
     align-items: center;
@@ -188,6 +201,7 @@ body {
 
 /* Bolinha do usuário */
 
+/* Estilos do grupo: define a apresentação do seletor .avatar. */
 .avatar {
     width: 30px;
     height: 30px;
@@ -206,6 +220,7 @@ body {
 
 /* Ícone do usuário */
 
+/* Estilos do grupo: define a apresentação do seletor .avatar svg. */
 .avatar svg {
     width: 13px;
     height: 13px;
@@ -218,6 +233,7 @@ body {
    BOTÃO SAIR
 ========================= */
 
+/* Estilos do grupo: define a apresentação do seletor .logout. */
 .logout {
     width: 100%;
     height: 26px;
@@ -244,6 +260,7 @@ body {
 
 /* Ícone do botão sair */
 
+/* Estilos do grupo: define a apresentação do seletor .logout svg. */
 .logout svg {
     width: 14px;
     height: 14px;
@@ -256,6 +273,7 @@ body {
    CONTEÚDO PRINCIPAL
 ========================= */
 
+/* Estilos do grupo: define a apresentação do seletor .main. */
 .main {
     width: calc(100% - 240px);
 
@@ -269,6 +287,7 @@ body {
    CABEÇALHO
 ========================= */
 
+/* Estilos do grupo: define a apresentação do seletor .page-header h1. */
 .page-header h1 {
     color: #090909;
 
@@ -281,6 +300,7 @@ body {
     letter-spacing: -1px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .page-header p. */
 .page-header p {
     margin-top: 2px;
 
@@ -296,6 +316,7 @@ body {
    LINHA
 ========================= */
 
+/* Estilos do grupo: define a apresentação do seletor .divider. */
 .divider {
     width: 100%;
     height: 1px;
@@ -310,6 +331,7 @@ body {
    CARDS DE ESTATÍSTICA
 ========================= */
 
+/* Estilos do grupo: define a apresentação do seletor .stats. */
 .stats {
     display: grid;
 
@@ -321,6 +343,7 @@ body {
     margin-top: 20px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .stat-card. */
 .stat-card {
     height: 112px;
 
@@ -334,6 +357,7 @@ body {
     flex-direction: column;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .stat-label. */
 .stat-label {
     color: var(--cinza);
 
@@ -342,6 +366,7 @@ body {
     font-weight: 500;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .stat-card strong. */
 .stat-card strong {
     color: #30323a;
 
@@ -354,6 +379,7 @@ body {
     font-weight: 700;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .stat-description. */
 .stat-description {
     color: var(--cinza);
 
@@ -369,10 +395,12 @@ body {
    ACESSO RÁPIDO
 ========================= */
 
+/* Estilos do grupo: define a apresentação do seletor .quick-access. */
 .quick-access {
     margin-top: 38px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .section-title h2. */
 .section-title h2 {
     font-size: 18px;
 
@@ -381,6 +409,7 @@ body {
     font-weight: 700;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .section-title p. */
 .section-title p {
     margin-top: 2px;
 
@@ -396,6 +425,7 @@ body {
    GRID DOS CARDS
 ========================= */
 
+/* Estilos do grupo: define a apresentação do seletor .quick-grid. */
 .quick-grid {
     margin-top: 12px;
 
@@ -414,6 +444,7 @@ body {
    CARD DE ACESSO
 ========================= */
 
+/* Estilos do grupo: define a apresentação do seletor .quick-card. */
 .quick-card {
     height: 102px;
 
@@ -433,6 +464,7 @@ body {
     transition: 0.2s ease;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .quick-card:hover. */
 .quick-card:hover {
     transform: translateY(-2px);
 
@@ -446,6 +478,7 @@ body {
    ÍCONE
 ========================= */
 
+/* Estilos do grupo: define a apresentação do seletor .quick-icon. */
 .quick-icon {
     width: 36px;
     height: 36px;
@@ -463,6 +496,7 @@ body {
     color: #26316f;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .quick-icon svg. */
 .quick-icon svg {
     width: 18px;
     height: 18px;
@@ -475,10 +509,12 @@ body {
    TEXTO DOS CARDS
 ========================= */
 
+/* Estilos do grupo: define a apresentação do seletor .quick-text. */
 .quick-text {
     margin-left: 17px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .quick-text h3. */
 .quick-text h3 {
     color: #292c36;
 
@@ -489,6 +525,7 @@ body {
     font-weight: 700;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .quick-text p. */
 .quick-text p {
     color: var(--cinza);
 
@@ -504,6 +541,7 @@ body {
    SETA
 ========================= */
 
+/* Estilos do grupo: define a apresentação do seletor .arrow. */
 .arrow {
     width: 17px;
     height: 17px;
@@ -520,13 +558,16 @@ body {
    RESPONSIVIDADE
 ========================= */
 
+/* Estilos do grupo: define a apresentação do bloco responsivo @media (max-width: 1100px). */
 @media (max-width: 1100px) {
 
+    /* Estilos do grupo: define a apresentação do seletor .sidebar. */
     .sidebar {
         left: 25px;
         width: 210px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .main. */
     .main {
         margin-left: 250px;
 
@@ -536,18 +577,22 @@ body {
         padding-right: 25px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .stats. */
     .stats {
         gap: 18px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .quick-grid. */
     .quick-grid {
         column-gap: 25px;
     }
 }
 
 
+/* Estilos do grupo: define a apresentação do bloco responsivo @media (max-width: 850px). */
 @media (max-width: 850px) {
 
+    /* Estilos do grupo: define a apresentação do seletor .sidebar. */
     .sidebar {
         position: relative;
 
@@ -561,29 +606,35 @@ body {
         height: calc(100vh - 40px);
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .main. */
     .main {
         margin-left: 0;
 
         width: calc(100% - 250px);
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .stats. */
     .stats {
         grid-template-columns:
             repeat(2, 1fr);
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .quick-grid. */
     .quick-grid {
         grid-template-columns: 1fr;
     }
 }
 
 
+/* Estilos do grupo: define a apresentação do bloco responsivo @media (max-width: 650px). */
 @media (max-width: 650px) {
 
+    /* Estilos do grupo: define a apresentação do seletor body. */
     body {
         display: block;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .sidebar. */
     .sidebar {
         position: relative;
 
@@ -598,21 +649,25 @@ body {
         border-radius: 30px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .sidebar-bottom. */
     .sidebar-bottom {
         margin-top: 30px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .main. */
     .main {
         width: 100%;
 
         padding: 30px 20px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .stats. */
     .stats {
         grid-template-columns: 1fr;
     }
 }
 
+/* Estilos do grupo: define a apresentação do seletor #logo. */
 #logo {
     width: 100px;
     height: auto;
@@ -622,6 +677,7 @@ body {
     margin-top: 25px;
 }
 /* Complementos exclusivos da página inicial */
+/* Estilos do grupo: define a apresentação do seletor .main. */
 .main {
     position: relative;
     width: auto;
@@ -632,6 +688,7 @@ body {
 .page-header p { font-size: 17px; }
 .divider { margin-top: 30px; }
 .stats { gap: 5%; margin-top: 30px; }
+/* Estilos do grupo: define a apresentação do seletor .stat-card. */
 .stat-card {
     height: 126px;
     align-items: center;
@@ -640,6 +697,7 @@ body {
     border-radius: 10px;
     text-align: center;
 }
+/* Estilos do grupo: define a apresentação do seletor .stat-card strong. */
 .stat-card strong {
     order: -1;
     margin: 0 0 3px;
@@ -650,6 +708,7 @@ body {
 .quick-access { margin-top: 42px; }
 .section-title h2 { font-size: 17px; }
 .section-title p { font-size: 12px; }
+/* Estilos do grupo: define a apresentação do seletor .quick-grid. */
 .quick-grid {
     grid-template-columns: minmax(220px, 1fr) minmax(430px, 1.85fr) minmax(220px, 1fr);
     grid-template-rows: repeat(3, 90px);
@@ -667,6 +726,7 @@ body {
 .quick-card:nth-of-type(4) { grid-column: 3; grid-row: 2; }
 .quick-card:nth-of-type(5) { grid-column: 1; grid-row: 3; }
 .quick-card:nth-of-type(6) { grid-column: 3; grid-row: 3; }
+/* Estilos do grupo: define a apresentação do seletor .overview-card. */
 .overview-card {
     grid-column: 2;
     grid-row: 1 / 4;
@@ -680,6 +740,7 @@ body {
 .overview-heading p { color: var(--cinza); font-size: 11px; }
 .chart { width: 100%; height: 280px; margin-top: 20px; }
 #dashboard-chart { display: block; width: 100%; height: 100%; overflow: visible; font-family: "Poppins", sans-serif; }
+/* Estilos do grupo: define a apresentação do seletor body::after. */
 body::after {
     content: "";
     position: fixed;
@@ -690,6 +751,7 @@ body::after {
     height: 110px;
     background: url("/imagens/OndasDelta_inicio.png") center bottom / 100% 100% no-repeat;
 }
+/* Estilos do grupo: define a apresentação do seletor .main::before. */
 .main::before {
     content: none;
 }
@@ -699,6 +761,7 @@ body::after {
 .sidebar { overflow: hidden; }
 .sidebar-drop { position: absolute; z-index: 0; width: 270px; height: 350px; object-fit: contain; left: 50%; bottom: 82px; transform: translateX(-50%); pointer-events: none; }
 .logo-area, .menu, .sidebar-bottom { position: relative; z-index: 1; }
+/* Estilos do grupo: define a apresentação do bloco responsivo @media (max-width: 1100px). */
 @media (max-width: 1100px) {
     .sidebar { left: 25px; width: 210px; }
     .main { margin-left: 270px; padding-right: 30px; }
@@ -707,7 +770,9 @@ body::after {
     .quick-card { padding: 0 8px; }
     .quick-text p { font-size: 9px; }
 }
+/* Estilos do grupo: define a apresentação do bloco responsivo @media (max-width: 850px). */
 @media (max-width: 850px) {
+    /* Estilos do grupo: define a apresentação do seletor .sidebar. */
     .sidebar {
         position: relative;
         inset: auto;
@@ -721,6 +786,7 @@ body::after {
     .overview-card { grid-column: 1 / -1; grid-row: auto; }
     .quick-card:nth-of-type(n) { grid-column: auto; grid-row: auto; }
 }
+/* Estilos do grupo: define a apresentação do bloco responsivo @media (max-width: 650px). */
 @media (max-width: 650px) {
     .sidebar { width: calc(100% - 30px); height: auto; min-height: 0; margin: 15px; border-radius: 30px; }
     .sidebar-bottom { margin-top: 30px; }
@@ -733,6 +799,7 @@ body::after {
     .stat-card strong { font-size: 38px; }
 }
 
+/* Estilos do grupo: define a apresentação do bloco responsivo @media (min-width: 851px) and (max-height: 950px). */
 @media (min-width: 851px) and (max-height: 950px) {
     body { height: 100vh; min-height: 0; overflow: hidden; }
     .sidebar { height: calc(94vh - 26px); }
@@ -754,13 +821,16 @@ body::after {
    RESPONSIVIDADE
 ========================= */
 
+/* Estilos do grupo: define a apresentação do bloco responsivo @media (max-width: 1100px). */
 @media (max-width: 1100px) {
 
+    /* Estilos do grupo: define a apresentação do seletor .sidebar. */
     .sidebar {
         left: 25px;
         width: 210px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .main. */
     .main {
         margin-left: 250px;
 
@@ -770,18 +840,22 @@ body::after {
         padding-right: 25px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .stats. */
     .stats {
         gap: 18px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .quick-grid. */
     .quick-grid {
         column-gap: 25px;
     }
 }
 
 
+/* Estilos do grupo: define a apresentação do bloco responsivo @media (max-width: 850px). */
 @media (max-width: 850px) {
 
+    /* Estilos do grupo: define a apresentação do seletor .sidebar. */
     .sidebar {
         position: relative;
 
@@ -795,29 +869,35 @@ body::after {
         height: calc(100vh - 40px);
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .main. */
     .main {
         margin-left: 0;
 
         width: calc(100% - 250px);
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .stats. */
     .stats {
         grid-template-columns:
             repeat(2, 1fr);
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .quick-grid. */
     .quick-grid {
         grid-template-columns: 1fr;
     }
 }
 
 
+/* Estilos do grupo: define a apresentação do bloco responsivo @media (max-width: 650px). */
 @media (max-width: 650px) {
 
+    /* Estilos do grupo: define a apresentação do seletor body. */
     body {
         display: block;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .sidebar. */
     .sidebar {
         position: relative;
 
@@ -832,21 +912,25 @@ body::after {
         border-radius: 30px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .sidebar-bottom. */
     .sidebar-bottom {
         margin-top: 30px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .main. */
     .main {
         width: 100%;
 
         padding: 30px 20px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .stats. */
     .stats {
         grid-template-columns: 1fr;
     }
 }
 
+/* Estilos do grupo: define a apresentação do seletor #logo. */
 #logo {
     width: 100px;
     height: auto;
@@ -856,6 +940,7 @@ body::after {
     margin-top: 25px;
 }
 /* Complementos exclusivos da página inicial */
+/* Estilos do grupo: define a apresentação do seletor .main. */
 .main {
     position: relative;
     width: auto;
@@ -863,6 +948,7 @@ body::after {
     padding: 84px 76px 120px 29px;
 }
 .page-header { position: relative; min-height: 77px; }
+/* Estilos do grupo: define a apresentação do seletor .header-gluh. */
 .header-gluh {
     position: absolute;
     top: 0;
@@ -872,6 +958,7 @@ body::after {
     object-fit: contain;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .header-gluh. */
 .header-gluh{
     top:-40px;
 }
@@ -879,6 +966,7 @@ body::after {
 .page-header p { font-size: 17px; }
 .divider { margin-top: 30px; }
 .stats { gap: 5%; margin-top: 30px; }
+/* Estilos do grupo: define a apresentação do seletor .stat-card. */
 .stat-card {
     height: 126px;
     align-items: center;
@@ -887,6 +975,7 @@ body::after {
     border-radius: 10px;
     text-align: center;
 }
+/* Estilos do grupo: define a apresentação do seletor .stat-card strong. */
 .stat-card strong {
     order: -1;
     margin: 0 0 3px;
@@ -897,6 +986,7 @@ body::after {
 .quick-access { margin-top: 42px; }
 .section-title h2 { font-size: 17px; }
 .section-title p { font-size: 12px; }
+/* Estilos do grupo: define a apresentação do seletor .quick-grid. */
 .quick-grid {
     grid-template-columns: minmax(220px, 1fr) minmax(430px, 1.85fr) minmax(220px, 1fr);
     grid-template-rows: repeat(3, 90px);
@@ -914,6 +1004,7 @@ body::after {
 .quick-card:nth-of-type(4) { grid-column: 3; grid-row: 2; }
 .quick-card:nth-of-type(5) { grid-column: 1; grid-row: 3; }
 .quick-card:nth-of-type(6) { grid-column: 3; grid-row: 3; }
+/* Estilos do grupo: define a apresentação do seletor .overview-card. */
 .overview-card {
     grid-column: 2;
     grid-row: 1 / 4;
@@ -926,6 +1017,7 @@ body::after {
 .overview-heading h3 { font-size: 16px; }
 .overview-heading p { color: var(--cinza); font-size: 11px; }
 .chart { display: flex; height: 280px; margin-top: 20px; }
+/* Estilos do grupo: define a apresentação do seletor .chart-y. */
 .chart-y {
     width: 36px;
     display: flex;
@@ -936,6 +1028,7 @@ body::after {
     font-size: 10px;
     text-align: right;
 }
+/* Estilos do grupo: define a apresentação do seletor .chart-plot. */
 .chart-plot {
     flex: 1;
     display: grid;
@@ -946,6 +1039,7 @@ body::after {
     border-bottom: 1px solid #d6d9e3;
     background: repeating-linear-gradient(to bottom, #e8eaf0 0 1px, transparent 1px 44px);
 }
+/* Estilos do grupo: define a apresentação do seletor .chart-column. */
 .chart-column {
     height: 100%;
     display: flex;
@@ -955,6 +1049,7 @@ body::after {
     position: relative;
 }
 .chart-column strong { margin-bottom: 4px; color: #30389b; font-size: 15px; }
+/* Estilos do grupo: define a apresentação do seletor .chart-column i. */
 .chart-column i {
     width: 64%;
     height: var(--value);
@@ -963,6 +1058,7 @@ body::after {
     background: var(--bar);
     border-radius: 9px 9px 0 0;
 }
+/* Estilos do grupo: define a apresentação do seletor .chart-column::before. */
 .chart-column::before {
     content: "";
     position: absolute;
@@ -973,6 +1069,7 @@ body::after {
     background: #f1f3fa;
     border-radius: 9px 9px 0 0;
 }
+/* Estilos do grupo: define a apresentação do seletor .chart-column span. */
 .chart-column span {
     height: 43px;
     padding-top: 8px;
@@ -981,6 +1078,7 @@ body::after {
     line-height: 1.3;
     text-align: center;
 }
+/* Estilos do grupo: define a apresentação do seletor body::after. */
 body::after {
     content: "";
     position: fixed;
@@ -991,6 +1089,7 @@ body::after {
     height: 110px;
     background: url("/imagens/OndasDelta_inicio.png") center bottom / 100% 100% no-repeat;
 }
+/* Estilos do grupo: define a apresentação do seletor .main::before. */
 .main::before {
     content: "";
     position: absolute;
@@ -1000,6 +1099,7 @@ body::after {
     height: 150px;
     background: url("/imagens/GotaDelta_inicio.png") center / contain no-repeat;
 }
+/* Estilos do grupo: define a apresentação do bloco responsivo @media (max-width: 1100px). */
 @media (max-width: 1100px) {
     .sidebar { left: 25px; width: 210px; }
     .main { margin-left: 270px; padding-right: 30px; }
@@ -1008,7 +1108,9 @@ body::after {
     .quick-card { padding: 0 8px; }
     .quick-text p { font-size: 9px; }
 }
+/* Estilos do grupo: define a apresentação do bloco responsivo @media (max-width: 850px). */
 @media (max-width: 850px) {
+    /* Estilos do grupo: define a apresentação do seletor .sidebar. */
     .sidebar {
         position: relative;
         inset: auto;
@@ -1024,6 +1126,7 @@ body::after {
     .overview-card { grid-column: 1 / -1; grid-row: auto; }
     .quick-card:nth-of-type(n) { grid-column: auto; grid-row: auto; }
 }
+/* Estilos do grupo: define a apresentação do bloco responsivo @media (max-width: 650px). */
 @media (max-width: 650px) {
     .sidebar { width: calc(100% - 30px); height: auto; min-height: 0; margin: 15px; border-radius: 30px; }
     .sidebar-bottom { margin-top: 30px; }

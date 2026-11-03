@@ -1,4 +1,5 @@
 ﻿<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%-- Documentação da página: PoliticaPrivacidade; apresenta a interface e envia os dados necessários ao fluxo correspondente. --%>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/css_login%20e%20cadastro/Politicas.css?v=20261102-1">
     <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/imagens/FaviconDelta.png">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/css_login%20e%20cadastro/ResponsiveCore.css">
+    <%-- Bloco da página: estilos locais desta tela. --%>
     <style>
         @font-face {
             font-family: 'Talina DEMO';
@@ -35,9 +37,11 @@
 
         <p class="topico1" id="secao1">1. Quem somos (controlador)</p><p class="informacoes-topico1">O <strong>Projeto Delta</strong>, desenvolvido por estudantes do Instituto J&amp;F, é o controlador dos dados pessoais tratados nesta plataforma, nos termos da Lei Geral de Proteção de Dados (LGPD, Lei nº 13.709/2018).</p><p class="informacoes-topico1">Contato do controlador: contato@projetodelta.com.</p>
         <p class="topico2" id="secao2">2. Dados que coletamos</p>
+        <%-- Bloco da página: tabela de dados. --%>
         <table class="tabela-politica tabela-dados"><tr><th>Categoria</th><th>Exemplos</th><th>Origem</th></tr><tr><td><strong>Cadastro</strong></td><td>Nome, e-mail, senha (armazenada de forma criptografada), telefone (se informado)</td><td>Fornecidos por você</td></tr><tr><td><strong>Imóvel e hidrômetro</strong></td><td>Endereço de instalação, identificação do hidrômetro e do dispositivo IoT</td><td>Fornecidos por você ou pela equipe de instalação</td></tr><tr><td><strong>Consumo de água</strong></td><td>Leituras de vazão e volume, histórico, metas, alertas gerados</td><td>Dispositivo IoT instalado no hidrômetro</td></tr><tr><td><strong>Uso da plataforma</strong></td><td>Conversas com o chatbot, preferências, ações realizadas na conta</td><td>Geradas ao usar o serviço</td></tr><tr><td><strong>Dados técnicos</strong></td><td>Endereço IP, tipo de navegador e dispositivo, data e hora de acesso, cookies</td><td>Coletados automaticamente</td></tr></table>
         <p class="informacoes-topico2">Não coletamos dados pessoais sensíveis (como saúde, religião ou origem racial). Pedimos que você também não os insira nas conversas com o chatbot.</p>
         <p class="topico3" id="secao3">3. Para que usamos e bases legais</p>
+        <%-- Bloco da página: tabela de dados. --%>
         <table class="tabela-politica tabela-bases">
             <tr><th>Finalidade</th><th>Base legal (LGPD, art. 7º)</th></tr>
             <tr><td>Criar e gerenciar sua conta e prestar o serviço de monitoramento</td><td>Execução de contrato</td></tr>

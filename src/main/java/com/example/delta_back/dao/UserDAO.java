@@ -1,9 +1,11 @@
+// Documentação do arquivo: declara os tipos e operações do componente desta pasta.
 package com.example.delta_back.dao;
 
 import com.example.delta_back.model.User;
 
 import java.util.List;
 
+// Documentação da classe UserDAO: reúne os dados e comportamentos deste tipo.
 public interface UserDAO {
 
     // Método responsável por inserir um novo usuário.

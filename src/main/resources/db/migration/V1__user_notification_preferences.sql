@@ -4,3 +4,4 @@
     news BOOLEAN NOT NULL DEFAULT FALSE,
     events BOOLEAN NOT NULL DEFAULT FALSE
 );
+-- Documentação: cria ou atualiza a estrutura persistente descrita nesta migração.

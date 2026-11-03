@@ -1,4 +1,5 @@
 
+// Documentação do arquivo: declara os tipos e operações do componente desta pasta.
 package com.example.delta_back.servlet;
 
 import com.example.delta_back.conexao.ConexaoBD;
@@ -20,12 +21,14 @@ import java.util.List;
 import java.util.Locale;
 
 @WebServlet("/property")
+// Documentação da classe PropertyServlet: reúne os dados e comportamentos deste tipo.
 public class PropertyServlet extends HttpServlet {
 
     private Connection connection;
     private PropertyCrud propertyCrud;
 
     @Override
+    // Metodo: init; executa a operacao init neste componente.
     public void init() throws ServletException {
         try {
             connection = ConexaoBD.conectar();
@@ -38,6 +41,7 @@ public class PropertyServlet extends HttpServlet {
     }
 
     @Override
+    // Metodo: do Get; processa uma requisicao HTTP GET e prepara a resposta.
     protected void doGet(
             HttpServletRequest request,
             HttpServletResponse response
@@ -57,6 +61,7 @@ public class PropertyServlet extends HttpServlet {
         }
     }
 
+    // Metodo: ler Texto Obrigatorio; executa a operacao ler Texto Obrigatorio neste componente.
     private String lerTextoObrigatorio(
             HttpServletRequest request,
             String parametro,
@@ -73,6 +78,7 @@ public class PropertyServlet extends HttpServlet {
         return valor.trim().toUpperCase(Locale.ROOT);
     }
 
+    // Metodo: ler Inteiro Positivo; executa a operacao ler Inteiro Positivo neste componente.
     private int lerInteiroPositivo(
             HttpServletRequest request,
             String parametro,
@@ -105,6 +111,7 @@ public class PropertyServlet extends HttpServlet {
         }
     }
 
+    // Metodo: ler Data; executa a operacao ler Data neste componente.
     private LocalDate lerData(
             HttpServletRequest request,
             String parametro
@@ -134,6 +141,7 @@ public class PropertyServlet extends HttpServlet {
         }
     }
 
+    // Metodo: encontrar SQLException; consulta os dados indicados pelos parametros recebidos.
     private SQLException encontrarSQLException(Throwable erro) {
         Throwable atual = erro;
 
@@ -148,6 +156,7 @@ public class PropertyServlet extends HttpServlet {
         return null;
     }
 
+    // Metodo: erro De Chave Estrangeira; executa a operacao erro De Chave Estrangeira neste componente.
     private boolean erroDeChaveEstrangeira(SQLException erro) {
         SQLException atual = erro;
 
@@ -164,6 +173,7 @@ public class PropertyServlet extends HttpServlet {
         return false;
     }
 
+    // Metodo: enviar Erro; executa a operacao enviar Erro neste componente.
     private void enviarErro(
             HttpServletResponse response,
             String mensagem
@@ -174,6 +184,7 @@ public class PropertyServlet extends HttpServlet {
         response.getWriter().write(mensagem);
     }
 
+    // Metodo: tratar Erro Operacao; executa a operacao tratar Erro Operacao neste componente.
     private void tratarErroOperacao(
             RuntimeException erro,
             HttpServletResponse response
@@ -210,6 +221,7 @@ public class PropertyServlet extends HttpServlet {
     }
 
     @Override
+    // Metodo: do Post; processa os dados enviados por uma requisicao HTTP POST.
     protected void doPost(
             HttpServletRequest request,
             HttpServletResponse response
@@ -255,6 +267,7 @@ public class PropertyServlet extends HttpServlet {
     }
 
     @Override
+    // Metodo: do Put; executa a operacao do Put neste componente.
     protected void doPut(
             HttpServletRequest request,
             HttpServletResponse response
@@ -305,6 +318,7 @@ public class PropertyServlet extends HttpServlet {
     }
 
     @Override
+    // Metodo: do Delete; executa a operacao do Delete neste componente.
     protected void doDelete(
             HttpServletRequest request,
             HttpServletResponse response
@@ -327,6 +341,7 @@ public class PropertyServlet extends HttpServlet {
     }
 
     @Override
+    // Metodo: destroy; executa a operacao destroy neste componente.
     public void destroy() {
         try {
             if (connection != null && !connection.isClosed()) {

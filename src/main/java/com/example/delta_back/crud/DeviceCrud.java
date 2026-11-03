@@ -1,3 +1,4 @@
+// Documentação do arquivo: declara os tipos e operações do componente desta pasta.
 package com.example.delta_back.crud;
 
 import com.example.delta_back.model.Device;
@@ -8,6 +9,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+// Documentação da classe DeviceCrud: reúne os dados e comportamentos deste tipo.
 public class DeviceCrud implements DeviceDAO {
 
     private final Connection connection;
@@ -18,6 +20,7 @@ public class DeviceCrud implements DeviceDAO {
 
     // INSERT
     @Override
+    // Metodo: inserir; grava um novo registro com os dados recebidos.
     public void inserir(Device device) {
 
         String sql = """
@@ -43,6 +46,7 @@ public class DeviceCrud implements DeviceDAO {
 
     // BUSCAR POR ID
     @Override
+    // Metodo: buscar Por Id; consulta os dados indicados pelos parametros recebidos.
     public Device buscarPorId(int id) {
 
         String sql = "SELECT * FROM tb_device WHERE id = ?";
@@ -74,6 +78,7 @@ public class DeviceCrud implements DeviceDAO {
 
     // LISTAR TODOS
     @Override
+    // Metodo: listar Todos; retorna a colecao de registros deste recurso.
     public List<Device> listarTodos() {
 
         String sql = "SELECT * FROM tb_device";
@@ -105,6 +110,7 @@ public class DeviceCrud implements DeviceDAO {
 
     // ATUALIZAR TODOS OS DADOS
     @Override
+    // Metodo: atualizar; atualiza o registro ou atributo indicado com os dados recebidos.
     public void atualizar(Device device) {
 
         String sql = """
@@ -131,6 +137,7 @@ public class DeviceCrud implements DeviceDAO {
 
     // ATUALIZAR ID DO DISPOSITIVO
     @Override
+    // Metodo: atualizar Device Id; atualiza o registro ou atributo indicado com os dados recebidos.
     public void atualizarDeviceId(Device device) {
 
         String sql = """
@@ -154,6 +161,7 @@ public class DeviceCrud implements DeviceDAO {
 
     // ATUALIZAR ID DA PROPRIEDADE
     @Override
+    // Metodo: atualizar Property Id; atualiza o registro ou atributo indicado com os dados recebidos.
     public void atualizarPropertyId(Device device) {
 
         String sql = """
@@ -177,6 +185,7 @@ public class DeviceCrud implements DeviceDAO {
 
     // ATUALIZAR STATUS
     @Override
+    // Metodo: atualizar Is Active; atualiza o registro ou atributo indicado com os dados recebidos.
     public void atualizarIsActive(Device device) {
 
         String sql = """
@@ -200,6 +209,7 @@ public class DeviceCrud implements DeviceDAO {
 
     // ATUALIZAR DATA DE INSTALAÇÃO
     @Override
+    // Metodo: atualizar Installation Date; atualiza o registro ou atributo indicado com os dados recebidos.
     public void atualizarInstallationDate(Device device) {
 
         String sql = """
@@ -223,6 +233,7 @@ public class DeviceCrud implements DeviceDAO {
 
     // DELETE POR ID DO BANCO
     @Override
+    // Metodo: deletar; remove o registro indicado pelos parametros recebidos.
     public void deletar(int id) {
 
         String sql = "DELETE FROM tb_device WHERE id = ?";
@@ -240,6 +251,7 @@ public class DeviceCrud implements DeviceDAO {
 
     // DELETE POR ID DO DISPOSITIVO
     @Override
+    // Metodo: deletar Por Id Dispositivo; remove o registro indicado pelos parametros recebidos.
     public void deletarPorIdDispositivo(String device_id) {
 
         String sql = "DELETE FROM tb_device WHERE device_id = ?";
@@ -257,6 +269,7 @@ public class DeviceCrud implements DeviceDAO {
 
     // DELETE POR ID DA PROPRIEDADE
     @Override
+    // Metodo: deletar Por Id Propriedade; remove o registro indicado pelos parametros recebidos.
     public void deletarPorIdPropriedade(int property_id) {
 
         String sql = "DELETE FROM tb_device WHERE property_id = ?";
@@ -274,6 +287,7 @@ public class DeviceCrud implements DeviceDAO {
 
     // DELETE POR DATA DE INSTALAÇÃO
     @Override
+    // Metodo: deletar Por Data Instalacao; remove o registro indicado pelos parametros recebidos.
     public void deletarPorDataInstalacao(LocalDate installation_date) {
 
         String sql = "DELETE FROM tb_device WHERE installation_date = ?";
@@ -291,6 +305,7 @@ public class DeviceCrud implements DeviceDAO {
 
     // EXIBIR DADOS
     @Override
+    // Metodo: exibir Dados; executa a operacao exibir Dados neste componente.
     public String exibirDados(Device device) {
 
         return "Id: " + device.getId() + "\n" +

@@ -1,4 +1,5 @@
 
+// Documentação do arquivo: declara os tipos e operações do componente desta pasta.
 package com.example.delta_back.servlet;
 
 import com.example.delta_back.conexao.ConexaoBD;
@@ -18,12 +19,14 @@ import java.util.List;
 import java.util.Locale;
 
 @WebServlet("/region")
+// Documentação da classe RegionServlet: reúne os dados e comportamentos deste tipo.
 public class RegionServlet extends HttpServlet {
 
     private Connection connection;
     private RegionCrud regionCrud;
 
     @Override
+    // Metodo: init; executa a operacao init neste componente.
     public void init() throws ServletException {
         try {
             connection = ConexaoBD.conectar();
@@ -36,6 +39,7 @@ public class RegionServlet extends HttpServlet {
         }
     }
 
+    // Metodo: enviar Erro; executa a operacao enviar Erro neste componente.
     private void enviarErro(
             HttpServletResponse response,
             int status,
@@ -47,6 +51,7 @@ public class RegionServlet extends HttpServlet {
         response.getWriter().write(mensagem);
     }
 
+    // Metodo: validar Nome; executa a operacao validar Nome neste componente.
     private String validarNome(String name) {
         if (name == null || name.isBlank()) {
             return "O nome da região é obrigatório.";
@@ -61,6 +66,7 @@ public class RegionServlet extends HttpServlet {
         return null;
     }
 
+    // Metodo: regiao Existe; executa a operacao regiao Existe neste componente.
     private boolean regiaoExiste(int id) throws Exception {
         List<Region> regions = regionCrud.listarTodos();
 
@@ -68,6 +74,7 @@ public class RegionServlet extends HttpServlet {
                 .anyMatch(region -> region.getId() == id);
     }
 
+    // Metodo: validar Id; executa a operacao validar Id neste componente.
     private int validarId(String idParameter) {
         if (idParameter == null
                 || !idParameter.matches("[1-9][0-9]{0,9}")) {
@@ -86,6 +93,7 @@ public class RegionServlet extends HttpServlet {
     }
 
     @Override
+    // Metodo: do Get; processa uma requisicao HTTP GET e prepara a resposta.
     protected void doGet(
             HttpServletRequest request,
             HttpServletResponse response
@@ -107,6 +115,7 @@ public class RegionServlet extends HttpServlet {
     }
 
     @Override
+    // Metodo: do Post; processa os dados enviados por uma requisicao HTTP POST.
     protected void doPost(
             HttpServletRequest request,
             HttpServletResponse response
@@ -145,6 +154,7 @@ public class RegionServlet extends HttpServlet {
     }
 
     @Override
+    // Metodo: do Put; executa a operacao do Put neste componente.
     protected void doPut(
             HttpServletRequest request,
             HttpServletResponse response
@@ -201,6 +211,7 @@ public class RegionServlet extends HttpServlet {
     }
 
     @Override
+    // Metodo: do Delete; executa a operacao do Delete neste componente.
     protected void doDelete(
             HttpServletRequest request,
             HttpServletResponse response
@@ -260,6 +271,7 @@ public class RegionServlet extends HttpServlet {
     }
 
     @Override
+    // Metodo: destroy; executa a operacao destroy neste componente.
     public void destroy() {
         try {
             if (connection != null && !connection.isClosed()) {

@@ -10,6 +10,7 @@
     <name>Delta_Back</name>
     <packaging>war</packaging>
 
+    <!-- Propriedades do projeto, codificacao e versoes usadas pela compilacao. -->
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.target>21</maven.compiler.target>
@@ -18,6 +19,7 @@
         <kotlin.version>2.3.20</kotlin.version>
     </properties>
 
+    <!-- Bibliotecas externas necessarias em execucao e nos testes. -->
     <dependencies>
         <dependency>
             <groupId>org.mindrot</groupId>
@@ -81,6 +83,7 @@
         </dependency>
     </dependencies>
 
+    <!-- Plugins e etapas que compilam e empacotam a aplicacao como WAR. -->
     <build>
         <plugins>
             <plugin>

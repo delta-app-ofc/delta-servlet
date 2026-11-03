@@ -10,6 +10,7 @@
     box-sizing: border-box;
 }
 
+/* Estilos do grupo: define a apresentação do regra @font-face. */
 @font-face {
     font-family: 'Talina DEMO';
     src: url('/fontes/talina-demo.regular.otf') format('opentype');
@@ -17,18 +18,21 @@
     font-style: normal;
 }
 
+/* Estilos do grupo: define a apresentação do seletor body. */
 body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
 }
 
+/* Estilos do grupo: define a apresentação do seletor html. */
 html {
     scrollbar-color: #0088ff transparent;
     scrollbar-width: thin;
     scroll-behavior: smooth;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .barra-fixa. */
 .barra-fixa {
     position: fixed;
     top: 0;
@@ -40,6 +44,7 @@ html {
     display: flex;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .Delta. */
 .Delta {
     position: sticky;
     color: #FEFEFE;
@@ -50,6 +55,7 @@ html {
     left: 50px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor #LogoDelta. */
 #LogoDelta {
     position: absolute;
     left: 148px;
@@ -59,6 +65,7 @@ html {
     display: block;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .Cadastrar. */
 .Cadastrar {
     position: absolute;
     right: 44px;
@@ -74,6 +81,7 @@ html {
     top:1.5rem;
 }
 
+/* Estilos do grupo: define a apresentação do seletor #cadastrar. */
 #cadastrar {
     color: #306AE5;
     font-family: Poppins;
@@ -83,6 +91,7 @@ html {
     z-index: 1001;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .Entrar. */
 .Entrar {
     position: absolute;
     width: 44px;
@@ -98,6 +107,7 @@ html {
     top:1.9rem;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .Conceito, .Objetivos, .Funcionalidades, .Inicio, .Sobre_Nos, .valores. */
 .Conceito, .Objetivos, .Funcionalidades, .Inicio, .Sobre_Nos, .valores{
     position: fixed;
     cursor: pointer;
@@ -113,6 +123,7 @@ html {
 }
 
 .Conceito::after, .Objetivos::after, .Funcionalidades::after,
+/* Estilos do grupo: define a apresentação do seletor .Inicio::after, .Sobre_Nos::after, .valores::after. */
 .Inicio::after, .Sobre_Nos::after, .valores::after {
     content: '';
     position: absolute;
@@ -126,35 +137,43 @@ html {
     transition: width 0.2s ease-in-out;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .Conceito:hover::after, .Objetivos:hover::after, .Funcionalidades:hover::after, .Inicio:hover::after. */
 .Conceito:hover::after, .Objetivos:hover::after, .Funcionalidades:hover::after, .Inicio:hover::after, .Sobre_Nos:hover::after, .valores:hover::after{
     width: 100%;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .Inicio. */
 .Inicio {
     width: 35px;
     left: 404px;
 }
+/* Estilos do grupo: define a apresentação do seletor .Conceito. */
 .Conceito {
     width: 60px;
     left: 479px;
 }
+/* Estilos do grupo: define a apresentação do seletor .Objetivos. */
 .Objetivos {
     width: 62px;
     left: 579px;
 }
+/* Estilos do grupo: define a apresentação do seletor .Funcionalidades. */
 .Funcionalidades {
     width: 109px;
     left: 681px;
 }
+/* Estilos do grupo: define a apresentação do seletor .Sobre_Nos. */
 .Sobre_Nos{
     width: 66px;
     left: 830px;
 }
+/* Estilos do grupo: define a apresentação do seletor .valores. */
 .valores{
     width: 100px;
     left: 936px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor #footer. */
 #footer{
     position: absolute;
     right: 0;
@@ -163,6 +182,7 @@ html {
     margin-top:4370px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .Footer. */
 .Footer{
     position: absolute;
     align-items: center;
@@ -170,6 +190,7 @@ html {
     flex-direction: column;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .coluna1, .coluna2, .coluna3. */
 .coluna1, .coluna2, .coluna3{
     position: absolute;
     z-index: 5;
@@ -181,18 +202,22 @@ html {
     list-style: none;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .coluna2. */
 .coluna2{
     left: 778px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .coluna3. */
 .coluna3{
     left: 1129px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .coluna1 li,.coluna2 li,.coluna3 li. */
 .coluna1 li,.coluna2 li,.coluna3 li{
     white-space: nowrap;
 }
 
+/* Estilos do grupo: define a apresentação do seletor #logo. */
 #logo{
     position: absolute;
     z-index: 5;
@@ -202,6 +227,7 @@ html {
     margin-top: 4470px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .textoFooter. */
 .textoFooter{
     position: absolute;
     width: 291px;
@@ -211,6 +237,7 @@ html {
     color:#FAFAFA;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .redesSociais. */
 .redesSociais{
     position: absolute;
     z-index: 5;
@@ -222,6 +249,7 @@ html {
     font-weight: 700;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .icones-redes. */
 .icones-redes{
     position: absolute;
     z-index: 5;
@@ -231,11 +259,13 @@ html {
     gap: 12px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .icones-redes img. */
 .icones-redes img{
     width: 32px;
     height: 32px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .direitos. */
 .direitos{
     position: absolute;
     z-index: 5;
@@ -245,15 +275,18 @@ html {
     color:#FAFAFA;
 }
 
+/* Estilos do grupo: define a apresentação do seletor a:visited. */
 a:visited {
     color: #FAFAFA;
     text-decoration: none;
 }
+/* Estilos do grupo: define a apresentação do seletor a. */
 a{
     color: #FAFAFA;
     text-decoration: none;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .fundo-degrade. */
 .fundo-degrade{
     position: absolute;
     z-index: 1;
@@ -262,6 +295,7 @@ a{
     left:0;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .titulo. */
 .titulo{
     position: absolute;
     z-index: 15;
@@ -281,6 +315,7 @@ a{
     transform: translate(-50%,-50%);
 }
 
+/* Estilos do grupo: define a apresentação do seletor .informacoes. */
 .informacoes{
     position: absolute;
     z-index: 15;
@@ -298,6 +333,7 @@ a{
     transform: translate(-50%,-50%);
 }
 
+/* Estilos do grupo: define a apresentação do seletor .retangulo-termo. */
 .retangulo-termo{
     position: absolute;
     z-index: 15;
@@ -312,6 +348,7 @@ a{
     transform: translate(-50%,-50%);
 }
 
+/* Estilos do grupo: define a apresentação do seletor .resumo. */
 .resumo{
     color: #616E80;
     font-family: Poppins;
@@ -322,11 +359,13 @@ a{
     align-self: stretch;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .resumo strong. */
 .resumo strong{
     color: #0B2156;
     font-weight: 600;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .retangulo-resumo. */
 .retangulo-resumo{
     position: absolute;
     display: flex;
@@ -344,6 +383,7 @@ a{
     margin-top: 120px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .atualizacao. */
 .atualizacao{
     color: #616E80;
     font-family: Poppins;
@@ -353,6 +393,7 @@ a{
     line-height: 160%;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .titulo-indice. */
 .titulo-indice{
     color: #0B2156;
     font-family: Poppins;
@@ -364,6 +405,7 @@ a{
     margin-left:64px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor #topicos-indice. */
 #topicos-indice{
     color: #306AE5;
     font-family: Poppins;
@@ -378,25 +420,30 @@ a{
     margin-top:10px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor #topicos-indice li. */
 #topicos-indice li {
     margin-bottom: 5px;
 }
 
 #topicos-indice a,
+/* Estilos do grupo: define a apresentação do seletor #topicos-indice a:visited. */
 #topicos-indice a:visited{
     color: #306AE5;
     text-decoration: none;
 }
 
+/* Estilos do grupo: define a apresentação do seletor #topicos-indice a. */
 #topicos-indice a{
     cursor: pointer;
 }
 
+/* Estilos do grupo: define a apresentação do seletor #topicos-indice a:hover. */
 #topicos-indice a:hover{
     text-decoration: underline;
 }
 
 .topico1, .topico2, .topico3, .topico4, .topico5, .topico6, .topico7,
+/* Estilos do grupo: define a apresentação do seletor .topico8, .topico9, .topico10, .topico11, .topico12, .topico13. */
 .topico8, .topico9, .topico10, .topico11, .topico12, .topico13{
     color: #003E9B;
     font-family: Unbounded;
@@ -412,6 +459,7 @@ a{
 .informacoes-topico1, .informacoes-topico2, .informacoes-topico3, .informacoes-topico4,
 .informacoes-topico5, .informacoes-topico6, .informacoes-topico7, .informacoes-topico8,
 .informacoes-topico9, .informacoes-topico10, .informacoes-topico11, .informacoes-topico12,
+/* Estilos do grupo: define a apresentação do seletor .informacoes-topico13. */
 .informacoes-topico13{
     align-self: stretch;
     color: #616E80;
@@ -429,6 +477,7 @@ a{
 .informacoes-topico4 strong, .informacoes-topico5 strong, .informacoes-topico6 strong,
 .informacoes-topico7 strong, .informacoes-topico8 strong, .informacoes-topico9 strong,
 .informacoes-topico10 strong, .informacoes-topico11 strong, .informacoes-topico12 strong,
+/* Estilos do grupo: define a apresentação do seletor .informacoes-topico13 strong. */
 .informacoes-topico13 strong{
     color: #0B2156;
     font-family: Poppins;
@@ -438,6 +487,7 @@ a{
     line-height: 160%;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .retangulo-termo ul. */
 .retangulo-termo ul{
     color: #616E80;
     font-family: Poppins;
@@ -452,15 +502,18 @@ a{
     list-style-position: outside;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .retangulo-termo br + ul. */
 .retangulo-termo br + ul{
     margin-top:0;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .retangulo-termo ul strong. */
 .retangulo-termo ul strong{
     color: #0B2156;
     font-weight: 600;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .tabela-politica. */
 .tabela-politica{
     width: 832px;
     margin-left:64px;
@@ -473,6 +526,7 @@ a{
     line-height: 160%;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .tabela-politica th. */
 .tabela-politica th{
     background: #ECF2FB;
     color: #0B2156;
@@ -481,6 +535,7 @@ a{
     padding: 12px 8px 12px 14px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .tabela-politica td. */
 .tabela-politica td{
     color: #616E80;
     font-weight: 400;
@@ -490,31 +545,38 @@ a{
     border-bottom: 1px solid #E3E9F3;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .tabela-politica td strong. */
 .tabela-politica td strong{
     color: #0B2156;
     font-weight: 600;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .tabela-dados th:nth-child(1). */
 .tabela-dados th:nth-child(1){
     width: 184px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .tabela-dados th:nth-child(2). */
 .tabela-dados th:nth-child(2){
     width: 398px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .tabela-dados th:nth-child(3). */
 .tabela-dados th:nth-child(3){
     width: 250px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .tabela-bases th:nth-child(1). */
 .tabela-bases th:nth-child(1){
     width: 572px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .tabela-bases th:nth-child(2). */
 .tabela-bases th:nth-child(2){
     width: 260px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .logo1. */
 .logo1{
     position: absolute;
     z-index: 15;
@@ -522,6 +584,7 @@ a{
     margin-left:90px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .logo2. */
 .logo2{
     position: absolute;
     z-index: 15;
@@ -529,12 +592,14 @@ a{
     margin-left:1050px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .botao-topo. */
 .botao-topo {
     text-decoration: none;
     cursor: pointer;
     display: inline-block;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .botao-logo. */
 .botao-logo {
     display: flex;
     align-items: center;
@@ -542,6 +607,7 @@ a{
     margin-left: 50px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .Delta. */
 .Delta {
     color: #FEFEFE;
     font-family: "Talina DEMO", sans-serif;
@@ -550,6 +616,7 @@ a{
     z-index: 1000;
 }
 
+/* Estilos do grupo: define a apresentação do seletor #LogoDelta. */
 #LogoDelta {
     width: 36.001px;
     height: 33.861px;
@@ -557,26 +624,32 @@ a{
     display: block;
     margin-left: -50px;
 }
+/* Estilos do grupo: define a apresentação do bloco responsivo @media (max-width: 1000px). */
 @media (max-width: 1000px) {
+    /* Estilos do grupo: define a apresentação do seletor .barra-fixa. */
     .barra-fixa {
         height: 64px;
         padding: 0 12px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .botao-logo. */
     .botao-logo {
         margin-left: 0;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .Delta. */
     .Delta {
         font-size: 34px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor #LogoDelta. */
     #LogoDelta {
         left: 105px;
         width: 28px;
         height: auto;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .Cadastrar. */
     .Cadastrar {
         top: 18px;
         right: 12px;
@@ -584,16 +657,19 @@ a{
         height: 28px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .Entrar. */
     .Entrar {
         top: 22px;
         right: 120px;
         font-size: 12px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .logo1, .logo2. */
     .logo1, .logo2 {
         display: none;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .titulo. */
     .titulo {
         position: relative;
         top: auto;
@@ -606,6 +682,7 @@ a{
         letter-spacing: -0.5px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .informacoes. */
     .informacoes {
         position: relative;
         top: auto;
@@ -617,6 +694,7 @@ a{
         font-size: clamp(14px, 3.8vw, 18px);
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .retangulo-termo. */
     .retangulo-termo {
         position: relative;
         top: auto;
@@ -630,6 +708,7 @@ a{
         border-radius: 18px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .retangulo-resumo. */
     .retangulo-resumo {
         position: relative;
         left: auto;
@@ -640,15 +719,18 @@ a{
         padding: 16px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .resumo. */
     .resumo {
         font-size: 14px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .titulo-indice. */
     .titulo-indice {
         margin: 24px 0 8px;
         font-size: 16px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor #topicos-indice. */
     #topicos-indice {
         column-count: 1;
         margin: 0;
@@ -657,6 +739,7 @@ a{
     }
 
     .topico1, .topico2, .topico3, .topico4, .topico5, .topico6, .topico7,
+    /* Estilos do grupo: define a apresentação do seletor .topico8, .topico9, .topico10, .topico11, .topico12, .topico13. */
     .topico8, .topico9, .topico10, .topico11, .topico12, .topico13 {
         margin: 26px 0 0;
         font-size: clamp(16px, 4.5vw, 19px);
@@ -666,6 +749,7 @@ a{
     .informacoes-topico1, .informacoes-topico2, .informacoes-topico3, .informacoes-topico4,
     .informacoes-topico5, .informacoes-topico6, .informacoes-topico7, .informacoes-topico8,
     .informacoes-topico9, .informacoes-topico10, .informacoes-topico11, .informacoes-topico12,
+    /* Estilos do grupo: define a apresentação do seletor .informacoes-topico13. */
     .informacoes-topico13 {
         width: 100%;
         margin: 8px 0 0;
@@ -677,10 +761,12 @@ a{
     .informacoes-topico4 strong, .informacoes-topico5 strong, .informacoes-topico6 strong,
     .informacoes-topico7 strong, .informacoes-topico8 strong, .informacoes-topico9 strong,
     .informacoes-topico10 strong, .informacoes-topico11 strong, .informacoes-topico12 strong,
+    /* Estilos do grupo: define a apresentação do seletor .informacoes-topico13 strong. */
     .informacoes-topico13 strong {
         font-size: inherit;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .retangulo-termo ul. */
     .retangulo-termo ul {
         width: auto;
         margin: 8px 0 0;
@@ -688,6 +774,7 @@ a{
         font-size: 14px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .tabela-politica. */
     .tabela-politica {
         display: block;
         width: 100%;
@@ -696,11 +783,13 @@ a{
         font-size: 12px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .tabela-politica th, .tabela-politica td. */
     .tabela-politica th, .tabela-politica td {
         min-width: 110px;
         padding: 9px 8px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .Footer. */
     .Footer {
         position: relative;
         display: grid;
@@ -710,10 +799,12 @@ a{
         background: #0B2156;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor #footer. */
     #footer {
         display: none;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor #logo. */
     #logo {
         position: static;
         width: 150px;
@@ -722,6 +813,7 @@ a{
         margin: 0;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .textoFooter. */
     .textoFooter {
         position: static;
         width: auto;
@@ -729,6 +821,7 @@ a{
         margin: 0;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .coluna1, .coluna2, .coluna3. */
     .coluna1, .coluna2, .coluna3 {
         position: static;
         min-width: 0;
@@ -737,10 +830,12 @@ a{
         overflow-wrap: anywhere;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .coluna1 li, .coluna2 li, .coluna3 li. */
     .coluna1 li, .coluna2 li, .coluna3 li {
         white-space: normal;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .direitos. */
     .direitos {
         position: static;
         margin: 0;
@@ -752,19 +847,24 @@ a{
     }
 }
 
+/* Estilos do grupo: define a apresentação do bloco responsivo @media (max-width: 420px). */
 @media (max-width: 420px) {
+    /* Estilos do grupo: define a apresentação do seletor .tabela-politica. */
     .tabela-politica {
         font-size: 11px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .tabela-politica th, .tabela-politica td. */
     .tabela-politica th, .tabela-politica td {
         min-width: 96px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .Footer. */
     .Footer {
         grid-template-columns: 1fr;
     }
 }
+/* Estilos do grupo: define a apresentação do seletor .voltar-final-wrap. */
 .voltar-final-wrap {
     display: flex;
     justify-content: center;
@@ -772,6 +872,7 @@ a{
     margin-top: 20px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .voltar-final. */
 .voltar-final {
     display: inline-flex;
     min-width: 180px;
@@ -797,12 +898,14 @@ a{
 .Footer li,
 .Footer a,
 .Footer h3,
+/* Estilos do grupo: define a apresentação do seletor .direitos. */
 .direitos {
     font-family: 'Poppins', sans-serif;
 }
 
 .Footer .coluna1 h3,
 .Footer .coluna2 h3,
+/* Estilos do grupo: define a apresentação do seletor .Footer .coluna3 h3. */
 .Footer .coluna3 h3 {
     font-size: 18px;
     font-weight: 700;
@@ -813,6 +916,7 @@ a{
 .Footer .coluna3 li,
 .Footer .coluna1 a,
 .Footer .coluna2 a,
+/* Estilos do grupo: define a apresentação do seletor .Footer .coluna3 a. */
 .Footer .coluna3 a {
     font-size: 15px;
     font-weight: 400;
