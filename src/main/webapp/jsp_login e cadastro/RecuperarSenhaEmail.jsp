@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recuperar Senha - E-mail</title>
     <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/imagens/FaviconDelta.png">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/css_login%20e%20cadastro/EmailVerificacao.css?v=5">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/css_login%20e%20cadastro/EmailVerificacao.css?v=6">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/css_login%20e%20cadastro/ResponsiveCore.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/css_login%20e%20cadastro/AuthMessage.css">
 </head>
@@ -25,6 +25,7 @@
 
         <%-- Bloco da página: formulário e envio de dados. --%>
         <form id="forgot-password-form" action="<%= request.getContextPath() %>/auth/forgot-password" method="post">
+            <label for="email" class="email-label">E-mail</label>
             <input type="email" id="email" name="email" placeholder="Digite seu e-mail" autocomplete="email" required maxlength="100" aria-label="E-mail cadastrado">
             <button type="submit" class="enviar-codigo">Enviar código</button>
         </form>

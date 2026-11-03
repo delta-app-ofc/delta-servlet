@@ -344,7 +344,7 @@ public class AuthServlet extends HttpServlet {
         if (!valid) {
             session.setAttribute(CHALLENGE, challenge);
             forwardError(request, response, "/jsp_login e cadastro/CodigoVerificacao.jsp",
-                    "CÃ³digo invÃ¡lido ou expirado.");
+                    "Código inválido ou expirado.");
             return;
         }
 

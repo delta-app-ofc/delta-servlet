@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Código de Verificação</title>
     <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/imagens/FaviconDelta.png">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/css_login%20e%20cadastro/CodigoVerificacao.css?v=3">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/css_login%20e%20cadastro/CodigoVerificacao.css?v=4">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/css_login%20e%20cadastro/ResponsiveCore.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/css_login%20e%20cadastro/AuthMessage.css">
 </head>
@@ -56,9 +56,10 @@
             <input form="form-verificacao" type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" required class="codigo-input" aria-label="Sexto dígito">
         </div>
 
-        <p class="tempo" id="tempo-expiracao">Esse código expira em 10:00</p>
-        <button type="submit" form="form-verificacao" class="confirmar">Confirmar</button>
+        <p class="tempo" id="tempo-expiracao">O código expira em 10:00</p>
+        <button type="submit" form="form-verificacao" class="confirmar">Confirmar código</button>
         <p class="reenviar-codigo">Não recebeu o e-mail? <a href="#" id="reenviarCodigo"><strong>Reenviar</strong></a></p>
+        <p class="dica-codigo">Dica: copie o código do e-mail e cole na primeira caixa.</p>
     </main>
 
     <%-- Bloco da página: código de interação executado pelo navegador. --%>
@@ -73,7 +74,7 @@
                 const segundosRestantes = Math.max(0, Math.ceil((expiraEm - Date.now()) / 1000));
                 const minutos = String(Math.floor(segundosRestantes / 60)).padStart(2, '0');
                 const segundos = String(segundosRestantes % 60).padStart(2, '0');
-                timer.textContent = 'Esse c' + String.fromCharCode(243) + 'digo expira em ' + minutos + ':' + segundos;
+                timer.textContent = 'O c' + String.fromCharCode(243) + 'digo expira em ' + minutos + ':' + segundos;
             };
             atualizarTimer();
             window.setInterval(atualizarTimer, 1000);
