@@ -1058,3 +1058,156 @@ body {
 .sidebar { overflow: hidden; }
 .sidebar-drop { position: absolute; z-index: 0; width: 270px; height: 350px; object-fit: contain; left: 50%; bottom: 82px; transform: translateX(-50%); pointer-events: none; }
 .logo-area, .menu, .sidebar-bottom { position: relative; z-index: 1; }
+
+/* =====================================================
+   RESPONSIVIDADE
+===================================================== */
+
+@media (max-width: 1100px) {
+
+    .sidebar {
+        left: 25px;
+        width: 210px;
+    }
+
+    .main {
+        width: calc(100% - 250px);
+
+        margin-left: 250px;
+
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+}
+
+
+@media (max-width: 850px) {
+
+    .sidebar {
+        position: relative;
+
+        top: auto;
+        left: auto;
+
+        width: 210px;
+
+        height: calc(100vh - 40px);
+
+        margin: 20px;
+    }
+
+    .main {
+        width: 100%;
+
+        margin-left: 0;
+
+        padding: 30px 20px;
+    }
+
+    .crud-header {
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+    .crud-total {
+        margin-top: 0;
+    }
+
+    .crud-toolbar {
+        flex-wrap: wrap;
+    }
+
+    .crud-search-area {
+        width: 100%;
+
+        flex-basis: 100%;
+    }
+
+
+    /* Formulário */
+
+    .crud-form-card .form-grid {
+        grid-template-columns: 1fr;
+
+        column-gap: 0;
+    }
+
+    .crud-form-actions {
+        margin-top: 40px;
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .sidebar {
+        position: relative;
+
+        width: calc(100% - 30px);
+
+        height: auto;
+
+        min-height: 0;
+
+        margin: 15px;
+
+        border-radius: 30px;
+    }
+
+    .sidebar-bottom {
+        margin-top: 30px;
+    }
+
+    .crud-title h1,
+    .crud-form-header h1 {
+        font-size: 28px;
+    }
+
+    .crud-title p,
+    .crud-form-header p {
+        font-size: 14px;
+    }
+
+    .crud-total strong {
+        width: 59px;
+        height: 28px;
+        font-size: 19px;
+    }
+
+    .crud-add {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .crud-search {
+        width: calc(100% - 45px);
+    }
+
+    .crud-search input {
+        width: 100%;
+    }
+
+
+    /* Formulário */
+
+    .crud-form-card {
+        padding: 22px 18px 25px;
+    }
+
+    .crud-form-actions {
+        flex-direction: column;
+
+        align-items: stretch;
+
+        margin-top: 35px;
+    }
+
+    .crud-cancel,
+    .crud-save {
+        width: 100%;
+    }
+
+}

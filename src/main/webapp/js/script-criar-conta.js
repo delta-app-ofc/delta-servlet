@@ -15,8 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
     botaoOlho?.addEventListener('click', () => {
         const mostrar = inputSenha.type === 'password';
         inputSenha.type = mostrar ? 'text' : 'password';
-        iconeOlho.src = mostrar ? '../assets/img/olho-aberto.svg' : '../assets/img/olho-fechado.svg';
-        iconeOlho.alt = mostrar ? 'Ocultar senha' : 'Mostrar senha';
+        const contexto = window.deltaContextPath || '';
+        iconeOlho.src = `${contexto}/imagens/${mostrar ? 'olho-aberto.svg' : 'olho-fechado.svg'}`;
+        // The button already has an accessible name; keep the decorative image silent.
+        iconeOlho.alt = '';
     });
 
     if (!inputSenha) return;

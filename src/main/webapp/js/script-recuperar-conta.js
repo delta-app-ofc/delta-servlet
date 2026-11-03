@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+﻿document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('[data-toggle-password]').forEach((botao) => {
         botao.addEventListener('click', () => {
             const input = document.getElementById(botao.dataset.togglePassword);
@@ -7,7 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const mostrar = input.type === 'password';
             input.type = mostrar ? 'text' : 'password';
-            icone.src = mostrar ? '../assets/img/olho-fechado.svg' : '../assets/img/olho-aberto.svg';
+            const raiz = window.deltaContextPath || '';
+            icone.src = raiz + (mostrar ? '/imagens/olho-aberto.svg' : '/imagens/olho-fechado.svg');
             icone.alt = '';
             botao.setAttribute('aria-label', mostrar ? 'Ocultar senha' : 'Mostrar senha');
         });
@@ -91,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             if (senha.value !== confirmacao.value) {
                 event.preventDefault();
-                confirmacao.setCustomValidity('As senhas não coincidem.');
+                confirmacao.setCustomValidity('As senhas nÃ£o coincidem.');
                 confirmacao.reportValidity();
                 confirmacao.addEventListener('input', () => confirmacao.setCustomValidity(''), { once: true });
                 confirmacao.focus();
@@ -102,3 +103,4 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.assign(botao.dataset.next);
     });
 });
+

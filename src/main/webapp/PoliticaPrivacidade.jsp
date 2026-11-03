@@ -1,0 +1,116 @@
+﻿<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Delta</title>
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/css_login%20e%20cadastro/Politicas.css?v=20261102-1">
+    <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/imagens/FaviconDelta.png">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/css_login%20e%20cadastro/ResponsiveCore.css">
+    <style>
+        @font-face {
+            font-family: 'Talina DEMO';
+            src: url('<%= request.getContextPath() %>/fontes/talina-demo.regular.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+    </style>
+</head>
+<body>
+    <div class="barra-fixa"><a href="javascript:history.back()" class="botao-topo"><div class="botao-logo"><p class="Delta">DELT</p><img src="<%= request.getContextPath() %>/imagens/LogoDelta.svg" id="LogoDelta" alt="Logo Delta"></div></a></div>
+    <img src="<%= request.getContextPath() %>/imagens/fundo-degrade.svg" class="fundo-degrade" alt="">
+    <img src="<%= request.getContextPath() %>/imagens/logo-transparente1.svg" class="logo1" alt="">
+    <img src="<%= request.getContextPath() %>/imagens/logo-transparente2.svg" class="logo2" alt="">
+
+    <p class="titulo">Política de privacidade</p>
+    <p class="informacoes">Como o Projeto Delta cuida dos seus dados, com transparência e em conformidade com a LGPD.</p>
+    <div class="retangulo-termo">
+        <div class="retangulo-resumo"><p class="resumo"><strong>Resumo rápido:</strong> coletamos apenas os dados necessários para monitorar seu consumo de água, enviar alertas e gerar previsões. Não vendemos seus dados. Você pode pedir acesso, correção ou exclusão a qualquer momento.</p><br><p class="atualizacao">Última atualização: 21 de outubro de 2026.</p></div>
+        <p class="titulo-indice">Índice</p>
+        <ol id="topicos-indice">
+            <li><a href="#secao1">Quem somos (controlador)</a></li><li><a href="#secao2">Dados que coletamos</a></li><li><a href="#secao3">Para que usamos e bases legais</a></li><li><a href="#secao4">Compartilhamento</a></li><li><a href="#secao5">Inteligência artificial</a></li><li><a href="#secao6">Cookies</a></li><li><a href="#secao7">Por quanto tempo guardamos</a></li><li><a href="#secao8">Segurança</a></li><li><a href="#secao9">Seus direitos</a></li><li><a href="#secao10">Crianças e adolescentes</a></li><li><a href="#secao11">Transferência internacional</a></li><li><a href="#secao12">Alterações</a></li><li><a href="#secao13">Contato e encarregado (DPO)</a></li>
+        </ol>
+
+        <p class="topico1" id="secao1">1. Quem somos (controlador)</p><p class="informacoes-topico1">O <strong>Projeto Delta</strong>, desenvolvido por estudantes do Instituto J&amp;F, é o controlador dos dados pessoais tratados nesta plataforma, nos termos da Lei Geral de Proteção de Dados (LGPD, Lei nº 13.709/2018).</p><p class="informacoes-topico1">Contato do controlador: contato@projetodelta.com.</p>
+        <p class="topico2" id="secao2">2. Dados que coletamos</p>
+        <table class="tabela-politica tabela-dados"><tr><th>Categoria</th><th>Exemplos</th><th>Origem</th></tr><tr><td><strong>Cadastro</strong></td><td>Nome, e-mail, senha (armazenada de forma criptografada), telefone (se informado)</td><td>Fornecidos por você</td></tr><tr><td><strong>Imóvel e hidrômetro</strong></td><td>Endereço de instalação, identificação do hidrômetro e do dispositivo IoT</td><td>Fornecidos por você ou pela equipe de instalação</td></tr><tr><td><strong>Consumo de água</strong></td><td>Leituras de vazão e volume, histórico, metas, alertas gerados</td><td>Dispositivo IoT instalado no hidrômetro</td></tr><tr><td><strong>Uso da plataforma</strong></td><td>Conversas com o chatbot, preferências, ações realizadas na conta</td><td>Geradas ao usar o serviço</td></tr><tr><td><strong>Dados técnicos</strong></td><td>Endereço IP, tipo de navegador e dispositivo, data e hora de acesso, cookies</td><td>Coletados automaticamente</td></tr></table>
+        <p class="informacoes-topico2">Não coletamos dados pessoais sensíveis (como saúde, religião ou origem racial). Pedimos que você também não os insira nas conversas com o chatbot.</p>
+        <p class="topico3" id="secao3">3. Para que usamos e bases legais</p>
+        <table class="tabela-politica tabela-bases">
+            <tr><th>Finalidade</th><th>Base legal (LGPD, art. 7º)</th></tr>
+            <tr><td>Criar e gerenciar sua conta e prestar o serviço de monitoramento</td><td>Execução de contrato</td></tr>
+            <tr><td>Enviar alertas de vazamento e consumo anormal, gerar previsões e relatórios</td><td>Execução de contrato</td></tr>
+            <tr><td>Responder dúvidas pelo chatbot e pelo suporte</td><td>Execução de contrato</td></tr>
+            <tr><td>Manter a segurança, prevenir fraudes e abusos</td><td>Legítimo interesse</td></tr>
+            <tr><td>Melhorar a plataforma e os modelos de previsão com dados estatísticos e, sempre que possível, anonimizados</td><td>Legítimo interesse</td></tr>
+            <tr><td>Cumprir obrigações legais ou ordens de autoridades</td><td>Obrigação legal ou regulatória</td></tr>
+        </table>
+
+        <p class="topico4" id="secao4">4. Compartilhamento</p>
+        <p class="informacoes-topico4"><strong>Não vendemos seus dados pessoais.</strong> Podemos compartilhá-los apenas quando necessário, com:</p>
+        <br>
+        <ul>
+            <li><strong>Prestadores de serviço</strong> que nos ajudam a operar a plataforma, como hospedagem em nuvem, envio de e-mails e notificações, e ferramentas de análise, sempre sob contrato e com obrigação de proteger os dados;</li>
+            <li><strong>Equipe de instalação</strong>, limitado ao necessário para instalar e manter o dispositivo;</li>
+            <li><strong>Autoridades públicas</strong>, quando exigido por lei ou ordem judicial.</li>
+        </ul>
+        <p class="topico5" id="secao5">5. Inteligência artificial</p><p class="informacoes-topico5">Usamos inteligência artificial para prever consumo e custos, detectar anomalias e responder no chatbot. Esse tratamento é feito para prestar o serviço contratado. As previsões e alertas não geram decisões jurídicas ou que afetem seus direitos, e você pode pedir explicações e revisão sobre como seus dados foram usados, conforme o art. 20 da LGPD.</p>
+        <p class="topico6" id="secao6">6. Cookies</p>
+        <p class="informacoes-topico6">Usamos cookies e tecnologias semelhantes para o funcionamento da plataforma e, com o seu consentimento, para entender como ela é utilizada.</p>
+        <br>
+        <ul>
+            <li><strong>Essenciais:</strong> necessários para login, segurança e funcionamento básico do site, por isso não podem ser desativados;</li>
+            <li><strong>De análise:</strong> ajudam a medir o uso da plataforma e a melhorar o serviço, e só são usados se você consentir.</li>
+        </ul>
+        <p class="informacoes-topico6">Você pode gerenciar ou bloquear cookies nas configurações do seu navegador, mas isso pode afetar o funcionamento de algumas funcionalidades.</p>
+
+        <p class="topico7" id="secao7">7. Por quanto tempo guardamos</p>
+        <ul>
+            <li><strong>Dados de cadastro e consumo:</strong> enquanto sua conta estiver ativa;</li>
+            <li><strong>Após o encerramento da conta:</strong> eliminados ou anonimizados em até 6 meses, exceto o que precisarmos manter para cumprir obrigação legal ou exercer direitos em processos;</li>
+            <li><strong>Registros de acesso (logs):</strong> 6 meses, conforme o Marco Civil da Internet (Lei nº 12.965/2014).</li>
+        </ul>
+
+        <p class="topico8" id="secao8">8. Segurança</p>
+        <p class="informacoes-topico8">Adotamos medidas técnicas e organizacionais para proteger seus dados contra acessos não autorizados, perda, alteração ou divulgação indevida, como:</p>
+        <br>
+        <ul>
+            <li>armazenamento da senha de forma criptografada;</li>
+            <li>controle de acesso, limitado a quem precisa dos dados para operar o serviço;</li>
+            <li>uso de conexão segura (HTTPS) na plataforma.</li>
+        </ul>
+        <p class="informacoes-topico8">Nenhum sistema é totalmente livre de falhas. Se ocorrer um incidente de segurança que possa causar risco ou dano relevante, avisaremos você e a ANPD, conforme a LGPD.</p>
+
+        <p class="topico9" id="secao9">9. Seus direitos</p>
+        <p class="informacoes-topico9">Conforme o art. 18 da LGPD, você pode solicitar a qualquer momento:</p>
+        <br>
+        <ul>
+            <li>confirmação de que tratamos seus dados e acesso a eles;</li>
+            <li>correção de dados incompletos, inexatos ou desatualizados;</li>
+            <li>anonimização, bloqueio ou eliminação de dados desnecessários ou tratados em desconformidade;</li>
+            <li>portabilidade dos dados a outro fornecedor;</li>
+            <li>eliminação dos dados tratados com base no consentimento;</li>
+            <li>informação sobre com quem compartilhamos seus dados;</li>
+            <li>revogação do consentimento, sem prejuízo do que foi tratado antes;</li>
+            <li>oposição a tratamento feito com base em legítimo interesse.</li>
+        </ul>
+        <p class="informacoes-topico9">Para exercer seus direitos, escreva para <strong>contato@projetodelta.com</strong>. Responderemos em até 15 dias. Você também pode reclamar à ANPD (gov.br/anpd).</p>
+        <p class="topico10" id="secao10">10. Crianças e adolescentes</p><p class="informacoes-topico10">A plataforma é destinada a maiores de 18 anos. Não coletamos intencionalmente dados de crianças e adolescentes. Se acredita que um menor nos forneceu dados, entre em contato para que possamos excluí-los.</p>
+        <p class="topico11" id="secao11">11. Transferência internacional</p><p class="informacoes-topico11">Alguns prestadores de serviço, como os de hospedagem em nuvem, podem armazenar ou processar dados em servidores fora do Brasil. Nesses casos, a transferência só é feita para países ou empresas que ofereçam grau de proteção compatível com a LGPD, com as garantias previstas em lei (art. 33), e sempre sob contrato.</p>
+        <p class="topico12" id="secao12">12. Alterações nesta política</p><p class="informacoes-topico12">Podemos atualizar esta política periodicamente. Mudanças relevantes serão comunicadas por e-mail ou na plataforma, e a data da última atualização ficará no topo desta página.</p>
+        <p class="topico13" id="secao13">13. Contato e encarregado (DPO)</p>
+        <p class="informacoes-topico13">Para dúvidas, solicitações ou reclamações sobre privacidade, fale com o nosso encarregado pelo tratamento de dados pessoais:</p>
+        <br>
+        <ul><li><strong>E-mail:</strong> contato@projetodelta.com</li></ul>
+        <p class="informacoes-topico13">Veja também os nossos Termos de Uso.</p>
+        <div class="voltar-final-wrap"><a class="voltar-final" href="<%= request.getContextPath() %>/Landing.jsp" onclick="if (history.length > 1) { event.preventDefault(); history.back(); }">Voltar</a></div>
+    </div>
+    <div class="Footer"><img src="<%= request.getContextPath() %>/imagens/footer.svg" id="footer" alt=""><img src="<%= request.getContextPath() %>/imagens/logoFooter.svg" id="logo" alt="Delta"><p class="textoFooter">Transformando dados em economia com<br>monitoramento inteligente de água em<br>tempo real.</p>
+        <ul class="coluna1"><h3>Navegações</h3><li><a href="<%= request.getContextPath() %>/Landing.jsp#topico1">Início</a></li><li><a href="<%= request.getContextPath() %>/Landing.jsp#topico2">Conceito</a></li><li><a href="<%= request.getContextPath() %>/Landing.jsp#topico3">Objetivos</a></li><li><a href="<%= request.getContextPath() %>/Landing.jsp#topico4">Funcionalidades</a></li><li><a href="<%= request.getContextPath() %>/Landing.jsp#topico5">Sobre nós</a></li><li><a href="<%= request.getContextPath() %>/Landing.jsp#topico6">Nossos Valores</a></li></ul>
+        <ul class="coluna2"><h3>Contato</h3><li><a href="mailto:delta.app.oficial@gmail.com">delta.app.oficial@gmail.com</a></li></ul><ul class="coluna3"><h3>Documentos</h3><li><a href="<%= request.getContextPath() %>/Termos.jsp">Termos de uso</a></li><li><a href="<%= request.getContextPath() %>/PoliticaPrivacidade.jsp">Política de privacidade</a></li></ul>
+    </div><p class="direitos">© 2026 Projeto Delta. Todos os direitos reservados.</p>
+</body>
+</html>
+

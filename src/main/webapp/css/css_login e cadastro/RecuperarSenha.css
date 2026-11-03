@@ -393,7 +393,7 @@ a {
         padding: 64px 28px 0;
         overflow: hidden;
         background-color: #02245B;
-        background-image: url('../img/login.svg');
+        background-image: url('/imagens/login.svg');
         background-repeat: no-repeat;
         background-position: left top;
         background-size: 250% auto;

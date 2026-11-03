@@ -25,7 +25,7 @@ import java.time.format.DateTimeParseException;
 import java.util.HexFormat;
 import java.util.Locale;
 
-@WebServlet(urlPatterns = {"/auth/*", "/login", "/cadastro", "/recuperar-senha", "/conta"})
+@WebServlet(urlPatterns = {"/auth/*", "/login", "/cadastro", "/recuperar-senha", "/conta", "/intro", "/landing-login"})
 public class AuthServlet extends HttpServlet {
 
     private static final String CHALLENGE = "authChallenge";
@@ -41,8 +41,35 @@ public class AuthServlet extends HttpServlet {
         String route = route(request);
         switch (route) {
             case "/auth/logout" -> logout(request, response);
-            case "/login" -> forward(request, response, "/jsp_login e cadastro/EntrarConta.jsp");
-            case "/cadastro" -> forward(request, response, "/jsp_login e cadastro/CriarConta.jsp");
+            case "/intro" -> {
+                HttpSession session = request.getSession(false);
+                if (session == null || session.getAttribute("authUserId") == null
+                        || Boolean.TRUE.equals(session.getAttribute("authIsAdmin"))
+                        || Boolean.TRUE.equals(session.getAttribute("authIsManager"))) {
+                    response.sendRedirect(request.getContextPath() + "/login?role=user");
+                    return;
+                }
+                forward(request, response, "/jsp_login e cadastro/Introducao.jsp");
+            }
+            case "/landing-login" -> {
+                HttpSession session = request.getSession(false);
+                if (session == null || session.getAttribute("authUserId") == null
+                        || Boolean.TRUE.equals(session.getAttribute("authIsAdmin"))
+                        || Boolean.TRUE.equals(session.getAttribute("authIsManager"))) {
+                    response.sendRedirect(request.getContextPath() + "/login?role=user");
+                    return;
+                }
+                forward(request, response, "/LandingUsuario.jsp");
+            }
+            case "/login" -> {
+                String loginPage = "admin".equalsIgnoreCase(request.getParameter("role"))
+                        ? "/jsp_login e cadastro/EntrarContaADM.jsp"
+                        : "/jsp_login e cadastro/EntrarContaUser.jsp";
+                forward(request, response, loginPage);
+            }
+            case "/cadastro" -> {
+                forward(request, response, "/jsp_login e cadastro/CriarConta.jsp");
+            }
             case "/recuperar-senha" -> forward(request, response,
                     "/jsp_login e cadastro/RecuperarSenhaEmail.jsp");
             case "/conta" -> {
@@ -51,7 +78,12 @@ public class AuthServlet extends HttpServlet {
                     response.sendRedirect(request.getContextPath() + "/login");
                     return;
                 }
-                forward(request, response, "/jsp_login e cadastro/ContaUsuario.jsp");
+                if (Boolean.TRUE.equals(session.getAttribute("authIsAdmin"))
+                        || Boolean.TRUE.equals(session.getAttribute("authIsManager"))) {
+                    response.sendRedirect(request.getContextPath() + "/inicio");
+                } else {
+                    response.sendRedirect(request.getContextPath() + "/landing-login");
+                }
             }
             case "/auth/verify-code" -> {
                 if (request.getSession().getAttribute(CHALLENGE) == null) {
@@ -104,15 +136,15 @@ public class AuthServlet extends HttpServlet {
         String password = request.getParameter("password");
         String role = "admin".equalsIgnoreCase(request.getParameter("role")) ? "admin" : "user";
         if (!InputValidator.isValidEmail(email) || password == null || password.isEmpty()) {
-            forwardError(request, response, "/jsp_login e cadastro/EntrarConta.jsp",
-                    "Informe um e-mail e uma senha válidos.");
+            forwardError(request, response, loginPage(role),
+                    "Informe um e-mail e uma senha vÃ¡lidos.");
             return;
         }
 
         try (var connection = ConexaoBD.conectar()) {
             User user = new UserCrud(connection).buscarPorEmail(email);
             if (user == null || !user.isActive() || !passwordMatches(password, user.getPassword())) {
-                forwardError(request, response, "/jsp_login e cadastro/EntrarConta.jsp",
+                forwardError(request, response, loginPage(role),
                         "E-mail ou senha incorretos.");
                 return;
             }
@@ -120,8 +152,8 @@ public class AuthServlet extends HttpServlet {
             boolean contaAdministrativa = user.isAdmin() || user.isManager();
             if (contaAdministrativa != "admin".equals(role)) {
                 request.setAttribute("selectedLoginRole", role);
-                forwardError(request, response, "/jsp_login e cadastro/EntrarConta.jsp",
-                        "Essa conta não pertence ao perfil selecionado.");
+                forwardError(request, response, loginPage(role),
+                        "Essa conta nÃ£o pertence ao perfil selecionado.");
                 return;
             }
 
@@ -133,10 +165,10 @@ public class AuthServlet extends HttpServlet {
             session.setAttribute("authEmail", user.getEmail());
             session.setAttribute("authIsAdmin", user.isAdmin());
             session.setAttribute("authIsManager", user.isManager());
-            String destino = user.isAdmin() || user.isManager() ? "/inicio" : "/conta";
+            String destino = user.isAdmin() || user.isManager() ? "/inicio" : "/intro";
             response.sendRedirect(request.getContextPath() + destino);
         } catch (Exception e) {
-            throw new ServletException("Não foi possível entrar na conta.", e);
+            throw new ServletException("NÃ£o foi possÃ­vel entrar na conta.", e);
         }
     }
 
@@ -148,10 +180,12 @@ public class AuthServlet extends HttpServlet {
         String name = request.getParameter("name");
         String email = normalizedEmail(request.getParameter("email"));
         String password = request.getParameter("password");
+        String phone = request.getParameter("phone");
         if (!InputValidator.isValidName(name) || !InputValidator.isValidEmail(email)
+                || !InputValidator.isValidPhone(phone)
                 || !InputValidator.isValidPassword(password)) {
             forwardError(request, response, registrationPage,
-                    "Confira seu nome, e-mail e os requisitos da senha.");
+                    "Confira seu nome, telefone, e-mail e os requisitos da senha.");
             return;
         }
 
@@ -159,19 +193,19 @@ public class AuthServlet extends HttpServlet {
             UserCrud users = new UserCrud(connection);
             if (users.emailEmUso(email, 0)) {
                 forwardError(request, response, registrationPage,
-                        "Email já existente.");
+                        "Email jÃ¡ existente.");
                 return;
             }
             String code = newCode();
             Instant now = Instant.now();
             HttpSession session = request.getSession(true);
             session.setAttribute(PENDING_REGISTRATION,
-                    new PendingRegistration(name.trim(), email, password, admin));
+                    new PendingRegistration(name.trim(), email, password, phone.trim(), admin));
             session.removeAttribute(REGISTRATION_VERIFIED_UNTIL);
             session.setAttribute(CHALLENGE, challenge(email, AuthChallenge.REGISTER,
                     true, code, now));
             EmailService.enviarCodigo(getServletContext(), email, code,
-                    "confirmar a criação da sua conta Delta");
+                    "confirmar a criaÃ§Ã£o da sua conta Delta");
             response.sendRedirect(request.getContextPath() + "/auth/verify-code");
         } catch (MessagingException | IOException | IllegalStateException e) {
             HttpSession session = request.getSession(false);
@@ -180,11 +214,11 @@ public class AuthServlet extends HttpServlet {
                 session.removeAttribute(CHALLENGE);
                 session.removeAttribute(REGISTRATION_VERIFIED_UNTIL);
             }
-            getServletContext().log("Falha ao enviar o código de cadastro por e-mail.", e);
+            getServletContext().log("Falha ao enviar o cÃ³digo de cadastro por e-mail.", e);
             forwardError(request, response, registrationPage,
-                    "Não foi possível enviar o código agora. Tente novamente mais tarde.");
+                    "NÃ£o foi possÃ­vel enviar o cÃ³digo agora. Tente novamente mais tarde.");
         } catch (Exception e) {
-            throw new ServletException("Não foi possível iniciar o cadastro.", e);
+            throw new ServletException("NÃ£o foi possÃ­vel iniciar o cadastro.", e);
         }
     }
 
@@ -193,7 +227,7 @@ public class AuthServlet extends HttpServlet {
         String email = normalizedEmail(request.getParameter("email"));
         if (!InputValidator.isValidEmail(email)) {
             forwardError(request, response, "/jsp_login e cadastro/RecuperarSenhaEmail.jsp",
-                    "Informe um endereço de e-mail válido.");
+                    "Informe um endereÃ§o de e-mail vÃ¡lido.");
             return;
         }
 
@@ -213,11 +247,11 @@ public class AuthServlet extends HttpServlet {
         } catch (MessagingException | IOException | IllegalStateException e) {
             HttpSession session = request.getSession(false);
             if (session != null) session.removeAttribute(CHALLENGE);
-            getServletContext().log("Falha ao enviar o código de recuperação por e-mail.", e);
+            getServletContext().log("Falha ao enviar o cÃ³digo de recuperaÃ§Ã£o por e-mail.", e);
             forwardError(request, response, "/jsp_login e cadastro/RecuperarSenhaEmail.jsp",
-                    "Não foi possível concluir a solicitação agora. Tente novamente mais tarde.");
+                    "NÃ£o foi possÃ­vel concluir a solicitaÃ§Ã£o agora. Tente novamente mais tarde.");
         } catch (Exception e) {
-            throw new ServletException("Não foi possível iniciar a recuperação de senha.", e);
+            throw new ServletException("NÃ£o foi possÃ­vel iniciar a recuperaÃ§Ã£o de senha.", e);
         }
     }
 
@@ -257,7 +291,7 @@ public class AuthServlet extends HttpServlet {
         Instant now = Instant.now();
         if (now.isBefore(current.getResendAfter())) {
             forwardError(request, response, "/jsp_login e cadastro/CodigoVerificacao.jsp",
-                    "Aguarde um minuto antes de pedir outro código.");
+                    "Aguarde um minuto antes de pedir outro cÃ³digo.");
             return;
         }
 
@@ -267,16 +301,16 @@ public class AuthServlet extends HttpServlet {
             if (current.accountExists()) {
                 EmailService.enviarCodigo(getServletContext(), current.getEmail(), code,
                         AuthChallenge.REGISTER.equals(current.getPurpose())
-                                ? "confirmar a criação da sua conta Delta"
+                                ? "confirmar a criaÃ§Ã£o da sua conta Delta"
                                 : "redefinir sua senha Delta");
             }
             current.renew(salt, hashCode(salt, code), now);
             session.setAttribute(CHALLENGE, current);
             response.sendRedirect(request.getContextPath() + "/auth/verify-code");
         } catch (MessagingException | IOException | IllegalStateException e) {
-            getServletContext().log("Falha ao reenviar o código por e-mail.", e);
+            getServletContext().log("Falha ao reenviar o cÃ³digo por e-mail.", e);
             forwardError(request, response, "/jsp_login e cadastro/CodigoVerificacao.jsp",
-                    "Não foi possível reenviar o código agora. Tente novamente mais tarde.");
+                    "NÃ£o foi possÃ­vel reenviar o cÃ³digo agora. Tente novamente mais tarde.");
         }
     }
 
@@ -287,7 +321,7 @@ public class AuthServlet extends HttpServlet {
         if (challenge == null || challenge.isExpired(Instant.now()) || challenge.getAttempts() >= 5) {
             if (session != null) session.removeAttribute(CHALLENGE);
             forwardError(request, response, "/jsp_login e cadastro/RecuperarSenhaEmail.jsp",
-                    "O código expirou. Solicite um novo código.");
+                    "O cÃ³digo expirou. Solicite um novo cÃ³digo.");
             return;
         }
 
@@ -300,7 +334,7 @@ public class AuthServlet extends HttpServlet {
         if (!valid) {
             session.setAttribute(CHALLENGE, challenge);
             forwardError(request, response, "/jsp_login e cadastro/CodigoVerificacao.jsp",
-                    "Código inválido ou expirado.");
+                    "CÃ³digo invÃ¡lido ou expirado.");
             return;
         }
 
@@ -326,12 +360,12 @@ public class AuthServlet extends HttpServlet {
         String confirmation = request.getParameter("confirmPassword");
         if (!InputValidator.isValidPassword(password)) {
             forwardError(request, response, "/jsp_login e cadastro/RedefinirSenha.jsp",
-                    "A senha deve ter 8 a 72 caracteres, letras maiúscula e minúscula, número e símbolo, sem espaços.");
+                    "A senha deve ter 8 a 72 caracteres, letras maiÃºscula e minÃºscula, nÃºmero e sÃ­mbolo, sem espaÃ§os.");
             return;
         }
         if (!password.equals(confirmation)) {
             forwardError(request, response, "/jsp_login e cadastro/RedefinirSenha.jsp",
-                    "As senhas não coincidem.");
+                    "As senhas nÃ£o coincidem.");
             return;
         }
 
@@ -342,7 +376,7 @@ public class AuthServlet extends HttpServlet {
             session.removeAttribute(RESET_VERIFIED_UNTIL);
             response.sendRedirect(request.getContextPath() + "/login?senhaAtualizada=1");
         } catch (Exception e) {
-            throw new ServletException("Não foi possível atualizar a senha.", e);
+            throw new ServletException("NÃ£o foi possÃ­vel atualizar a senha.", e);
         }
     }
 
@@ -359,13 +393,8 @@ public class AuthServlet extends HttpServlet {
             return;
         }
 
-        String phone = request.getParameter("phone");
+        String phone = pending.phone();
         String birthDateText = request.getParameter("birthdate");
-        if (!InputValidator.isValidPhone(phone)) {
-            forwardError(request, response, "/jsp_login e cadastro/CompletarCadastro.jsp",
-                    "Informe um telefone de 10 a 15 dígitos, com código do país opcional.");
-            return;
-        }
         LocalDate birthDate;
         try {
             birthDate = LocalDate.parse(birthDateText);
@@ -374,7 +403,7 @@ public class AuthServlet extends HttpServlet {
             }
         } catch (Exception e) {
             forwardError(request, response, "/jsp_login e cadastro/CompletarCadastro.jsp",
-                    "Informe uma data de nascimento válida.");
+                    "Informe uma data de nascimento vÃ¡lida.");
             return;
         }
 
@@ -390,7 +419,7 @@ public class AuthServlet extends HttpServlet {
                         ? "/jsp_login e cadastro/CriarContaAdmin.jsp"
                         : "/jsp_login e cadastro/CriarContaUsuario.jsp";
                 forwardError(request, response, page,
-                        "Email já existente.");
+                        "Email jÃ¡ existente.");
                 session.removeAttribute(PENDING_REGISTRATION);
                 return;
             }
@@ -403,7 +432,7 @@ public class AuthServlet extends HttpServlet {
 
             User createdUser = users.buscarPorEmail(pending.email());
             if (createdUser == null || !createdUser.isActive()) {
-                throw new IllegalStateException("A conta foi criada, mas não foi possível iniciar a sessão.");
+                throw new IllegalStateException("A conta foi criada, mas nÃ£o foi possÃ­vel iniciar a sessÃ£o.");
             }
 
             HttpSession authenticatedSession = request.getSession(true);
@@ -415,17 +444,20 @@ public class AuthServlet extends HttpServlet {
 
             String destination = createdUser.isAdmin() || createdUser.isManager()
                     ? "/inicio"
-                    : "/conta";
+                    : "/intro";
             response.sendRedirect(request.getContextPath() + destination);
         } catch (Exception e) {
-            throw new ServletException("Não foi possível concluir o cadastro.", e);
+            throw new ServletException("NÃ£o foi possÃ­vel concluir o cadastro.", e);
         }
     }
 
     private void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession(false);
         if (session != null) session.invalidate();
-        response.sendRedirect(request.getContextPath() + "/login");
+        String destino = "landing".equals(request.getParameter("return"))
+                ? "/Landing.jsp"
+                : "/login";
+        response.sendRedirect(request.getContextPath() + destino);
     }
 
     private static AuthChallenge challenge(String email, String purpose, boolean exists,
@@ -440,7 +472,7 @@ public class AuthServlet extends HttpServlet {
                     .digest((salt + ":" + code).getBytes(StandardCharsets.UTF_8));
             return HexFormat.of().formatHex(digest);
         } catch (Exception e) {
-            throw new IllegalStateException("Não foi possível proteger o código.", e);
+            throw new IllegalStateException("NÃ£o foi possÃ­vel proteger o cÃ³digo.", e);
         }
     }
 
@@ -488,6 +520,16 @@ public class AuthServlet extends HttpServlet {
         return request.getRequestURI().substring(request.getContextPath().length());
     }
 
-    private record PendingRegistration(String name, String email, String password, boolean admin)
+    private String loginPage(String role) {
+        return "admin".equals(role)
+                ? "/jsp_login e cadastro/EntrarContaADM.jsp"
+                : "/jsp_login e cadastro/EntrarContaUser.jsp";
+    }
+
+    private record PendingRegistration(String name, String email, String password,
+                                       String phone, boolean admin)
             implements java.io.Serializable {}
 }
+
+
+

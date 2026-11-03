@@ -114,6 +114,7 @@ body {
     position: absolute;
     padding-left: calc(14 * var(--u));
     background-color: #E0E8F6;
+    color: #003E9B;
     font-family: Montserrat, sans-serif;
 }
 
@@ -313,6 +314,12 @@ body {
         background: #E0E8F6;
     }
 
+    #form-cadastro {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
     .fundo-svg {
         display: none;
     }
@@ -329,7 +336,7 @@ body {
         padding: 64px 28px 0;
         overflow: hidden;
         background-color: #02245B;
-        background-image: url('../img/login.svg');
+        background-image: url('/imagens/login.svg');
         background-repeat: no-repeat;
         background-position: left top;
         background-size: 250% auto;
@@ -483,12 +490,13 @@ body {
 /* Signup fields and consent controls on mobile screens. */
 @media (max-width: 768px) {
     .tituloTelefone { position: static; width: calc(100% - 48px); max-width: 400px; align-self: center; margin-top: 6px; color: #003E9B; font-size: 15px; font-weight: 600; }
-    #telefone { position: static; width: calc(100% - 48px); max-width: 400px; height: 44px; align-self: center; padding: 0 12px; border: 2px solid #003E9B; border-radius: 10px; background: #fff; font: 16px Montserrat, sans-serif; }
+    #telefone { position: static; width: calc(100% - 48px); max-width: 400px; height: 44px; align-self: center; padding: 0 12px; border: 2px solid #003E9B; border-radius: 10px; background: #fff; color: #003E9B; font: 16px Montserrat, sans-serif; }
     .regras-senha { position: static; align-self: center; width: calc(100% - 48px); max-width: 400px; margin-top: 8px; padding: 0; list-style: none; color: #456b9f; font-size: 13px; line-height: 1.5; }
     .regras-senha li::before { content: ''; display: inline-block; width: 11px; height: 11px; margin-right: 8px; border: 2px solid #456b9f; border-radius: 50%; vertical-align: -2px; }
     .regras-senha li.atendido::before { content: '✓'; width: 15px; height: 15px; border: 0; color: #218838; font-size: 15px; font-weight: 700; line-height: 1; vertical-align: -1px; }
     .container-termos { position: static; display: flex; align-items: flex-start; gap: 9px; width: calc(100% - 48px); max-width: 400px; align-self: center; margin-top: 12px; color: #003E9B; font-size: 14px; line-height: 1.35; }
     .container-termos input[type='checkbox'] { appearance: none; -webkit-appearance: none; box-sizing: border-box; display: grid; place-items: center; flex: 0 0 25px; width: 25px; min-width: 25px; height: 25px; min-height: 25px; border: 2px solid #003E9B; border-radius: 8px; background: #fff; }
+    .container-termos input[type='checkbox']:checked { border-color: #003E9B; background: #003E9B; }
     .container-termos a { color: #003E9B; font-weight: 800; }
     .container-lembrar input[type='checkbox'], .container-termos input[type='checkbox'] { flex: 0 0 25px; min-width: 25px; min-height: 25px; }
     .container-lembrar input[type='checkbox']:checked::before, .container-termos input[type='checkbox']:checked::before { width: 6px; height: 13px; margin: 0 1px 4px 0; border-width: 0 3px 3px 0; }

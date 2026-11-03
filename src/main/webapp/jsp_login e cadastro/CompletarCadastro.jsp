@@ -1,17 +1,18 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/imagens/FaviconDelta.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quase lá! | Delta</title>
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/src/main/webapp/css/css_login%20e%20cadastro/ConcluirLogin.css">
+    <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/imagens/FaviconDelta.png">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/css_login%20e%20cadastro/ConcluirLogin.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/css_login%20e%20cadastro/ResponsiveCore.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/css_login%20e%20cadastro/AuthMessage.css">
 </head>
 <body>
     <%@ include file="/WEB-INF/jspf/auth-error.jspf" %>
-    <img src="<%= request.getContextPath() %>/imagens/codigo.svg" class="fundo-svg" alt="" aria-hidden="true">
+    <img src="<%= request.getContextPath() %>/imagens/codigo.svg" class="fundo-svg" alt="Fundo decorativo">
     <a href="<%= request.getContextPath() %>/cadastro" class="voltar" aria-label="Voltar para o cadastro">
         <img src="<%= request.getContextPath() %>/imagens/voltar.svg" alt="Voltar">
     </a>
@@ -21,8 +22,8 @@
         <p class="informacoes">Seu e-mail já foi confirmado. Complete os dados necessários para criar sua conta.</p>
 
         <form id="form-completar-cadastro" class="form-completar-cadastro" action="<%= request.getContextPath() %>/auth/complete-registration" method="post">
-            <input type="tel" id="telefone" name="phone" placeholder="Telefone" autocomplete="tel" inputmode="tel" required pattern="(?:[0-9]{10,15}|\+[0-9]{10,14})" maxlength="15">
-            <input type="date" id="data" name="birthdate" autocomplete="bday" max="<%= java.time.LocalDate.now().minusYears(18) %>" required>
+            <label class="rotulo-data" for="data">Digite sua data de nascimento</label>
+            <input type="date" id="data" name="birthdate" placeholder="dd/mm/aaaa" autocomplete="bday" max="<%= java.time.LocalDate.now().minusYears(18) %>" required data-required>
             <button type="submit" class="concluir-cadastro">Concluir cadastro</button>
         </form>
     </main>
@@ -30,14 +31,10 @@
     <script>
         (() => {
             const form = document.getElementById('form-completar-cadastro');
-            const phone = document.getElementById('telefone');
             const birthdate = document.getElementById('data');
             const validation = window.deltaInputValidation;
-            [phone, birthdate].forEach(input => input.addEventListener('input', () => input.setCustomValidity('')));
+            birthdate.addEventListener('input', () => birthdate.setCustomValidity(''));
             form.addEventListener('submit', event => {
-                phone.setCustomValidity(validation.isValidPhone(phone.value)
-                    ? ''
-                    : 'Informe de 10 a 15 dígitos, com + opcional no início e sem espaços ou pontuação.');
                 birthdate.setCustomValidity(validation.isTodayOrEarlier(birthdate.value)
                     ? ''
                     : 'Informe uma data de nascimento válida até hoje.');

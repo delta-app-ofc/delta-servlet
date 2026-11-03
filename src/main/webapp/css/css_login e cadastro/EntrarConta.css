@@ -262,6 +262,16 @@ a:visited {
         background: #E0E8F6;
     }
 
+    .entrar { order: 1; }
+    .botoes { order: 2; }
+    #form-login {
+        display: flex;
+        flex-direction: column;
+        order: 3;
+        width: 100%;
+    }
+    .criar { order: 4; }
+
     .fundo-svg {
         display: none;
     }
@@ -278,7 +288,7 @@ a:visited {
         padding: 64px 28px 0;
         overflow: hidden;
         background-color: #02245B;
-        background-image: url('../img/login.svg');
+        background-image: url('/imagens/login.svg');
         background-repeat: no-repeat;
         background-position: left top;
         background-size: 250% auto;

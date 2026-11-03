@@ -12,7 +12,7 @@
 
 @font-face {
     font-family: 'Talina DEMO';
-    src: url('../fontes/talina-demo.regular.otf') format('opentype');
+    src: url('/fontes/talina-demo.regular.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
 }
@@ -236,7 +236,7 @@ html {
     line-height: normal;
     color: #FAFAFA;
     z-index: 2;
-    background: var(--TEXTO-MAIN, linear-gradient(90deg, #FFF 59.13%, rgba(255, 255, 255, 0.40) 100%));
+    background: linear-gradient(90deg, #FFF 59.13%, rgba(255, 255, 255, 0.40) 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -1646,8 +1646,8 @@ a{
         height: 74vw;
         z-index: 0;
         background: #E0E8F6;
-        mask: url('../img/fundo-planos.svg') center -56vw / 100% auto no-repeat;
-        -webkit-mask: url('../img/fundo-planos.svg') center -56vw / 100% auto no-repeat;
+        mask: url('/imagens/fundo-planos.svg') center -56vw / 100% auto no-repeat;
+        -webkit-mask: url('/imagens/fundo-planos.svg') center -56vw / 100% auto no-repeat;
         pointer-events: none;
     }
 
@@ -1659,7 +1659,7 @@ a{
         z-index: 1;
         width: 100%;
         height: 63vw;
-        background: url('../img/FundoAzulClaroOnda.svg') top center / 100% 100% no-repeat;
+        background: url('/imagens/FundoAzulClaroOnda.svg') top center / 100% 100% no-repeat;
         pointer-events: none;
     }
 
@@ -2159,7 +2159,7 @@ a{
         left: 0;
         width: 100%;
         height: 90px;
-        background: url("../img/footer-onda.svg") left top / 246px 90px repeat-x;
+        background: url("/imagens/footer-onda.svg") left top / 246px 90px repeat-x;
         pointer-events: none;
     }
 
@@ -2660,7 +2660,7 @@ a{
     }
 
     .card-section .icone {
-        width: 70px;
+        width: clamp(36px, calc(7.8vw - 5px), 70px);
         height: auto;
     }
 

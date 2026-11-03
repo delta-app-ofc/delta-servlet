@@ -29,7 +29,7 @@ public class CrudAuthorizationFilter implements Filter {
         boolean admin = Boolean.TRUE.equals(session.getAttribute("authIsAdmin"));
         boolean manager = Boolean.TRUE.equals(session.getAttribute("authIsManager"));
         if (!admin && !manager) {
-            response.sendRedirect(request.getContextPath() + "/conta");
+            response.sendRedirect(request.getContextPath() + "/landing-login");
             return;
         }
 

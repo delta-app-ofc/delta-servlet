@@ -12,7 +12,7 @@
 
 @font-face {
     font-family: 'Talina DEMO';
-    src: url('../fontes/talina-demo.regular.otf') format('opentype');
+    src: url('/fontes/talina-demo.regular.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
 }
@@ -302,11 +302,11 @@ a{
     position: absolute;
     z-index: 15;
     width: 960px;
-    height: 3950px;
+    height: 3875px;
     border-radius: 28px;
     background: #FAFAFA;
     box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.08);
-    top:2251px;
+    top:2301px;
     left:50%;
     right:50%;
     transform: translate(-50%,-50%);
