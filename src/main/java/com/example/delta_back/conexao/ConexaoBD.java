@@ -1,3 +1,4 @@
+// Documentação do arquivo: declara os tipos e operações do componente desta pasta.
 package com.example.delta_back.conexao;
 
 import io.github.cdimascio.dotenv.Dotenv;
@@ -6,6 +7,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+// Documentação da classe ConexaoBD: reúne os dados e comportamentos deste tipo.
 public class ConexaoBD {
 
     private static final Dotenv dotenv = Dotenv.configure()
@@ -33,6 +35,7 @@ public class ConexaoBD {
                     PORT + "/" +
                     DB_NAME;
 
+    // Metodo: conectar; executa a operacao conectar neste componente.
     public static Connection conectar() throws SQLException {
         try {
             Class.forName("org.postgresql.Driver");

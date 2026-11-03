@@ -1,3 +1,4 @@
+// Documentação do arquivo: declara os tipos e operações do componente desta pasta.
 package com.example.delta_back.servlet;
 
 import com.example.delta_back.auth.AuthChallenge;
@@ -26,6 +27,7 @@ import java.util.HexFormat;
 import java.util.Locale;
 
 @WebServlet(urlPatterns = {"/auth/*", "/login", "/cadastro", "/recuperar-senha", "/conta", "/intro", "/landing-login"})
+// Documentação da classe AuthServlet: reúne os dados e comportamentos deste tipo.
 public class AuthServlet extends HttpServlet {
 
     private static final String CHALLENGE = "authChallenge";
@@ -36,6 +38,7 @@ public class AuthServlet extends HttpServlet {
     private static final SecureRandom RANDOM = new SecureRandom();
 
     @Override
+    // Metodo: do Get; processa uma requisicao HTTP GET e prepara a resposta.
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String route = route(request);
@@ -113,6 +116,7 @@ public class AuthServlet extends HttpServlet {
     }
 
     @Override
+    // Metodo: do Post; processa os dados enviados por uma requisicao HTTP POST.
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
@@ -130,6 +134,7 @@ public class AuthServlet extends HttpServlet {
         }
     }
 
+    // Metodo: login; valida as credenciais e inicia a sessao quando sao aceitas.
     private void login(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String email = normalizedEmail(request.getParameter("email"));
@@ -172,6 +177,7 @@ public class AuthServlet extends HttpServlet {
         }
     }
 
+    // Metodo: register; executa a operacao register neste componente.
     private void register(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         boolean admin = false;
@@ -222,6 +228,7 @@ public class AuthServlet extends HttpServlet {
         }
     }
 
+    // Metodo: start Password Recovery; executa a operacao start Password Recovery neste componente.
     private void startPasswordRecovery(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String email = normalizedEmail(request.getParameter("email"));
@@ -255,6 +262,7 @@ public class AuthServlet extends HttpServlet {
         }
     }
 
+    // Metodo: edit Verification Email; executa a operacao edit Verification Email neste componente.
     private void editVerificationEmail(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
         HttpSession session = request.getSession(false);
@@ -279,6 +287,7 @@ public class AuthServlet extends HttpServlet {
         response.sendRedirect(request.getContextPath() + destination);
     }
 
+    // Metodo: resend Code; executa a operacao resend Code neste componente.
     private void resendCode(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession(false);
@@ -314,6 +323,7 @@ public class AuthServlet extends HttpServlet {
         }
     }
 
+    // Metodo: verify Code; executa a operacao verify Code neste componente.
     private void verifyCode(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession(false);
@@ -349,6 +359,7 @@ public class AuthServlet extends HttpServlet {
         }
     }
 
+    // Metodo: reset Password; executa a operacao reset Password neste componente.
     private void resetPassword(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession(false);
@@ -380,6 +391,7 @@ public class AuthServlet extends HttpServlet {
         }
     }
 
+    // Metodo: complete Registration; executa a operacao complete Registration neste componente.
     private void completeRegistration(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession(false);
@@ -451,6 +463,7 @@ public class AuthServlet extends HttpServlet {
         }
     }
 
+    // Metodo: logout; encerra a sessao atual.
     private void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession(false);
         if (session != null) session.invalidate();
@@ -460,12 +473,14 @@ public class AuthServlet extends HttpServlet {
         response.sendRedirect(request.getContextPath() + destino);
     }
 
+    // Metodo: challenge; executa a operacao challenge neste componente.
     private static AuthChallenge challenge(String email, String purpose, boolean exists,
                                            String code, Instant now) {
         String salt = randomSalt();
         return new AuthChallenge(email, purpose, exists, salt, hashCode(salt, code), now);
     }
 
+    // Metodo: hash Code; verifica a condicao hCode.
     private static String hashCode(String salt, String code) {
         try {
             byte[] digest = MessageDigest.getInstance("SHA-256")
@@ -476,20 +491,24 @@ public class AuthServlet extends HttpServlet {
         }
     }
 
+    // Metodo: random Salt; executa a operacao random Salt neste componente.
     private static String randomSalt() {
         byte[] bytes = new byte[16];
         RANDOM.nextBytes(bytes);
         return HexFormat.of().formatHex(bytes);
     }
 
+    // Metodo: new Code; executa a operacao new Code neste componente.
     private static String newCode() {
         return String.format(Locale.ROOT, "%06d", RANDOM.nextInt(1_000_000));
     }
 
+    // Metodo: normalized Email; executa a operacao normalized Email neste componente.
     private static String normalizedEmail(String email) {
         return email == null ? null : email.trim().toLowerCase(Locale.ROOT);
     }
 
+    // Metodo: password Matches; executa a operacao password Matches neste componente.
     private static boolean passwordMatches(String raw, String hash) {
         try {
             return hash != null && BCrypt.checkpw(raw, hash);
@@ -498,34 +517,41 @@ public class AuthServlet extends HttpServlet {
         }
     }
 
+    // Metodo: has Active Grant; verifica a condicao ActiveGrant.
     private static boolean hasActiveGrant(HttpSession session, String attribute) {
         Object value = session.getAttribute(attribute);
         return value instanceof Long expiry && Instant.now().toEpochMilli() < expiry;
     }
 
+    // Metodo: forward Error; executa a operacao forward Error neste componente.
     private void forwardError(HttpServletRequest request, HttpServletResponse response,
                               String page, String error) throws ServletException, IOException {
         request.setAttribute("authError", error);
         forward(request, response, page);
     }
 
+    // Metodo: forward; executa a operacao forward neste componente.
     private void forward(HttpServletRequest request, HttpServletResponse response, String page)
             throws ServletException, IOException {
         request.getRequestDispatcher(page).forward(request, response);
     }
 
+    // Metodo: route; executa a operacao route neste componente.
     private String route(HttpServletRequest request) {
         String pathInfo = request.getPathInfo();
         if (pathInfo != null) return "/auth" + pathInfo;
         return request.getRequestURI().substring(request.getContextPath().length());
     }
 
+    // Metodo: login Page; executa a operacao login Page neste componente.
     private String loginPage(String role) {
         return "admin".equals(role)
                 ? "/jsp_login e cadastro/EntrarContaADM.jsp"
                 : "/jsp_login e cadastro/EntrarContaUser.jsp";
     }
 
+    // Documentação da classe PendingRegistration: reúne os dados e comportamentos deste tipo.
+    // Metodo: Pending Registration; executa a operacao Pending Registration neste componente.
     private record PendingRegistration(String name, String email, String password,
                                        String phone, boolean admin)
             implements java.io.Serializable {}

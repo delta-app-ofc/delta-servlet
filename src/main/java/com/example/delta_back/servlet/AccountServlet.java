@@ -1,3 +1,4 @@
+// Documentação do arquivo: declara os tipos e operações do componente desta pasta.
 package com.example.delta_back.servlet;
 
 import com.example.delta_back.conexao.ConexaoBD;
@@ -18,8 +19,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @WebServlet("/account/*")
+// Documentação da classe AccountServlet: reúne os dados e comportamentos deste tipo.
 public class AccountServlet extends HttpServlet {
     @Override
+    // Metodo: init; executa a operacao init neste componente.
     public void init() throws ServletException {
         String sql = "CREATE TABLE IF NOT EXISTS tb_user_notification_preferences (user_id INTEGER PRIMARY KEY REFERENCES tb_user(id) ON DELETE CASCADE, reports BOOLEAN NOT NULL DEFAULT FALSE, news BOOLEAN NOT NULL DEFAULT FALSE, events BOOLEAN NOT NULL DEFAULT FALSE)";
         try (Connection connection = ConexaoBD.conectar(); var statement = connection.createStatement()) {
@@ -28,6 +31,7 @@ public class AccountServlet extends HttpServlet {
             throw new ServletException("Não foi possível preparar as preferências de notificação no banco.", e);
         }
     }
+    // Metodo: authenticated User Id; executa a operacao authenticated User Id neste componente.
     private Integer authenticatedUserId(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession(false);
         Object rawId = session == null ? null : session.getAttribute("authUserId");
@@ -39,6 +43,7 @@ public class AccountServlet extends HttpServlet {
     }
 
     @Override
+    // Metodo: do Get; processa uma requisicao HTTP GET e prepara a resposta.
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Integer userId = authenticatedUserId(request, response);
         if (userId == null) return;
@@ -66,6 +71,7 @@ public class AccountServlet extends HttpServlet {
     }
 
     @Override
+    // Metodo: do Post; processa os dados enviados por uma requisicao HTTP POST.
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         request.setCharacterEncoding("UTF-8");
         Integer userId = authenticatedUserId(request, response);
@@ -91,6 +97,7 @@ public class AccountServlet extends HttpServlet {
         }
     }
 
+    // Metodo: update Profile; executa a operacao update Profile neste componente.
     private void updateProfile(HttpServletRequest request, HttpServletResponse response, UserCrud users, User user) throws IOException {
         String name = request.getParameter("name");
         String email = request.getParameter("email");
@@ -109,6 +116,7 @@ public class AccountServlet extends HttpServlet {
         response.setStatus(HttpServletResponse.SC_NO_CONTENT);
     }
 
+    // Metodo: update Password; executa a operacao update Password neste componente.
     private void updatePassword(HttpServletRequest request, HttpServletResponse response, UserCrud users, User user) throws IOException {
         String password = request.getParameter("password");
         if (!InputValidator.isValidPassword(password)) {
@@ -119,6 +127,7 @@ public class AccountServlet extends HttpServlet {
         response.setStatus(HttpServletResponse.SC_NO_CONTENT);
     }
 
+    // Metodo: update Notifications; executa a operacao update Notifications neste componente.
     private void updateNotifications(HttpServletRequest request, HttpServletResponse response, Connection connection, int userId) throws SQLException {
         boolean reports = parseBoolean(request.getParameter("reports"));
         boolean news = parseBoolean(request.getParameter("news"));
@@ -138,12 +147,14 @@ public class AccountServlet extends HttpServlet {
         response.setStatus(HttpServletResponse.SC_NO_CONTENT);
     }
 
+    // Metodo: parse Boolean; executa a operacao parse Boolean neste componente.
     private boolean parseBoolean(String value) {
         if (!InputValidator.isValidBoolean(value)) throw new IllegalArgumentException("Preferência inválida.");
         return Boolean.parseBoolean(value);
     }
 
     @Override
+    // Metodo: do Delete; executa a operacao do Delete neste componente.
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         Integer userId = authenticatedUserId(request, response);
         if (userId == null) return;

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%-- Documentação da página: CodigoVerificacao; apresenta a interface e envia os dados necessários ao fluxo correspondente. --%>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -34,11 +35,14 @@
         <img src="<%= request.getContextPath() %>/imagens/voltar.svg" class="voltar" alt="Voltar">
     </a>
 
+    <%-- Bloco da página: formulário e envio de dados. --%>
     <form id="form-verificacao" action="<%= request.getContextPath() %>/auth/verify-code" method="post" hidden>
         <input type="hidden" name="code" id="codigo-completo">
     </form>
+    <%-- Bloco da página: formulário e envio de dados. --%>
     <form id="form-reenvio" action="<%= request.getContextPath() %>/auth/resend-code" method="post" hidden></form>
 
+    <%-- Bloco da página: conteúdo principal. --%>
     <main class="container" data-expira-em="<%= activeChallenge == null ? "" : activeChallenge.getExpiresAt().toEpochMilli() %>">
         <h1 class="titulo">Insira o código abaixo:</h1>
         <p class="informacoes">Código enviado para o e-mail: <strong><%= maskedEmail %></strong> <a class="alterar-email" href="<%= request.getContextPath() %>/auth/edit-email"><strong>Alterar e-mail</strong></a></p>
@@ -57,6 +61,7 @@
         <p class="reenviar-codigo">Não recebeu o e-mail? <a href="#" id="reenviarCodigo"><strong>Reenviar</strong></a></p>
     </main>
 
+    <%-- Bloco da página: código de interação executado pelo navegador. --%>
     <script>
         (() => {
             const campos = [...document.querySelectorAll('.codigo-input')];

@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
+/* Estilos do grupo: define a apresentação do seletor :root. */
 :root {
     --blue: #292b72;
     --blue-dark: #20225f;
@@ -20,6 +21,7 @@
     padding: 0;
 }
 
+/* Estilos do grupo: define a apresentação do seletor body. */
 body {
     min-height: 100vh;
     font-family: Poppins, sans-serif;
@@ -27,60 +29,72 @@ body {
     color: var(--text);
 }
 
+/* Estilos do grupo: define a apresentação do seletor button. */
 button {
     font: inherit;
     cursor: pointer;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .locked. */
 .locked {
     overflow: hidden;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .preview. */
 .preview {
     width: min(1180px, calc(100% - 48px));
     margin: auto;
     padding: 55px 0;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .preview-header. */
 .preview-header {
     margin-bottom: 42px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .preview-header > span. */
 .preview-header > span {
     color: var(--muted);
     font-size: 12px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .preview-header h1. */
 .preview-header h1 {
     font-size: 30px;
     margin-top: 7px;
 }
 
 .preview-header p,
+/* Estilos do grupo: define a apresentação do seletor .section-title p. */
 .section-title p {
     color: var(--muted);
     font-size: 13px;
     margin-top: 7px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .section. */
 .section {
     margin-bottom: 42px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .section-title. */
 .section-title {
     margin-bottom: 16px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .section-title h2. */
 .section-title h2 {
     font-size: 17px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .cards. */
 .cards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 15px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .preview-card. */
 .preview-card {
     min-height: 145px;
     border: 1px solid var(--border);
@@ -91,6 +105,7 @@ button {
     transition: 0.2s;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .preview-card:hover. */
 .preview-card:hover {
     border-color: #b9bae0;
     transform: translateY(-2px);
@@ -98,6 +113,7 @@ button {
 }
 
 .check-icon,
+/* Estilos do grupo: define a apresentação do seletor .warning-icon. */
 .warning-icon {
     width: 35px;
     height: 35px;
@@ -109,36 +125,43 @@ button {
     font-weight: 700;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .check-icon. */
 .check-icon {
     color: var(--green);
     background: var(--green-light);
 }
 
+/* Estilos do grupo: define a apresentação do seletor .warning-icon. */
 .warning-icon {
     color: var(--red);
     background: var(--red-light);
 }
 
 .preview-card strong,
+/* Estilos do grupo: define a apresentação do seletor .preview-card small. */
 .preview-card small {
     display: block;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .preview-card strong. */
 .preview-card strong {
     font-size: 13px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .preview-card small. */
 .preview-card small {
     color: var(--muted);
     font-size: 11px;
     margin-top: 4px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .toast-demo-grid. */
 .toast-demo-grid {
     display: grid;
     gap: 11px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .toast-demo. */
 .toast-demo {
     width: 100%;
     min-height: 65px;
@@ -151,27 +174,33 @@ button {
     flex-direction: column;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .toast-demo strong. */
 .toast-demo strong {
     font-size: 10px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .toast-demo span. */
 .toast-demo span {
     font-size: 11px;
     margin-top: 3px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .toast-demo.success strong. */
 .toast-demo.success strong {
     color: var(--green);
 }
 
+/* Estilos do grupo: define a apresentação do seletor .toast-demo.edit strong. */
 .toast-demo.edit strong {
     color: var(--blue);
 }
 
+/* Estilos do grupo: define a apresentação do seletor .toast-demo.delete strong. */
 .toast-demo.delete strong {
     color: var(--red);
 }
 
+/* Estilos do grupo: define a apresentação do seletor .overlay. */
 .overlay {
     position: fixed;
     inset: 0;
@@ -187,11 +216,13 @@ button {
     z-index: 100;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .overlay.show. */
 .overlay.show {
     opacity: 1;
     visibility: visible;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .popup. */
 .popup {
     position: relative;
     width: min(440px, 100%);
@@ -205,10 +236,12 @@ button {
     transition: 0.2s;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .overlay.show .popup. */
 .overlay.show .popup {
     transform: none;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .close. */
 .close {
     position: absolute;
     right: 17px;
@@ -219,15 +252,18 @@ button {
     font-size: 23px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .popup-content. */
 .popup-content {
     display: none;
     text-align: center;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .popup-content.active. */
 .popup-content.active {
     display: block;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .popup-icon. */
 .popup-icon {
     width: 62px;
     height: 62px;
@@ -239,16 +275,19 @@ button {
     font-weight: 700;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .success-icon. */
 .success-icon {
     color: var(--green);
     background: var(--green-light);
 }
 
+/* Estilos do grupo: define a apresentação do seletor .popup .warning-icon. */
 .popup .warning-icon {
     color: var(--red);
     background: var(--red-light);
 }
 
+/* Estilos do grupo: define a apresentação do seletor .popup-tag. */
 .popup-tag {
     display: inline-block;
     color: var(--blue);
@@ -259,16 +298,19 @@ button {
     font-weight: 600;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .danger-tag. */
 .danger-tag {
     color: var(--red);
     background: var(--red-light);
 }
 
+/* Estilos do grupo: define a apresentação do seletor .popup h2. */
 .popup h2 {
     font-size: 21px;
     margin-top: 12px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .popup p. */
 .popup p {
     color: var(--muted);
     font-size: 12px;
@@ -278,6 +320,7 @@ button {
 }
 
 .popup-status,
+/* Estilos do grupo: define a apresentação do seletor .selected-record. */
 .selected-record {
     border: 1px solid var(--border);
     background: #fafaff;
@@ -289,41 +332,49 @@ button {
 
 .popup-status strong,
 .popup-status span,
+/* Estilos do grupo: define a apresentação do seletor .popup-status small. */
 .popup-status small {
     display: block;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .popup-status strong. */
 .popup-status strong {
     font-size: 11px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .popup-status span. */
 .popup-status span {
     color: var(--green);
     font-size: 10px;
     font-weight: 600;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .popup-status small. */
 .popup-status small {
     color: var(--muted);
     font-size: 9px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .selected-record. */
 .selected-record {
     border-color: #f0c8cf;
     background: #fff8f9;
 }
 
 .selected-record span,
+/* Estilos do grupo: define a apresentação do seletor .selected-record strong. */
 .selected-record strong {
     display: block;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .selected-record span. */
 .selected-record span {
     color: var(--muted);
     font-size: 8px;
     font-weight: 600;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .selected-record strong. */
 .selected-record strong {
     color: var(--red);
     font-size: 11px;
@@ -332,6 +383,7 @@ button {
 
 .popup-primary,
 .popup-secondary,
+/* Estilos do grupo: define a apresentação do seletor .popup-danger. */
 .popup-danger {
     width: 100%;
     min-height: 39px;
@@ -340,16 +392,19 @@ button {
     font-weight: 600;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .popup-primary. */
 .popup-primary {
     border: 0;
     background: var(--blue);
     color: #fff;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .popup-primary:hover. */
 .popup-primary:hover {
     background: var(--blue-dark);
 }
 
+/* Estilos do grupo: define a apresentação do seletor .popup-secondary. */
 .popup-secondary {
     border: 1px solid var(--border);
     background: #fff;
@@ -357,22 +412,26 @@ button {
     margin-top: 8px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .popup-danger. */
 .popup-danger {
     border: 0;
     background: var(--red);
     color: #fff;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .delete-actions. */
 .delete-actions {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 8px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .delete-actions .popup-secondary. */
 .delete-actions .popup-secondary {
     margin-top: 0;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .global-toast. */
 .global-toast {
     position: fixed;
     right: 25px;
@@ -396,12 +455,14 @@ button {
     z-index: 200;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .global-toast.show. */
 .global-toast.show {
     transform: none;
     opacity: 1;
     visibility: visible;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .toast-symbol. */
 .toast-symbol {
     width: 28px;
     height: 28px;
@@ -415,20 +476,24 @@ button {
 }
 
 .global-toast strong,
+/* Estilos do grupo: define a apresentação do seletor .global-toast span. */
 .global-toast span {
     display: block;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .global-toast strong. */
 .global-toast strong {
     font-size: 10px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .global-toast span. */
 .global-toast span {
     color: var(--muted);
     font-size: 10px;
     margin-top: 2px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .global-toast > button. */
 .global-toast > button {
     border: 0;
     background: transparent;
@@ -436,39 +501,48 @@ button {
     font-size: 19px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .toast-edit. */
 .toast-edit {
     border-left-color: var(--blue);
 }
 
+/* Estilos do grupo: define a apresentação do seletor .toast-edit .toast-symbol. */
 .toast-edit .toast-symbol {
     color: var(--blue);
     background: #eeeeff;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .toast-delete. */
 .toast-delete {
     border-left-color: var(--red);
 }
 
+/* Estilos do grupo: define a apresentação do seletor .toast-delete .toast-symbol. */
 .toast-delete .toast-symbol {
     color: var(--red);
     background: var(--red-light);
 }
 
+/* Estilos do grupo: define a apresentação do bloco responsivo @media (max-width: 750px). */
 @media (max-width: 750px) {
 
+    /* Estilos do grupo: define a apresentação do seletor .preview. */
     .preview {
         width: min(100% - 30px, 560px);
         padding: 35px 0;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .cards. */
     .cards {
         grid-template-columns: 1fr;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .popup. */
     .popup {
         padding: 28px 23px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .preview-header h1. */
     .preview-header h1 {
         font-size: 25px;
     }

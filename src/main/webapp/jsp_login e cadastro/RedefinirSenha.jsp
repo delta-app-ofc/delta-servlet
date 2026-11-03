@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%-- Documentação da página: RedefinirSenha; apresenta a interface e envia os dados necessários ao fluxo correspondente. --%>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -22,6 +23,7 @@
         <img src="<%= request.getContextPath() %>/imagens/gluh-run.svg" class="glub" alt="Mascote Glub">
     </div>
 
+    <%-- Bloco da página: formulário e envio de dados. --%>
     <form id="form-redefinir-senha" class="form-recuperar" action="<%= request.getContextPath() %>/auth/reset-password" method="post">
         <h1 class="recuperar-titulo">Recupere<br>sua senha</h1>
 
@@ -49,8 +51,11 @@
         <button type="submit" class="avancar" data-password-form>Salvar senha</button>
     </form>
 
+    <%-- Bloco da página: código de interação executado pelo navegador. --%>
     <script>window.deltaContextPath = '<%= request.getContextPath() %>';</script>
+    <%-- Bloco da página: código de interação executado pelo navegador. --%>
     <script src="<%= request.getContextPath() %>/js/input-validation.js?v=2"></script>
+    <%-- Bloco da página: código de interação executado pelo navegador. --%>
     <script src="<%= request.getContextPath() %>/js/script-recuperar-conta.js"></script>
 </body>
 </html>

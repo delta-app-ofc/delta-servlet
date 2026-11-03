@@ -1,4 +1,5 @@
 
+// Documentação do arquivo: declara os tipos e operações do componente desta pasta.
 package com.example.delta_back.servlet;
 
 import com.example.delta_back.conexao.ConexaoBD;
@@ -16,9 +17,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 @WebServlet("/inicio")
+// Documentação da classe IndexServlet: reúne os dados e comportamentos deste tipo.
 public class IndexServlet extends HttpServlet {
 
     @Override
+    // Metodo: do Get; processa uma requisicao HTTP GET e prepara a resposta.
     protected void doGet(HttpServletRequest request,
                          HttpServletResponse response)
             throws ServletException, IOException {

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%-- Documentação da página: Introducao; apresenta a interface e envia os dados necessários ao fluxo correspondente. --%>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -9,6 +10,7 @@
     <link rel="preload" as="font" type="font/otf" href="<%= request.getContextPath() %>/fontes/talina-demo.regular.otf" crossorigin>
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/css_login%20e%20cadastro/Animacao.css?v=20261102-1">
     <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/imagens/FaviconDelta.png">
+    <%-- Bloco da página: estilos locais desta tela. --%>
     <style>
         @font-face {
             font-family: 'Talina DEMO';
@@ -33,6 +35,7 @@
         </div>
     </div>
 
+    <%-- Bloco da página: código de interação executado pelo navegador. --%>
     <script>
         const intro = document.querySelector('.animacao');
         const marca = document.querySelector('.marca');

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%-- Documentação da página: EntrarConta; apresenta a interface e envia os dados necessários ao fluxo correspondente. --%>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -32,6 +33,7 @@
     </div>
 
     <div class="entrar">Entrar</div>
+    <%-- Bloco da página: formulário e envio de dados. --%>
     <form id="form-login" action="<%= request.getContextPath() %>/auth/login" method="post">
         <input type="hidden" name="role" value="<%= selectedLoginRole %>">
         <label for="email" class="tituloEmail">Email</label>
@@ -50,6 +52,7 @@
     </form>
     <p class="criar">Não possui conta? Faça o <a href="<%= request.getContextPath() %>/cadastro"><u><strong>cadastro</strong></u></a></p>
 
+    <%-- Bloco da página: código de interação executado pelo navegador. --%>
     <script>
         (() => {
             const botao = document.getElementById('botaoOlho');

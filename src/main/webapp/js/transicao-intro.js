@@ -1,3 +1,4 @@
+// Documentação do arquivo: controla as interações da página no navegador.
 /* ==========================================================
    transicao-intro.js   (versão com @keyframes)
    Carregar no FINAL do <body> da landing-login.html.
@@ -15,6 +16,7 @@
     const logoReal = document.querySelector('.botao-logo');
     const textoReal = document.querySelector('.botao-logo .Delta');
 
+    // Função: limpar; agrupa a lógica desta operação da interface.
     function limpar() {
         html.classList.remove('vem-da-intro', 'intro-pronta');
         if (ponte) ponte.remove();
@@ -33,6 +35,7 @@
         if (e.animationName === 'ponte-sumir') limpar();
     });
 
+    // Função: iniciar; agrupa a lógica desta operação da interface.
     async function iniciar() {
         try { await document.fonts.ready; } catch (_) {}
         await new Promise(requestAnimationFrame);

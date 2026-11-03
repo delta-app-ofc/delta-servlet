@@ -1,5 +1,6 @@
 
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%-- Documentação da página: Inicio; apresenta a interface e envia os dados necessários ao fluxo correspondente. --%>
 
 <%!
   private String escapeSidebarName(Object value) {
@@ -39,6 +40,7 @@
   <link rel="stylesheet"
         href="<%= request.getContextPath() %>/css/css_crud/Inicio.css?v=20261101-sidebar-gota-2">
 
+  <%-- Bloco da página: código de interação executado pelo navegador. --%>
   <script src="https://unpkg.com/lucide@latest"></script>
 
 </head>
@@ -47,6 +49,7 @@
 
 <!-- MENU LATERAL -->
 
+<%-- Bloco da página: conteúdo auxiliar. --%>
 <aside class="sidebar">
 
   <div class="logo-area">
@@ -59,6 +62,7 @@
 
   <img class="sidebar-drop" src="<%= request.getContextPath() %>/imagens/Gota_Sidebar.png" alt="">
 
+  <%-- Bloco da página: navegação. --%>
   <nav class="menu">
 
     <a href="<%= request.getContextPath() %>/inicio"
@@ -125,10 +129,12 @@
 
 <!-- CONTEÚDO -->
 
+<%-- Bloco da página: conteúdo principal. --%>
 <main class="main">
 
   <!-- CABEÇALHO -->
 
+  <%-- Bloco da página: cabeçalho. --%>
   <header class="page-header">
     <div class="page-heading">
       <h1>Início</h1>
@@ -141,6 +147,7 @@
 
   <!-- ESTATÍSTICAS -->
 
+  <%-- Bloco da página: seção de conteúdo. --%>
   <section class="stats">
 
     <article class="stat-card"><strong data-count="users"><%= request.getAttribute("totalUsers") %></strong><span>Usuários<br>cadastrados</span></article>
@@ -152,6 +159,7 @@
 
   <!-- ACESSO RÁPIDO -->
 
+  <%-- Bloco da página: seção de conteúdo. --%>
   <section class="quick-access">
 
     <div class="section-title">
@@ -348,6 +356,7 @@
 
 </main>
 
+<%-- Bloco da página: código de interação executado pelo navegador. --%>
 <script>
   if (window.lucide) lucide.createIcons();
   (() => {

@@ -1,3 +1,4 @@
+// Documentação do arquivo: declara os tipos e operações do componente desta pasta.
 package com.example.delta_back.validation;
 
 import java.math.BigDecimal;
@@ -6,6 +7,7 @@ import java.time.format.DateTimeParseException;
 import java.util.Locale;
 import java.util.regex.Pattern;
 
+// Documentação da classe InputValidator: reúne os dados e comportamentos deste tipo.
 public final class InputValidator {
 
     private static final Pattern NAME =
@@ -39,47 +41,56 @@ public final class InputValidator {
     private static final Pattern UPPERCASE_TEXT =
             Pattern.compile("^[\\p{Lu}\\p{N}][\\p{L}\\p{N} '\\-.,/()]*$");
 
+    // Metodo: is Valid Name; verifica a condicao ValidName.
     public static boolean isValidName(String value) {
         return value != null
                 && NAME.matcher(value.trim()).matches();
     }
 
+    // Metodo: is Valid Email; verifica a condicao ValidEmail.
     public static boolean isValidEmail(String value) {
         return value != null
                 && value.trim().length() <= 100
                 && EMAIL.matcher(value.trim()).matches();
     }
 
+    // Metodo: is Valid Phone; verifica a condicao ValidPhone.
     public static boolean isValidPhone(String value) {
         return value != null
                 && PHONE.matcher(value).matches();
     }
 
+    // Metodo: is Valid Password; verifica a condicao ValidPassword.
     public static boolean isValidPassword(String value) {
         return value != null
                 && PASSWORD.matcher(value).matches();
     }
 
+    // Metodo: is Valid Verification Code; verifica a condicao ValidVerificationCode.
     public static boolean isValidVerificationCode(String value) {
         return value != null
                 && VERIFICATION_CODE.matcher(value.trim()).matches();
     }
 
+    // Metodo: is Valid Id; verifica a condicao ValidId.
     public static boolean isValidId(String value) {
         return value != null
                 && ID.matcher(value.trim()).matches();
     }
 
+    // Metodo: is Valid Device Id; verifica a condicao ValidDeviceId.
     public static boolean isValidDeviceId(String value) {
         return value != null
                 && DEVICE_ID.matcher(value.trim()).matches();
     }
 
+    // Metodo: is Valid Cep; verifica a condicao ValidCep.
     public static boolean isValidCep(String value) {
         return value != null
                 && CEP.matcher(value.trim()).matches();
     }
 
+    // Metodo: is Valid Required Text; verifica a condicao ValidRequiredText.
     public static boolean isValidRequiredText(
             String value,
             int maxLength
@@ -90,6 +101,7 @@ public final class InputValidator {
                 && value.trim().length() <= maxLength;
     }
 
+    // Metodo: is Valid Uppercase Text; verifica a condicao ValidUppercaseText.
     public static boolean isValidUppercaseText(
             String value,
             int maxLength
@@ -100,12 +112,14 @@ public final class InputValidator {
                 && UPPERCASE_TEXT.matcher(value.trim()).matches();
     }
 
+    // Metodo: to Upper Case; executa a operacao to Upper Case neste componente.
     public static String toUpperCase(String value) {
         return value == null
                 ? null
                 : value.trim().toUpperCase(Locale.ROOT);
     }
 
+    // Metodo: is Valid Positive Value; verifica a condicao ValidPositiveValue.
     public static boolean isValidPositiveValue(String value) {
         if (value == null || value.trim().isEmpty()) {
             return false;
@@ -119,6 +133,7 @@ public final class InputValidator {
         }
     }
 
+    // Metodo: is Valid Non Negative Value; verifica a condicao ValidNonNegativeValue.
     public static boolean isValidNonNegativeValue(String value) {
         if (value == null || value.trim().isEmpty()) {
             return false;
@@ -132,6 +147,7 @@ public final class InputValidator {
         }
     }
 
+    // Metodo: is Valid Date; verifica a condicao ValidDate.
     public static boolean isValidDate(String value) {
         if (value == null || value.trim().isEmpty()) {
             return false;
@@ -145,6 +161,7 @@ public final class InputValidator {
         }
     }
 
+    // Metodo: is Today Or Earlier; verifica a condicao TodayOrEarlier.
     public static boolean isTodayOrEarlier(String value) {
         if (!isValidDate(value)) {
             return false;
@@ -154,6 +171,7 @@ public final class InputValidator {
                 .isAfter(LocalDate.now());
     }
 
+    // Metodo: is Valid Date Range; verifica a condicao ValidDateRange.
     public static boolean isValidDateRange(
             String initialDate,
             String finalDate
@@ -174,6 +192,7 @@ public final class InputValidator {
                 .isBefore(LocalDate.parse(initialDate.trim()));
     }
 
+    // Metodo: is Valid Boolean; verifica a condicao ValidBoolean.
     public static boolean isValidBoolean(String value) {
         return value != null
                 && (

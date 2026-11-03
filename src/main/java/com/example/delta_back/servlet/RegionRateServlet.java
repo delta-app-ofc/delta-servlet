@@ -1,4 +1,5 @@
 
+// Documentação do arquivo: declara os tipos e operações do componente desta pasta.
 package com.example.delta_back.servlet;
 
 import com.example.delta_back.conexao.ConexaoBD;
@@ -21,12 +22,14 @@ import java.time.format.DateTimeParseException;
 import java.util.List;
 
 @WebServlet("/regionrate")
+// Documentação da classe RegionRateServlet: reúne os dados e comportamentos deste tipo.
 public class RegionRateServlet extends HttpServlet {
 
     private Connection connection;
     private RegionRateCrud regionRateCrud;
 
     @Override
+    // Metodo: init; executa a operacao init neste componente.
     public void init() throws ServletException {
         try {
             connection = ConexaoBD.conectar();
@@ -39,6 +42,7 @@ public class RegionRateServlet extends HttpServlet {
     }
 
     @Override
+    // Metodo: do Get; processa uma requisicao HTTP GET e prepara a resposta.
     protected void doGet(
             HttpServletRequest request,
             HttpServletResponse response
@@ -60,6 +64,7 @@ public class RegionRateServlet extends HttpServlet {
         }
     }
 
+    // Metodo: regiao Existe; executa a operacao regiao Existe neste componente.
     private boolean regiaoExiste(int regionId) throws Exception {
         String sql = "SELECT 1 FROM tb_region WHERE id = ?";
 
@@ -74,6 +79,7 @@ public class RegionRateServlet extends HttpServlet {
         }
     }
 
+    // Metodo: ler Inteiro Positivo; executa a operacao ler Inteiro Positivo neste componente.
     private int lerInteiroPositivo(
             HttpServletRequest request,
             String parametro
@@ -107,6 +113,7 @@ public class RegionRateServlet extends HttpServlet {
         }
     }
 
+    // Metodo: nome Campo; executa a operacao nome Campo neste componente.
     private String nomeCampo(String parametro) {
         switch (parametro) {
             case "region_id":
@@ -120,6 +127,7 @@ public class RegionRateServlet extends HttpServlet {
         }
     }
 
+    // Metodo: ler Valor; executa a operacao ler Valor neste componente.
     private BigDecimal lerValor(HttpServletRequest request) {
         String valor = request.getParameter("m3value");
 
@@ -148,6 +156,7 @@ public class RegionRateServlet extends HttpServlet {
         return numero;
     }
 
+    // Metodo: ler Data; executa a operacao ler Data neste componente.
     private LocalDate lerData(
             HttpServletRequest request,
             String parametro
@@ -178,6 +187,7 @@ public class RegionRateServlet extends HttpServlet {
         }
     }
 
+    // Metodo: nome Campo Data; executa a operacao nome Campo Data neste componente.
     private String nomeCampoData(String parametro) {
         switch (parametro) {
             case "initial_validity":
@@ -191,6 +201,7 @@ public class RegionRateServlet extends HttpServlet {
         }
     }
 
+    // Metodo: validar Taxa; executa a operacao validar Taxa neste componente.
     private void validarTaxa(
             int regionId,
             BigDecimal m3value,
@@ -219,6 +230,7 @@ public class RegionRateServlet extends HttpServlet {
         }
     }
 
+    // Metodo: enviar Erro; executa a operacao enviar Erro neste componente.
     private void enviarErro(
             HttpServletResponse response,
             String mensagem
@@ -231,6 +243,7 @@ public class RegionRateServlet extends HttpServlet {
     }
 
     @Override
+    // Metodo: do Post; processa os dados enviados por uma requisicao HTTP POST.
     protected void doPost(
             HttpServletRequest request,
             HttpServletResponse response
@@ -278,6 +291,7 @@ public class RegionRateServlet extends HttpServlet {
     }
 
     @Override
+    // Metodo: do Put; executa a operacao do Put neste componente.
     protected void doPut(
             HttpServletRequest request,
             HttpServletResponse response
@@ -327,6 +341,7 @@ public class RegionRateServlet extends HttpServlet {
     }
 
     @Override
+    // Metodo: do Delete; executa a operacao do Delete neste componente.
     protected void doDelete(
             HttpServletRequest request,
             HttpServletResponse response
@@ -350,6 +365,7 @@ public class RegionRateServlet extends HttpServlet {
     }
 
     @Override
+    // Metodo: destroy; executa a operacao destroy neste componente.
     public void destroy() {
         try {
             if (connection != null && !connection.isClosed()) {

@@ -4,6 +4,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Unbounded:wght@200..900&display=swap');
 
+/* Estilos do grupo: define a apresentação do regra @font-face. */
 @font-face {
     font-family: 'Talina DEMO';
     src: url('/fontes/talina-demo.regular.otf') format('opentype');
@@ -15,6 +16,7 @@
     box-sizing: border-box;
 }
 
+/* Estilos do grupo: define a apresentação do seletor html, body. */
 html, body {
     width: 100%;
     margin: 0;
@@ -23,6 +25,7 @@ html, body {
 }
 
 /* Trava o scroll só enquanto a intro roda (o JS remove essa classe) */
+/* Estilos do grupo: define a apresentação do seletor body.intro-ativa. */
 body.intro-ativa {
     overflow-y: hidden;
     height: 100vh;
@@ -32,6 +35,7 @@ body.intro-ativa {
 /* ================= INTRO ================= */
 
 /* Camada de fundo da intro: some suavemente no final */
+/* Estilos do grupo: define a apresentação do seletor .animacao. */
 .animacao {
     position: fixed;
     inset: 0;
@@ -43,6 +47,7 @@ body.intro-ativa {
 }
 
 /* A marca se monta no centro, sobe e continua até o cabeçalho na próxima página */
+/* Estilos do grupo: define a apresentação do seletor .marca. */
 .marca {
     position: fixed;
     inset: 0;
@@ -57,6 +62,7 @@ body.intro-ativa {
     animation: ir-canto .8s cubic-bezier(.22, .8, .2, 1) 4.85s both;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .gota. */
 .gota {
     position: absolute;
     left: 50%;
@@ -72,6 +78,7 @@ body.intro-ativa {
     animation: cair 1.2s cubic-bezier(.22, .8, .2, 1) .2s both;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .triangulo. */
 .triangulo {
     position: absolute;
     width: 100%;
@@ -83,6 +90,7 @@ body.intro-ativa {
     animation: aparecer-triangulo .55s cubic-bezier(.22, .8, .2, 1) .9s both;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .pulso. */
 .pulso {
     width: 160px;
     height: 160px;
@@ -97,6 +105,7 @@ body.intro-ativa {
     animation: pulsar 1.3s ease-out .9s both;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .logo. */
 .logo {
     position: absolute;
     left: 50%;
@@ -111,6 +120,7 @@ body.intro-ativa {
     animation: arrastar-logo .8s cubic-bezier(.22, .8, .2, 1) 2.05s both;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .texto. */
 .texto {
     position: absolute;
     left: 50%;
@@ -124,6 +134,7 @@ body.intro-ativa {
     animation: aparecer-texto .55s cubic-bezier(.22, .8, .2, 1) 2.9s both;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .texto-slogan. */
 .texto-slogan {
     position: absolute;
     width: 100%;
@@ -148,6 +159,7 @@ body.intro-ativa {
 
 /* ================= LANDING PAGE ================= */
 
+/* Estilos do grupo: define a apresentação do seletor .landing. */
 .landing {
     position: relative;
     z-index: 1;
@@ -158,6 +170,7 @@ body.intro-ativa {
     animation: entrar-landing 1.2s ease-out 6.8s forwards;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .landing-header. */
 .landing-header {
     display: flex;
     justify-content: flex-end;
@@ -166,17 +179,20 @@ body.intro-ativa {
     padding: 0 48px 0 240px; /* espaço à esquerda para a logo que ficou no canto */
 }
 
+/* Estilos do grupo: define a apresentação do seletor .landing-header nav. */
 .landing-header nav {
     display: flex;
     gap: 32px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .landing-header a. */
 .landing-header a {
     color: #FAFAFA;
     text-decoration: none;
     font-weight: 500;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .hero. */
 .hero {
     display: flex;
     flex-direction: column;
@@ -187,18 +203,21 @@ body.intro-ativa {
     padding: 0 48px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .hero h1. */
 .hero h1 {
     margin: 0;
     font-family: "Unbounded", sans-serif;
     font-size: clamp(32px, 5vw, 64px);
 }
 
+/* Estilos do grupo: define a apresentação do seletor .hero p. */
 .hero p {
     margin: 0;
     max-width: 520px;
     opacity: .8;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .botao. */
 .botao {
     margin-top: 16px;
     padding: 14px 28px;
@@ -209,12 +228,14 @@ body.intro-ativa {
     font-weight: 700;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .secao. */
 .secao {
     padding: 96px 48px;
 }
 
 /* ================= KEYFRAMES ================= */
 
+/* Estilos do grupo: define a apresentação do regra @keyframes cair. */
 @keyframes cair {
     0%   { translate: 0 -42vh; scale: .72; opacity: 0; }
     58%  { translate: 0 0; scale: 1.08; opacity: 1; }
@@ -222,35 +243,42 @@ body.intro-ativa {
     100% { translate: 0 0; scale: 1; opacity: 1; }
 }
 
+/* Estilos do grupo: define a apresentação do regra @keyframes aparecer-triangulo. */
 @keyframes aparecer-triangulo {
     0%   { transform: scale(.72); opacity: 0; }
     68%  { transform: scale(1.04); opacity: .9; }
     100% { transform: scale(1); opacity: 1; }
 }
 
+/* Estilos do grupo: define a apresentação do regra @keyframes pulsar. */
 @keyframes pulsar {
     0% { transform: translate(-50%, -50%) scale(.55); opacity: 0; }
     16% { opacity: .48; }
     100% { transform: translate(-50%, -50%) scale(5.2); opacity: 0; }
 }
 
+/* Estilos do grupo: define a apresentação do regra @keyframes arrastar-logo. */
 @keyframes arrastar-logo {
     0%   { transform: translate(-50%, -50%) scale(1); }
     100% { transform: translate(calc(-50% + 100px), -50%) scale(.72); }
 }
 
+/* Estilos do grupo: define a apresentação do regra @keyframes aparecer-texto. */
 @keyframes aparecer-texto {
     0%   { opacity: 0; transform: translate(calc(-50% - var(--texto-offset) - 12px), -50%); }
     100% { opacity: 1; transform: translate(calc(-50% - var(--texto-offset)), -50%); }
 }
 
+/* Estilos do grupo: define a apresentação do regra @keyframes aparecer-slogan. */
 @keyframes aparecer-slogan {
     0%   { opacity: 0; transform: translateY(15px); }
     100% { opacity: 1; transform: translateY(0); }
 }
 
+/* Estilos do grupo: define a apresentação do regra @keyframes ir-canto. */
 @keyframes ir-canto {
     0% { transform: translate(0, 0) scale(1); }
+    /* Estilos do grupo: define a apresentação do seletor 100%. */
     100% {
         transform: translate(
                 calc(-50vw + var(--marca-final-x)),
@@ -259,11 +287,13 @@ body.intro-ativa {
     }
 }
 
+/* Estilos do grupo: define a apresentação do regra @keyframes sumir-slogan. */
 @keyframes sumir-slogan {
     0%   { opacity: 1; transform: translateY(0); }
     100% { opacity: 0; transform: translateY(-10px); }
 }
 
+/* Estilos do grupo: define a apresentação do bloco responsivo @media (prefers-reduced-motion: reduce). */
 @media (prefers-reduced-motion: reduce) {
     .animacao,
     .marca,
@@ -272,6 +302,7 @@ body.intro-ativa {
     .pulso,
     .logo,
     .texto,
+    /* Estilos do grupo: define a apresentação do seletor .texto-slogan. */
     .texto-slogan {
         animation-duration: .01ms !important;
         animation-delay: 0ms !important;
@@ -279,6 +310,7 @@ body.intro-ativa {
 }
 
 /* Intro some por completo (e deixa de bloquear cliques) */
+/* Estilos do grupo: define a apresentação do regra @keyframes sumir-intro. */
 @keyframes sumir-intro {
     0%   { opacity: 1; visibility: visible; }
     78%  { opacity: .18; visibility: visible; }
@@ -286,12 +318,15 @@ body.intro-ativa {
 }
 
 /* Landing aparece subindo suavemente */
+/* Estilos do grupo: define a apresentação do regra @keyframes entrar-landing. */
 @keyframes entrar-landing {
     0%   { opacity: 0; transform: translateY(24px); }
     100% { opacity: 1; transform: translateY(0); }
 }
 
+/* Estilos do grupo: define a apresentação do bloco responsivo @media (max-width: 600px). */
 @media (max-width: 600px) {
+    /* Estilos do grupo: define a apresentação do seletor .marca. */
     .marca {
         --texto-offset: 24px;
         --marca-gap: 8px;
@@ -299,22 +334,26 @@ body.intro-ativa {
         --marca-final-y: clamp(32px, 7dvh, 48px);
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .pulso. */
     .pulso {
         width: clamp(104px, 30vw, 150px);
         height: clamp(104px, 30vw, 150px);
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .texto. */
     .texto {
         font-size: clamp(42px, 15vw, 64px);
         transform: translate(calc(-50% - var(--texto-offset)), -50%);
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .logo. */
     .logo {
         width: clamp(64px, 18vw, 78px);
         height: clamp(64px, 18vw, 78px);
         margin-top: -18px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .texto-slogan. */
     .texto-slogan {
         width: calc(100% - 24px);
         left: 12px;
@@ -324,12 +363,14 @@ body.intro-ativa {
         line-height: 1.35;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .landing-header. */
     .landing-header {
         height: auto;
         min-height: 88px;
         padding: 16px 20px 16px 96px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .landing-header nav. */
     .landing-header nav {
         flex-wrap: wrap;
         justify-content: flex-end;
@@ -337,11 +378,13 @@ body.intro-ativa {
         font-size: 13px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .hero. */
     .hero {
         min-height: calc(100svh - 88px);
         padding: 48px 24px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .secao. */
     .secao {
         padding: 56px 24px;
     }

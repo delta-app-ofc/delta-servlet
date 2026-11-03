@@ -1,3 +1,4 @@
+// Documentação do arquivo: declara os tipos e operações do componente desta pasta.
 package com.example.delta_back.dao;
 
 import com.example.delta_back.model.Region_Rate;
@@ -5,6 +6,7 @@ import com.example.delta_back.model.Region_Rate;
 import java.time.LocalDate;
 import java.util.List;
 
+// Documentação da classe RegionRateDAO: reúne os dados e comportamentos deste tipo.
 public interface RegionRateDAO {
 
     // Método responsável por inserir uma nova taxa de região.

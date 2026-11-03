@@ -1,3 +1,5 @@
+<%-- Documentação do fragmento: mostra mensagens de erro de autenticação repassadas pela requisição. --%>
+<%-- Documentação da página: auth-error; apresenta a interface e envia os dados necessários ao fluxo correspondente. --%>
 <% if (request.getAttribute("authError") != null) { %>
 <div class="auth-error-toast" role="alert" aria-live="assertive" aria-atomic="true">
     <span class="auth-error-icon" aria-hidden="true">!</span>

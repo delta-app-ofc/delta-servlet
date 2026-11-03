@@ -1,4 +1,6 @@
+// Documentação do arquivo: controla as interações da página no navegador.
 // Start fresh visits with both consent options unchecked; preserve state on browser Back.
+// Evento do navegador: responde a pageshow e atualiza o comportamento da página.
 window.addEventListener('pageshow', (event) => {
     if (event.persisted) return;
     document.querySelectorAll('#lembrar-mim, #aceita-termos').forEach((checkbox) => {
@@ -6,6 +8,7 @@ window.addEventListener('pageshow', (event) => {
     });
 });
 
+// Evento do navegador: responde a DOMContentLoaded e atualiza o comportamento da página.
 document.addEventListener('DOMContentLoaded', () => {
     // Set up the password visibility control and live strength feedback.
     const botaoOlho = document.getElementById('botaoOlho');
@@ -29,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'numero-simbolo': (valor) => /\d/.test(valor) && /[^A-Za-z\d]/.test(valor)
     };
 
+    // Função: atualizar Regras Senha; agrupa a lógica desta operação da interface.
     function atualizarRegrasSenha() {
         document.querySelectorAll('.regras-senha [data-regra]').forEach((item) => {
             const regra = regrasSenha[item.dataset.regra];

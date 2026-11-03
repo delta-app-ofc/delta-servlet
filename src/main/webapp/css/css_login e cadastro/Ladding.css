@@ -10,6 +10,7 @@
     box-sizing: border-box;
 }
 
+/* Estilos do grupo: define a apresentação do regra @font-face. */
 @font-face {
     font-family: 'Talina DEMO';
     src: url('/fontes/talina-demo.regular.otf') format('opentype');
@@ -17,17 +18,20 @@
     font-style: normal;
 }
 
+/* Estilos do grupo: define a apresentação do seletor body. */
 body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
 }
+/* Estilos do grupo: define a apresentação do seletor html. */
 html {
     scrollbar-color: #0088ff transparent;
     scrollbar-width: thin;
     scroll-behavior: smooth;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .barra-fixa. */
 .barra-fixa {
     position: fixed;
     top: 0;
@@ -40,10 +44,12 @@ html {
 }
 
 .botao-menu,
+/* Estilos do grupo: define a apresentação do seletor .menu-navegacao. */
 .menu-navegacao {
     display: none;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .Delta. */
 .Delta {
     position: sticky;
     color: #FEFEFE;
@@ -54,6 +60,7 @@ html {
     left: 50px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor #LogoDelta. */
 #LogoDelta {
     position: absolute;
     left: 148px;
@@ -63,6 +70,7 @@ html {
     display: block;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .Cadastrar. */
 .Cadastrar {
     position: absolute;
     right: 44px;
@@ -78,6 +86,7 @@ html {
     top:1.5rem;
 }
 
+/* Estilos do grupo: define a apresentação do seletor #cadastrar. */
 #cadastrar {
     color: #306AE5;
     font-family: Poppins;
@@ -87,6 +96,7 @@ html {
     z-index: 1001;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .Entrar. */
 .Entrar {
     position: absolute;
     width: 44px;
@@ -102,6 +112,7 @@ html {
     top:1.9rem;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .minha-conta. */
 .minha-conta {
     position: absolute;
     right: 44px;
@@ -119,6 +130,7 @@ html {
     transition: 0.4s;
 }
 
+/* Estilos do grupo: define a apresentação do seletor #minha-conta. */
 #minha-conta {
     color: #306AE5;
     font-family: 'Poppins', sans-serif;
@@ -128,10 +140,12 @@ html {
     z-index: 1001;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .minha-conta:hover. */
 .minha-conta:hover {
     opacity: 0.85;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .Conceito, .Objetivos, .Funcionalidades, .Inicio, .Sobre_Nos, .valores. */
 .Conceito, .Objetivos, .Funcionalidades, .Inicio, .Sobre_Nos, .valores{
     position: fixed;
     cursor: pointer;
@@ -147,6 +161,7 @@ html {
 }
 
 .Conceito::after, .Objetivos::after, .Funcionalidades::after,
+/* Estilos do grupo: define a apresentação do seletor .Inicio::after, .Sobre_Nos::after, .valores::after. */
 .Inicio::after, .Sobre_Nos::after, .valores::after {
     content: '';
     position: absolute;
@@ -160,35 +175,43 @@ html {
     transition: width 0.2s ease-in-out;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .Conceito:hover::after, .Objetivos:hover::after, .Funcionalidades:hover::after, .Inicio:hover::after. */
 .Conceito:hover::after, .Objetivos:hover::after, .Funcionalidades:hover::after, .Inicio:hover::after, .Sobre_Nos:hover::after, .valores:hover::after{
     width: 100%;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .Inicio. */
 .Inicio {
     width: 35px;
     left: 404px;
 }
+/* Estilos do grupo: define a apresentação do seletor .Conceito. */
 .Conceito {
     width: 60px;
     left: 479px;
 }
+/* Estilos do grupo: define a apresentação do seletor .Objetivos. */
 .Objetivos {
     width: 62px;
     left: 579px;
 }
+/* Estilos do grupo: define a apresentação do seletor .Funcionalidades. */
 .Funcionalidades {
     width: 109px;
     left: 681px;
 }
+/* Estilos do grupo: define a apresentação do seletor .Sobre_Nos. */
 .Sobre_Nos{
     width: 66px;
     left: 830px;
 }
+/* Estilos do grupo: define a apresentação do seletor .valores. */
 .valores{
     width: 100px;
     left: 936px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .FundoGradiente. */
 .FundoGradiente {
     position: absolute;
     top: 0;
@@ -200,6 +223,7 @@ html {
     display: block;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .titulo1, .titulo2. */
 .titulo1, .titulo2 {
     position: absolute;
     height: 50px;
@@ -212,17 +236,20 @@ html {
     z-index: 2;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .titulo1. */
 .titulo1 {
     width: 303px;
     left: 89px;
     top: 164px;
 }
+/* Estilos do grupo: define a apresentação do seletor .titulo2. */
 .titulo2 {
     width: 367px;
     right: 165px;
     top: 323px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .tituloPrincipal. */
 .tituloPrincipal {
     position: absolute;
     width: 1265px;
@@ -242,6 +269,7 @@ html {
     -webkit-text-fill-color: transparent;
 }
 
+/* Estilos do grupo: define a apresentação do seletor #LogoTransparente. */
 #LogoTransparente {
     position: absolute;
     top: 140px;
@@ -251,6 +279,7 @@ html {
     display: block;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .Texto. */
 .Texto {
     position: absolute;
     width: 872px;
@@ -266,6 +295,7 @@ html {
     z-index: 2;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .retanguloComecar. */
 .retanguloComecar {
     position: absolute;
     width: 303px;
@@ -280,6 +310,7 @@ html {
     display: flex;
 }
 
+/* Estilos do grupo: define a apresentação do seletor #textoComecar. */
 #textoComecar {
     position: relative;
     width: 160px;
@@ -292,6 +323,7 @@ html {
     z-index: 3;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .carta1, .carta2, .carta3. */
 .carta1, .carta2, .carta3 {
     position: absolute;
     width: 325px;
@@ -304,19 +336,23 @@ html {
     padding: 50px 20px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .carta1. */
 .carta1 {
     left: 176px;
     z-index: 2;
 }
+/* Estilos do grupo: define a apresentação do seletor .carta2. */
 .carta2 {
     left: 600px;
     z-index: 3;
 }
+/* Estilos do grupo: define a apresentação do seletor .carta3. */
 .carta3 {
     right: 175px;
     z-index: 3;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .conteudoCarta1, .conteudoCarta2, .conteudoCarta3. */
 .conteudoCarta1, .conteudoCarta2, .conteudoCarta3 {
     display: flex;
     flex-direction: column;
@@ -328,6 +364,7 @@ html {
     line-height: normal;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .Numero, .horas, .Numero2. */
 .Numero, .horas, .Numero2 {
     display: flex;
     align-items: center;
@@ -341,14 +378,17 @@ html {
 .menos { color: #6E96ED;
     margin-right: 2px;
 }
+/* Estilos do grupo: define a apresentação do seletor .numero. */
 .numero {
     color: #FAFAFA;
 }
+/* Estilos do grupo: define a apresentação do seletor .porcentagem. */
 .porcentagem {
     color: #6E96ED;
     margin-left: 2px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .textoCarta1, .textoCarta2, .textoCarta3. */
 .textoCarta1, .textoCarta2, .textoCarta3 {
     width: 100%;
     font-size: 15px;
@@ -359,20 +399,24 @@ html {
     line-height: 1.3;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .mais. */
 .mais {
     color: #6E96ED;
     margin-right: 2px;
 }
+/* Estilos do grupo: define a apresentação do seletor .numero2. */
 .numero2 {
     color: #FAFAFA;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .carta1, .carta2, .carta3. */
 .carta1, .carta2, .carta3 {
     opacity: 0;
     transform: translateY(220px);
     will-change: transform, opacity;
 }
 
+/* Estilos do grupo: define a apresentação do seletor #FundoAzulOndaGradiente. */
 #FundoAzulOndaGradiente {
     position: absolute;
     height: 1250px;
@@ -382,6 +426,7 @@ html {
     z-index: 3;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .O-Delta. */
 .O-Delta {
     position: absolute;
     width: 100%;
@@ -396,6 +441,7 @@ html {
     z-index: 4;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .textoDelta. */
 .textoDelta {
     position: absolute;
     width: 100%;
@@ -410,6 +456,7 @@ html {
     z-index: 4;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .Iphone. */
 .Iphone {
     position: absolute;
     right: 83px;
@@ -417,6 +464,7 @@ html {
     z-index: 4;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .FundoAzulClaroOnda. */
 .FundoAzulClaroOnda {
     position: absolute;
     height: 1100px;
@@ -428,6 +476,7 @@ html {
     display: flex;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .tituloConceito. */
 .tituloConceito {
     position: absolute;
     font-family: 'Unbounded', sans-serif;
@@ -440,6 +489,7 @@ html {
     transform: translateX(-50%);
 }
 
+/* Estilos do grupo: define a apresentação do seletor .retanguloCenario, .retanguloSolucao. */
 .retanguloCenario, .retanguloSolucao {
     position: absolute;
     width: 279px;
@@ -453,6 +503,7 @@ html {
     align-content: center;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .miniTituloCenario,.miniTituloSolucao. */
 .miniTituloCenario,.miniTituloSolucao{
     color: #FAFAFA;
     font-family: Unbounded;
@@ -464,6 +515,7 @@ html {
     align-content: center;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .retanguloCenario. */
 .retanguloCenario {
     position: relative;
     left: 0;
@@ -473,6 +525,7 @@ html {
     align-content: center;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .retanguloSolucao. */
 .retanguloSolucao {
     right: 0;
     top: 1950px;
@@ -481,6 +534,7 @@ html {
     transform: translateX(120%);
 }
 
+/* Estilos do grupo: define a apresentação do seletor .retanguloCenario2, .retanguloSolucao2. */
 .retanguloCenario2, .retanguloSolucao2 {
     position: absolute;
     width: 1064px;
@@ -493,6 +547,7 @@ html {
     will-change: transform, opacity;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .retanguloCenario2. */
 .retanguloCenario2 {
     left: 0;
     top: 1835px;
@@ -501,6 +556,7 @@ html {
     transform: translateX(-120%);
 }
 
+/* Estilos do grupo: define a apresentação do seletor .retanguloSolucao2. */
 .retanguloSolucao2 {
     right: 0;
     top: 2035px;
@@ -509,6 +565,7 @@ html {
     transform: translateX(120%);
 }
 
+/* Estilos do grupo: define a apresentação do seletor .conteudoCenario. */
 .conteudoCenario {
     width: 914px;
     height: 76.416px;
@@ -524,6 +581,7 @@ html {
     margin-right: 70px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .conteudoSolucao. */
 .conteudoSolucao {
     width: 965px;
     height: 112.742px;
@@ -539,6 +597,7 @@ html {
     margin-left: 25px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor #FundoAzulCurvado. */
 #FundoAzulCurvado {
     position: absolute;
     z-index: 4;
@@ -549,6 +608,7 @@ html {
     background-size: cover;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .tituloObjetivos. */
 .tituloObjetivos {
     position: absolute;
     color: #FAFAFA;
@@ -566,6 +626,7 @@ html {
     width: 100%;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .cartaoReducao, .cartaoMonitoramento, .cartaoEficiencia. */
 .cartaoReducao, .cartaoMonitoramento, .cartaoEficiencia {
     position: absolute;
     width: 408px;
@@ -577,16 +638,20 @@ html {
     top: 2550px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .cartaoReducao. */
 .cartaoReducao {
     margin-left: 120px;
 }
+/* Estilos do grupo: define a apresentação do seletor .cartaoMonitoramento. */
 .cartaoMonitoramento {
     margin-left: 560px;
 }
+/* Estilos do grupo: define a apresentação do seletor .cartaoEficiencia. */
 .cartaoEficiencia {
     margin-left: 1000px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor #hidrometro, #monitoramento, #eficiencia. */
 #hidrometro, #monitoramento, #eficiencia {
     position: absolute;
     z-index: 6;
@@ -594,6 +659,7 @@ html {
     margin-top: 34px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .tituloReducao, .tituloMonitoramento, .tituloEficiencia. */
 .tituloReducao, .tituloMonitoramento, .tituloEficiencia {
     color: #0B2156;
     font-family: Poppins;
@@ -606,6 +672,7 @@ html {
     margin-top: 86.26px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .informacoesReducao, .informacoesMonitoramento, .informacoesEficiencia. */
 .informacoesReducao, .informacoesMonitoramento, .informacoesEficiencia {
     width: 337px;
     height: 163px;
@@ -621,11 +688,13 @@ html {
 }
 
 .cartaoReducao, .cartaoMonitoramento, .cartaoEficiencia,
+/* Estilos do grupo: define a apresentação do seletor .cartao1, .cartao2, .cartao3, .cartao4, .cartao5, .cartao6. */
 .cartao1, .cartao2, .cartao3, .cartao4, .cartao5, .cartao6 {
     will-change: transform, opacity;
     transform: translateZ(0);
 }
 
+/* Estilos do grupo: define a apresentação do seletor #FundoAzulClaroOnda2. */
 #FundoAzulClaroOnda2 {
     position: absolute;
     z-index: 3;
@@ -635,6 +704,7 @@ html {
     height: 740px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .tituloFuncionalidades. */
 .tituloFuncionalidades {
     position: absolute;
     color: #003E9B;
@@ -653,6 +723,7 @@ html {
     width: 100%;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .cartao1, .cartao2, .cartao3, .cartao4, .cartao5, .cartao6. */
 .cartao1, .cartao2, .cartao3, .cartao4, .cartao5, .cartao6 {
     position: absolute;
     width: 411px;
@@ -670,6 +741,7 @@ html {
 .cartao6 { left: 995px; top: 3450px; }
 
 .cartao1::after, .cartao2::after, .cartao3::after,
+/* Estilos do grupo: define a apresentação do seletor .cartao4::after, .cartao5::after, .cartao6::after. */
 .cartao4::after, .cartao5::after, .cartao6::after {
     content: '';
     position: absolute;
@@ -682,16 +754,19 @@ html {
 }
 
 .cartao1:hover, .cartao2:hover, .cartao3:hover,
+/* Estilos do grupo: define a apresentação do seletor .cartao4:hover, .cartao5:hover, .cartao6:hover. */
 .cartao4:hover, .cartao5:hover, .cartao6:hover {
     scale: 1.05;
     z-index: 20;
 }
 
 .cartao1:hover::after, .cartao2:hover::after, .cartao3:hover::after,
+/* Estilos do grupo: define a apresentação do seletor .cartao4:hover::after, .cartao5:hover::after, .cartao6:hover::after. */
 .cartao4:hover::after, .cartao5:hover::after, .cartao6:hover::after {
     border-color: #306AE5;
 }
 
+/* Estilos do grupo: define a apresentação do seletor #frame1, #frame2, #frame3, #frame4, #frame5, #frame6. */
 #frame1, #frame2, #frame3, #frame4, #frame5, #frame6 {
     position: relative;
     display: block;
@@ -700,6 +775,7 @@ html {
     z-index: 4;
 }
 
+/* Estilos do grupo: define a apresentação do seletor #relogio, #sino, #grafico, #lista, #robo, #papel. */
 #relogio, #sino, #grafico, #lista, #robo, #papel {
     position: absolute;
     z-index: 5;
@@ -707,6 +783,7 @@ html {
     top: 60px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .tituloCardMonitoramento, .tituloCardAlerta, .tituloCardPrevisao,.tituloCardMetas, .tituloCardChatbo. */
 .tituloCardMonitoramento, .tituloCardAlerta, .tituloCardPrevisao,.tituloCardMetas, .tituloCardChatbot, .tituloCardHistorico {
     position: absolute;
     left: 86px;
@@ -720,6 +797,7 @@ html {
     line-height: normal;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .informacoesCardMonitoramento, .informacoesCardAlerta, .informacoesCardPrevisao,.informacoesCardMeta. */
 .informacoesCardMonitoramento, .informacoesCardAlerta, .informacoesCardPrevisao,.informacoesCardMetas, .informacoesCardChatbot, .informacoesCardHistorico {
     position: absolute;
     left: 86px;
@@ -733,6 +811,7 @@ html {
     line-height: 140%;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .tituloNossaEquipe. */
 .tituloNossaEquipe {
     position: relative;
     color: #003E9B;
@@ -750,10 +829,12 @@ html {
     transform: translate(-50%, -50%);
 }
 
+/* Estilos do grupo: define a apresentação do seletor .carrossel-section. */
 .carrossel-section {
     width: 100%;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .carrossel. */
 .carrossel {
     position: relative;
     width: 100%;
@@ -765,6 +846,7 @@ html {
     overflow: hidden;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .fotosCarrossel. */
 .fotosCarrossel {
     display: flex;
     width: max-content;
@@ -773,16 +855,19 @@ html {
     will-change: transform;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .foto. */
 .foto {
     flex-shrink: 0;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .foto > img. */
 .foto > img {
     display: block;
     width: 180px;
     height: auto;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .grupo. */
 .grupo {
     display: flex;
     align-items: flex-start;
@@ -791,15 +876,19 @@ html {
     flex-shrink: 0;
 }
 
+/* Estilos do grupo: define a apresentação do regra @keyframes rolarCarrossel. */
 @keyframes rolarCarrossel {
+    /* Estilos do grupo: define a apresentação do seletor 0%. */
     0% {
         transform: translateX(0);
     }
+    /* Estilos do grupo: define a apresentação do seletor 100%. */
     100% {
         transform: translateX(-50%);
     }
 }
 
+/* Estilos do grupo: define a apresentação do seletor #lucas. */
 #lucas {
     display: flex;
     flex-direction: column;
@@ -807,25 +896,30 @@ html {
     justify-content: center;
 }
 
+/* Estilos do grupo: define a apresentação do seletor #lucasTexto. */
 #lucasTexto {
     width: 115px;
     margin-top: 1px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor #lucasTexto img. */
 #lucasTexto img {
     display: block;
     width: 100%;
     height: auto;
 }
 
+/* Estilos do grupo: define a apresentação do seletor #lucasFoto. */
 #lucasFoto {
     transform: none;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .fotosCarrossel:hover. */
 .fotosCarrossel:hover {
     animation-play-state: paused;
 }
 
+/* Estilos do grupo: define a apresentação do seletor #fundoCurvadoGradiente. */
 #fundoCurvadoGradiente {
     position: absolute;
     right: 0px;
@@ -834,6 +928,7 @@ html {
     top: 4950px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor #corpoGlub. */
 #corpoGlub{
     position: absolute;
     right:100px;
@@ -843,6 +938,7 @@ html {
     opacity: 1;
 }
 
+/* Estilos do grupo: define a apresentação do seletor #bracoGlub. */
 #bracoGlub{
     position: absolute;
     right:520px;
@@ -854,16 +950,20 @@ html {
     animation: acenar 1.3s ease-in-out infinite alternate;
 }
 
+/* Estilos do grupo: define a apresentação do regra @keyframes acenar. */
 @keyframes acenar {
+    /* Estilos do grupo: define a apresentação do seletor 0%. */
     0% {
         transform: rotate(-2deg);
     }
 
+    /* Estilos do grupo: define a apresentação do seletor 100%. */
     100% {
         transform: rotate(20deg);
     }
 }
 
+/* Estilos do grupo: define a apresentação do seletor #gotaMaior. */
 #gotaMaior{
     position: absolute;
     right:602px;
@@ -872,6 +972,7 @@ html {
     z-index:2;
 }
 
+/* Estilos do grupo: define a apresentação do seletor #gotaMenor. */
 #gotaMenor{
     position: absolute;
     right:613px;
@@ -880,6 +981,7 @@ html {
     z-index:2;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .NossosValores. */
 .NossosValores{
     position: absolute;
     z-index: 10;
@@ -898,6 +1000,7 @@ html {
     top:6000px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .card-section. */
 .card-section{
     position: relative;
     width: 100%;
@@ -907,11 +1010,13 @@ html {
 
 }
 
+/* Estilos do grupo: define a apresentação do seletor .Valores. */
 .Valores {
     overflow: hidden;
     width: 100%;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .lista-card. */
 .lista-card{
     display: flex;
     margin:0;
@@ -919,11 +1024,13 @@ html {
     list-style: none;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .card. */
 .card{
     flex: 0 0 100%;
     min-width: 100%;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .card img. */
 .card img {
     width: 97%;
     height: auto;
@@ -931,6 +1038,7 @@ html {
     margin: 0 auto;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .botao-voltar, .botao-avancar. */
 .botao-voltar, .botao-avancar {
     position: absolute;
     top: 50%;
@@ -946,15 +1054,18 @@ html {
 .botao-voltar { left: 20px; }
 .botao-avancar { right: 20px; }
 
+/* Estilos do grupo: define a apresentação do seletor .icone. */
 .icone {
     display: block;
     pointer-events: none;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .icone-botao. */
 .icone-botao {
     display: block;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .sobreNos. */
 .sobreNos {
     position: absolute;
     color: #FAFAFA;
@@ -969,6 +1080,7 @@ html {
     left: 87px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .textoSobreNos. */
 .textoSobreNos {
     position: absolute;
     color: #FAFAFA;
@@ -985,6 +1097,7 @@ html {
     height: 273px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor #ParteFinal. */
 #ParteFinal {
     position: absolute;
     height: 283px;
@@ -995,6 +1108,7 @@ html {
     transform: translate(-50%, -50%);
 }
 
+/* Estilos do grupo: define a apresentação do seletor #footer. */
 #footer{
     position: absolute;
     right: 0;
@@ -1003,6 +1117,7 @@ html {
     margin-top:400px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .Footer. */
 .Footer{
     position: absolute;
     font-family: 'Poppins', sans-serif;
@@ -1011,6 +1126,7 @@ html {
     flex-direction: column;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .coluna1, .coluna2, .coluna3. */
 .coluna1, .coluna2, .coluna3{
     position: absolute;
     z-index: 5;
@@ -1022,18 +1138,22 @@ html {
     list-style: none;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .coluna2. */
 .coluna2{
     left: 778px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .coluna3. */
 .coluna3{
     left: 1129px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .coluna1 li,.coluna2 li,.coluna3 li. */
 .coluna1 li,.coluna2 li,.coluna3 li{
     white-space: nowrap;
 }
 
+/* Estilos do grupo: define a apresentação do seletor #logo. */
 #logo{
     position: absolute;
     z-index: 5;
@@ -1043,6 +1163,7 @@ html {
     margin-top: 480px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .textoFooter. */
 .textoFooter{
     position: absolute;
     width: 291px;
@@ -1052,6 +1173,7 @@ html {
     color:#FAFAFA;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .direitos. */
 .direitos{
     position: absolute;
     z-index: 5;
@@ -1061,37 +1183,46 @@ html {
     color:#FAFAFA;
 }
 
+/* Estilos do grupo: define a apresentação do seletor a:visited. */
 a:visited {
     color: #FAFAFA;
     text-decoration: none;
 }
+/* Estilos do grupo: define a apresentação do seletor a. */
 a{
     color: #FAFAFA;
     text-decoration: none;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .NossosValores. */
 .NossosValores{
     scroll-margin-top: 65px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .tituloConceito. */
 .tituloConceito{
     scroll-margin-top: 90px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .FundoGradiente. */
 .FundoGradiente{
     scroll-margin-top: 0px;
 }
+/* Estilos do grupo: define a apresentação do seletor .tituloObjetivos. */
 .tituloObjetivos{
     scroll-margin-top: 150px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .tituloFuncionalidades. */
 .tituloFuncionalidades{
     scroll-margin-top:160px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .sobreNos. */
 .sobreNos{
     scroll-margin-top:150px;
 }
+/* Estilos do grupo: define a apresentação do seletor #botaoOlho. */
 #botaoOlho{
     position: absolute;
     z-index:20;
@@ -1102,10 +1233,12 @@ a{
     cursor: pointer;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .lista-card. */
 .lista-card {
     will-change: transform;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .card. */
 .card {
     opacity: 0.25;
     transform: scale(0.82);
@@ -1116,12 +1249,14 @@ a{
     filter 0.7s ease;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .card.ativo. */
 .card.ativo {
     opacity: 1;
     transform: scale(1);
     filter: blur(0);
 }
 
+/* Estilos do grupo: define a apresentação do seletor .card img. */
 .card img {
     transition: transform 0.25s ease-out, filter 0.7s ease;
     will-change: transform;
@@ -1129,10 +1264,12 @@ a{
 
 
 .lista-card.sem-transicao .card,
+/* Estilos do grupo: define a apresentação do seletor .lista-card.sem-transicao .card img. */
 .lista-card.sem-transicao .card img {
     transition: none;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .card-section .Valores. */
 .card-section .Valores {
     opacity: 0;
     transform: translateY(80px) scale(0.94);
@@ -1141,45 +1278,54 @@ a{
 }
 
 .card-section .botao-voltar,
+/* Estilos do grupo: define a apresentação do seletor .card-section .botao-avancar. */
 .card-section .botao-avancar {
     opacity: 0;
     transition: opacity 0.9s ease 0.3s, scale 0.2s ease;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .card-section.visivel .Valores. */
 .card-section.visivel .Valores {
     opacity: 1;
     transform: none;
 }
 
 .card-section.visivel .botao-voltar,
+/* Estilos do grupo: define a apresentação do seletor .card-section.visivel .botao-avancar. */
 .card-section.visivel .botao-avancar {
     opacity: 1;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .botao-voltar:hover, .botao-avancar:hover. */
 .botao-voltar:hover, .botao-avancar:hover {
     scale: 1.12;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .botao-voltar:active, .botao-avancar:active. */
 .botao-voltar:active, .botao-avancar:active {
     scale: 0.92;
 }
 
+/* Estilos do grupo: define a apresentação do bloco responsivo @media (prefers-reduced-motion: reduce). */
 @media (prefers-reduced-motion: reduce) {
     .card,
     .card img,
     .card-section .Valores,
     .card-section .botao-voltar,
+    /* Estilos do grupo: define a apresentação do seletor .card-section .botao-avancar. */
     .card-section .botao-avancar {
         transition-duration: 0.01s;
     }
 }
 
+/* Estilos do grupo: define a apresentação do seletor .botao-topo. */
 .botao-topo {
     text-decoration: none;
     cursor: pointer;
     display: inline-block;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .botao-logo. */
 .botao-logo {
     display: flex;
     align-items: center;
@@ -1187,6 +1333,7 @@ a{
     margin-left: 50px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .Delta. */
 .Delta {
     color: #FEFEFE;
     font-family: "Talina DEMO", sans-serif;
@@ -1195,6 +1342,7 @@ a{
     z-index: 1000;
 }
 
+/* Estilos do grupo: define a apresentação do seletor #LogoDelta. */
 #LogoDelta {
     width: 36.001px;
     height: 33.861px;
@@ -1203,6 +1351,7 @@ a{
     margin-left: -50px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .retangulo-comecar-parte-final. */
 .retangulo-comecar-parte-final{
     position: absolute;
     width: 323px;
@@ -1214,6 +1363,7 @@ a{
     left:261.5px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .fundo-planos. */
 .fundo-planos{
     position:absolute;
     z-index:2;
@@ -1222,6 +1372,7 @@ a{
     left:0;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .titulo-planos. */
 .titulo-planos{
     position: absolute;
     z-index: 3;
@@ -1240,6 +1391,7 @@ a{
     transform: translate(-50%, -50%);
 }
 
+/* Estilos do grupo: define a apresentação do seletor .retangulo1. */
 .retangulo1 {
     position: absolute;
     z-index: 3;
@@ -1257,18 +1409,21 @@ a{
     gap: 20px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .parte-cima. */
 .parte-cima {
     display: flex;
     align-items: center;
     gap: 15px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .gluh1. */
 .gluh1 {
     width: 64.862px;
     height: 58.792px;
     object-fit: contain;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .titulo-essencial. */
 .titulo-essencial {
     color: #306BE5;
     font-family: Unbounded, sans-serif;
@@ -1278,6 +1433,7 @@ a{
     margin: 0;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .texto-retangulo1. */
 .texto-retangulo1 {
     color: #494A4C;
     text-wrap-style: balance;
@@ -1292,10 +1448,12 @@ a{
     width: 100%;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .texto-retangulo1 li, .texto-retangulo2 li, .texto-retangulo3 li. */
 .texto-retangulo1 li, .texto-retangulo2 li, .texto-retangulo3 li {
     margin-bottom: 6px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .preco1. */
 .preco1 {
     color: #0B2156;
     font-family: Unbounded, sans-serif;
@@ -1308,6 +1466,7 @@ a{
     width: 100%;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .mensal. */
 .mensal {
     color: #306BE5;
     font-family: Unbounded, sans-serif;
@@ -1319,6 +1478,7 @@ a{
     width: 100%;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .retangulo2. */
 .retangulo2 {
     position: absolute;
     z-index: 3;
@@ -1336,18 +1496,21 @@ a{
     gap: 20px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .parte-cima. */
 .parte-cima {
     display: flex;
     align-items: center;
     gap: 15px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .gluh2. */
 .gluh2 {
     width: 64.862px;
     height: 58.792px;
     object-fit: contain;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .titulo-gestao. */
 .titulo-gestao {
     color: #306BE5;
     font-family: Unbounded, sans-serif;
@@ -1357,6 +1520,7 @@ a{
     margin: 0;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .texto-retangulo2. */
 .texto-retangulo2 {
     color: #494A4C;
     text-wrap-style: balance;
@@ -1371,6 +1535,7 @@ a{
     width: 100%;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .preco2. */
 .preco2 {
     color: #0B2156;
     font-family: Unbounded, sans-serif;
@@ -1383,6 +1548,7 @@ a{
     width: 100%;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .mensal. */
 .mensal {
     color: #306BE5;
     font-family: Unbounded, sans-serif;
@@ -1394,6 +1560,7 @@ a{
     width: 100%;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .retangulo3. */
 .retangulo3 {
     position: absolute;
     z-index: 3;
@@ -1411,18 +1578,21 @@ a{
     gap: 20px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .parte-cima. */
 .parte-cima {
     display: flex;
     align-items: center;
     gap: 15px;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .gluh3. */
 .gluh3 {
     width: 64.862px;
     height: 58.792px;
     object-fit: contain;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .titulo-premium. */
 .titulo-premium {
     color: #306BE5;
     font-family: Unbounded, sans-serif;
@@ -1432,6 +1602,7 @@ a{
     margin: 0;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .texto-retangulo3. */
 .texto-retangulo3 {
     color: #494A4C;
     text-wrap-style: balance;
@@ -1446,6 +1617,7 @@ a{
     width: 100%;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .preco3. */
 .preco3 {
     color: #0B2156;
     font-family: Unbounded, sans-serif;
@@ -1458,6 +1630,7 @@ a{
     width: 100%;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .mensal. */
 .mensal {
     color: #306BE5;
     font-family: Unbounded, sans-serif;
@@ -1468,35 +1641,43 @@ a{
     text-align: center;
     width: 100%;
 }
+/* Estilos do grupo: define a apresentação do bloco responsivo @media (max-width: 1439px). */
 @media (max-width: 1439px) {
+    /* Estilos do grupo: define a apresentação do seletor html, body. */
     html, body {
         width: 100%;
         overflow-x: hidden;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor body. */
     body {
         background-color: #E0E8F6;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .barra-fixa. */
     .barra-fixa {
         height: 86px;
         min-height: 86px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .botao-logo. */
     .botao-logo {
         margin-left: 12px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .Delta. */
     .Delta {
         font-size: 34px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor #LogoDelta. */
     #LogoDelta {
         left: auto;
         width: 28px;
         height: auto;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .Cadastrar, .minha-conta. */
     .Cadastrar, .minha-conta {
         top: 10px;
         right: 12px;
@@ -1504,11 +1685,13 @@ a{
         height: 28px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .Entrar. */
     .Entrar {
         top: 15px;
         right: 132px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .Inicio, .Conceito, .Objetivos, .Funcionalidades, .Sobre_Nos, .valores. */
     .Inicio, .Conceito, .Objetivos, .Funcionalidades, .Sobre_Nos, .valores {
         position: absolute;
         top: 56px;
@@ -1525,11 +1708,13 @@ a{
     .Sobre_Nos { left: 73%; }
     .valores { left: 88%; }
 
+    /* Estilos do grupo: define a apresentação do seletor .FundoGradiente. */
     .FundoGradiente {
         height: 1250px;
     }
 
     .titulo1, .titulo2, .tituloPrincipal, .Texto, .retanguloComecar,
+    /* Estilos do grupo: define a apresentação do seletor .carta1, .carta2, .carta3. */
     .carta1, .carta2, .carta3 {
         position: relative;
         inset: auto;
@@ -1537,12 +1722,14 @@ a{
         height: auto;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .titulo1. */
     .titulo1 {
         width: auto;
         margin: 126px 20px 0;
         font-size: clamp(21px, 7vw, 34px);
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .tituloPrincipal. */
     .tituloPrincipal {
         width: auto;
         margin: 0 20px;
@@ -1551,6 +1738,7 @@ a{
         overflow-wrap: anywhere;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .titulo2. */
     .titulo2 {
         width: auto;
         margin: 0 20px;
@@ -1558,10 +1746,12 @@ a{
         text-align: right;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor #LogoTransparente. */
     #LogoTransparente {
         display: none;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .Texto. */
     .Texto {
         width: auto;
         margin: 24px 24px 0;
@@ -1569,12 +1759,14 @@ a{
         line-height: 1.55;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .retanguloComecar. */
     .retanguloComecar {
         width: min(303px, calc(100% - 48px));
         min-height: 56px;
         margin: 20px auto 28px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .carta1, .carta2, .carta3. */
     .carta1, .carta2, .carta3 {
         display: inline-flex;
         vertical-align: top;
@@ -1585,24 +1777,29 @@ a{
         border-radius: 24px 24px 0 0;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .conteudoCarta1, .conteudoCarta2, .conteudoCarta3. */
     .conteudoCarta1, .conteudoCarta2, .conteudoCarta3 {
         width: 100%;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .textoCarta1, .textoCarta2, .textoCarta3. */
     .textoCarta1, .textoCarta2, .textoCarta3 {
         margin-top: 20px;
         font-size: clamp(9px, 2.5vw, 13px);
         line-height: 1.35;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .Numero, .horas, .Numero2. */
     .Numero, .horas, .Numero2 {
         font-size: clamp(30px, 9vw, 58px);
     }
 
+    /* Estilos do grupo: define a apresentação do seletor #FundoAzulClaroOnda2, .fundo-planos. */
     #FundoAzulClaroOnda2, .fundo-planos {
         display: none;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .functionality-section. */
     .functionality-section {
         position: relative;
         isolation: isolate;
@@ -1614,6 +1811,7 @@ a{
         background: #E0E8F6;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .functionality-section > .tituloFuncionalidades. */
     .functionality-section > .tituloFuncionalidades {
         position: relative;
         z-index: 5;
@@ -1622,6 +1820,7 @@ a{
         scroll-margin-top: 112px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .plans-section. */
     .plans-section {
         position: relative;
         isolation: isolate;
@@ -1639,6 +1838,7 @@ a{
         background: linear-gradient(180deg, #064BB7 0%, #002256 100%);
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .plans-section::before. */
     .plans-section::before {
         content: '';
         position: absolute;
@@ -1651,6 +1851,7 @@ a{
         pointer-events: none;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .plans-section::after. */
     .plans-section::after {
         content: '';
         position: absolute;
@@ -1663,21 +1864,25 @@ a{
         pointer-events: none;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .plans-section > :not(.fundo-planos). */
     .plans-section > :not(.fundo-planos) {
         position: relative;
         z-index: 1;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .plans-section .fundo-planos. */
     .plans-section .fundo-planos {
         display: none;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .plans-section > .titulo-planos. */
     .plans-section > .titulo-planos {
         grid-column: 1 / -1;
         width: auto;
         margin: 0 16px 8px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .objective-section. */
     .objective-section {
         position: relative;
         isolation: isolate;
@@ -1691,6 +1896,7 @@ a{
         background: linear-gradient(180deg, #064BB7 0%, #002256 100%);
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .objective-section::before. */
     .objective-section::before {
         content: '';
         position: absolute;
@@ -1702,6 +1908,7 @@ a{
         pointer-events: none;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .objective-section::after. */
     .objective-section::after {
         content: '';
         position: absolute;
@@ -1715,15 +1922,18 @@ a{
         pointer-events: none;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor #FundoAzulCurvado. */
     #FundoAzulCurvado {
         display: none;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .objective-section > :not(#FundoAzulCurvado). */
     .objective-section > :not(#FundoAzulCurvado) {
         position: relative;
         z-index: 2;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .objective-section > .tituloObjetivos. */
     .objective-section > .tituloObjetivos {
         position: relative;
         inset: auto;
@@ -1734,21 +1944,25 @@ a{
         transform: none;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .objective-section > .cartaoReducao. */
     .objective-section > .cartaoReducao {
         grid-column: 1;
         grid-row: 2;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .objective-section > .cartaoMonitoramento. */
     .objective-section > .cartaoMonitoramento {
         grid-column: 2;
         grid-row: 2;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .objective-section > .cartaoEficiencia. */
     .objective-section > .cartaoEficiencia {
         grid-column: 3;
         grid-row: 2;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .delta-section. */
     .delta-section {
         position: relative;
         isolation: isolate;
@@ -1765,6 +1979,7 @@ a{
         background: linear-gradient(180deg, #306AE5 0%, #003E9B 100%);
     }
 
+    /* Estilos do grupo: define a apresentação do seletor #FundoAzulOndaGradiente. */
     #FundoAzulOndaGradiente {
         display: block;
         position: absolute;
@@ -1778,6 +1993,7 @@ a{
         pointer-events: none;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .O-Delta, .textoDelta, .Iphone. */
     .O-Delta, .textoDelta, .Iphone {
         position: relative;
         inset: auto;
@@ -1788,6 +2004,7 @@ a{
         text-align: left;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .O-Delta. */
     .O-Delta {
         grid-column: 1;
         grid-row: 1;
@@ -1795,6 +2012,7 @@ a{
         font-size: clamp(42px, 7vw, 88px);
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .textoDelta. */
     .textoDelta {
         grid-column: 1;
         grid-row: 2;
@@ -1803,10 +2021,12 @@ a{
         line-height: 1.6;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .textoDelta br. */
     .textoDelta br {
         display: none;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .Iphone. */
     .Iphone {
         grid-column: 2;
         grid-row: 1 / span 2;
@@ -1815,11 +2035,13 @@ a{
         align-items: center;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .Iphone img. */
     .Iphone img {
         width: min(100%, 280px);
         height: auto;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .concept-section. */
     .concept-section {
         position: relative;
         isolation: isolate;
@@ -1833,6 +2055,7 @@ a{
         overflow: hidden;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .concept-section::before. */
     .concept-section::before {
         content: '';
         position: absolute;
@@ -1842,6 +2065,7 @@ a{
         pointer-events: none;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .FundoAzulClaroOnda. */
     .FundoAzulClaroOnda {
         display: block;
         position: absolute;
@@ -1853,12 +2077,14 @@ a{
         pointer-events: none;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .concept-section > :not(.FundoAzulClaroOnda). */
     .concept-section > :not(.FundoAzulClaroOnda) {
         position: relative;
         z-index: 2;
     }
 
     .tituloConceito, .tituloObjetivos, .tituloFuncionalidades, .titulo-planos,
+    /* Estilos do grupo: define a apresentação do seletor .tituloNossaEquipe, .NossosValores. */
     .tituloNossaEquipe, .NossosValores {
         position: relative;
         inset: auto;
@@ -1870,6 +2096,7 @@ a{
         overflow-wrap: anywhere;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .tituloConceito. */
     .tituloConceito {
         grid-column: 1 / -1;
         grid-row: 1;
@@ -1877,6 +2104,7 @@ a{
         scroll-margin-top: 112px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .retanguloCenario, .retanguloSolucao, .retanguloCenario2, .retanguloSolucao2. */
     .retanguloCenario, .retanguloSolucao, .retanguloCenario2, .retanguloSolucao2 {
         position: relative;
         inset: auto;
@@ -1887,6 +2115,7 @@ a{
         will-change: transform, opacity;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .retanguloCenario. */
     .retanguloCenario {
         grid-column: 1 / 5;
         grid-row: 2;
@@ -1897,6 +2126,7 @@ a{
         border-radius: 0 40px 0 0;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .retanguloCenario2. */
     .retanguloCenario2 {
         grid-column: 1 / 10;
         grid-row: 3;
@@ -1906,6 +2136,7 @@ a{
         background: linear-gradient(90deg, #306AE5 0%, #003E9B 100%);
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .retanguloSolucao. */
     .retanguloSolucao {
         grid-column: 9 / -1;
         grid-row: 4;
@@ -1917,6 +2148,7 @@ a{
         background: linear-gradient(95deg, #1E5ACA -10.15%, #0947A9 99.71%);
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .retanguloSolucao2. */
     .retanguloSolucao2 {
         grid-column: 4 / -1;
         grid-row: 5;
@@ -1927,6 +2159,7 @@ a{
         background: linear-gradient(90deg, #306AE5 0%, #003E9B 100%);
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .conteudoCenario, .conteudoSolucao. */
     .conteudoCenario, .conteudoSolucao {
         width: 100%;
         height: auto;
@@ -1935,19 +2168,23 @@ a{
         line-height: 1.5;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .conteudoCenario. */
     .conteudoCenario {
         text-align: left;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .conteudoSolucao. */
     .conteudoSolucao {
         text-align: right;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .miniTituloCenario, .miniTituloSolucao. */
     .miniTituloCenario, .miniTituloSolucao {
         font-size: clamp(24px, 3.6vw, 44px);
         text-align: center;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .cartaoReducao, .cartaoMonitoramento, .cartaoEficiencia. */
     .cartaoReducao, .cartaoMonitoramento, .cartaoEficiencia {
         position: relative;
         inset: auto;
@@ -1958,6 +2195,7 @@ a{
         padding-bottom: 20px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .informacoesReducao, .informacoesMonitoramento, .informacoesEficiencia. */
     .informacoesReducao, .informacoesMonitoramento, .informacoesEficiencia {
         width: auto;
         height: auto;
@@ -1965,6 +2203,7 @@ a{
         font-size: 14px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .cartao1, .cartao2, .cartao3, .cartao4, .cartao5, .cartao6. */
     .cartao1, .cartao2, .cartao3, .cartao4, .cartao5, .cartao6 {
         position: relative;
         inset: auto;
@@ -1977,6 +2216,7 @@ a{
         box-shadow: 0 5px 18px rgb(11 33 86 / 8%);
     }
 
+    /* Estilos do grupo: define a apresentação do seletor #frame1, #frame2, #frame3, #frame4, #frame5, #frame6. */
     #frame1, #frame2, #frame3, #frame4, #frame5, #frame6 {
         position: absolute;
         inset: 0;
@@ -1985,6 +2225,7 @@ a{
         object-fit: fill;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor #relogio, #sino, #grafico, #lista, #robo, #papel. */
     #relogio, #sino, #grafico, #lista, #robo, #papel {
         left: 18px;
         top: 28px;
@@ -1993,6 +2234,7 @@ a{
     }
 
     .tituloCardMonitoramento, .tituloCardAlerta, .tituloCardPrevisao,
+    /* Estilos do grupo: define a apresentação do seletor .tituloCardMetas, .tituloCardChatbot, .tituloCardHistorico. */
     .tituloCardMetas, .tituloCardChatbot, .tituloCardHistorico {
         left: 68px;
         top: 24px;
@@ -2001,6 +2243,7 @@ a{
     }
 
     .informacoesCardMonitoramento, .informacoesCardAlerta, .informacoesCardPrevisao,
+    /* Estilos do grupo: define a apresentação do seletor .informacoesCardMetas, .informacoesCardChatbot, .informacoesCardHistorico. */
     .informacoesCardMetas, .informacoesCardChatbot, .informacoesCardHistorico {
         left: 68px;
         top: 92px;
@@ -2008,6 +2251,7 @@ a{
         font-size: 13px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .retangulo1, .retangulo2, .retangulo3. */
     .retangulo1, .retangulo2, .retangulo3 {
         position: relative;
         inset: auto;
@@ -2020,19 +2264,23 @@ a{
         gap: 16px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .texto-retangulo1 br, .texto-retangulo2 br, .texto-retangulo3 br. */
     .texto-retangulo1 br, .texto-retangulo2 br, .texto-retangulo3 br {
         display: none;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .texto-retangulo1 li, .texto-retangulo2 li, .texto-retangulo3 li. */
     .texto-retangulo1 li, .texto-retangulo2 li, .texto-retangulo3 li {
         margin-bottom: 10px;
         line-height: 1.4;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .texto-retangulo1, .texto-retangulo2, .texto-retangulo3. */
     .texto-retangulo1, .texto-retangulo2, .texto-retangulo3 {
         font-size: 16px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .titulo-essencial, .titulo-gestao, .titulo-premium. */
     .titulo-essencial, .titulo-gestao, .titulo-premium {
         min-width: 0;
         font-size: clamp(20px, 2.5vw, 26px);
@@ -2040,47 +2288,56 @@ a{
         overflow-wrap: anywhere;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .parte-cima. */
     .parte-cima {
         width: 100%;
         min-width: 0;
         gap: 10px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .gluh1, .gluh2, .gluh3. */
     .gluh1, .gluh2, .gluh3 {
         width: 54px;
         height: 54px;
         flex: 0 0 54px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .preco1, .preco2, .preco3. */
     .preco1, .preco2, .preco3 {
         font-size: clamp(30px, 8vw, 38px);
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .mensal. */
     .mensal {
         font-size: 19px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .tituloNossaEquipe. */
     .tituloNossaEquipe {
         top: auto;
         left: auto;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .carrossel. */
     .carrossel {
         top: auto;
         overflow: hidden;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .grupo. */
     .grupo {
         gap: 20px;
         padding-right: 20px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .foto img. */
     .foto img {
         display: block;
         width: min(65vw, 180px);
         height: auto;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .FundoAzulCurvadoGradiente. */
     .FundoAzulCurvadoGradiente {
         position: relative;
         margin-top: 48px;
@@ -2088,10 +2345,12 @@ a{
         background: #0B2156;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor #fundoCurvadoGradiente, #corpoGlub, #bracoGlub, #gotaMaior, #gotaMenor. */
     #fundoCurvadoGradiente, #corpoGlub, #bracoGlub, #gotaMaior, #gotaMenor {
         display: none;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .sobreNos, .textoSobreNos. */
     .sobreNos, .textoSobreNos {
         position: relative;
         inset: auto;
@@ -2100,28 +2359,34 @@ a{
         margin: 0;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .sobreNos. */
     .sobreNos {
         font-size: clamp(28px, 8vw, 48px);
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .textoSobreNos. */
     .textoSobreNos {
         margin-top: 18px;
         font-size: 16px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .card-section. */
     .card-section {
         margin-top: 20px;
         padding-bottom: 24px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .Valores. */
     .Valores {
         width: 100%;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .card img. */
     .card img {
         width: 100%;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .retangulo-comecar-parte-final. */
     .retangulo-comecar-parte-final {
         position: relative;
         display: block;
@@ -2131,6 +2396,7 @@ a{
         margin: 20px auto 0;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor #ParteFinal. */
     #ParteFinal {
         position: relative;
         display: block;
@@ -2143,6 +2409,7 @@ a{
         pointer-events: none;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .Footer. */
     .Footer {
         position: relative;
         display: grid;
@@ -2152,6 +2419,7 @@ a{
         background: #0B2156;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .Footer::before. */
     .Footer::before {
         content: "";
         position: absolute;
@@ -2163,10 +2431,12 @@ a{
         pointer-events: none;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor #footer. */
     #footer {
         display: none;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor #logo. */
     #logo {
         position: static;
         width: 100px;
@@ -2175,6 +2445,7 @@ a{
         margin: 0;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .textoFooter. */
     .textoFooter {
         position: static;
         width: auto;
@@ -2182,6 +2453,7 @@ a{
         margin: 0;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .coluna1, .coluna2, .coluna3. */
     .coluna1, .coluna2, .coluna3 {
         position: static;
         min-width: 0;
@@ -2189,10 +2461,12 @@ a{
         overflow-wrap: anywhere;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .coluna1 li, .coluna2 li, .coluna3 li. */
     .coluna1 li, .coluna2 li, .coluna3 li {
         white-space: normal;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .direitos. */
     .direitos {
         position: static;
         grid-column: 1 / -1;
@@ -2202,6 +2476,7 @@ a{
         font-size: 12px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor #modal. */
     #modal {
         width: calc(100vw - 24px);
         max-width: 620px;
@@ -2210,11 +2485,14 @@ a{
     }
 }
 
+/* Estilos do grupo: define a apresentação do bloco responsivo @media (max-width: 760px). */
 @media (max-width: 760px) {
+    /* Estilos do grupo: define a apresentação do seletor .Inicio, .Conceito, .Objetivos, .Funcionalidades, .Sobre_Nos, .valores. */
     .Inicio, .Conceito, .Objetivos, .Funcionalidades, .Sobre_Nos, .valores {
         display: none;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .botao-menu. */
     .botao-menu {
         position: absolute;
         top: 50%;
@@ -2235,6 +2513,7 @@ a{
         z-index: 1102;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .botao-logo. */
     .botao-logo {
         display: flex;
         align-items: center;
@@ -2243,6 +2522,7 @@ a{
         margin-left: 0;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .botao-topo. */
     .botao-topo {
         position: absolute;
         top: 50%;
@@ -2250,6 +2530,7 @@ a{
         transform: translateY(-50%);
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .Delta. */
     .Delta {
         position: static;
         left: auto;
@@ -2260,6 +2541,7 @@ a{
         white-space: nowrap;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor #LogoDelta. */
     #LogoDelta {
         position: static;
         left: auto;
@@ -2271,11 +2553,13 @@ a{
     }
 
     .Entrar,
+    /* Estilos do grupo: define a apresentação do seletor .Cadastrar. */
     .Cadastrar {
         top: 50%;
         transform: translateY(-50%);
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .botao-menu span. */
     .botao-menu span {
         display: block;
         width: 100%;
@@ -2285,18 +2569,22 @@ a{
         transition: transform 180ms ease, opacity 180ms ease;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .botao-menu[aria-expanded="true"] span:first-child. */
     .botao-menu[aria-expanded="true"] span:first-child {
         transform: translateY(7px) rotate(45deg);
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .botao-menu[aria-expanded="true"] span:nth-child(2). */
     .botao-menu[aria-expanded="true"] span:nth-child(2) {
         opacity: 0;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .botao-menu[aria-expanded="true"] span:last-child. */
     .botao-menu[aria-expanded="true"] span:last-child {
         transform: translateY(-7px) rotate(-45deg);
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .menu-navegacao. */
     .menu-navegacao {
         position: absolute;
         top: calc(100% + 8px);
@@ -2311,10 +2599,12 @@ a{
         box-shadow: 0 12px 28px rgb(0 0 0 / 24%);
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .menu-navegacao.aberto. */
     .menu-navegacao.aberto {
         display: grid;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .menu-navegacao a. */
     .menu-navegacao a {
         padding: 11px 14px;
         border-radius: 7px;
@@ -2325,35 +2615,43 @@ a{
     }
 
     .menu-navegacao a:hover,
+    /* Estilos do grupo: define a apresentação do seletor .menu-navegacao a:focus-visible. */
     .menu-navegacao a:focus-visible {
         background: #306AE5;
         outline: none;
     }
 }
 
+/* Estilos do grupo: define a apresentação do bloco responsivo @media (max-width: 600px). */
 @media (max-width: 600px) {
+    /* Estilos do grupo: define a apresentação do seletor .barra-fixa. */
     .barra-fixa {
         height: 96px;
         min-height: 96px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .botao-logo. */
     .botao-logo {
         margin-left: 0;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .Delta. */
     .Delta {
         font-size: 30px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .Cadastrar, .minha-conta. */
     .Cadastrar, .minha-conta {
         right: 10px;
         width: 94px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .Entrar. */
     .Entrar {
         right: 116px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .Inicio, .Conceito, .Objetivos, .Funcionalidades, .Sobre_Nos, .valores. */
     .Inicio, .Conceito, .Objetivos, .Funcionalidades, .Sobre_Nos, .valores {
         top: 62px;
         font-size: clamp(7px, 2.1vw, 10px);
@@ -2366,38 +2664,46 @@ a{
     .Sobre_Nos { left: 73%; }
     .valores { left: 88%; }
 
+    /* Estilos do grupo: define a apresentação do seletor .titulo1. */
     .titulo1 {
         margin-top: 126px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .tituloPrincipal. */
     .tituloPrincipal {
         font-size: clamp(23px, 7.2vw, 42px);
         overflow-wrap: normal;
         word-break: normal;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .O-Delta. */
     .O-Delta {
         font-size: clamp(26px, 8vw, 42px);
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .retanguloCenario. */
     .retanguloCenario {
         grid-column: 1 / 7;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .retanguloCenario2. */
     .retanguloCenario2 {
         grid-column: 1 / 12;
         width: 100%;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .retanguloSolucao. */
     .retanguloSolucao {
         grid-column: 7 / -1;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .retanguloSolucao2. */
     .retanguloSolucao2 {
         grid-column: 2 / -1;
         width: 100%;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .objective-section. */
     .objective-section {
         grid-template-columns: repeat(3, minmax(220px, 1fr));
         overflow-x: auto;
@@ -2406,6 +2712,7 @@ a{
         padding-left: 12px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .objective-section > .tituloObjetivos. */
     .objective-section > .tituloObjetivos {
         position: absolute;
         inset: 0 auto auto 0;
@@ -2415,10 +2722,12 @@ a{
         margin: 0;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .cartaoReducao, .cartaoMonitoramento, .cartaoEficiencia. */
     .cartaoReducao, .cartaoMonitoramento, .cartaoEficiencia {
         scroll-snap-align: start;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .functionality-section. */
     .functionality-section {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 10px;
@@ -2430,16 +2739,19 @@ a{
     .functionality-section > .cartao3,
     .functionality-section > .cartao4,
     .functionality-section > .cartao5,
+    /* Estilos do grupo: define a apresentação do seletor .functionality-section > .cartao6. */
     .functionality-section > .cartao6 {
         height: 170px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .plans-section. */
     .plans-section {
         grid-template-columns: repeat(3, minmax(0, 1fr));
         padding-right: 12px;
         padding-left: 12px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .plans-section > .titulo-planos. */
     .plans-section > .titulo-planos {
         position: absolute;
         inset: 160px auto auto 0;
@@ -2450,10 +2762,12 @@ a{
 
     .plans-section > .retangulo1,
     .plans-section > .retangulo2,
+    /* Estilos do grupo: define a apresentação do seletor .plans-section > .retangulo3. */
     .plans-section > .retangulo3 {
         scroll-snap-align: start;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor #relogio, #sino, #grafico, #lista, #robo, #papel. */
     #relogio, #sino, #grafico, #lista, #robo, #papel {
         left: 12px;
         top: 24px;
@@ -2462,6 +2776,7 @@ a{
     }
 
     .tituloCardMonitoramento, .tituloCardAlerta, .tituloCardPrevisao,
+    /* Estilos do grupo: define a apresentação do seletor .tituloCardMetas, .tituloCardChatbot, .tituloCardHistorico. */
     .tituloCardMetas, .tituloCardChatbot, .tituloCardHistorico {
         left: 52px;
         top: 18px;
@@ -2471,6 +2786,7 @@ a{
     }
 
     .informacoesCardMonitoramento, .informacoesCardAlerta, .informacoesCardPrevisao,
+    /* Estilos do grupo: define a apresentação do seletor .informacoesCardMetas, .informacoesCardChatbot, .informacoesCardHistorico. */
     .informacoesCardMetas, .informacoesCardChatbot, .informacoesCardHistorico {
         left: 52px;
         top: 66px;
@@ -2479,6 +2795,7 @@ a{
         line-height: 1.3;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .delta-section. */
     .delta-section {
         grid-template-columns: minmax(0, 1.35fr) minmax(120px, 0.65fr);
         gap: 8px;
@@ -2486,20 +2803,24 @@ a{
         padding: 78px 16px 38px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .textoDelta. */
     .textoDelta {
         font-size: clamp(11px, 3vw, 14px);
         line-height: 1.5;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .Iphone img. */
     .Iphone img {
         width: 100%;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .tituloReducao, .tituloMonitoramento, .tituloEficiencia. */
     .tituloReducao, .tituloMonitoramento, .tituloEficiencia {
         right: 16px;
         font-size: 19px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .informacoesReducao, .informacoesMonitoramento, .informacoesEficiencia. */
     .informacoesReducao, .informacoesMonitoramento, .informacoesEficiencia {
         margin: 136px 18px 0;
         font-size: 13px;
@@ -2510,63 +2831,78 @@ a{
     .card-section .botao-avancar { right: 8px; }
     .icone { width: 36px; height: auto; }
 
+    /* Estilos do grupo: define a apresentação do seletor .retangulo1, .retangulo2, .retangulo3. */
     .retangulo1, .retangulo2, .retangulo3 {
         min-height: 0;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .texto-retangulo1, .texto-retangulo2, .texto-retangulo3. */
     .texto-retangulo1, .texto-retangulo2, .texto-retangulo3 {
         font-size: 15px;
         line-height: 1.3;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .tituloNossaEquipe, .titulo-planos, .NossosValores. */
     .tituloNossaEquipe, .titulo-planos, .NossosValores {
         letter-spacing: -0.6px;
     }
 }
 
+/* Estilos do grupo: define a apresentação do bloco responsivo @media (max-width: 420px). */
 @media (max-width: 420px) {
+    /* Estilos do grupo: define a apresentação do seletor .Conceito, .Objetivos, .Funcionalidades, .Inicio, .Sobre_Nos, .valores. */
     .Conceito, .Objetivos, .Funcionalidades, .Inicio, .Sobre_Nos, .valores {
         font-size: 8px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .tituloPrincipal. */
     .tituloPrincipal {
         font-size: clamp(24px, 7.6vw, 34px);
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .retangulo1, .retangulo2, .retangulo3. */
     .retangulo1, .retangulo2, .retangulo3 {
         padding: 24px 18px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .Footer. */
     .Footer {
         grid-template-columns: 1fr;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .textoDelta, .textoSobreNos. */
     .textoDelta, .textoSobreNos {
         font-size: 15px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .cartao1, .cartao2, .cartao3, .cartao4, .cartao5, .cartao6. */
     .cartao1, .cartao2, .cartao3, .cartao4, .cartao5, .cartao6 {
         height: 170px;
     }
 
     .tituloCardMonitoramento, .tituloCardAlerta, .tituloCardPrevisao,
+    /* Estilos do grupo: define a apresentação do seletor .tituloCardMetas, .tituloCardChatbot, .tituloCardHistorico. */
     .tituloCardMetas, .tituloCardChatbot, .tituloCardHistorico {
         font-size: 13px;
     }
 
     .informacoesCardMonitoramento, .informacoesCardAlerta, .informacoesCardPrevisao,
+    /* Estilos do grupo: define a apresentação do seletor .informacoesCardMetas, .informacoesCardChatbot, .informacoesCardHistorico. */
     .informacoesCardMetas, .informacoesCardChatbot, .informacoesCardHistorico {
         font-size: 11px;
     }
 }
 
+/* Estilos do grupo: define a apresentação do bloco responsivo @media (max-width: 760px). */
 @media (max-width: 760px) {
+    /* Estilos do grupo: define a apresentação do seletor .plans-section. */
     .plans-section {
         grid-template-columns: repeat(3, minmax(0, 1fr));
         padding-right: 12px;
         padding-left: 12px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .plans-section > .titulo-planos. */
     .plans-section > .titulo-planos {
         position: absolute;
         inset: 160px auto auto 0;
@@ -2577,56 +2913,67 @@ a{
 
     .plans-section > .retangulo1,
     .plans-section > .retangulo2,
+    /* Estilos do grupo: define a apresentação do seletor .plans-section > .retangulo3. */
     .plans-section > .retangulo3 {
         min-width: 0;
         padding: 16px 8px;
         gap: 10px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .parte-cima. */
     .parte-cima {
         align-items: center;
         flex-direction: row;
         gap: 6px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .gluh1, .gluh2, .gluh3. */
     .gluh1, .gluh2, .gluh3 {
         width: 34px;
         height: 34px;
         flex-basis: 34px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .titulo-essencial, .titulo-gestao, .titulo-premium. */
     .titulo-essencial, .titulo-gestao, .titulo-premium {
         flex: 1 1 auto;
         font-size: clamp(10px, 3.5vw, 18px);
         overflow-wrap: anywhere;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .texto-retangulo1, .texto-retangulo2, .texto-retangulo3. */
     .texto-retangulo1, .texto-retangulo2, .texto-retangulo3 {
         padding-left: 12px;
         font-size: clamp(8px, 2.7vw, 12px);
         letter-spacing: 0;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .preco1, .preco2, .preco3. */
     .preco1, .preco2, .preco3 {
         font-size: clamp(12px, 4vw, 20px);
         overflow-wrap: anywhere;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .mensal. */
     .mensal {
         font-size: clamp(8px, 2.8vw, 12px);
     }
 }
 
+/* Estilos do grupo: define a apresentação do bloco responsivo @media (max-width: 1439px). */
 @media (max-width: 1439px) {
+    /* Estilos do grupo: define a apresentação do seletor .objective-section. */
     .objective-section {
         padding-right: 18px;
         padding-left: 18px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .cartaoReducao, .cartaoMonitoramento, .cartaoEficiencia. */
     .cartaoReducao, .cartaoMonitoramento, .cartaoEficiencia {
         min-height: 330px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor #hidrometro, #monitoramento, #eficiencia. */
     #hidrometro, #monitoramento, #eficiencia {
         top: 24px;
         left: 20px;
@@ -2635,6 +2982,7 @@ a{
         margin: 0;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .tituloReducao, .tituloMonitoramento, .tituloEficiencia. */
     .tituloReducao, .tituloMonitoramento, .tituloEficiencia {
         top: 22px;
         left: 72px;
@@ -2644,6 +2992,7 @@ a{
         line-height: 1.25;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .informacoesReducao, .informacoesMonitoramento, .informacoesEficiencia. */
     .informacoesReducao, .informacoesMonitoramento, .informacoesEficiencia {
         width: auto;
         height: auto;
@@ -2652,6 +3001,7 @@ a{
         line-height: 1.45;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .card-section. */
     .card-section {
         width: calc(100% - clamp(32px, 8vw, 112px));
         max-width: 1400px;
@@ -2659,19 +3009,23 @@ a{
         margin-left: auto;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .card-section .icone. */
     .card-section .icone {
         width: clamp(36px, calc(7.8vw - 5px), 70px);
         height: auto;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .card-section .botao-voltar. */
     .card-section .botao-voltar {
         left: clamp(6px, 1.5vw, 18px);
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .card-section .botao-avancar. */
     .card-section .botao-avancar {
         right: clamp(6px, 1.5vw, 18px);
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .FundoAzulCurvadoGradiente. */
     .FundoAzulCurvadoGradiente {
         position: relative;
         isolation: isolate;
@@ -2688,6 +3042,7 @@ a{
         background: transparent;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor #fundoCurvadoGradiente. */
     #fundoCurvadoGradiente {
         display: block;
         position: absolute;
@@ -2701,6 +3056,7 @@ a{
         pointer-events: none;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .sobreNos, .textoSobreNos. */
     .sobreNos, .textoSobreNos {
         position: relative;
         inset: auto;
@@ -2711,6 +3067,7 @@ a{
         z-index: 2;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .sobreNos. */
     .sobreNos {
         grid-column: 1 / -1;
         grid-row: 1;
@@ -2723,10 +3080,12 @@ a{
         letter-spacing: -0.04em;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .NossosValores. */
     .NossosValores {
         margin: -142px 16px 12px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .textoSobreNos. */
     .textoSobreNos {
         grid-row: 2;
         align-self: start;
@@ -2736,6 +3095,7 @@ a{
         letter-spacing: 0.01em;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor #corpoGlub. */
     #corpoGlub {
         display: block;
         position: absolute;
@@ -2746,6 +3106,7 @@ a{
         height: auto;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor #bracoGlub. */
     #bracoGlub {
         display: block;
         position: absolute;
@@ -2756,6 +3117,7 @@ a{
         height: auto;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor #gotaMaior, #gotaMenor. */
     #gotaMaior, #gotaMenor {
         display: block;
         position: absolute;
@@ -2763,12 +3125,14 @@ a{
         height: auto;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor #gotaMaior. */
     #gotaMaior {
         top: 25%;
         right: 45%;
         width: min(5vw, 66px);
     }
 
+    /* Estilos do grupo: define a apresentação do seletor #gotaMenor. */
     #gotaMenor {
         top: 30%;
         right: 45%;
@@ -2776,7 +3140,9 @@ a{
     }
 }
 
+/* Estilos do grupo: define a apresentação do bloco responsivo @media (max-width: 600px). */
 @media (max-width: 600px) {
+    /* Estilos do grupo: define a apresentação do seletor .cartaoReducao, .cartaoMonitoramento, .cartaoEficiencia. */
     .cartaoReducao, .cartaoMonitoramento, .cartaoEficiencia {
         min-height: 310px;
     }
@@ -2784,7 +3150,9 @@ a{
 
 
 /* Nossos planos: tr�s cart�es centralizados no desktop */
+/* Estilos do grupo: define a apresentação do bloco responsivo @media (min-width: 1001px). */
 @media (min-width: 1001px) {
+    /* Estilos do grupo: define a apresentação do seletor .plans-section. */
     .plans-section {
         position: absolute;
         top: 3500px;
@@ -2798,6 +3166,7 @@ a{
         column-gap: clamp(18px, 2.43vw, 35px);
     }
     .plans-section .fundo-planos { top: 0; left: 0; width: 100%; height: auto; }
+    /* Estilos do grupo: define a apresentação do seletor .plans-section > .titulo-planos. */
     .plans-section > .titulo-planos {
         position: absolute;
         top: 260px;
@@ -2809,6 +3178,7 @@ a{
     }
     .plans-section > .retangulo1,
     .plans-section > .retangulo2,
+    /* Estilos do grupo: define a apresentação do seletor .plans-section > .retangulo3. */
     .plans-section > .retangulo3 {
         position: relative;
         top: auto;
@@ -2821,6 +3191,7 @@ a{
     .plans-section .retangulo3 .parte-cima { transform: translateY(-10px); margin-bottom: -10px; }
     .plans-section .retangulo3 .texto-retangulo3 { transform: translateY(-12px); margin-bottom: -12px; }
     .plans-section .retangulo3 .texto-retangulo3 li { margin-bottom: 18px; }
+    /* Estilos do grupo: define a apresentação do seletor .plans-section .parte-cima. */
     .plans-section .parte-cima {
         width: 100%;
         justify-content: center;
@@ -2828,12 +3199,14 @@ a{
     }
     .plans-section .gluh1,
     .plans-section .gluh2,
+    /* Estilos do grupo: define a apresentação do seletor .plans-section .gluh3. */
     .plans-section .gluh3 {
         flex: 0 0 65px;
         width: 65px;
         height: 59px;
         object-fit: fill;
     }
+    /* Estilos do grupo: define a apresentação do seletor .plans-section .gluh3. */
     .plans-section .gluh3 {
         flex-basis: 79px;
         width: 79px;

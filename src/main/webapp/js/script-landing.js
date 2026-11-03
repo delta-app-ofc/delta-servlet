@@ -1,3 +1,4 @@
+// Documentação do arquivo: controla as interações da página no navegador.
 /* ==========================================================
    FUNÇÕES AUXILIARES GLOBAIS DE SUPORTE
    ========================================================== */
@@ -6,23 +7,27 @@ const suavizar = (t) => t < 0.5
     ? 4 * t * t * t
     : 1 - Math.pow(-2 * t + 2, 3) / 2;
 
+// Evento do navegador: responde a pageshow e atualiza o comportamento da página.
 window.addEventListener('pageshow', function(event) {
   if (event.persisted || (performance.navigation && performance.navigation.type === 2)) {
     window.scrollTo(0, 0);
   }
 });
 
+// Evento do navegador: responde a DOMContentLoaded e atualiza o comportamento da página.
 document.addEventListener('DOMContentLoaded', () => {
   const botaoMenu = document.getElementById('botao-menu');
   const menu = document.getElementById('menu-navegacao');
   if (!botaoMenu || !menu) return;
 
+  // Função: fechar Menu; agrupa a lógica desta operação da interface.
   function fecharMenu() {
     menu.classList.remove('aberto');
     botaoMenu.setAttribute('aria-expanded', 'false');
     botaoMenu.setAttribute('aria-label', 'Abrir menu de navegação');
   }
 
+  // Evento do navegador: responde a click e atualiza o comportamento da página.
   botaoMenu.addEventListener('click', () => {
     const aberto = botaoMenu.getAttribute('aria-expanded') !== 'true';
     botaoMenu.setAttribute('aria-expanded', String(aberto));
@@ -32,10 +37,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   menu.querySelectorAll('a').forEach((link) => link.addEventListener('click', fecharMenu));
 
+  // Evento do navegador: responde a click e atualiza o comportamento da página.
   document.addEventListener('click', (event) => {
     if (!menu.contains(event.target) && !botaoMenu.contains(event.target)) fecharMenu();
   });
 
+  // Evento do navegador: responde a keydown e atualiza o comportamento da página.
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') fecharMenu();
   });
@@ -45,6 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
 /* ==========================================================
    1) CARROSSEL DE VALORES
    ========================================================== */
+// Evento do navegador: responde a DOMContentLoaded e atualiza o comportamento da página.
 document.addEventListener('DOMContentLoaded', () => {
   const secao = document.querySelector('.card-section');
   const lista = document.getElementById('lista-card');
@@ -70,6 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let contador = 1;
   let isAnimating = false;
 
+  // Função: posicionar; agrupa a lógica desta operação da interface.
   function posicionar(comAnimacao) {
     lista.style.transition = comAnimacao
         ? `transform ${DURACAO}ms ${EASING}`
@@ -77,12 +86,14 @@ document.addEventListener('DOMContentLoaded', () => {
     lista.style.transform = `translateX(-${contador * 100}%)`;
   }
 
+  // Função: marcar Ativo; agrupa a lógica desta operação da interface.
   function marcarAtivo() {
     todosCards.forEach((card, i) => {
       card.classList.toggle('ativo', i === contador);
     });
   }
 
+  // Função: ir; agrupa a lógica desta operação da interface.
   function ir() {
     isAnimating = true;
     posicionar(true);
@@ -135,6 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
 /* ==========================================================
    2) CARTAS INICIAIS (-35%, 24h, +5)
    ========================================================== */
+// Evento do navegador: responde a DOMContentLoaded e atualiza o comportamento da página.
 document.addEventListener('DOMContentLoaded', () => {
   const cartas = [
     document.querySelector('.carta1'),
@@ -157,6 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let atual = 0;
   let rodando = false;
 
+  // Função: desenhar; agrupa a lógica desta operação da interface.
   function desenhar() {
     cartas.forEach((carta, i) => {
       const bruto = limitar((atual - i * ATRASO) / (1 - ATRASO * 2));
@@ -171,6 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Função: loop; agrupa a lógica desta operação da interface.
   function loop() {
     atual += (alvo - atual) * 0.08;
     if (Math.abs(alvo - atual) < 0.001) atual = alvo;
@@ -184,6 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Função: ao Rolar; agrupa a lógica desta operação da interface.
   function aoRolar() {
     alvo = limitar(window.scrollY / DISTANCIA);
     if (!rodando) {
@@ -192,6 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Evento do navegador: responde a scroll e atualiza o comportamento da página.
   window.addEventListener('scroll', aoRolar, { passive: true });
   aoRolar();
   desenhar();
@@ -201,6 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
 /* ==========================================================
    3) CENÁRIO / SOLUÇÃO (guiado pelo scroll)
    ========================================================== */
+// Evento do navegador: responde a DOMContentLoaded e atualiza o comportamento da página.
 document.addEventListener('DOMContentLoaded', () => {
   const gatilho = document.querySelector('.tituloConceito');
   if (!gatilho) return;
@@ -222,11 +239,13 @@ document.addEventListener('DOMContentLoaded', () => {
   let atual = 0;
   let rodando = false;
 
+  // Função: calcular Inicio; agrupa a lógica desta operação da interface.
   function calcularInicio() {
     const topoTitulo = gatilho.getBoundingClientRect().top + window.scrollY;
     inicioScroll = topoTitulo - window.innerHeight * ANTECEDENCIA;
   }
 
+  // Função: desenhar; agrupa a lógica desta operação da interface.
   function desenhar() {
     itens.forEach(({ el, dir, inicio }) => {
       const bruto = limitar((atual - inicio) / JANELA);
@@ -237,6 +256,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Função: loop; agrupa a lógica desta operação da interface.
   function loop() {
     atual += (alvo - atual) * 0.08;
     if (Math.abs(alvo - atual) < 0.001) atual = alvo;
@@ -250,6 +270,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Função: ao Rolar; agrupa a lógica desta operação da interface.
   function aoRolar() {
     alvo = limitar((window.scrollY - inicioScroll) / DISTANCIA);
     if (!rodando) {
@@ -259,7 +280,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   calcularInicio();
+  // Evento do navegador: responde a scroll e atualiza o comportamento da página.
   window.addEventListener('scroll', aoRolar, { passive: true });
+  // Evento do navegador: responde a resize e atualiza o comportamento da página.
   window.addEventListener('resize', () => { calcularInicio(); aoRolar(); }, { passive: true });
   aoRolar();
   desenhar();
@@ -269,6 +292,7 @@ document.addEventListener('DOMContentLoaded', () => {
 /* ==========================================================
    4 e 5) ANIMAÇÃO: OBJETIVOS E FUNCIONALIDADES (Unificado)
    ========================================================== */
+// Evento do navegador: responde a DOMContentLoaded e atualiza o comportamento da página.
 document.addEventListener('DOMContentLoaded', () => {
   const limitar = (v) => Math.min(Math.max(v, 0), 1);
   const suavizar = (t) => t < 0.5
@@ -277,6 +301,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const grupos = [];
 
+  // Função: registrar Grupo; agrupa a lógica desta operação da interface.
   function registrarGrupo({
                             gatilho,
                             itens,
@@ -292,12 +317,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const janela = 1 - atraso * (elementos.length - 1);
     let inicioScroll = 0;
 
+    // Função: calcular Inicio; agrupa a lógica desta operação da interface.
     function calcularInicio() {
       const topo = alvoGatilho.getBoundingClientRect().top + window.scrollY;
       inicioScroll = topo - window.innerHeight * antecedencia;
     }
 
     calcularInicio();
+    // Evento do navegador: responde a resize e atualiza o comportamento da página.
     window.addEventListener('resize', calcularInicio, { passive: true });
 
     grupos.push({
@@ -324,6 +351,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let alvo = 0;
   let rodando = false;
 
+  // Função: desenhar; agrupa a lógica desta operação da interface.
   function desenhar() {
     const scrollY = window.scrollY;
 
@@ -340,6 +368,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Função: loop; agrupa a lógica desta operação da interface.
   function loop() {
     atual += (alvo - atual) * 0.1;
 
@@ -353,6 +382,7 @@ document.addEventListener('DOMContentLoaded', () => {
     desenhar();
   }
 
+  // Função: ao Rolar; agrupa a lógica desta operação da interface.
   function aoRolar() {
     alvo = window.scrollY;
     if (!rodando) {
@@ -361,6 +391,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Evento do navegador: responde a scroll e atualiza o comportamento da página.
   window.addEventListener('scroll', aoRolar, { passive: true });
 
   alvo = window.scrollY;

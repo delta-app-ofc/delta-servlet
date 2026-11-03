@@ -1,9 +1,11 @@
+// Documentação do arquivo: declara os tipos e operações do componente desta pasta.
 package com.example.delta_back.dao;
 
 import com.example.delta_back.model.Address;
 
 import java.util.List;
 
+// Documentação da classe AddressDAO: reúne os dados e comportamentos deste tipo.
 public interface AddressDAO {
 
     // Método responsável por inserir um novo endereço.

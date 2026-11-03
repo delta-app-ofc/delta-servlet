@@ -1,6 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%-- Documentação da página: Device; apresenta a interface e envia os dados necessários ao fluxo correspondente. --%>
 <%@ page import="java.util.List" %>
+<%-- Documentação da página: Device; apresenta a interface e envia os dados necessários ao fluxo correspondente. --%>
 <%@ page import="com.example.delta_back.model.Device" %>
+<%-- Documentação da página: Device; apresenta a interface e envia os dados necessários ao fluxo correspondente. --%>
 
 <%!
     public String escapeHtml(Object value) {
@@ -70,8 +73,10 @@
     <link rel="stylesheet" href="<%= ctx %>/css/css_crud/Device.css?v=20261101-sidebar-gota">
     <link rel="stylesheet" href="<%= ctx %>/css/css_crud/Pop-up.css">
 
+    <%-- Bloco da página: código de interação executado pelo navegador. --%>
     <script src="https://unpkg.com/lucide@latest"></script>
 
+    <%-- Bloco da página: estilos locais desta tela. --%>
     <style>
         [hidden] {
             display: none !important;
@@ -133,6 +138,7 @@
 
 <body>
 
+<%-- Bloco da página: conteúdo auxiliar. --%>
 <aside class="sidebar">
     <img class="sidebar-drop" src="<%= ctx %>/imagens/Gota_Sidebar.png" alt="" aria-hidden="true">
     <div class="logo-area">
@@ -140,6 +146,7 @@
              alt="Logo Delta" id="logo">
     </div>
 
+    <%-- Bloco da página: navegação. --%>
     <nav class="menu">
         <a href="<%= ctx %>/inicio" class="menu-item">Início</a>
         <a href="<%= ctx %>/user" class="menu-item">Usuários</a>
@@ -165,10 +172,13 @@
     </div>
 </aside>
 
+<%-- Bloco da página: conteúdo principal. --%>
 <main class="main">
 
+    <%-- Bloco da página: seção de conteúdo. --%>
     <section class="crud-page" id="crudPage">
 
+        <%-- Bloco da página: cabeçalho. --%>
         <header class="crud-header">
             <div class="crud-title">
                 <h1>Dispositivos</h1>
@@ -206,6 +216,7 @@
         </div>
 
         <div class="crud-table-wrap">
+            <%-- Bloco da página: tabela de dados. --%>
             <table class="crud-table">
                 <thead>
                 <tr>
@@ -267,7 +278,9 @@
         </div>
     </section>
 
+    <%-- Bloco da página: seção de conteúdo. --%>
     <section class="crud-form-page" id="deviceFormPage" hidden>
+        <%-- Bloco da página: cabeçalho. --%>
         <header class="crud-form-header">
             <div>
                 <h1 id="formHeading">Adicionar Dispositivo</h1>
@@ -275,6 +288,7 @@
             </div>
         </header>
 
+        <%-- Bloco da página: formulário e envio de dados. --%>
         <form class="crud-form-card" id="deviceForm" novalidate>
             <div class="form-title" id="formTitle">
                 Novo Dispositivo
@@ -416,6 +430,7 @@
     <button type="button" onclick="hideToast()">×</button>
 </div>
 
+<%-- Bloco da página: código de interação executado pelo navegador. --%>
 <script>
     lucide.createIcons();
 

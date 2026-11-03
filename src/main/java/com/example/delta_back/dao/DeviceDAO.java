@@ -1,3 +1,4 @@
+// Documentação do arquivo: declara os tipos e operações do componente desta pasta.
 package com.example.delta_back.dao;
 
 import com.example.delta_back.model.Device;
@@ -5,6 +6,7 @@ import com.example.delta_back.model.Device;
 import java.time.LocalDate;
 import java.util.List;
 
+// Documentação da classe DeviceDAO: reúne os dados e comportamentos deste tipo.
 public interface DeviceDAO {
 
     // Método responsável por inserir um novo dispositivo.

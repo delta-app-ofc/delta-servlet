@@ -1,3 +1,4 @@
+// Documentação do arquivo: declara os tipos e operações do componente desta pasta.
 package com.example.delta_back.crud;
 
 import com.example.delta_back.model.Region;
@@ -7,6 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+// Documentação da classe RegionCrud: reúne os dados e comportamentos deste tipo.
 public class RegionCrud implements RegionDAO {
 
     // Definindo a variavel para a conexão (JBDC)
@@ -21,6 +23,7 @@ public class RegionCrud implements RegionDAO {
 
     // Metodo INSERIR - Inserir Dados
     @Override
+    // Metodo: inserir; grava um novo registro com os dados recebidos.
     public void inserir(Region region) {
         // String sql = Código Que Vamos Usar No Sql
         String sql = """
@@ -42,6 +45,7 @@ public class RegionCrud implements RegionDAO {
 
     // Método para BUSCAR as informações pelo ID
     @Override
+    // Metodo: buscar Por Id; consulta os dados indicados pelos parametros recebidos.
     public Region buscarPorId(int id) {
 
         String sql = """
@@ -75,6 +79,7 @@ public class RegionCrud implements RegionDAO {
 
     // Método Para Listar TODOS
     @Override
+    // Metodo: listar Todos; retorna a colecao de registros deste recurso.
     public List<Region> listarTodos() {
 
         String sql = """
@@ -107,6 +112,7 @@ public class RegionCrud implements RegionDAO {
     // UPDATE
     // Atualizar todos os dados da região
     @Override
+    // Metodo: atualizar; atualiza o registro ou atributo indicado com os dados recebidos.
     public void atualizar(Region region) {
 
         String sql = """
@@ -129,6 +135,7 @@ public class RegionCrud implements RegionDAO {
 
     // Atualizar Nome
     @Override
+    // Metodo: atualizar Nome; atualiza o registro ou atributo indicado com os dados recebidos.
     public void atualizarNome(Region region) {
 
         String sql = """
@@ -154,6 +161,7 @@ public class RegionCrud implements RegionDAO {
     // Deletar por ID
 
     @Override
+    // Metodo: deletar; remove o registro indicado pelos parametros recebidos.
     public void deletar(int id) {
         String sql = """
             DELETE FROM tb_region
@@ -189,6 +197,7 @@ public class RegionCrud implements RegionDAO {
 
     // Deletar pelo Nome
     @Override
+    // Metodo: deletar Por Nome; remove o registro indicado pelos parametros recebidos.
     public void deletarPorNome(String name) {
 
         String sql = """
@@ -208,6 +217,7 @@ public class RegionCrud implements RegionDAO {
     }
 
     // EXIBIR DADOS -- Somente usado nos testes -- Não será usado so JSP
+    // Metodo: exibir Dados; executa a operacao exibir Dados neste componente.
     public String exibirDados(Region region) {
         return "Região: " + region.getName() + "\n" +
                 "Id: " + region.getId() + "\n";

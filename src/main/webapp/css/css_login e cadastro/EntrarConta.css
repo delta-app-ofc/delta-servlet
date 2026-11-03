@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Unbounded:wght@200..900&display=swap');
 
+/* Estilos do grupo: define a apresentação do seletor :root. */
 :root {
     --u: clamp(0.5px, calc(100vw / 1440), 1.2px);
 }
@@ -10,12 +11,14 @@
     box-sizing: border-box;
 }
 
+/* Estilos do grupo: define a apresentação do seletor html. */
 html {
     overflow-x: hidden;
     min-height: 100%;
     background: linear-gradient(to right, #00296B 0, #00296B 47%, #E0E8F6 47%);
 }
 
+/* Estilos do grupo: define a apresentação do seletor body. */
 body {
     min-height: 100vh;
     position: relative;
@@ -24,6 +27,7 @@ body {
     overflow-x: hidden;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .gota. */
 .gota {
     position: absolute;
     top: 0;
@@ -33,6 +37,7 @@ body {
     z-index: 5;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .titulo. */
 .titulo {
     font-size: calc(51 * var(--u));
     font-weight: 400;
@@ -40,22 +45,26 @@ body {
     padding-left: calc(30 * var(--u));
 }
 
+/* Estilos do grupo: define a apresentação do seletor .inteligentemente. */
 .inteligentemente {
     font-size: calc(50 * var(--u));
     font-weight: 900;
     padding-left: calc(30 * var(--u));
 }
 
+/* Estilos do grupo: define a apresentação do seletor .titulo1. */
 .titulo1 {
     font-size: calc(51 * var(--u));
     font-weight: 400;
     padding-left: calc(30 * var(--u));
 }
 
+/* Estilos do grupo: define a apresentação do seletor .titulo, .titulo1, .inteligentemente. */
 .titulo, .titulo1, .inteligentemente {
     color: #FAFAFA;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .glub. */
 .glub {
     position: absolute;
     left: calc(50 * var(--u));
@@ -65,6 +74,7 @@ body {
     z-index: 3;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .fundo-svg. */
 .fundo-svg {
     width: 100%;
     height: 100vh;
@@ -76,6 +86,7 @@ body {
     z-index: 1;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .voltar. */
 .voltar {
     position: absolute;
     z-index: 30;
@@ -83,6 +94,7 @@ body {
     top: calc(32 * var(--u));
 }
 
+/* Estilos do grupo: define a apresentação do seletor .entrar. */
 .entrar {
     position: absolute;
     z-index: 10;
@@ -96,6 +108,7 @@ body {
     font-weight: 700;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .tituloEmail. */
 .tituloEmail {
     position: absolute;
     font-family: Montserrat, sans-serif;
@@ -107,6 +120,7 @@ body {
     color: #003E9B;
 }
 
+/* Estilos do grupo: define a apresentação do seletor #email. */
 #email {
     position: absolute;
     font-size: calc(18 * var(--u));
@@ -124,6 +138,7 @@ body {
     font-family: Montserrat, sans-serif;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .tituloSenha. */
 .tituloSenha {
     position: absolute;
     font-family: Montserrat, sans-serif;
@@ -135,6 +150,7 @@ body {
     color: #003E9B;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .campo-senha. */
 .campo-senha {
     position: absolute;
     z-index: 15;
@@ -144,6 +160,7 @@ body {
     height: calc(48 * var(--u));
 }
 
+/* Estilos do grupo: define a apresentação do seletor #senha. */
 #senha {
     position: static;
     width: 100%;
@@ -159,6 +176,7 @@ body {
     font-family: Montserrat, sans-serif;
 }
 
+/* Estilos do grupo: define a apresentação do seletor #email::placeholder, #senha::placeholder. */
 #email::placeholder, #senha::placeholder {
     color: #003E9B;
     vertical-align: middle;
@@ -166,10 +184,12 @@ body {
     font-weight: 400;
 }
 
+/* Estilos do grupo: define a apresentação do seletor #email:focus, #senha:focus. */
 #email:focus, #senha:focus {
     border-color: #003E9B;
 }
 
+/* Estilos do grupo: define a apresentação do seletor #botaoOlho. */
 #botaoOlho {
     position: absolute;
     top: 50%;
@@ -182,12 +202,14 @@ body {
     cursor: pointer;
 }
 
+/* Estilos do grupo: define a apresentação do seletor #iconeOlho. */
 #iconeOlho {
     width: calc(26 * var(--u));
     height: auto;
     display: block;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .esqueceu,.esqueceu:visited. */
 .esqueceu,.esqueceu:visited {
     position: absolute;
     top: calc(445 * var(--u));
@@ -200,10 +222,12 @@ body {
     text-decoration: none;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .esqueceu:hover. */
 .esqueceu:hover {
     text-decoration: underline;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .criar-conta. */
 .criar-conta {
     font-family: Montserrat, sans-serif;
     background-color: #003E9B;
@@ -222,15 +246,18 @@ body {
     text-decoration: none;
 }
 
+/* Estilos do grupo: define a apresentação do seletor a. */
 a {
     color:#FAFAFA;
     text-decoration: none;
 }
+/* Estilos do grupo: define a apresentação do seletor a:visited. */
 a:visited {
     color:#FAFAFA;
     text-decoration: none;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .criar. */
 .criar {
     position: absolute;
     font-size: calc(16 * var(--u));
@@ -244,26 +271,33 @@ a:visited {
     font-family: Montserrat, sans-serif;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .criar strong, .criar u. */
 .criar strong, .criar u {
     color: #003E9B;
     font-weight: 800;
     opacity: 1;
 }
 
-@media (max-width: 480px), (max-aspect-ratio: 4/3) {
+/* Estilos do grupo: define a apresentação do bloco responsivo @media (max-width: 768px), (max-aspect-ratio: 4/3). */
+@media (max-width: 768px), (max-aspect-ratio: 4/3) {
+    /* Estilos do grupo: define a apresentação do seletor html. */
     html {
         overflow-y: auto;
         background: #E0E8F6;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor body. */
     body {
         display: flex;
         flex-direction: column;
+        width: 100%;
+        min-height: 100svh;
         background: #E0E8F6;
     }
 
     .entrar { order: 1; }
     .botoes { order: 2; }
+    /* Estilos do grupo: define a apresentação do seletor #form-login. */
     #form-login {
         display: flex;
         flex-direction: column;
@@ -272,15 +306,18 @@ a:visited {
     }
     .criar { order: 4; }
 
+    /* Estilos do grupo: define a apresentação do seletor .fundo-svg. */
     .fundo-svg {
         display: none;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .voltar. */
     .voltar {
         top: 16px;
         right: 16px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .gota. */
     .gota {
         position: static;
         display: flex;
@@ -294,11 +331,13 @@ a:visited {
         background-size: 250% auto;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .titulo, .titulo1, .inteligentemente. */
     .titulo, .titulo1, .inteligentemente {
         font-size: clamp(26px, 8vw, 40px);
         padding: 0;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .glub. */
     .glub {
         position: static;
         display: block;
@@ -307,6 +346,7 @@ a:visited {
         margin: 15px auto 10px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .entrar. */
     .entrar {
         position: static;
         width: auto;
@@ -317,6 +357,7 @@ a:visited {
         order: 1;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .botoes. */
     .botoes {
         position: static;
         display: flex;
@@ -327,6 +368,7 @@ a:visited {
         order: 2;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .botoes a. */
     .botoes a {
         position: static;
         display: flex;
@@ -342,6 +384,7 @@ a:visited {
         letter-spacing: 0;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .tituloEmail. */
     .tituloEmail {
         position: static;
         font-family: Montserrat, sans-serif;
@@ -357,6 +400,7 @@ a:visited {
         order: 3;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor #email. */
     #email {
         position: static;
         width: calc(100% - 48px);
@@ -370,6 +414,7 @@ a:visited {
 
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .tituloSenha. */
     .tituloSenha {
         position: static;
         font-family: Montserrat, sans-serif;
@@ -386,6 +431,7 @@ a:visited {
         order: 5;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .campo-senha. */
     .campo-senha {
         position: relative;
         top: auto;
@@ -398,6 +444,7 @@ a:visited {
         order: 6;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor #senha. */
     #senha {
         width: 100%;
         height: 100%;
@@ -407,6 +454,7 @@ a:visited {
         padding-right: 44px;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor #botaoOlho. */
     #botaoOlho {
         position: absolute;
         top: 50%;
@@ -421,11 +469,13 @@ a:visited {
         padding: 0;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor #iconeOlho. */
     #iconeOlho {
         width: 22px;
         height: auto;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .esqueceu. */
     .esqueceu {
         position: static;
         display: block;
@@ -438,6 +488,7 @@ a:visited {
         order: 7;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .criar-conta. */
     .criar-conta {
         position: static;
         width: calc(100% - 48px);
@@ -450,6 +501,7 @@ a:visited {
         order: 8;
     }
 
+    /* Estilos do grupo: define a apresentação do seletor .criar. */
     .criar {
         position: static;
         width: calc(100% - 48px);
@@ -462,6 +514,7 @@ a:visited {
     }
 }
 
+/* Estilos do grupo: define a apresentação do seletor .usuario. */
 .usuario{
     position: absolute;
     top: calc(150 * var(--u));
@@ -483,6 +536,7 @@ a:visited {
     cursor:pointer;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .usuario1. */
 .usuario1{
     position: absolute;
     top: calc(150 * var(--u));
@@ -504,6 +558,7 @@ a:visited {
     cursor:pointer;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .adm. */
 .adm{
     position: absolute;
     top: calc(150 * var(--u));
@@ -525,6 +580,7 @@ a:visited {
     cursor:pointer;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .adm1. */
 .adm1{
     position: absolute;
     top: calc(150 * var(--u));
@@ -546,6 +602,7 @@ a:visited {
     cursor:pointer;
 }
 
+/* Estilos do grupo: define a apresentação do seletor .botoes a. */
 .botoes a {
     display: flex;
     align-items: center;
@@ -554,11 +611,13 @@ a:visited {
 }
 
 /* Login tab states. */
+/* Estilos do grupo: define a apresentação do seletor .usuario, .adm. */
 .usuario, .adm {
     border: 0;
     background: #306BE5;
     color: #fff;
 }
+/* Estilos do grupo: define a apresentação do seletor .usuario1, .adm1. */
 .usuario1, .adm1 {
     border: 2px solid #003E9B;
     background: #fff;
@@ -567,16 +626,19 @@ a:visited {
 .botoes a.usuario1, .botoes a.adm1 { color: #003E9B; }
 
 /* Desktop login form sizing and alignment. */
-@media (min-width: 769px) and (min-aspect-ratio: 4/3) {
+/* Estilos do grupo: define a apresentação do bloco responsivo @media (min-width: 769px) and (min-aspect-ratio: 67/50). */
+@media (min-width: 769px) and (min-aspect-ratio: 67/50) {
     body { --login-y: clamp(0.65px, min(calc(100vw / 1440), calc(100vh / 1024)), 1px); }
     #email, #senha { border-color: #003E9B; background: #fff; }
     .entrar { top: calc(158 * var(--login-y)); left: calc(840 * var(--u)); width: calc(486 * var(--u)); font-size: calc(52 * var(--login-y)); }
     .botoes { position: absolute; inset: 0; z-index: 15; }
+    /* Estilos do grupo: define a apresentação do seletor .botoes .usuario, .botoes .usuario1. */
     .botoes .usuario, .botoes .usuario1 {
         top: calc(309 * var(--login-y)); left: calc(840 * var(--u));
         width: calc(232 * var(--u)); height: calc(78 * var(--login-y));
         border-radius: calc(15 * var(--login-y)); font-size: calc(22 * var(--login-y));
     }
+    /* Estilos do grupo: define a apresentação do seletor .botoes .adm, .botoes .adm1. */
     .botoes .adm, .botoes .adm1 {
         top: calc(309 * var(--login-y)); left: calc(1092 * var(--u));
         width: calc(232 * var(--u)); height: calc(78 * var(--login-y));

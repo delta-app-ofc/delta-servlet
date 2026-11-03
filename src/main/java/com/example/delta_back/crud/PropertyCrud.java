@@ -1,4 +1,5 @@
 
+// Documentação do arquivo: declara os tipos e operações do componente desta pasta.
 package com.example.delta_back.crud;
 
 import com.example.delta_back.model.Device;
@@ -12,6 +13,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+// Documentação da classe PropertyCrud: reúne os dados e comportamentos deste tipo.
 public class PropertyCrud implements PropertyDAO {
 
     private final Connection connection;
@@ -20,6 +22,7 @@ public class PropertyCrud implements PropertyDAO {
         this.connection = connection;
     }
 
+    // Metodo: erro Banco; executa a operacao erro Banco neste componente.
     private RuntimeException erroBanco(String operacao, SQLException e) {
         return new RuntimeException(
                 "Erro ao " + operacao + ": " + e.getMessage(), e
@@ -28,6 +31,7 @@ public class PropertyCrud implements PropertyDAO {
 
     // INSERIR
     @Override
+    // Metodo: inserir; grava um novo registro com os dados recebidos.
     public void inserir(Property property) {
         String sql = """
                 INSERT INTO tb_property
@@ -54,6 +58,7 @@ public class PropertyCrud implements PropertyDAO {
 
     // BUSCAR POR ID
     @Override
+    // Metodo: buscar Por Id; consulta os dados indicados pelos parametros recebidos.
     public Property buscarPorId(int id) {
         String sql = "SELECT * FROM tb_property WHERE id = ?";
 
@@ -81,6 +86,7 @@ public class PropertyCrud implements PropertyDAO {
 
     // LISTAR TODOS
     @Override
+    // Metodo: listar Todos; retorna a colecao de registros deste recurso.
     public List<Property> listarTodos() {
         String sql = "SELECT * FROM tb_property";
         List<Property> properties = new ArrayList<>();
@@ -107,6 +113,7 @@ public class PropertyCrud implements PropertyDAO {
 
     // CONSULTAR DISPOSITIVOS DA PROPRIEDADE
     @Override
+    // Metodo: consultar Dispositivos; consulta os dados indicados pelos parametros recebidos.
     public List<Device> consultarDispositivos(Property property) {
         List<Device> dispositivos = new ArrayList<>();
 
@@ -150,6 +157,7 @@ public class PropertyCrud implements PropertyDAO {
 
     // CONSULTAR ENDEREÇO DA PROPRIEDADE
     @Override
+    // Metodo: consultar Endereco; consulta os dados indicados pelos parametros recebidos.
     public List<Property> consultarEndereco(Property property) {
         String sql = """
                 SELECT p.property_name AS nome,
@@ -194,6 +202,7 @@ public class PropertyCrud implements PropertyDAO {
 
     // ATUALIZAR TODOS OS DADOS
     @Override
+    // Metodo: atualizar; atualiza o registro ou atributo indicado com os dados recebidos.
     public void atualizar(Property property) {
         String sql = """
                 UPDATE tb_property
@@ -224,6 +233,7 @@ public class PropertyCrud implements PropertyDAO {
 
     // ATUALIZAR NOME
     @Override
+    // Metodo: atualizar Nome; atualiza o registro ou atributo indicado com os dados recebidos.
     public void atualizarNome(Property property) {
         executarAtualizacao(
                 "UPDATE tb_property SET property_name = ? WHERE id = ?",
@@ -235,6 +245,7 @@ public class PropertyCrud implements PropertyDAO {
 
     // ATUALIZAR TIPO
     @Override
+    // Metodo: atualizar Type; atualiza o registro ou atributo indicado com os dados recebidos.
     public void atualizarType(Property property) {
         executarAtualizacao(
                 "UPDATE tb_property SET property_type = ? WHERE id = ?",
@@ -246,6 +257,7 @@ public class PropertyCrud implements PropertyDAO {
 
     // ATUALIZAR CLASSIFICAÇÃO
     @Override
+    // Metodo: atualizar Classification; atualiza o registro ou atributo indicado com os dados recebidos.
     public void atualizarClassification(Property property) {
         executarAtualizacao(
                 "UPDATE tb_property SET classification = ? WHERE id = ?",
@@ -257,6 +269,7 @@ public class PropertyCrud implements PropertyDAO {
 
     // ATUALIZAR ID DO ENDEREÇO
     @Override
+    // Metodo: atualizar Address Id; atualiza o registro ou atributo indicado com os dados recebidos.
     public void atualizarAddressId(Property property) {
         executarAtualizacao(
                 "UPDATE tb_property SET address_id = ? WHERE id = ?",
@@ -268,6 +281,7 @@ public class PropertyCrud implements PropertyDAO {
 
     // ATUALIZAR DATA DE REGISTRO
     @Override
+    // Metodo: atualizar Registration Date; atualiza o registro ou atributo indicado com os dados recebidos.
     public void atualizarRegistrationDate(Property property) {
         executarAtualizacao(
                 "UPDATE tb_property SET registration_date = ? WHERE id = ?",
@@ -277,6 +291,7 @@ public class PropertyCrud implements PropertyDAO {
         );
     }
 
+    // Metodo: executar Atualizacao; executa a operacao executar Atualizacao neste componente.
     private void executarAtualizacao(
             String sql,
             Object valor,
@@ -301,6 +316,7 @@ public class PropertyCrud implements PropertyDAO {
 
     // EXCLUIR POR ID
     @Override
+    // Metodo: deletar; remove o registro indicado pelos parametros recebidos.
     public void deletar(int id) {
         executarExclusao(
                 "DELETE FROM tb_property WHERE id = ?",
@@ -311,6 +327,7 @@ public class PropertyCrud implements PropertyDAO {
 
     // EXCLUIR POR NOME
     @Override
+    // Metodo: deletar Por Nome; remove o registro indicado pelos parametros recebidos.
     public void deletarPorNome(String name) {
         String sql = "DELETE FROM tb_property WHERE property_name = ?";
 
@@ -324,6 +341,7 @@ public class PropertyCrud implements PropertyDAO {
 
     // EXCLUIR POR ID DO ENDEREÇO
     @Override
+    // Metodo: deletar Por Id Endereco; remove o registro indicado pelos parametros recebidos.
     public void deletarPorIdEndereco(int address_id) {
         String sql = "DELETE FROM tb_property WHERE address_id = ?";
 
@@ -337,6 +355,7 @@ public class PropertyCrud implements PropertyDAO {
 
     // EXCLUIR POR TIPO
     @Override
+    // Metodo: deletar Por Tipo; remove o registro indicado pelos parametros recebidos.
     public void deletarPorTipo(String type) {
         String sql = "DELETE FROM tb_property WHERE property_type = ?";
 
@@ -350,6 +369,7 @@ public class PropertyCrud implements PropertyDAO {
 
     // EXCLUIR POR DATA DE REGISTRO
     @Override
+    // Metodo: deletar Por Data Registro; remove o registro indicado pelos parametros recebidos.
     public void deletarPorDataRegistro(LocalDate registration_date) {
         String sql = "DELETE FROM tb_property WHERE registration_date = ?";
 
@@ -361,6 +381,7 @@ public class PropertyCrud implements PropertyDAO {
         }
     }
 
+    // Metodo: executar Exclusao; executa a operacao executar Exclusao neste componente.
     private void executarExclusao(
             String sql,
             int id,
@@ -383,6 +404,7 @@ public class PropertyCrud implements PropertyDAO {
 
     // EXIBIR DADOS
     @Override
+    // Metodo: exibir Dados; executa a operacao exibir Dados neste componente.
     public String exibirDados(Property property) {
         return "Propriedade: " + property.getName() + "\n"
                 + "Id: " + property.getId() + "\n"

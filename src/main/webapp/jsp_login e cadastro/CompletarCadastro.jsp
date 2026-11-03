@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%-- Documentação da página: CompletarCadastro; apresenta a interface e envia os dados necessários ao fluxo correspondente. --%>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -17,17 +18,21 @@
         <img src="<%= request.getContextPath() %>/imagens/voltar.svg" alt="Voltar">
     </a>
 
+    <%-- Bloco da página: conteúdo principal. --%>
     <main class="container">
         <h1 class="titulo">Quase lá!</h1>
         <p class="informacoes">Seu e-mail já foi confirmado. Complete os dados necessários para criar sua conta.</p>
 
+        <%-- Bloco da página: formulário e envio de dados. --%>
         <form id="form-completar-cadastro" class="form-completar-cadastro" action="<%= request.getContextPath() %>/auth/complete-registration" method="post">
             <label class="rotulo-data" for="data">Digite sua data de nascimento</label>
             <input type="date" id="data" name="birthdate" placeholder="dd/mm/aaaa" autocomplete="bday" max="<%= java.time.LocalDate.now().minusYears(18) %>" required data-required>
             <button type="submit" class="concluir-cadastro">Concluir cadastro</button>
         </form>
     </main>
+    <%-- Bloco da página: código de interação executado pelo navegador. --%>
     <script src="<%= request.getContextPath() %>/js/input-validation.js?v=2"></script>
+    <%-- Bloco da página: código de interação executado pelo navegador. --%>
     <script>
         (() => {
             const form = document.getElementById('form-completar-cadastro');

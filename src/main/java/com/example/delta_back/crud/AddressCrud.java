@@ -1,3 +1,4 @@
+// Documentação do arquivo: declara os tipos e operações do componente desta pasta.
 package com.example.delta_back.crud;
 
 import com.example.delta_back.model.Address;
@@ -7,6 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+// Documentação da classe AddressCrud: reúne os dados e comportamentos deste tipo.
 public class AddressCrud implements AddressDAO {
 
     // Definindo a variavel para a conexão (JBDC)
@@ -20,6 +22,7 @@ public class AddressCrud implements AddressDAO {
 
     // INSERT -- INSERIR DADOS
     @Override
+    // Metodo: inserir; grava um novo registro com os dados recebidos.
     public void inserir(Address address) {
         // String sql = Código Que Vamos Usar No Sql
         String sql = """
@@ -46,6 +49,7 @@ public class AddressCrud implements AddressDAO {
 
     // Método para BUSCAR as informações pelo ID
     @Override
+    // Metodo: buscar Por Id; consulta os dados indicados pelos parametros recebidos.
     public Address buscarPorId(int id) {
 
         String sql = """
@@ -83,6 +87,7 @@ public class AddressCrud implements AddressDAO {
 
     // Método Para Listar TODOS
     @Override
+    // Metodo: listar Todos; retorna a colecao de registros deste recurso.
     public List<Address> listarTodos() {
 
         String sql = """
@@ -119,6 +124,7 @@ public class AddressCrud implements AddressDAO {
 
     // Método responsável por atualizar todos os dados do endereço
     @Override
+    // Metodo: atualizar; atualiza o registro ou atributo indicado com os dados recebidos.
     public void atualizar(Address address) {
 
         String sql = """
@@ -144,6 +150,7 @@ public class AddressCrud implements AddressDAO {
 
     // Atualizar region_id
     @Override
+    // Metodo: atualizar Region Id; atualiza o registro ou atributo indicado com os dados recebidos.
     public void atualizarRegionId(Address address) {
 
         String sql = """
@@ -167,6 +174,7 @@ public class AddressCrud implements AddressDAO {
 
     // Metodo para atualizar o CEP
     @Override
+    // Metodo: atualizar Cep; atualiza o registro ou atributo indicado com os dados recebidos.
     public void atualizarCep(Address address) {
 
         String sql = """
@@ -190,6 +198,7 @@ public class AddressCrud implements AddressDAO {
 
     // Método para atualizar a cidade
     @Override
+    // Metodo: atualizar City; atualiza o registro ou atributo indicado com os dados recebidos.
     public void atualizarCity(Address address) {
 
         String sql = """
@@ -213,6 +222,7 @@ public class AddressCrud implements AddressDAO {
 
     // Método para atualizar o Estado
     @Override
+    // Metodo: atualizar State; atualiza o registro ou atributo indicado com os dados recebidos.
     public void atualizarState(Address address) {
 
         String sql = """
@@ -238,6 +248,7 @@ public class AddressCrud implements AddressDAO {
     // DELETE
     // Deletar por Id
     @Override
+    // Metodo: deletar; remove o registro indicado pelos parametros recebidos.
     public void deletar(int id) {
 
         String sql = """
@@ -258,6 +269,7 @@ public class AddressCrud implements AddressDAO {
 
     // Deletar por Id da Região
     @Override
+    // Metodo: deletar Por Id Regiao; remove o registro indicado pelos parametros recebidos.
     public void deletarPorIdRegiao(int region_id) {
 
         String sql = """
@@ -278,6 +290,7 @@ public class AddressCrud implements AddressDAO {
 
     // Deletar por CEP
     @Override
+    // Metodo: deletar Por Cep; remove o registro indicado pelos parametros recebidos.
     public void deletarPorCep(String cep) {
 
         String sql = """
@@ -298,6 +311,7 @@ public class AddressCrud implements AddressDAO {
 
     // Deletar por cidade
     @Override
+    // Metodo: deletar Por Cidade; remove o registro indicado pelos parametros recebidos.
     public void deletarPorCidade(String city) {
 
         String sql = """
@@ -318,6 +332,7 @@ public class AddressCrud implements AddressDAO {
 
     // Deletar por Estado
     @Override
+    // Metodo: deletar Por Estado; remove o registro indicado pelos parametros recebidos.
     public void deletarPorEstado(String state) {
 
         String sql = """
@@ -338,6 +353,7 @@ public class AddressCrud implements AddressDAO {
 
     // Exibir Dados
     @Override
+    // Metodo: exibir Dados; executa a operacao exibir Dados neste componente.
     public String exibirDados(Address address) {
         return "Id: " + address.getId() + "\n" +
                 "Id da Região: " + address.getRegionId() + "\n" +

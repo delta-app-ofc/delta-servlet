@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%-- Documentação da página: LandingUsuario; apresenta a interface e envia os dados necessários ao fluxo correspondente. --%>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -10,6 +11,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Site Delta</title>
+    <%-- Bloco da página: código de interação executado pelo navegador. --%>
     <script>
         try {
             if (sessionStorage.getItem('vindoDaIntro')) {
@@ -29,10 +31,13 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/css_login%20e%20cadastro/LaddingLogin.css?v=20261102-33">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/css_login%20e%20cadastro/LaddingResponsive.css?v=20261102-33">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/css_login%20e%20cadastro/TransicaoIntro.css">
+    <%-- Bloco da página: estilos locais desta tela. --%>
     <style>
         @font-face { font-family: 'Talina DEMO'; src: url('<%= request.getContextPath() %>/fontes/talina-demo.regular.otf') format('opentype'); font-weight: normal; font-style: normal; font-display: swap; }
     </style>
+    <%-- Bloco da página: código de interação executado pelo navegador. --%>
     <script>window.deltaContextPath = '<%= request.getContextPath() %>';</script>
+    <%-- Bloco da página: código de interação executado pelo navegador. --%>
     <script defer src="<%= request.getContextPath() %>/js/script-landing-login.js?v=20261102-2"></script>
     <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/imagens/FaviconDelta.png">
 </head>
@@ -41,6 +46,7 @@
     <div class="barra-fixa">
         <a href="#topico1" class="botao-topo"><div class="botao-logo"><p class="Delta">DELT</p><img src="<%= request.getContextPath() %>/imagens/LogoDelta.svg" id="LogoDelta" alt="Logo Delta"></div></a>
         <button class="botao-menu" id="botao-menu" type="button" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="menu-navegacao"><span></span><span></span><span></span></button>
+        <%-- Bloco da página: navegação. --%>
         <nav class="menu-navegacao" id="menu-navegacao" aria-label="Navegação da página">
             <a href="#topico1">Início</a><a href="#topico2">Conceito</a><a href="#topico3">Objetivos</a><a href="#topico4">Funcionalidades</a><a href="#topico5">Sobre nós</a><a href="#topico6">Nossos valores</a>
         </nav>
@@ -53,11 +59,13 @@
     </div>
 
     <div id="fade" class="hide"></div>
+    <%-- Bloco da página: seção de conteúdo. --%>
     <section id="modal" class="hide" role="dialog" aria-modal="true" aria-label="Minha conta">
         <button id="close-modal" type="button" aria-label="Fechar">&times;</button>
         <img id="modal-svg" src="<%= request.getContextPath() %>/imagens/Configura%C3%A7%C3%B5es%20-%20Perfil.svg" alt="Configurações da conta: perfil">
         <div class="titulo-minha-conta">Minha conta</div>
         <div class="retangulo-modal"></div>
+        <%-- Bloco da página: navegação. --%>
         <nav class="subtitulos-modal" aria-label="Configurações da conta">
             <div class="indicador"></div>
             <p class="topico active" data-secao="subtitulo-perfil" role="button" tabindex="0">Perfil</p>
@@ -68,10 +76,12 @@
             <img src="<%= request.getContextPath() %>/imagens/lixeira.svg" class="lixeira" alt="">
         </nav>
         <div class="conteudo">
+            <%-- Bloco da página: seção de conteúdo. --%>
             <section class="secao" id="secao-perfil">
                 <h2 class="titulo-config">Perfil</h2>
                 <div class="modal-body" id="modal-body-perfil">
                     <p>Gerencie suas informações pessoais e dados cadastrais.</p>
+                    <%-- Bloco da página: formulário e envio de dados. --%>
                     <form id="config-perfil">
                         <p class="nome-modal" id="rotulo-nome">Nome</p>
                         <input type="text" id="nome" name="name" aria-labelledby="rotulo-nome" value="<%= safeAccountName %>" required maxlength="100">
@@ -83,10 +93,12 @@
                 </div>
             </section>
 
+            <%-- Bloco da página: seção de conteúdo. --%>
             <section class="secao" id="secao-seguranca" style="display: none;">
                 <h2 class="titulo-seguranca">Segurança</h2>
                 <div class="modal-body" id="modal-body-seguranca">
                     <p>Gerencie suas credenciais e os métodos de acesso à sua conta.</p>
+                    <%-- Bloco da página: formulário e envio de dados. --%>
                     <form id="form-seguranca">
                         <p class="senha-nova-modal" id="rotulo-senha-nova">Digite sua senha nova</p>
                         <div class="campo-senha-config">
@@ -109,6 +121,7 @@
                 </div>
             </section>
 
+            <%-- Bloco da página: seção de conteúdo. --%>
             <section class="secao" id="secao-notificacoes" style="display: none;">
                 <h2 class="titulo-notificacoes">Notificações</h2>
                 <div class="modal-body" id="modal-body-notificacoes">
@@ -203,6 +216,7 @@
         <div class="cartao6"><img src="<%= request.getContextPath() %>/imagens/cartao-funcionalidade.svg" id="frame6" alt=""><img src="<%= request.getContextPath() %>/imagens/papel.svg" id="papel" alt=""><p class="tituloCardHistorico">Histórico completo</p><p class="informacoesCardHistorico">Consulte relatórios e histórico de<br> consumo detalhado.</p></div>
     </div>
 <p class="tituloNossaEquipe">NOSSA EQUIPE</p>
+    <%-- Bloco da página: seção de conteúdo. --%>
     <section class="carrossel-section"><div class="carrossel"><div class="fotosCarrossel">
         <% String[] equipe = {"bruno", "gabriel", "lucas", "manuela", "pedro", "pietra", "ana", "davi", "joão", "mariana", "samuel"}; %>
         <div class="grupo"><% for (String pessoa : equipe) { %><div class="foto <%= "lucas".equals(pessoa) ? "foto-lucas" : "" %>" <%= "lucas".equals(pessoa) ? "id=\"lucas\"" : "" %>><img src="<%= request.getContextPath() %>/imagens/<%= pessoa %>.svg?v=20261102-22" <%= "lucas".equals(pessoa) ? "id=\"lucasFoto\"" : "" %> alt="Integrante da equipe"><% if ("lucas".equals(pessoa)) { %><div id="lucasTexto"><img src="<%= request.getContextPath() %>/imagens/lucasTexto.svg?v=20261102-22" alt=""></div><% } %></div><% } %></div>
@@ -221,6 +235,7 @@
         <ul class="coluna3"><h3>Documentos</h3><li><a href="<%= request.getContextPath() %>/Termos.jsp">Termos de uso</a></li><li><a href="<%= request.getContextPath() %>/PoliticaPrivacidade.jsp">Política de privacidade</a></li></ul>
         <p class="direitos">© 2026 Projeto Delta. Todos os direitos reservados.</p>
     </div>
+    <%-- Bloco da página: código de interação executado pelo navegador. --%>
     <script>
         (() => {
             const raiz = '<%= request.getContextPath() %>';
@@ -499,6 +514,7 @@
             });
         })();
     </script>
+    <%-- Bloco da página: código de interação executado pelo navegador. --%>
     <script src="<%= request.getContextPath() %>/js/transicao-intro.js"></script>
 </body>
 </html>
