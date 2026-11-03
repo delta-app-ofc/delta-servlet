@@ -1,0 +1,504 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Unbounded:wght@200..900&display=swap');
+
+:root {
+    --u: clamp(0.5px, calc(100vw / 1440), 1.2px);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    overflow-x: hidden;
+    min-height: 100%;
+    background: linear-gradient(to right, #00296B 0, #00296B 47%, #E0E8F6 47%);
+}
+
+body {
+    min-height: 100vh;
+    position: relative;
+    width: 100vw;
+    font-family: Montserrat, sans-serif;
+    overflow-x: hidden;
+}
+
+.gota {
+    position: absolute;
+    top: 0;
+    left: 0;
+    align-items: center;
+    font-family: Montserrat, sans-serif;
+    z-index: 5;
+}
+
+.titulo {
+    font-size: calc(51 * var(--u));
+    font-weight: 400;
+    padding-top: calc(80 * var(--u));
+    padding-left: calc(30 * var(--u));
+}
+
+.titulo1 {
+    font-size: calc(51 * var(--u));
+    font-weight: 400;
+    padding-left: calc(30 * var(--u));
+}
+
+.inteligentemente {
+    font-size: calc(50 * var(--u));
+    font-weight: 900;
+    padding-left: calc(30 * var(--u));
+}
+
+.titulo, .titulo1, .inteligentemente {
+    color: #FAFAFA;
+}
+
+.fundo-svg {
+    width: 100%;
+    height: 100vh;
+    display: block;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.crie-sua-conta {
+    position: absolute;
+    z-index: 10;
+    top: calc(80 * var(--u));
+    left: calc(820 * var(--u));
+    width: calc(420 * var(--u));
+    text-align: center;
+    color: #003E9B;
+    font-family: 'Unbounded', sans-serif;
+    font-size: calc(40 * var(--u));
+    font-weight: 700;
+}
+
+.tituloNome {
+    position: absolute;
+    font-size: calc(20 * var(--u));
+    font-weight: 600;
+    z-index: 15;
+    top: calc(240 * var(--u));
+    left: calc(822 * var(--u));
+    color: #003E9B;
+}
+
+.tituloEmail {
+    position: absolute;
+    font-size: calc(20 * var(--u));
+    font-weight: 600;
+    z-index: 15;
+    top: calc(340 * var(--u));
+    left: calc(822 * var(--u));
+    color: #003E9B;
+}
+
+.tituloSenha {
+    position: absolute;
+    font-size: calc(20 * var(--u));
+    font-weight: 600;
+    z-index: 15;
+    top: calc(440 * var(--u));
+    left: calc(822 * var(--u));
+    color: #003E9B;
+}
+
+#nome, #email, #senha {
+    position: absolute;
+    padding-left: calc(14 * var(--u));
+    background-color: #E0E8F6;
+    color: #003E9B;
+    font-family: Montserrat, sans-serif;
+}
+
+#nome::placeholder, #email::placeholder, #senha::placeholder {
+    color: #003E9B;
+    vertical-align: middle;
+    opacity: 0.5;
+    font-weight: 400;
+}
+
+#nome {
+    font-size: calc(18 * var(--u));
+    font-weight: 500;
+    z-index: 15;
+    top: calc(270 * var(--u));
+    left: calc(820 * var(--u));
+    width: calc(420 * var(--u));
+    height: calc(48 * var(--u));
+    border-radius: calc(12 * var(--u));
+    border: 2px solid #a0a0a0;
+    outline: none;
+}
+
+#email {
+    font-size: calc(18 * var(--u));
+    font-weight: 500;
+    z-index: 15;
+    top: calc(370 * var(--u));
+    left: calc(820 * var(--u));
+    width: calc(420 * var(--u));
+    height: calc(48 * var(--u));
+    border-radius: calc(12 * var(--u));
+    border: 2px solid #a0a0a0;
+    outline: none;
+}
+
+.campo-senha {
+    position: absolute;
+    z-index: 15;
+    top: calc(470 * var(--u));
+    left: calc(820 * var(--u));
+    width: calc(420 * var(--u));
+    height: calc(48 * var(--u));
+}
+
+#senha {
+    position: static;
+    width: 100%;
+    height: 100%;
+    padding-right: calc(52 * var(--u));
+    font-size: calc(18 * var(--u));
+    font-weight: 500;
+    border-radius: calc(12 * var(--u));
+    border: 2px solid #a0a0a0;
+    outline: none;
+    background: #E0E8F6;
+}
+
+#nome:focus, #email:focus, #senha:focus {
+    border-color: #003E9B;
+}
+
+#botaoOlho {
+    position: absolute;
+    top: 50%;
+    right: calc(16 * var(--u));
+    transform: translateY(-50%);
+    z-index: 20;
+    display: flex;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+#iconeOlho {
+    width: calc(26 * var(--u));
+    height: auto;
+    display: block;
+}
+
+.container-lembrar {
+    display: flex;
+    align-items: center;
+    gap: calc(8 * var(--u));
+    position: absolute;
+    top: calc(565 * var(--u));
+    left: calc(822 * var(--u));
+    z-index: 15;
+    font-size: calc(15 * var(--u));
+    font-weight: 700;
+    color: #003E9B;
+}
+
+.container-lembrar input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: calc(22 * var(--u));
+    height: calc(22 * var(--u));
+    border: 2px solid #a0a0a0;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease-in-out;
+}
+
+.container-lembrar input[type="checkbox"]:checked {
+    background-color: #003E9B;
+    border-color: #003E9B;
+}
+
+.container-lembrar input[type="checkbox"]:checked::before {
+    content: "";
+    width: calc(5 * var(--u));
+    height: calc(11 * var(--u));
+    border: solid #FAFAFA;
+    border-width: 0 2.5px 2.5px 0;
+    transform: rotate(45deg);
+    margin-bottom: calc(4 * var(--u));
+    margin-right: calc(1.5 * var(--u));
+}
+
+.criar-conta {
+    font-family: Montserrat, sans-serif;
+    background-color: #003E9B;
+    position: absolute;
+    font-size: calc(21 * var(--u));
+    font-weight: 600;
+    z-index: 15;
+    top: calc(600 * var(--u));
+    left: calc(820 * var(--u));
+    width: calc(420 * var(--u));
+    height: calc(48 * var(--u));
+    border-radius: calc(12 * var(--u));
+    color: #FAFAFA;
+    cursor: pointer;
+    border: solid #003E9B;
+}
+
+.login {
+    position: absolute;
+    font-size: calc(16 * var(--u));
+    font-weight: 200;
+    z-index: 15;
+    top: calc(660 * var(--u));
+    left: calc(820 * var(--u));
+    width: calc(420 * var(--u));
+    text-align: center;
+    color: #003E9B;
+}
+
+.login strong, .login u {
+    color: #003E9B;
+    font-weight: 800;
+    opacity: 1;
+}
+
+.glub {
+    position: absolute;
+    left: calc(50 * var(--u));
+    top: calc(256 * var(--u));
+    width: calc(520 * var(--u));
+    height: auto;
+    z-index: 3;
+}
+
+.voltar {
+    position: absolute;
+    z-index: 30;
+    right: calc(32 * var(--u));
+    top: calc(32 * var(--u));
+}
+
+#mensagemSenha {
+    display: none;
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    width: 100%;
+    font-family: Montserrat, sans-serif;
+    font-size: clamp(12px, calc(13 * var(--u)), 15px);
+    font-weight: 400;
+    line-height: 1.3;
+    color: red;
+}
+
+@media (max-width: 480px), (max-aspect-ratio: 4/3) {
+    html {
+        overflow-y: auto;
+        background: #E0E8F6;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+        background: #E0E8F6;
+    }
+
+    #form-cadastro {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .fundo-svg {
+        display: none;
+    }
+
+    .voltar {
+        top: 16px;
+        right: 16px;
+    }
+
+    .gota {
+        position: static;
+        display: flex;
+        flex-direction: column;
+        padding: 64px 28px 0;
+        overflow: hidden;
+        background-color: #02245B;
+        background-image: url('/imagens/login.svg');
+        background-repeat: no-repeat;
+        background-position: left top;
+        background-size: 250% auto;
+    }
+
+    .titulo, .titulo1, .inteligentemente {
+        font-size: clamp(26px, 8vw, 40px);
+        padding: 0;
+    }
+
+    .glub {
+        position: static;
+        display: block;
+        width: min(70vw, 300px);
+        height: auto;
+        margin: 15px auto 10px;
+    }
+
+    .crie-sua-conta {
+        position: static;
+        width: auto;
+        transform: none;
+        margin: 24px 24px 4px;
+        font-size: clamp(26px, 8vw, 36px);
+        text-align: center;
+    }
+
+    .tituloNome, .tituloEmail, .tituloSenha, .container-lembrar {
+        position: static;
+        font-size: 15px;
+        margin-top: 6px;
+        width: calc(100% - 48px);
+        max-width: 400px;
+        align-self: center;
+    }
+
+    #nome, #email, .campo-senha, .criar-conta {
+        position: static;
+        width: calc(100% - 48px);
+        max-width: 400px;
+        height: 44px;
+        font-size: 16px;
+        border-radius: 10px;
+        align-self: center;
+    }
+
+    .campo-senha {
+        position: relative;
+        top: auto;
+        left: auto;
+        width: calc(100% - 48px);
+        max-width: 400px;
+        height: auto;
+        align-self: center;
+    }
+
+    #senha{
+        font-size: 16px;
+        width: 100%;
+        height: 44px;
+        border-radius: 10px;
+        background: #E0E8F6; /* Garantido também no responsivo */
+    }
+
+    #botaoOlho {
+        top: 22px;
+        right: 12px;
+    }
+
+    #iconeOlho {
+        width: 22px;
+    }
+
+    #mensagemSenha {
+        position: static;
+        width: 100%;
+        margin-top: 6px;
+        margin-bottom:-2px;
+        font-size: 13px;
+        line-height: 1.35;
+    }
+
+    .container-lembrar input[type="checkbox"] {
+        width: 25px;
+        height: 25px;
+    }
+
+    .container-lembrar input[type="checkbox"]:checked::before {
+        width: 6px;
+        height: 13px;
+        border-width: 0 3px 3px 0;
+        margin-bottom: 4.5px;
+        margin-right: 1.5px;
+    }
+
+    .criar-conta {
+        font-size: 18px;
+        width: calc(100% - 48px);
+        max-width: 400px;
+        margin-top: 15px;
+        align-self: center;
+    }
+
+    .login {
+        position: static;
+        width: auto;
+        text-align: center;
+        font-size: 16px;
+        margin: 16px 24px 32px;
+    }
+}
+
+
+/* Desktop signup layout and controls. */
+@media (min-width: 769px) and (min-aspect-ratio: 4/3) {
+    body { --cadastro-y: clamp(0.65px, min(calc(100vw / 1440), calc(100vh / 1024)), 1px); }
+    .crie-sua-conta { top: calc(130 * var(--cadastro-y)); left: calc(840 * var(--u)); width: calc(484 * var(--u)); font-size: calc(52 * var(--cadastro-y)); }
+    .tituloNome, .tituloTelefone, .tituloEmail, .tituloSenha { font-size: calc(20 * var(--cadastro-y)); }
+    .tituloNome { top: calc(232 * var(--cadastro-y)); left: calc(843 * var(--u)); }
+    #nome { top: calc(258 * var(--cadastro-y)); left: calc(840 * var(--u)); width: calc(484 * var(--u)); height: calc(69 * var(--cadastro-y)); border-color: #003E9B; background: #fff; font-size: calc(18 * var(--cadastro-y)); }
+    .tituloTelefone { position: absolute; top: calc(348 * var(--cadastro-y)); left: calc(843 * var(--u)); z-index: 15; color: #003E9B; font-weight: 600; }
+    #telefone { position: absolute; top: calc(374 * var(--cadastro-y)); left: calc(840 * var(--u)); z-index: 15; width: calc(484 * var(--u)); height: calc(69 * var(--cadastro-y)); padding-left: calc(14 * var(--u)); border: 2px solid #003E9B; border-radius: calc(12 * var(--u)); outline: none; background: #fff; color: #003E9B; font: 500 calc(18 * var(--cadastro-y)) Montserrat, sans-serif; }
+    #nome::placeholder, #telefone::placeholder { color: #003E9B; opacity: .5; }
+    .tituloEmail { top: calc(464 * var(--cadastro-y)); left: calc(843 * var(--u)); }
+    #email { top: calc(489 * var(--cadastro-y)); left: calc(840 * var(--u)); width: calc(484 * var(--u)); height: calc(69 * var(--cadastro-y)); border-color: #003E9B; background: #fff; font-size: calc(18 * var(--cadastro-y)); }
+    .tituloSenha { top: calc(579 * var(--cadastro-y)); left: calc(843 * var(--u)); }
+    .campo-senha { top: calc(604 * var(--cadastro-y)); left: calc(840 * var(--u)); width: calc(484 * var(--u)); height: calc(69 * var(--cadastro-y)); }
+    #senha { border-color: #003E9B; background: #fff; font-size: calc(18 * var(--cadastro-y)); }
+    #botaoOlho { right: calc(16 * var(--u)); }
+    #iconeOlho { width: calc(26 * var(--cadastro-y)); }
+    .regras-senha { position: absolute; top: calc(681 * var(--cadastro-y)); left: calc(845 * var(--u)); z-index: 15; padding: 0; list-style: none; color: #456b9f; font: 400 calc(16 * var(--cadastro-y)) Montserrat, sans-serif; line-height: calc(24 * var(--cadastro-y)); }
+    .regras-senha li::before { content: ''; display: inline-block; width: calc(13 * var(--cadastro-y)); height: calc(13 * var(--cadastro-y)); margin-right: calc(9 * var(--cadastro-y)); border: 2px solid #456b9f; border-radius: 50%; vertical-align: calc(-2 * var(--cadastro-y)); }
+    .regras-senha li.atendido::before { content: '✓'; width: calc(17 * var(--cadastro-y)); height: calc(17 * var(--cadastro-y)); border: 0; color: #218838; font-size: calc(17 * var(--cadastro-y)); font-weight: 700; line-height: 1; vertical-align: calc(-1 * var(--cadastro-y)); }
+    .container-lembrar { top: calc(776 * var(--cadastro-y)); left: calc(843 * var(--u)); gap: calc(11 * var(--cadastro-y)); font-size: calc(20 * var(--cadastro-y)); }
+    .container-termos { position: absolute; top: calc(826 * var(--cadastro-y)); left: calc(843 * var(--u)); z-index: 15; display: flex; align-items: flex-start; gap: calc(9 * var(--cadastro-y)); width: calc(440 * var(--u)); color: #003E9B; font: 400 calc(18 * var(--cadastro-y)) Montserrat, sans-serif; line-height: 1.35; }
+    .container-termos label { padding-top: calc(3 * var(--cadastro-y)); }
+    .container-termos a { color: #003E9B; font-weight: 800; text-decoration: none; }
+
+    /* Use identical checkbox boxes and checkmarks for both options. */
+    .container-lembrar input[type='checkbox'], .container-termos input[type='checkbox'] { appearance: none; -webkit-appearance: none; box-sizing: border-box; display: grid; place-items: center; flex: 0 0 calc(30 * var(--cadastro-y)); width: calc(30 * var(--cadastro-y)); min-width: calc(30 * var(--cadastro-y)); height: calc(30 * var(--cadastro-y)); min-height: calc(30 * var(--cadastro-y)); border: 2px solid #003E9B; border-radius: calc(10 * var(--cadastro-y)); background: #fff; cursor: pointer; }
+    .container-lembrar input[type='checkbox']:checked, .container-termos input[type='checkbox']:checked { border-color: #003E9B; background: #003E9B; box-shadow: none; }
+    .container-lembrar input[type='checkbox']:checked::before, .container-termos input[type='checkbox']:checked::before { content: ''; box-sizing: content-box; width: calc(6 * var(--cadastro-y)); height: calc(12 * var(--cadastro-y)); margin: 0 0 calc(3 * var(--cadastro-y)) calc(1 * var(--cadastro-y)); border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
+
+    .criar-conta { top: calc(892 * var(--cadastro-y)); left: calc(840 * var(--u)); width: calc(484 * var(--u)); height: calc(69 * var(--cadastro-y)); border-radius: calc(15 * var(--cadastro-y)); font: 700 calc(26 * var(--cadastro-y)) Unbounded, sans-serif; }
+    .login { top: calc(975 * var(--cadastro-y)); left: calc(840 * var(--u)); width: calc(484 * var(--u)); font-size: calc(19 * var(--cadastro-y)); }
+
+    /* Center the form vertically inside the available window height. */
+    .crie-sua-conta, .tituloNome, #nome, .tituloTelefone, #telefone, .tituloEmail, #email, .tituloSenha, .campo-senha, .regras-senha, .container-lembrar, .container-termos, .criar-conta, .login { transform: translateY(calc(-38 * var(--cadastro-y))); }
+}
+
+/* Signup fields and consent controls on mobile screens. */
+@media (max-width: 768px) {
+    .tituloTelefone { position: static; width: calc(100% - 48px); max-width: 400px; align-self: center; margin-top: 6px; color: #003E9B; font-size: 15px; font-weight: 600; }
+    #telefone { position: static; width: calc(100% - 48px); max-width: 400px; height: 44px; align-self: center; padding: 0 12px; border: 2px solid #003E9B; border-radius: 10px; background: #fff; color: #003E9B; font: 16px Montserrat, sans-serif; }
+    .regras-senha { position: static; align-self: center; width: calc(100% - 48px); max-width: 400px; margin-top: 8px; padding: 0; list-style: none; color: #456b9f; font-size: 13px; line-height: 1.5; }
+    .regras-senha li::before { content: ''; display: inline-block; width: 11px; height: 11px; margin-right: 8px; border: 2px solid #456b9f; border-radius: 50%; vertical-align: -2px; }
+    .regras-senha li.atendido::before { content: '✓'; width: 15px; height: 15px; border: 0; color: #218838; font-size: 15px; font-weight: 700; line-height: 1; vertical-align: -1px; }
+    .container-termos { position: static; display: flex; align-items: flex-start; gap: 9px; width: calc(100% - 48px); max-width: 400px; align-self: center; margin-top: 12px; color: #003E9B; font-size: 14px; line-height: 1.35; }
+    .container-termos input[type='checkbox'] { appearance: none; -webkit-appearance: none; box-sizing: border-box; display: grid; place-items: center; flex: 0 0 25px; width: 25px; min-width: 25px; height: 25px; min-height: 25px; border: 2px solid #003E9B; border-radius: 8px; background: #fff; }
+    .container-termos input[type='checkbox']:checked { border-color: #003E9B; background: #003E9B; }
+    .container-termos a { color: #003E9B; font-weight: 800; }
+    .container-lembrar input[type='checkbox'], .container-termos input[type='checkbox'] { flex: 0 0 25px; min-width: 25px; min-height: 25px; }
+    .container-lembrar input[type='checkbox']:checked::before, .container-termos input[type='checkbox']:checked::before { width: 6px; height: 13px; margin: 0 1px 4px 0; border-width: 0 3px 3px 0; }
+    .criar-conta { margin-top: 16px; }
+}

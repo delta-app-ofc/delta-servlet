@@ -1,8 +1,9 @@
+
 package com.example.delta_back.crud;
 
-import com.example.delta_back.model.Device; // Para consulta inter tabelas
-import com.example.delta_back.model.Address; // Para consulta inter tabelas
-import com.example.delta_back.model.Region; // Para consulta inter tabelas
+import com.example.delta_back.model.Device;
+import com.example.delta_back.model.Address;
+import com.example.delta_back.model.Region;
 import com.example.delta_back.model.Property;
 import com.example.delta_back.dao.PropertyDAO;
 
@@ -13,226 +14,195 @@ import java.util.List;
 
 public class PropertyCrud implements PropertyDAO {
 
-    // Definindo a variavel para a conexão (JBDC)
     private final Connection connection;
 
     public PropertyCrud(Connection connection) {
         this.connection = connection;
     }
 
-    // INSERIR DADOS
+    private RuntimeException erroBanco(String operacao, SQLException e) {
+        return new RuntimeException(
+                "Erro ao " + operacao + ": " + e.getMessage(), e
+        );
+    }
+
+    // INSERIR
     @Override
     public void inserir(Property property) {
-        // String sql = Código Que Vamos Usar No Sql
         String sql = """
                 INSERT INTO tb_property
-                (name, type, classification, address_id, registration_date)
+                (property_name, property_type, classification, address_id, registration_date)
                 VALUES (?, ?, ?, ?, ?)
                 """;
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-
             stmt.setString(1, property.getName());
             stmt.setString(2, property.getType());
             stmt.setString(3, property.getClassification());
             stmt.setInt(4, property.getAddressId());
             stmt.setDate(5, Date.valueOf(property.getRegistrationDate()));
 
-            stmt.executeUpdate();
+            int linhasAfetadas = stmt.executeUpdate();
 
+            if (linhasAfetadas == 0) {
+                throw new SQLException("Nenhuma propriedade foi cadastrada.");
+            }
         } catch (SQLException e) {
-
-            e.printStackTrace();
-
+            throw erroBanco("cadastrar a propriedade", e);
         }
     }
 
-    // Método para BUSCAR as informações pelo ID
+    // BUSCAR POR ID
     @Override
     public Property buscarPorId(int id) {
-
-        String sql = """
-                SELECT * FROM tb_property WHERE id = ?
-                """;
+        String sql = "SELECT * FROM tb_property WHERE id = ?";
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-
             stmt.setInt(1, id);
 
             try (ResultSet resultado = stmt.executeQuery()) {
-
                 if (resultado.next()) {
-
                     return new Property(
                             resultado.getInt("id"),
-                            resultado.getString("name"),
-                            resultado.getString("type"),
+                            resultado.getString("property_name"),
+                            resultado.getString("property_type"),
                             resultado.getString("classification"),
                             resultado.getInt("address_id"),
                             resultado.getDate("registration_date").toLocalDate()
                     );
-
                 }
             }
 
-            // se nao der pra conectar
+            return null;
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw erroBanco("buscar a propriedade", e);
         }
-
-        return null;
-
     }
 
-    // Método Para Listar TODOS
+    // LISTAR TODOS
     @Override
     public List<Property> listarTodos() {
-
-        String sql = """
-                SELECT * FROM tb_property
-                """;
-
+        String sql = "SELECT * FROM tb_property";
         List<Property> properties = new ArrayList<>();
 
         try (PreparedStatement stmt = connection.prepareStatement(sql);
              ResultSet resultado = stmt.executeQuery()) {
 
             while (resultado.next()) {
-
-                Property property = new Property(
+                properties.add(new Property(
                         resultado.getInt("id"),
-                        resultado.getString("name"),
-                        resultado.getString("type"),
+                        resultado.getString("property_name"),
+                        resultado.getString("property_type"),
                         resultado.getString("classification"),
                         resultado.getInt("address_id"),
                         resultado.getDate("registration_date").toLocalDate()
-                );
-
-                properties.add(property);
+                ));
             }
 
+            return properties;
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw erroBanco("listar as propriedades", e);
         }
-
-        return properties;
-
     }
 
-    // Consultar dispositivos de uma propriedade
-    // Utilização de Duas Tabelas do Banco de Dados
+    // CONSULTAR DISPOSITIVOS DA PROPRIEDADE
     @Override
     public List<Device> consultarDispositivos(Property property) {
-        // Arraylist - Guardará a consulta SQL inteira
         List<Device> dispositivos = new ArrayList<>();
 
-        // Código SQL da consulta
         String sql = """
-                SELECT p.name AS nome_propriedade,
-                    d.device_id AS id_dispositivo,
-                    d.is_active,
-                    d.installation_date AS data_instalacao
-                    FROM tb_device d
-                    JOIN tb_property p
-                    ON d.property_id = p.id
-                    """; // Utilização dos JOINS para conectar duas tabelas
+                SELECT d.id,
+                       d.device_id,
+                       d.property_id,
+                       d.is_active,
+                       d.installation_date
+                FROM tb_device d
+                JOIN tb_property p ON d.property_id = p.id
+                WHERE p.id = ?
+                """;
 
-        // Tente buscar
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-
-            // Usará o ID da propriedade para buscar os Dispositivos
             stmt.setInt(1, property.getId());
 
-            ResultSet rs = stmt.executeQuery();
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Device device = new Device();
 
-            while (rs.next()) {
+                    device.setId(rs.getInt("id"));
+                    device.setDeviceId(rs.getString("device_id"));
+                    device.setPropertyId(rs.getInt("property_id"));
+                    device.setActive(rs.getBoolean("is_active"));
 
-                // Criação do objeto que ficará contido no ArrayList (Consulta do SQL)
-                Device device = new Device();
+                    Date dataInstalacao = rs.getDate("installation_date");
+                    if (dataInstalacao != null) {
+                        device.setInstallationDate(dataInstalacao.toLocalDate());
+                    }
 
-                device.setId(rs.getInt("id"));
-                device.setDeviceId(rs.getString("device_id"));
-                device.setPropertyId(rs.getInt("property_id"));
-                device.setActive(rs.getBoolean("is_active"));
-                device.setInstallationDate(
-                        rs.getDate("installation_date").toLocalDate()
-                );
-
-                // Adicionando o dispositivo buscado no ArrayList de dispositivos
-                dispositivos.add(device);
+                    dispositivos.add(device);
+                }
             }
 
+            return dispositivos;
         } catch (SQLException e) {
-            // Tratamento de exceção
-            e.printStackTrace();
-
+            throw erroBanco("consultar os dispositivos da propriedade", e);
         }
-        // Return do ArrayList
-        return dispositivos;
     }
 
-    // Consultar endereço da propriedade
-    // Utilização de Três tabelas do banco de dados
+    // CONSULTAR ENDEREÇO DA PROPRIEDADE
     @Override
     public List<Property> consultarEndereco(Property property) {
-
         String sql = """
-            SELECT p.name AS nome,
-                   a.cep,
-                   a.city AS cidade,
-                   a.state AS estado,
-                   r.name AS regiao
-            FROM tb_property p
-            JOIN tb_address a
-                ON p.address_id = a.id
-            JOIN tb_region r
-                ON a.region_id = r.id
-            """;
+                SELECT p.property_name AS nome,
+                       a.cep,
+                       a.city AS cidade,
+                       a.adress_state AS estado,
+                       r.region_name AS regiao
+                FROM tb_property p
+                JOIN tb_address a ON p.address_id = a.id
+                JOIN tb_region r ON a.region_id = r.id
+                WHERE p.id = ?
+                """;
 
         List<Property> lista = new ArrayList<>();
 
-        try (PreparedStatement stmt = connection.prepareStatement(sql);
-             ResultSet rs = stmt.executeQuery()) {
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, property.getId());
 
-            while (rs.next()) {
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Property p = new Property();
+                    Address address = new Address();
+                    Region region = new Region();
 
-                Property p = new Property();
-                Address address = new Address();
-                Region region = new Region();
+                    p.setName(rs.getString("nome"));
 
-                p.setName(rs.getString("nome"));
+                    address.setCep(rs.getString("cep"));
+                    address.setCity(rs.getString("cidade"));
+                    address.setState(rs.getString("estado"));
 
-                address.setCep(rs.getString("cep"));
-                address.setCity(rs.getString("cidade"));
-                address.setState(rs.getString("estado"));
+                    region.setName(rs.getString("regiao"));
 
-                region.setName(rs.getString("regiao"));
-
-                lista.add(p);
+                    lista.add(p);
+                }
             }
 
+            return lista;
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw erroBanco("consultar o endereço da propriedade", e);
         }
-
-        return lista;
     }
 
-
-    // MÉTODOS UPDATE
-
-    // Método responsável por atualizar todos os dados da propriedade
+    // ATUALIZAR TODOS OS DADOS
     @Override
     public void atualizar(Property property) {
-
         String sql = """
                 UPDATE tb_property
-                SET name = ?, type = ?, classification = ?, address_id = ?, registration_date = ?
+                SET property_name = ?, property_type = ?, classification = ?,
+                    address_id = ?, registration_date = ?
                 WHERE id = ?
                 """;
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-
             stmt.setString(1, property.getName());
             stmt.setString(2, property.getType());
             stmt.setString(3, property.getClassification());
@@ -240,239 +210,185 @@ public class PropertyCrud implements PropertyDAO {
             stmt.setDate(5, Date.valueOf(property.getRegistrationDate()));
             stmt.setInt(6, property.getId());
 
-            stmt.executeUpdate();
+            int linhasAfetadas = stmt.executeUpdate();
 
+            if (linhasAfetadas == 0) {
+                throw new SQLException(
+                        "Nenhuma propriedade encontrada com o ID informado."
+                );
+            }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw erroBanco("atualizar a propriedade", e);
         }
     }
 
-    // Atualizar Nome
+    // ATUALIZAR NOME
     @Override
     public void atualizarNome(Property property) {
-
-        String sql = """
-                UPDATE tb_property
-                SET name = ?
-                WHERE id = ?
-                """;
-
-        try (PreparedStatement stmt = connection.prepareStatement(sql)){
-
-            stmt.setString(1, property.getName());
-            stmt.setInt(2, property.getId());
-
-            stmt.executeUpdate();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
+        executarAtualizacao(
+                "UPDATE tb_property SET property_name = ? WHERE id = ?",
+                property.getName(),
+                property.getId(),
+                "atualizar o nome"
+        );
     }
 
-    // Atualizar Tipo da Propriedade
+    // ATUALIZAR TIPO
     @Override
     public void atualizarType(Property property) {
-
-        String sql = """
-                UPDATE tb_property
-                SET type = ?
-                WHERE id = ?
-                """;
-
-        try (PreparedStatement stmt = connection.prepareStatement(sql)){
-
-            stmt.setString(1, property.getType());
-            stmt.setInt(2, property.getId());
-
-            stmt.executeUpdate();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
+        executarAtualizacao(
+                "UPDATE tb_property SET property_type = ? WHERE id = ?",
+                property.getType(),
+                property.getId(),
+                "atualizar o tipo"
+        );
     }
 
-    // Atualizar Classificação da Propriedade
+    // ATUALIZAR CLASSIFICAÇÃO
     @Override
     public void atualizarClassification(Property property) {
-
-        String sql = """
-                UPDATE tb_property
-                SET classification = ?
-                WHERE id = ?
-                """;
-
-        try (PreparedStatement stmt = connection.prepareStatement(sql)){
-
-            stmt.setString(1, property.getClassification());
-            stmt.setInt(2, property.getId());
-
-            stmt.executeUpdate();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
+        executarAtualizacao(
+                "UPDATE tb_property SET classification = ? WHERE id = ?",
+                property.getClassification(),
+                property.getId(),
+                "atualizar a classificação"
+        );
     }
 
-    // Atualizar FK - Id do endereço
+    // ATUALIZAR ID DO ENDEREÇO
     @Override
     public void atualizarAddressId(Property property) {
-
-        String sql = """
-                UPDATE tb_property
-                SET address_id = ?
-                WHERE id = ?
-                """;
-
-        try (PreparedStatement stmt = connection.prepareStatement(sql)){
-
-            stmt.setInt(1, property.getAddressId());
-            stmt.setInt(2, property.getId());
-
-            stmt.executeUpdate();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
+        executarAtualizacao(
+                "UPDATE tb_property SET address_id = ? WHERE id = ?",
+                property.getAddressId(),
+                property.getId(),
+                "atualizar o endereço"
+        );
     }
 
-    // Atualizar Data de Registro
+    // ATUALIZAR DATA DE REGISTRO
     @Override
     public void atualizarRegistrationDate(Property property) {
-
-        String sql = """
-                UPDATE tb_property
-                SET registration_date = ?
-                WHERE id = ?
-                """;
-
-        try (PreparedStatement stmt = connection.prepareStatement(sql)){
-
-            stmt.setDate(1, Date.valueOf(property.getRegistrationDate()));
-            stmt.setInt(2, property.getId());
-
-            stmt.executeUpdate();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
+        executarAtualizacao(
+                "UPDATE tb_property SET registration_date = ? WHERE id = ?",
+                Date.valueOf(property.getRegistrationDate()),
+                property.getId(),
+                "atualizar a data de registro"
+        );
     }
 
+    private void executarAtualizacao(
+            String sql,
+            Object valor,
+            int id,
+            String operacao
+    ) {
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setObject(1, valor);
+            stmt.setInt(2, id);
 
-    // DELETES
-    // Deletar por Id
+            int linhasAfetadas = stmt.executeUpdate();
+
+            if (linhasAfetadas == 0) {
+                throw new SQLException(
+                        "Nenhuma propriedade encontrada com o ID informado."
+                );
+            }
+        } catch (SQLException e) {
+            throw erroBanco(operacao, e);
+        }
+    }
+
+    // EXCLUIR POR ID
     @Override
     public void deletar(int id) {
-
-        String sql = """
-                DELETE FROM tb_property
-                WHERE id = ?
-                """;
-
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-
-            stmt.setInt(1, id);
-
-            stmt.executeUpdate();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        executarExclusao(
+                "DELETE FROM tb_property WHERE id = ?",
+                id,
+                "excluir a propriedade"
+        );
     }
 
-    // Deletar por Nome
+    // EXCLUIR POR NOME
     @Override
     public void deletarPorNome(String name) {
-
-        String sql = """
-                DELETE FROM tb_property
-                WHERE name = ?
-                """;
+        String sql = "DELETE FROM tb_property WHERE property_name = ?";
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-
             stmt.setString(1, name);
-
             stmt.executeUpdate();
-
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw erroBanco("excluir propriedades pelo nome", e);
         }
     }
 
-    // Deletar por Id do Endereco
+    // EXCLUIR POR ID DO ENDEREÇO
     @Override
     public void deletarPorIdEndereco(int address_id) {
-
-        String sql = """
-                DELETE FROM tb_property
-                WHERE address_id = ?
-                """;
+        String sql = "DELETE FROM tb_property WHERE address_id = ?";
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-
             stmt.setInt(1, address_id);
-
             stmt.executeUpdate();
-
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw erroBanco("excluir propriedades pelo endereço", e);
         }
     }
 
-    // Deletar pelo Tipo
+    // EXCLUIR POR TIPO
     @Override
     public void deletarPorTipo(String type) {
-
-        String sql = """
-                DELETE FROM tb_property
-                WHERE type = ?
-                """;
+        String sql = "DELETE FROM tb_property WHERE property_type = ?";
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-
             stmt.setString(1, type);
-
             stmt.executeUpdate();
-
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw erroBanco("excluir propriedades pelo tipo", e);
         }
     }
 
-    // Deletar pela data de registro
+    // EXCLUIR POR DATA DE REGISTRO
     @Override
     public void deletarPorDataRegistro(LocalDate registration_date) {
-
-        String sql = """
-                DELETE FROM tb_property
-                WHERE registration_date = ?
-                """;
+        String sql = "DELETE FROM tb_property WHERE registration_date = ?";
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-
-            stmt.setObject(1, registration_date);
-
+            stmt.setDate(1, Date.valueOf(registration_date));
             stmt.executeUpdate();
-
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw erroBanco("excluir propriedades pela data de registro", e);
         }
     }
 
-    // MÉTODO PARA EXIBIR DADOS
-    @Override
-    public String exibirDados(Property property) {
-        return "Propriedade: " + property.getName() + "\n" +
-                "Id: " + property.getId() + "\n" +
-                "Tipo: " + property.getType() + "\n" +
-                "Classificação: " + property.getClassification() + "\n" +
-                "Id do Endereço: " + property.getAddressId() +
-                "Data de registro: " + property.getAddressId();
+    private void executarExclusao(
+            String sql,
+            int id,
+            String operacao
+    ) {
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+
+            int linhasAfetadas = stmt.executeUpdate();
+
+            if (linhasAfetadas == 0) {
+                throw new SQLException(
+                        "Nenhuma propriedade encontrada com o ID informado."
+                );
+            }
+        } catch (SQLException e) {
+            throw erroBanco(operacao, e);
+        }
     }
 
+    // EXIBIR DADOS
+    @Override
+    public String exibirDados(Property property) {
+        return "Propriedade: " + property.getName() + "\n"
+                + "Id: " + property.getId() + "\n"
+                + "Tipo: " + property.getType() + "\n"
+                + "Classificação: " + property.getClassification() + "\n"
+                + "Id do Endereço: " + property.getAddressId() + "\n"
+                + "Data de registro: " + property.getRegistrationDate();
+    }
 }

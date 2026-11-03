@@ -24,7 +24,7 @@ public class AddressCrud implements AddressDAO {
         // String sql = Código Que Vamos Usar No Sql
         String sql = """
                 INSERT INTO tb_address
-                (region_id, cep, city, state)
+                (region_id, cep, city, adress_state)
                 VALUES (?, ?, ?, ?)
                 """;
 
@@ -65,7 +65,7 @@ public class AddressCrud implements AddressDAO {
                             resultado.getInt("region_id"),
                             resultado.getString("cep"),
                             resultado.getString("city"),
-                            resultado.getString("state")
+                            resultado.getString("adress_state")
                     );
 
                 }
@@ -101,7 +101,7 @@ public class AddressCrud implements AddressDAO {
                         resultado.getInt("region_id"),
                         resultado.getString("cep"),
                         resultado.getString("city"),
-                        resultado.getString("state")
+                        resultado.getString("adress_state")
                 );
 
                 addresslist.add(address);
@@ -123,7 +123,7 @@ public class AddressCrud implements AddressDAO {
 
         String sql = """
                 UPDATE tb_address
-                SET region_id = ?, cep = ?, city = ?, state = ?
+                SET region_id = ?, cep = ?, city = ?, adress_state = ?
                 WHERE id = ?
                 """;
 
@@ -217,7 +217,7 @@ public class AddressCrud implements AddressDAO {
 
         String sql = """
                 UPDATE tb_address
-                SET state = ?
+                SET adress_state = ?
                 WHERE id = ?
                 """;
 
@@ -322,7 +322,7 @@ public class AddressCrud implements AddressDAO {
 
         String sql = """
                 DELETE FROM tb_address
-                WHERE state = ?
+                WHERE adress_state = ?
                 """;
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {

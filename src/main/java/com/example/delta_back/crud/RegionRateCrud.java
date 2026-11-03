@@ -110,7 +110,7 @@ public class RegionRateCrud implements RegionRateDAO {
                 }
 
                 if (finalDate != null) {
-                    finalDate = finalDate;
+                    finalValidity = finalDate.toLocalDate();
                 }
 
                 Region_Rate region_rate = new Region_Rate(

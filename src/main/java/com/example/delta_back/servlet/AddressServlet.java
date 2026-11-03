@@ -11,11 +11,17 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.List;
+import java.util.Locale;
 
 @WebServlet("/address")
 public class AddressServlet extends HttpServlet {
+
+    private static final Locale PT_BR = Locale.forLanguageTag("pt-BR");
 
     private Connection conexao;
     private AddressCrud addressCrud;
@@ -26,50 +32,190 @@ public class AddressServlet extends HttpServlet {
             conexao = ConexaoBD.conectar();
             addressCrud = new AddressCrud(conexao);
         } catch (Exception e) {
-            throw new ServletException("Erro ao conectar com o banco de dados.", e);
+            throw new ServletException(
+                    "Erro ao conectar com o banco de dados.", e
+            );
         }
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doGet(
+            HttpServletRequest request,
+            HttpServletResponse response
+    ) throws ServletException, IOException {
+
         try {
             List<Address> addresses = addressCrud.listarTodos();
+
             request.setAttribute("addresses", addresses);
-            request.getRequestDispatcher("/address.jsp").forward(request, response);
+
+            request.getRequestDispatcher("/jsp_crud/Address.jsp")
+                    .forward(request, response);
+
         } catch (Exception e) {
-            throw new ServletException("Erro ao buscar endereços.", e);
+            throw new ServletException(
+                    "Erro ao buscar endereços.", e
+            );
+        }
+    }
+
+    private int lerInteiroPositivo(
+            HttpServletRequest request,
+            String parametro,
+            String rotulo
+    ) {
+        String valor = request.getParameter(parametro);
+
+        String mensagem = "O " + rotulo
+                + " deve ser um número inteiro positivo.";
+
+        if (valor == null || !valor.trim().matches("[1-9][0-9]*")) {
+            throw new IllegalArgumentException(mensagem);
+        }
+
+        try {
+            return Integer.parseInt(valor.trim());
+
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(mensagem);
+        }
+    }
+
+    private String lerObrigatorio(
+            HttpServletRequest request,
+            String parametro,
+            String rotulo
+    ) {
+        String valor = request.getParameter(parametro);
+
+        if (valor == null || valor.trim().isEmpty()) {
+            throw new IllegalArgumentException(
+                    "O campo " + rotulo + " é obrigatório."
+            );
+        }
+
+        return valor.trim();
+    }
+
+    private int validarRegionId(HttpServletRequest request) {
+        return lerInteiroPositivo(
+                request,
+                "regionId",
+                "ID da região"
+        );
+    }
+
+    private String validarCep(HttpServletRequest request) {
+        String cep = request.getParameter("cep");
+
+        if (cep == null || !cep.trim().matches("[0-9]{8}")) {
+            throw new IllegalArgumentException(
+                    "O CEP deve conter exatamente 8 números, sem hífen."
+            );
+        }
+
+        return cep.trim();
+    }
+
+    private String validarCidade(HttpServletRequest request) {
+        return lerObrigatorio(request, "city", "Cidade")
+                .toUpperCase(PT_BR);
+    }
+
+    private String validarEstado(HttpServletRequest request) {
+        return lerObrigatorio(request, "state", "Estado");
+    }
+
+    private void validarRegiao(int regionId) throws Exception {
+        String sql = "SELECT 1 FROM tb_region WHERE id = ?";
+
+        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+            stmt.setInt(1, regionId);
+
+            try (ResultSet resultado = stmt.executeQuery()) {
+                if (!resultado.next()) {
+                    throw new IllegalArgumentException(
+                            "A região informada não existe. "
+                                    + "Verifique o ID da região."
+                    );
+                }
+            }
+        }
+    }
+
+    private void enviarErro(
+            HttpServletResponse response,
+            String mensagem
+    ) throws IOException {
+
+        response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        response.setContentType("text/plain");
+        response.setCharacterEncoding("UTF-8");
+
+        try (PrintWriter out = response.getWriter()) {
+            out.write(mensagem);
         }
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        try {
-            int regionId = Integer.parseInt(request.getParameter("regionId"));
-            String cep = request.getParameter("cep");
-            String city = request.getParameter("city");
-            String state = request.getParameter("state");
+    protected void doPost(
+            HttpServletRequest request,
+            HttpServletResponse response
+    ) throws ServletException, IOException {
 
-            Address address = new Address(0, regionId, cep, city, state);
+        request.setCharacterEncoding("UTF-8");
+
+        try {
+            int regionId = validarRegionId(request);
+            String cep = validarCep(request);
+            String city = validarCidade(request);
+            String state = validarEstado(request);
+
+            validarRegiao(regionId);
+
+            Address address = new Address(
+                    0,
+                    regionId,
+                    cep,
+                    city,
+                    state
+            );
+
             addressCrud.inserir(address);
 
-            response.sendRedirect(request.getContextPath() + "/address");
+            response.setStatus(HttpServletResponse.SC_NO_CONTENT);
+
+        } catch (IllegalArgumentException e) {
+            enviarErro(response, e.getMessage());
+
         } catch (Exception e) {
-            throw new ServletException("Erro ao cadastrar endereço.", e);
+            throw new ServletException(
+                    "Erro ao cadastrar endereço.", e
+            );
         }
     }
 
-    // Atualizar endereço - PUT
     @Override
-    protected void doPut(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doPut(
+            HttpServletRequest request,
+            HttpServletResponse response
+    ) throws ServletException, IOException {
+
+        request.setCharacterEncoding("UTF-8");
+
         try {
-            int id = Integer.parseInt(request.getParameter("id"));
-            int regionId = Integer.parseInt(request.getParameter("regionId"));
-            String cep = request.getParameter("cep");
-            String city = request.getParameter("city");
-            String state = request.getParameter("state");
+            int id = lerInteiroPositivo(
+                    request,
+                    "id",
+                    "ID do endereço"
+            );
+
+            int regionId = validarRegionId(request);
+            String cep = validarCep(request);
+            String city = validarCidade(request);
+            String state = validarEstado(request);
+
+            validarRegiao(regionId);
 
             Address address = new Address(
                     id,
@@ -83,20 +229,40 @@ public class AddressServlet extends HttpServlet {
 
             response.setStatus(HttpServletResponse.SC_NO_CONTENT);
 
+        } catch (IllegalArgumentException e) {
+            enviarErro(response, e.getMessage());
+
         } catch (Exception e) {
-            throw new ServletException("Erro ao atualizar endereço.", e);
+            throw new ServletException(
+                    "Erro ao atualizar endereço.", e
+            );
         }
     }
 
     @Override
-    protected void doDelete(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doDelete(
+            HttpServletRequest request,
+            HttpServletResponse response
+    ) throws ServletException, IOException {
+
         try {
-            int id = Integer.parseInt(request.getParameter("id"));
+            int id = lerInteiroPositivo(
+                    request,
+                    "id",
+                    "ID do endereço"
+            );
+
             addressCrud.deletar(id);
+
             response.setStatus(HttpServletResponse.SC_NO_CONTENT);
+
+        } catch (IllegalArgumentException e) {
+            enviarErro(response, e.getMessage());
+
         } catch (Exception e) {
-            throw new ServletException("Erro ao deletar endereço.", e);
+            throw new ServletException(
+                    "Erro ao deletar endereço.", e
+            );
         }
     }
 

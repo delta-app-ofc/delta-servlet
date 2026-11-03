@@ -1,0 +1,570 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Unbounded:wght@200..900&display=swap');
+
+:root {
+    --u: clamp(0.5px, calc(100vw / 1440), 1.2px);
+    --v: clamp(0.5px, min(calc(100vw / 1440), calc(100vh / 1024)), 1.2px);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    overflow-x: hidden;
+    min-height: 100%;
+    background: linear-gradient(to right, #00296B 0, #00296B 47%, #E0E8F6 47%);
+}
+
+body {
+    min-height: 100vh;
+    position: relative;
+    width: 100vw;
+    overflow-x: hidden;
+}
+
+.gota {
+    position: absolute;
+    top: 0;
+    left: 0;
+    align-items: center;
+    font-family: Montserrat, sans-serif;
+    z-index: 5;
+}
+
+.titulo {
+    font-size: calc(51 * var(--u));
+    font-weight: 400;
+    padding-top: calc(80 * var(--u));
+    padding-left: calc(30 * var(--u));
+}
+
+.inteligentemente {
+    font-size: calc(50 * var(--u));
+    font-weight: 900;
+    padding-left: calc(30 * var(--u));
+}
+
+.titulo1 {
+    font-size: calc(51 * var(--u));
+    font-weight: 400;
+    padding-left: calc(30 * var(--u));
+}
+
+.titulo, .titulo1, .inteligentemente {
+    color: #FAFAFA;
+}
+
+.glub {
+    position: absolute;
+    left: calc(50 * var(--u));
+    top: calc(256 * var(--u));
+    width: calc(520 * var(--u));
+    height: auto;
+    z-index: 3;
+}
+
+.fundo-svg {
+    width: 100%;
+    height: 100vh;
+    display: block;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.voltar {
+    position: absolute;
+    z-index: 30;
+    right: calc(32 * var(--u));
+    top: calc(32 * var(--u));
+}
+
+.recuperar-titulo {
+    position: absolute;
+    z-index: 10;
+    top: calc(180 * var(--u));
+    left: calc(820 * var(--u));
+    width: calc(420 * var(--u));
+    text-align: center;
+    color: #003E9B;
+    font-family: 'Unbounded', sans-serif;
+    font-size: calc(32 * var(--u));
+    font-weight: 700;
+}
+
+.tituloSenhaNova {
+    position: absolute;
+    font-family: Montserrat, sans-serif;
+    font-size: calc(18 * var(--u));
+    font-weight: 700;
+    z-index: 15;
+    top: calc(260 * var(--u));
+    left: calc(822 * var(--u));
+    color: #003E9B;
+}
+
+.campo-senha1 {
+    position: absolute;
+    z-index: 15;
+    top: calc(290 * var(--u));
+    left: calc(820 * var(--u));
+    width: calc(420 * var(--u));
+    height: calc(48 * var(--u));
+}
+
+#senha-nova {
+    position: static;
+    width: 100%;
+    height: 100%;
+    font-size: calc(18 * var(--u));
+    font-weight: 500;
+    border-radius: calc(12 * var(--u));
+    border: 2px solid #a0a0a0;
+    outline: none;
+    padding-left: calc(14 * var(--u));
+    padding-right: calc(52 * var(--u));
+    background-color: #E0E8F6;
+    font-family: Montserrat, sans-serif;
+}
+
+.tituloConfirmarSenha {
+    position: absolute;
+    font-family: Montserrat, sans-serif;
+    font-size: calc(18 * var(--u));
+    font-weight: 700;
+    z-index: 15;
+    top: calc(355 * var(--u));
+    left: calc(822 * var(--u));
+    color: #003E9B;
+}
+
+.campo-senha2 {
+    position: absolute;
+    z-index: 15;
+    top: calc(385 * var(--u));
+    left: calc(820 * var(--u));
+    width: calc(420 * var(--u));
+    height: calc(48 * var(--u));
+}
+
+#confirmar-senha {
+    position: static;
+    width: 100%;
+    height: 100%;
+    padding-left: calc(14 * var(--u));
+    padding-right: calc(52 * var(--u));
+    font-size: calc(18 * var(--u));
+    font-weight: 500;
+    border-radius: calc(12 * var(--u));
+    border: 2px solid #a0a0a0;
+    outline: none;
+    background-color: #E0E8F6;
+    font-family: Montserrat, sans-serif;
+}
+
+.avancar {
+    font-family: Montserrat, sans-serif;
+    background-color: #003E9B;
+    position: absolute;
+    font-size: calc(21 * var(--u));
+    font-weight: 600;
+    z-index: 15;
+    top: calc(465 * var(--u));
+    left: calc(820 * var(--u));
+    width: calc(420 * var(--u));
+    height: calc(48 * var(--u));
+    border-radius: calc(12 * var(--u));
+    color: #FAFAFA;
+    cursor: pointer;
+    border: solid #003E9B;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#senha-nova::placeholder, #confirmar-senha::placeholder {
+    color: #003E9B;
+    vertical-align: middle;
+    opacity: 0.5;
+    font-weight: 400;
+}
+
+#senha-nova:focus, #confirmar-senha:focus {
+    border-color: #003E9B;
+}
+
+.botaoOlho {
+    position: absolute;
+    top: 50%;
+    right: calc(16 * var(--u));
+    transform: translateY(-50%);
+    z-index: 20;
+    display: flex;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.iconeOlho {
+    width: calc(26 * var(--u));
+    height: auto;
+    display: block;
+}
+
+/* Layout da etapa final de recuperação, seguindo a referência visual. */
+.gota {
+    top: calc(225 * var(--v));
+    left: calc(25 * var(--u));
+}
+
+.titulo {
+    padding-top: 0;
+}
+
+.glub {
+    left: calc(85 * var(--u));
+    top: calc(230 * var(--v));
+    width: calc(480 * var(--u));
+}
+
+.voltar {
+    right: calc(26 * var(--u));
+    top: calc(22 * var(--v));
+    width: calc(40 * var(--u));
+}
+
+.form-recuperar {
+    position: absolute;
+    z-index: 10;
+    top: calc(186 * var(--v));
+    left: calc(843 * var(--u));
+    width: calc(484 * var(--u));
+    display: flex;
+    flex-direction: column;
+    color: #003E9B;
+    font-family: Montserrat, sans-serif;
+}
+
+.etapa-recuperacao {
+    margin: 0 0 calc(22 * var(--v));
+    text-align: center;
+    font-size: calc(22 * var(--v));
+    font-weight: 700;
+}
+
+.form-recuperar .recuperar-titulo {
+    position: static;
+    width: 100%;
+    margin: 0 0 calc(68 * var(--v));
+    transform: none;
+    text-align: center;
+    font-size: calc(52 * var(--v));
+    line-height: 1.18;
+}
+
+.form-recuperar .tituloSenhaNova,
+.form-recuperar .tituloConfirmarSenha {
+    position: static;
+    margin-left: calc(2 * var(--u));
+    font-size: calc(20 * var(--v));
+    line-height: 1.2;
+}
+
+.form-recuperar .campo-senha1,
+.form-recuperar .campo-senha2 {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    height: calc(69 * var(--v));
+    margin-top: calc(4 * var(--v));
+}
+
+.form-recuperar #senha-nova,
+.form-recuperar #confirmar-senha {
+    border: 2px solid #0047B2;
+    border-radius: calc(14 * var(--v));
+    background: #FAFCFF;
+    padding-left: calc(16 * var(--u));
+    padding-right: calc(58 * var(--u));
+    font-size: calc(20 * var(--v));
+}
+
+.form-recuperar #senha-nova:focus,
+.form-recuperar #confirmar-senha:focus {
+    border-color: #003E9B;
+}
+
+.form-recuperar #senha-nova::placeholder,
+.form-recuperar #confirmar-senha::placeholder {
+    color: #003E9B;
+    opacity: 0.65;
+}
+
+.requisitos-senha {
+    display: grid;
+    gap: calc(2 * var(--v));
+    list-style: none;
+    margin: calc(8 * var(--v)) 0 calc(22 * var(--v)) calc(4 * var(--u));
+    padding: 0;
+    color: #456AAB;
+    font-size: calc(16 * var(--v));
+    line-height: 1.2;
+}
+
+.requisitos-senha li::before {
+    content: "";
+    display: inline-block;
+    width: calc(13 * var(--v));
+    height: calc(13 * var(--v));
+    margin-right: calc(8 * var(--u));
+    border: 2px solid #456AAB;
+    border-radius: 50%;
+    vertical-align: calc(-1 * var(--v));
+}
+
+.requisitos-senha li.atendido::before {
+    background: #003E9B;
+    box-shadow: inset 0 0 0 calc(3 * var(--v)) #E0E8F6;
+}
+
+.form-recuperar .botaoOlho {
+    right: calc(20 * var(--u));
+    padding: 0;
+}
+
+.form-recuperar .iconeOlho {
+    width: calc(32 * var(--v));
+    filter: brightness(0) saturate(100%) invert(16%) sepia(96%) saturate(2456%) hue-rotate(204deg) brightness(91%) contrast(104%);
+}
+
+.form-recuperar .avancar {
+    position: static;
+    width: 100%;
+    height: calc(70 * var(--v));
+    margin-top: calc(90 * var(--v));
+    border-radius: calc(14 * var(--v));
+    font-size: calc(28 * var(--v));
+}
+
+a {
+    color: #FAFAFA;
+    text-decoration: none;
+}
+
+@media (min-width: 481px) and (min-aspect-ratio: 4/3) {
+    html,
+    body {
+        height: 100%;
+        overflow: hidden;
+    }
+}
+
+@media (max-width: 480px), (max-aspect-ratio: 4/3) {
+    html {
+        overflow-y: auto;
+        background: #E0E8F6;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+        background: #E0E8F6;
+    }
+
+    .fundo-svg {
+        display: none;
+    }
+
+    .voltar {
+        top: 16px;
+        right: 16px;
+    }
+
+    .gota {
+        position: static;
+        display: flex;
+        flex-direction: column;
+        padding: 64px 28px 0;
+        overflow: hidden;
+        background-color: #02245B;
+        background-image: url('/imagens/login.svg');
+        background-repeat: no-repeat;
+        background-position: left top;
+        background-size: 250% auto;
+    }
+
+    .titulo, .titulo1, .inteligentemente {
+        font-size: clamp(26px, 8vw, 40px);
+        padding: 0;
+    }
+
+    .glub {
+        position: static;
+        display: block;
+        width: min(70vw, 300px);
+        height: auto;
+        margin: 15px auto 10px;
+    }
+
+    .recuperar-titulo {
+        position: static;
+        width: auto;
+        transform: none;
+        margin: 24px 24px 4px;
+        font-size: clamp(22px, 6vw, 32px);
+        text-align: center;
+    }
+
+    #form-recuperar, form {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding-bottom: 32px;
+    }
+
+    .tituloSenhaNova {
+        position: static;
+        width: 100%;
+        font-size: calc(20 * var(--u));
+        font-weight: 700;
+        color: #003E9B;
+    }
+
+    .campo-senha1,
+    .campo-senha2 {
+        position: relative;
+        top: auto;
+        left: auto;
+        width: 100%;
+        height: 44px;
+        margin-top: 4px;
+    }
+
+    #senha-nova {
+        width: 100%;
+        height: 100%;
+        font-size: 15px;
+        border-radius: 10px;
+        padding-left: 12px;
+        padding-right: 44px;
+    }
+
+    .tituloConfirmarSenha {
+        position: static;
+        width: 100%;
+        font-size: calc(20 * var(--u));
+        font-weight: 700;
+        color: #003E9B;
+        padding-top: 16px;
+    }
+
+    #confirmar-senha {
+        width: 100%;
+        height: 100%;
+        font-size: 15px;
+        border-radius: 10px;
+        padding-left: 12px;
+        padding-right: 44px;
+    }
+
+    .botaoOlho {
+        position: absolute;
+        top: 50%;
+        right: 12px;
+        transform: translateY(-50%);
+        z-index: 20;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        border: none;
+        padding: 0;
+    }
+
+    .iconeOlho {
+        width: 22px;
+        height: auto;
+    }
+
+    .avancar {
+        position: static;
+        width: 100%;
+        height: 46px;
+        margin-top: 24px;
+        font-size: 16px;
+        border-radius: 10px;
+    }
+
+    .tituloSenhaNova,
+    .campo-senha1,
+    .tituloConfirmarSenha,
+    .campo-senha2,
+    .avancar {
+        display: block;
+        width: min(calc(100% - 48px), 400px);
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .avancar {
+        display: flex;
+    }
+
+    .form-recuperar {
+        position: static;
+        width: 100%;
+        padding: 0 24px 32px;
+    }
+
+    .form-recuperar .etapa-recuperacao {
+        margin: 20px 0 8px;
+        font-size: 16px;
+    }
+
+    .form-recuperar .recuperar-titulo {
+        margin: 0 0 24px;
+        font-size: clamp(30px, 8vw, 46px);
+    }
+
+    .form-recuperar .tituloSenhaNova,
+    .form-recuperar .tituloConfirmarSenha {
+        width: 100%;
+        margin: 0;
+        font-size: 16px;
+    }
+
+    .form-recuperar .campo-senha1,
+    .form-recuperar .campo-senha2 {
+        width: 100%;
+        height: 48px;
+    }
+
+    .form-recuperar #senha-nova,
+    .form-recuperar #confirmar-senha {
+        font-size: 15px;
+    }
+
+    .requisitos-senha {
+        gap: 3px;
+        margin: 8px 0 18px 4px;
+        font-size: 13px;
+    }
+
+    .requisitos-senha li::before {
+        width: 12px;
+        height: 12px;
+        margin-right: 7px;
+    }
+
+    .form-recuperar .avancar {
+        height: 48px;
+        margin-top: 28px;
+        font-size: 18px;
+    }
+}

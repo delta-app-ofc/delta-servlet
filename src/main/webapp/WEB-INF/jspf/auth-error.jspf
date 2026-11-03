@@ -1,0 +1,6 @@
+<% if (request.getAttribute("authError") != null) { %>
+<div class="auth-error-toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <span class="auth-error-icon" aria-hidden="true">!</span>
+    <p><%= ((String) request.getAttribute("authError")).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\"", "&quot;").replace("'", "&#39;") %></p>
+</div>
+<% } %>
