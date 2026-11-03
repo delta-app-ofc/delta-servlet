@@ -130,8 +130,8 @@ body {
 }
 
 /* Layout da etapa "Qual é o e-mail da conta?" conforme a referência. */
-/* Estilos do grupo: define a apresentação do bloco responsivo @media (min-width: 769px) and (min-aspect-ratio: 4/3). */
-@media (min-width: 769px) and (min-aspect-ratio: 4/3) {
+/* Estilos do grupo: define a apresentação do bloco responsivo @media (min-width: 769px) and (min-aspect-ratio: 67/50). */
+@media (min-width: 769px) and (min-aspect-ratio: 67/50) {
     /* Estilos do grupo: define a apresentação do seletor .container. */
     .container {
         position: absolute;
@@ -188,6 +188,19 @@ body {
 
 /* Estilos do grupo: define a apresentação do bloco responsivo @media (max-width: 768px), (max-aspect-ratio: 4/3). */
 @media (max-width: 768px), (max-aspect-ratio: 4/3) {
+    html, body {
+        min-height: 100%;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+        min-height: 100svh;
+        padding: 72px 0 24px;
+    }
+
     /* Estilos do grupo: define a apresentação do seletor .voltar. */
     .voltar {
         top: 18px;
@@ -198,6 +211,9 @@ body {
     /* Estilos do grupo: define a apresentação do seletor .container. */
     .container {
         width: 100%;
+        max-width: 430px;
+        align-self: center;
+        margin: auto;
         padding: 24px;
     }
 

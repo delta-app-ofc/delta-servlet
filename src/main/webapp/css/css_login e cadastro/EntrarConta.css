@@ -278,8 +278,8 @@ a:visited {
     opacity: 1;
 }
 
-/* Estilos do grupo: define a apresentação do bloco responsivo @media (max-width: 480px), (max-aspect-ratio: 4/3). */
-@media (max-width: 480px), (max-aspect-ratio: 4/3) {
+/* Estilos do grupo: define a apresentação do bloco responsivo @media (max-width: 768px), (max-aspect-ratio: 4/3). */
+@media (max-width: 768px), (max-aspect-ratio: 4/3) {
     /* Estilos do grupo: define a apresentação do seletor html. */
     html {
         overflow-y: auto;
@@ -290,6 +290,8 @@ a:visited {
     body {
         display: flex;
         flex-direction: column;
+        width: 100%;
+        min-height: 100svh;
         background: #E0E8F6;
     }
 
@@ -624,8 +626,8 @@ a:visited {
 .botoes a.usuario1, .botoes a.adm1 { color: #003E9B; }
 
 /* Desktop login form sizing and alignment. */
-/* Estilos do grupo: define a apresentação do bloco responsivo @media (min-width: 769px) and (min-aspect-ratio: 4/3). */
-@media (min-width: 769px) and (min-aspect-ratio: 4/3) {
+/* Estilos do grupo: define a apresentação do bloco responsivo @media (min-width: 769px) and (min-aspect-ratio: 67/50). */
+@media (min-width: 769px) and (min-aspect-ratio: 67/50) {
     body { --login-y: clamp(0.65px, min(calc(100vw / 1440), calc(100vh / 1024)), 1px); }
     #email, #senha { border-color: #003E9B; background: #fff; }
     .entrar { top: calc(158 * var(--login-y)); left: calc(840 * var(--u)); width: calc(486 * var(--u)); font-size: calc(52 * var(--login-y)); }
