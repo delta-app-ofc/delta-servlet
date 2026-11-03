@@ -56,6 +56,59 @@ Java 21 · Jakarta Servlet 6.1 e JSP · Apache Tomcat 11 · Maven (Wrapper inclu
 
    Copie `target/Delta_Back-1.0-SNAPSHOT.war` para a pasta `webapps` do Tomcat 11, inicie o servidor e acesse `http://localhost:8080/<nome-do-war>/`.
 
+# Como executar o Projeto Delta
+
+## 1. Clonar o repositório
+
+Clone o projeto para sua máquina utilizando:
+
+bash
+git clone URL_DO_REPOSITORIO
+
+
+Depois, abra a pasta clonada no *IntelliJ IDEA*.
+
+## 2. Configurar o ambiente
+
+Com o projeto aberto no IntelliJ:
+
+1. Aguarde o Maven carregar as dependências.
+2. Configure as variáveis de ambiente no arquivo .env.
+3. Confira se as informações de conexão com o PostgreSQL estão corretas.
+
+## 3. Executar o projeto
+
+1. Configure o servidor Apache Tomcat no IntelliJ IDEA.
+2. Selecione a configuração do Tomcat.
+3. Execute o servidor.
+4. Aguarde a inicialização e a abertura do site no navegador.
+
+## 4. Explorar o sistema
+
+Com o site aberto, recomendamos navegar pelas páginas e conhecer as funcionalidades disponíveis.
+
+Para testar as funcionalidades de uma conta comum:
+
+1. Acesse a página de criação de conta.
+2. Cadastre um novo usuário.
+3. Faça login utilizando o e-mail e a senha cadastrados.
+4. Explore as funcionalidades disponíveis para uma conta logada.
+
+## 5. Acessar como administrador
+
+Para testar as funcionalidades administrativas e ter acesso ao CRUD, entre utilizando a conta de administrador disponibilizada pela equipe.
+
+- *E-mail:* delta.oficial.app@gmail.com
+- *Senha:* disponibilizada pela equipe.
+
+Após realizar o login, será possível acessar as funcionalidades administrativas do sistema, incluindo as operações de CRUD.
+
+---
+
+*Projeto Delta — Instituto J&F | Escola de Tecnologia*
+
+<text>Desenvolvido como projeto interdisciplinar.</text>
+
 ## Repositórios relacionados
 
 - [delta-database-primeiroano](https://github.com/delta-app-ofc/delta-database-primeiroano) — banco de dados (primeira série)
