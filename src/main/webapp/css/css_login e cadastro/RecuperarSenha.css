@@ -399,8 +399,8 @@ a {
     text-decoration: none;
 }
 
-/* Estilos do grupo: define a apresentação do bloco responsivo @media (min-width: 481px) and (min-aspect-ratio: 4/3). */
-@media (min-width: 481px) and (min-aspect-ratio: 4/3) {
+/* Estilos do grupo: define a apresentação do bloco responsivo @media (min-width: 769px) and (min-aspect-ratio: 67/50). */
+@media (min-width: 769px) and (min-aspect-ratio: 67/50) {
     html,
     /* Estilos do grupo: define a apresentação do seletor body. */
     body {
@@ -409,8 +409,8 @@ a {
     }
 }
 
-/* Estilos do grupo: define a apresentação do bloco responsivo @media (max-width: 480px), (max-aspect-ratio: 4/3). */
-@media (max-width: 480px), (max-aspect-ratio: 4/3) {
+/* Estilos do grupo: define a apresentação do bloco responsivo @media (max-width: 768px), (max-aspect-ratio: 4/3). */
+@media (max-width: 768px), (max-aspect-ratio: 4/3) {
     /* Estilos do grupo: define a apresentação do seletor html. */
     html {
         overflow-y: auto;
@@ -421,6 +421,8 @@ a {
     body {
         display: flex;
         flex-direction: column;
+        width: 100%;
+        min-height: 100svh;
         background: #E0E8F6;
     }
 
